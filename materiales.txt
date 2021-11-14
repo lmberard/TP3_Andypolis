@@ -1,0 +1,3 @@
+metal 82977
+madera 9140
+piedra 9222
