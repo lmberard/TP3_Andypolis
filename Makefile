@@ -11,6 +11,9 @@ colors.o: colors.cpp colors.hpp
 lista.o: lista.cpp lista.hpp nodo.hpp nodo.cpp
 	$(CC) $(FLAGS) lista.o
 
+parser.o: parser.cpp parser.hpp lista.hpp ciudad.cpp ubicaciones.hpp constructor.hpp 
+	$(CC) $(FLAGS) parser.o
+
 recurso.o: recurso.cpp recurso.hpp 
 	$(CC) $(FLAGS) recurso.o	
 
@@ -35,7 +38,7 @@ casillero.o: edificio.hpp material.hpp casillero.hpp casillero.cpp casilleroCons
 menu.o: casillero.hpp edificio.hpp material.hpp menu.cpp menu.hpp
 	$(CC) $(FLAGS) menu.o
 
-andypolis: casillero.cpp casilleroConstruible.cpp casilleroInaccesible.cpp casilleroTransitable.cpp ciudad.cpp colors.cpp inventario.cpp constructor.cpp edificio.cpp edificioAserradero.cpp edificioEscuela.cpp edificioFabrica.cpp edificioMina.cpp edificioObelisco.cpp edificioPlantaElectrica.cpp edificioYacimiento.cpp main.cpp material.cpp materialMadera.cpp materialPiedra.cpp materialMetal.cpp recurso.cpp terreno.cpp menu.cpp 
+andypolis: parser.cpp casillero.cpp casilleroConstruible.cpp casilleroInaccesible.cpp casilleroTransitable.cpp ciudad.cpp colors.cpp inventario.cpp constructor.cpp edificio.cpp edificioAserradero.cpp edificioEscuela.cpp edificioFabrica.cpp edificioMina.cpp edificioObelisco.cpp edificioPlantaElectrica.cpp edificioYacimiento.cpp main.cpp material.cpp materialMadera.cpp materialPiedra.cpp materialMetal.cpp recurso.cpp terreno.cpp menu.cpp 
 	$(CC) $(FLAGS) $^ -o andypolis
 
 clean:

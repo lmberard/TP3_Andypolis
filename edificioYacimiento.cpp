@@ -12,6 +12,6 @@ Yacimiento::Yacimiento(int s, int w, int m, int p) : Edificio(s, w, m, p)
     //material3 = "metal";
 }
 
-Yacimiento::Yacimiento(Edificio *edificio): Edificio(edificio){}
+Yacimiento::Yacimiento(Edificio *edificio) : Edificio(edificio) {}
 
-Yacimiento::~Yacimiento(){}
+Yacimiento::~Yacimiento() {}
