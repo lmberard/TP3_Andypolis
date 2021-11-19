@@ -4,6 +4,7 @@
 #include "colors.hpp"
 #include "ubicaciones.hpp"
 #include "lista.hpp"
+#include "parser.hpp"
 
 #include "terreno.hpp"
 #include "constructor.hpp"
@@ -20,7 +21,7 @@ class Ciudad
     Lista<Ubicacion> materiales;
 
     Lista<Ubicacion> coordenadasTransitables;
-    
+
     int filas;
     int columnas;
     Casillero ***mapa;
@@ -29,6 +30,8 @@ public:
     // PRE:
     // POS:
     Ciudad();
+
+    //Ciudad(Parser &parser, Terreno &terreno, Constructor &bob, Recurso &recurso);
 
     // PRE:
     // POS:
@@ -68,14 +71,25 @@ public:
 
     // PRE:
     // POS:
+    void agregar_ubicacion_edificio(Ubicacion ubicacion);
+
+    // PRE:
+    // POS:
+    void actualizar_tam_mapa(int _filas, int _columnas);
+
+    void crear_memoria_filas_mapa(int _filas);
+
+    void crear_memoria_columna_mapa(int posicion_fila, int _columnas);
+
+    void agregar_casillero(int x, int y, string casillero, Terreno &terreno);
+
+    // PRE:
+    // POS:
     bool chequear_permisos_edificio(const string &edificio, Constructor &bob);
 
     // PRE:
     // POS:
     void cargar_ubicaciones(const string &PATH);
-
-    // PRE:
-    // POS:
 
     // PRE:
     // POS:
@@ -111,9 +125,6 @@ public:
     // PRE:
     // POS:
     void recolectar();
-
-    // PRE:
-    // POS:
 
     // PRE:
     // POS:

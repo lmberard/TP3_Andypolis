@@ -12,18 +12,28 @@
 #include "ciudad.hpp"
 
 const int OPCION_MINIMA = 1;
-const int OPCION_MAXIMA = 10;
+const int OPCION_MAXIMA_NUEVA_PARTIDA = 5;
+const int OPCION_MAXIMA_JUEGO = 13;
+
+const int MODIFICAR_EDIFICIO_POR_NOMBRE = 1;
+const int LISTAR_TODOS_EDIFICIOS = 2;
+const int MOSTRAR_MAPA = 3;
+const int COMENZAR_PARTIDA = 4;
+const int SALIR_INICIAL = 5;
 
 const int CONSTRUIR_EDIFICIO = 1;
 const int LISTAR_CONSTRUIDOS = 2;
-const int LISTAR_TODOS = 3;
-const int DEMOLER_POR_COORDENADA = 4;
-const int MOSTRAR_MAPA = 5;
-const int CONSULTAR_COORDENADA = 6;
-const int MOSTRAR_INVENTARIO = 7;
-const int RECOLECTAR_RECURSOS = 8;
-const int LLUVIA_RECURSOS = 9;
-const int SALIR = 10;
+const int DEMOLER_POR_COORDENADA = 3;
+const int ATACAR_POR_COORDENADA = 4;
+const int REPARAR_POR_COORDENADA = 5;
+const int COMPRAR_BOMBAS = 6;
+const int CONSULTAR_COORDENADA = 7;
+const int MOSTRAR_INVENTARIO = 8;
+const int MOSTRAR_OBJETIVOS = 9;
+const int RECOLECTAR_RECURSOS = 10;
+const int MOVERSE_COORDENADA = 11;
+const int FINALIZAR_TURNO = 12;
+const int SALIR_JUEGO = 13;
 
 #ifdef __linux__
 #define CLR_SCREEN "clear"
@@ -37,40 +47,62 @@ const int SALIR = 10;
 #define CLR_SCREEN "CLS"
 #endif // __MINGW32__
 
-// pre: -
-// post: Imprime por pantalla las intrucciones sobre el formato y nombre de los archivos.txt a utilizar
-void mostrar_InstruccionInicial();
+class Menu
+{
+public:
+    // pre: -
+    // post: Imprime por pantalla el menu
+    void mostrar_menu_partida_nueva();
 
-// pre: -
-// post: Imprime por pantalla el menu
-void mostrar_menu();
+    // pre: -
+    // post: Imprime por pantalla el menu
+    void mostrar_menu_juego();
 
-// pre: -
-// post: Pregunta para volver al menu
-void volver();
+    void menu_partida_nueva(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int opcion_elegida);
 
-// pre: El texto ingresado por el usuario tiene que ser un NUMERO entero
-// post: Realiza la opcion pedida
-void procesar_opcion(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso); // material *materiales_array, edificio *edificios_array, casillero **mapa, ubicacion *ubicaciones_array
+    void menu_juego(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int opcion_elegida);
 
-// pre: El texto ingresado por el usuario tiene que ser un NUMERO entero
-// post: devuelve true si la opcion recibida esta en el rango valido y sino devuelve false.
-bool es_opcion_valida(int elegida);
+    ////////////////////////////////
+    // pre: El texto ingresado por el usuario tiene que ser un NUMERO entero
+    // post: Realiza la opcion pedida
+    void procesar_opcion_juego(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso); // material *materiales_array, edificio *edificios_array, casillero **mapa, ubicacion *ubicaciones_array
 
-// pre: -
-// post: Obtiene una respuesta del usuario y la devuelve en minusculas.
-string devolver_rta_usuario();
+    void procesar_opcion_partida_nueva(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso);
 
-// pre: Existen los archivos txt correspondientes
-// post: se muestra el menu Principal
-void mostrar_menuInicial(Ciudad &andypolis, Constructor &bob, Recurso &recurso);
+    ////////////////////////////////
+    // pre: El texto ingresado por el usuario tiene que ser un NUMERO entero
+    // post: devuelve true si la opcion recibida esta en el rango valido y sino devuelve false.
+    bool es_opcion_valida(int elegida, const int opcion_minima, const int opcion_maxima);
 
-// pre: -
-// post: devuelve true si son iguales. Es comparacion case insensitive
+    void validar_opcion_juego(int opcion_elegida);
+
+    void validar_opcion_partida_nueva(int opcion_elegida4);
+
+    int obtener_opcion_usuario();
+    ////////////////////////////////
+    // pre: -
+    // post: Obtiene una respuesta del usuario y la devuelve en minusculas.
+    string devolver_rta_usuario();
+
+    bool confirmacion_usuario();
+
+    ////////////////////////////////
+    void limpiar_pantalla();
+
+    // pre: -
+    // post: Pregunta para volver al menu
+    void volver();
+
+    void despedir();
+    /////////////////////////////////
+    bool comenzo_nueva_partida(int opcion_elegida);
+
+    bool cerro_menu_inicial(int opcion_elegida);
+
+    bool cerro_juego(int opcion_elegida);
+};
+
 bool char_son_iguales(char &c1, char &c2);
 
-// pre: -
-// post: devuelve true si son iguales. Es comparacion case insensitive
 bool strings_son_iguales(string &str1, string &str2);
-
 #endif // MENU_H

@@ -2,6 +2,16 @@
 #include <string>
 #include <iomanip>
 
+/*
+Ciudad::Ciudad(Parser &parser, Terreno &terreno, Constructor &bob, Recurso &recurso)
+{
+    parser.cargar_inventario(inventario, recurso);
+    parser.cargar_ubicaciones(*this);
+    parser.cargar_mapa(*this, terreno);
+    cargar_ubicaciones(bob);
+    llenarcoordenadatransitable();
+}*/
+
 Ciudad::Ciudad(const string &PATH1, const string &PATH2, const string &PATH3, Terreno &terreno, Constructor &bob, Recurso &recurso)
 {
     inventario.cargar(PATH2, recurso);
@@ -38,6 +48,27 @@ Ciudad::Ciudad(const string &PATH1, const string &PATH2, const string &PATH3, Te
 
     cargar_ubicaciones(bob);
     llenarcoordenadatransitable();
+}
+
+void Ciudad::actualizar_tam_mapa(int _filas, int _columnas)
+{
+    filas = _filas;
+    columnas = _columnas;
+}
+
+void Ciudad::crear_memoria_filas_mapa(int _filas)
+{
+    mapa = new Casillero **[filas];
+}
+
+void Ciudad::crear_memoria_columna_mapa(int posicion_fila, int _columnas)
+{
+    mapa[posicion_fila] = new Casillero *[_columnas];
+}
+
+void Ciudad::agregar_casillero(int x, int y, string casillero, Terreno &terreno)
+{
+    mapa[x][y] = terreno.agregar(casillero);
 }
 
 Ciudad::~Ciudad()
@@ -84,6 +115,7 @@ void Ciudad::consultar_coordenada_cin()
     cin >> y;
     consultar_coordenada(stoi(x), stoi(y));
 }
+
 void Ciudad::consultar_coordenada(int i, int j)
 {
     cout << "Hola, estás en la posición (" << i << ", " << j << ")" << endl;
@@ -143,20 +175,24 @@ void Ciudad::construir(int x, int y, const string &eledificio, Constructor &bob)
                         msjeOK("Se construyo el edificio y se agrego a la lista de ubicaciones");
                     }
                 }
-                else if (rta == "no"){
+                else if (rta == "no")
+                {
                     msjeInstruccion("No se construyo el edificio.");
                     delete edificio;
                 }
-                else{
+                else
+                {
                     msjeError("Opcion invalida. Ingrese 'si' o 'no'");
                 }
             }
-            else{
+            else
+            {
                 mapa[x][y]->agregar(edificio);
                 delete edificio;
             }
         }
-        else{
+        else
+        {
             msjeError("No hay materiales suficientes para la construccion de ese edificio :(");
             delete edificio;
         }
@@ -165,7 +201,6 @@ void Ciudad::construir(int x, int y, const string &eledificio, Constructor &bob)
         msjeError("Esa coordenada X no existe en el mapa");
     if (y > columnas)
         msjeError("Esa coordenada Y no existe en el mapa");
-
 }
 
 void Ciudad::cargar_ubicaciones(Constructor &bob)
@@ -196,24 +231,30 @@ void Ciudad::cargar_ubicaciones(const string &PATH)
     string nombre, aux, coord_x, coord_y, aux2;
     while (getline(archivo_ubicaciones, nombre, ' '))
     {
-        if (nombre == "planta"){
+        if (nombre == "planta")
+        {
             getline(archivo_ubicaciones, aux, ' ');
             ubicacion.nombre = nombre + ' ' + aux;
         }
-        else{
+        else
+        {
             ubicacion.nombre = nombre;
-        }   
-            getline(archivo_ubicaciones, aux, '(');
-            getline(archivo_ubicaciones, coord_x, ',');
-            ubicacion.coord_x = stoi(coord_x);
+        }
+        getline(archivo_ubicaciones, aux, '(');
+        getline(archivo_ubicaciones, coord_x, ',');
+        ubicacion.coord_x = stoi(coord_x);
 
-            getline(archivo_ubicaciones, aux, ' ');
-            getline(archivo_ubicaciones, coord_y, ')');
-            ubicacion.coord_y = stoi(coord_y);
-            getline(archivo_ubicaciones, aux);
+        getline(archivo_ubicaciones, aux, ' ');
+        getline(archivo_ubicaciones, coord_y, ')');
+        ubicacion.coord_y = stoi(coord_y);
+        getline(archivo_ubicaciones, aux);
 
-            edificios.alta(ubicacion);
+        edificios.alta(ubicacion);
     }
+}
+void Ciudad::agregar_ubicacion_edificio(Ubicacion ubicacion)
+{
+    edificios.alta(ubicacion);
 }
 
 void Ciudad::mostrar_inventario()
@@ -381,7 +422,6 @@ int Ciudad::construidos(const string &edificio)
 void Ciudad::recolectar()
 {
     Edificio *edificio;
-    
 
     msjeOK("Se recolectaron los siguientes materiales:");
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)

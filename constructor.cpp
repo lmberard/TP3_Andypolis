@@ -1,5 +1,7 @@
 #include "constructor.hpp"
 
+Constructor::Constructor() {}
+
 Constructor::Constructor(const string &PATH)
 {
     fstream archivo_edificios(PATH, ios::in);
@@ -38,6 +40,23 @@ Constructor::Constructor(const string &PATH)
         if (nombre == "planta")
             edificios.alta(new PlantaElectrica(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
     }
+}
+void Constructor::agregar_edificio(string nombre, int piedra, int madera, int metal, int permitidos)
+{
+    if (nombre == "aserradero")
+        edificios.alta(new Aserradero(piedra, madera, metal, permitidos));
+    if (nombre == "fabrica")
+        edificios.alta(new Fabrica(piedra, madera, metal, permitidos));
+    if (nombre == "escuela")
+        edificios.alta(new Escuela(piedra, madera, metal, permitidos));
+    if (nombre == "yacimiento")
+        edificios.alta(new Yacimiento(piedra, madera, metal, permitidos));
+    if (nombre == "mina")
+        edificios.alta(new Mina(piedra, madera, metal, permitidos));
+    if (nombre == "obelisco")
+        edificios.alta(new Obelisco(piedra, madera, metal, permitidos));
+    if (nombre == "planta")
+        edificios.alta(new PlantaElectrica(piedra, madera, metal, permitidos));
 }
 
 Edificio *Constructor::construye(const string &edificio)

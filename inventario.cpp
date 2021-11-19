@@ -25,6 +25,11 @@ void Inventario::cargar(const string &PATH, Recurso &recurso)
     }
 }
 
+void Inventario::agregar_material(string nombre, int cantidad, Recurso &recurso)
+{
+    materiales1.alta(recurso.dar_material(nombre, cantidad));
+}
+
 void Inventario::mostrar_inventario()
 {
     cout << left << TXT_BOLD << TXT_UNDERLINE << BGND_BLUE_4
@@ -118,16 +123,16 @@ Inventario::~Inventario()
     }
 }
 
-void Inventario::recolectar(Edificio * edificio){
+void Inventario::recolectar(Edificio *edificio)
+{
     int cuenta;
-for (int j = 1; j < materiales1.mostrar_cantidad() + 1; j++)
+    for (int j = 1; j < materiales1.mostrar_cantidad() + 1; j++)
+    {
+        if (edificio->obtener_mat_producido() == materiales1[j]->obtener_nombre())
         {
-            if (edificio->obtener_mat_producido() == materiales1[j]->obtener_nombre())
-            {
-                cuenta = materiales1[j]->obtener_cantidad() + edificio->obtener_cant_mat_producido();
-                cout << "\t-> " << edificio->obtener_cant_mat_producido() << " unidades de " << materiales1[j]->obtener_nombre() << " del edificio del tipo '" << edificio->obtener_nombre() << "'" << endl;
-                materiales1[j]->modificar_cantidad(cuenta);
-            }
+            cuenta = materiales1[j]->obtener_cantidad() + edificio->obtener_cant_mat_producido();
+            cout << "\t-> " << edificio->obtener_cant_mat_producido() << " unidades de " << materiales1[j]->obtener_nombre() << " del edificio del tipo '" << edificio->obtener_nombre() << "'" << endl;
+            materiales1[j]->modificar_cantidad(cuenta);
         }
-
+    }
 }

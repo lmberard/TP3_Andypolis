@@ -4,35 +4,31 @@
 
 #include "menu.hpp"
 #include "ciudad.hpp"
+#include "parser.hpp"
 
 using namespace std;
 
 int main()
 {
-
-    string rta = " ";
-    string si = "si";
-    string no = "no";
-    do
+    Menu menu;
+    Parser lector_archivos;
+    Terreno terreno;
+    Constructor bob;
+    lector_archivos.cargar_edificios(bob);
+    Recurso recurso;
+    Ciudad andypolis("mapa.txt", "materiales.txt", "ubicaciones.txt", terreno, bob, recurso);
+    int opcion;
+    //si el archivo ubicaciones.txt no existe o esta vacio entonces es una partida nueva
+    if (lector_archivos.existe_archivo_ubicaciones())
     {
-        mostrar_InstruccionInicial();
-        rta = devolver_rta_usuario();
-        if (strings_son_iguales(rta, si))
+        do
         {
-            Terreno terreno;
-            Constructor bob("edificios.txt");
-            Recurso recurso;
-
-            Ciudad andypolis("mapa.txt", "materiales.txt", "ubicaciones.txt", terreno, bob, recurso);
-
-            mostrar_menuInicial(andypolis, bob, recurso);
-            return 0;
-        }
-        else if (!strings_son_iguales(rta, no))
-            msjeError("Error. Opciones validas: 'si' o 'no'");
-    } while (!strings_son_iguales(rta, no));
-
-    msjeInstruccion("Hasta luego!! :)");
-
+            menu.menu_partida_nueva(andypolis, bob, recurso, opcion);
+        } while (menu.cerro_menu_inicial(opcion));
+    }
+    else
+    {
+        menu.menu_juego(andypolis, bob, recurso, opcion);
+    }
     return 0;
 }
