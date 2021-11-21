@@ -1,281 +1,470 @@
-#include "menu.hpp"
-#include "casillero.hpp"
+#include <fstream>
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+#include "menu.h"
+
 
 using namespace std;
-////////////////////////////////////////////////////////////////
-bool char_son_iguales(char &c1, char &c2)
-{
-    if (c1 == c2)
-        return true;
-    else if (toupper(c1 == toupper(c2)))
-        return true;
-    return false;
-}
 
-bool strings_son_iguales(string &str1, string &str2)
-{
-    return ((str1.size() == str2.size()) &&
-            equal(str1.begin(), str1.end(), str2.begin(), &char_son_iguales));
-}
-
-////////////////////////////////////////////////////////////////
-string Menu::devolver_rta_usuario()
-{
-    string rta;
-    cin >> rta;
-    return rta;
-}
-
-bool Menu::confirmacion_usuario()
-{
-    string rta, si = "si", no = "no";
-    rta = devolver_rta_usuario();
-    if (strings_son_iguales(rta, si))
-        return true;
-    else if (!strings_son_iguales(rta, no))
-    {
-        msjeError("Error. Opciones validas: 'si' o 'no'");
-        return false;
+void menu(optionMenu & option, List<Materials> & materialsChain, List<BuildingInfo> & buildingsInfoChain, Map &andyMap, List<CoordinatesOfBuilding> & roadsCoordinates){
+    while (option != LEAVE) {
+        option = UNDEFINE;
+        handleMenu(option);
+        processOption(option, materialsChain, buildingsInfoChain, andyMap, roadsCoordinates);
     }
+}
+
+
+void handleMenu(optionMenu& option) {
+    int selectedOption = 0;
+    string aux;
+
+    displayMenu();
+    getline(cin, aux);
+
+    
+    if (isANumber(aux) == true){
+        selectedOption = stoi(aux);
+        if (selectedOption >= 1 && selectedOption <= 10)
+            option = (optionMenu)selectedOption;
+    } else
+        option = UNDEFINE;
+  
+}
+
+void processOption(optionMenu& selectedOption, List<Materials> & materialsChain, List<BuildingInfo> & buildingsInfoChain, Map & andyMap, List<CoordinatesOfBuilding> & roadsCoordinates){
+
+    switch(selectedOption){
+        case BUILD_BUILDING_BY_NAME:
+            buildBuildingByName(materialsChain, buildingsInfoChain, andyMap);
+            break;
+
+        case LIST_CONSTRUCTUCTED_BUILDINGS:
+            listBuildingsMade(buildingsInfoChain);
+            break;
+
+        case LIST_ALL_BUILDINGS:
+            listAllBuildings(buildingsInfoChain);
+            break;
+
+        case DEMOLISH_BUILDING_BY_COORDINATES:
+            demolishBuildingByCoordinates(materialsChain, buildingsInfoChain, andyMap);
+            break;
+
+        case SHOW_MAP:
+            andyMap.printMap();
+            cout << endl;
+            break;
+
+        case ASK_COORDINATES:
+            showCellByCoordinates(andyMap);
+            break;
+
+        case SHOW_INVENTARY:
+            listConstructionMaterials(&materialsChain);
+            break;
+            
+        case COLLECT_RESOURCES:
+            collectResources(materialsChain, buildingsInfoChain, andyMap);
+            break;
+        
+        case RESOURCES_STORM:
+            resourcesStorm(andyMap, roadsCoordinates);
+            andyMap.printMap();
+            break;
+
+        case SAVE_AND_LEAVE:
+            saveAndQuit(materialsChain, buildingsInfoChain);
+            selectedOption = LEAVE;
+            break;
+
+        default:
+            cerr << TXT_DARK_RED_1 << ERR_WRONG_INPUT << END_COLOR << endl << endl;
+            break;
+    }
+}
+
+void buildBuildingByName(List<Materials> &materialsChain, List<BuildingInfo> &buildingsInfoChain, Map &andyMap){
+    int row, column;
+    string building;
+    Node<BuildingInfo> * ptrBuildInfoNode = nullptr;
+
+    cout << TXT_ORANGE_166 << ENTER_BUILDING_TO_BUILD << endl << END_COLOR;
+    getline(cin, building);
+    
+    if(searchBuildingByName(buildingsInfoChain, &ptrBuildInfoNode, building) == true){
+        if(checkBuildingRequirements(ptrBuildInfoNode, materialsChain) == true){
+            askCoordinates(row,column);
+            if(andyMap.validateCoordinates(row, column) == true){
+                if((ptrBuildInfoNode->getData()).getBuildingsAllowed() - (ptrBuildInfoNode->getData()).getBuildingsMade() > 0){
+                    if( ((CellBuildable*)(andyMap.getElement(row, column)))->getIsBuilt() != true ){
+                        if(ConfirmationToBuild() == CONFIRMATION_BUILD_YES){
+                            if(andyMap.buildBuilding(row, column, building) == true){
+                                ptrBuildInfoNode->getData().addCoordinates(row, column);
+                                ptrBuildInfoNode->getData().setBuildingsMade(ptrBuildInfoNode->getData().getBuildingsMade() + 1);
+                                updateMaterialsAmount(ptrBuildInfoNode, materialsChain);
+                                cout << TXT_ORANGE_166 << BUILD_BUILDING_SUCCESS << building << END_COLOR << endl;
+                            }
+                        }
+                    }
+                    else
+                        cerr << TXT_DARK_RED_1 << ERR_CELL_WITH_BUILDING << END_COLOR << endl << endl;
+                }
+                else
+                    cerr << TXT_DARK_RED_1 << ERR_NO_REMAINING_BUILDINGS_TO_BUILD << END_COLOR << endl << endl;
+            } else
+                cerr << TXT_DARK_RED_1 <<  ERR_INVALID_COORDINATES << END_COLOR << endl << endl;
+        }
+    } else
+        cerr << TXT_DARK_RED_1 << ERR_BUILDING_NOT_FOUND << END_COLOR<< endl << endl;
+}
+
+
+void demolishBuildingByCoordinates(List<Materials> &materialsChain, List<BuildingInfo> &buildingsInfoChain, Map &andyMap){
+    int row,column;
+    string buildingDemolished;
+    Node<BuildingInfo> * ptrBuildInfoNode = buildingsInfoChain.getFirst();
+    bool buildingFoundFlag = false;
+
+    askCoordinates(row, column);
+
+    if(andyMap.demolishBuilding(row, column, buildingDemolished) == true){
+        while(ptrBuildInfoNode != nullptr && buildingFoundFlag == false){
+            if(buildingDemolished == (ptrBuildInfoNode->getData()).getBuildingName()){
+                ptrBuildInfoNode->getData().setBuildingsMade(ptrBuildInfoNode->getData().getBuildingsMade() - 1); 
+                updateMaterialsAmountDemolish(ptrBuildInfoNode, materialsChain);
+                ptrBuildInfoNode->getData().deleteCoordinates(row, column);
+                buildingFoundFlag = true;
+            } 
+            else   
+                ptrBuildInfoNode = ptrBuildInfoNode->getNext();
+        }
+        cout << TXT_ORANGE_166 << DEMOLISH_BUILDING_SUCCESS << buildingDemolished << END_COLOR << endl << endl;
+    }
+
+}
+
+
+void showCellByCoordinates(Map & andyMap){
+    int row, column;
+
+    askCoordinates(row, column);
+
+    if(andyMap.validateCoordinates(row,column) == false){
+        cerr << TXT_DARK_RED_1 <<  ERR_INVALID_COORDINATES << END_COLOR << endl << endl;
+        return;
+    }
+
+    andyMap.printCellInfo(row, column);
+}
+
+
+void listConstructionMaterials(List <Materials> * materialsChain){
+    Node<Materials> * aux = (*materialsChain).getFirst();
+    string material;
+
+    printTitleListOfMaterials();
+    printHeaderListOfMaterials();
+
+	if(!(*materialsChain).isEmpty()){
+		while(aux != 0){
+            material = (aux->getData()).getMaterial();
+            printListOfMaterials(aux);
+			aux = aux->getNext();
+		}
+		cout << endl << endl;
+	}
+}
+
+
+void listAllBuildings(List <BuildingInfo> & buildingsInfoChain){
+    Node<BuildingInfo> * aux = buildingsInfoChain.getFirst();
+
+    printTitleAllBuildings();
+    printHeaderAllBuildings();
+
+    while(aux != 0){
+        printAllBuildings(aux);
+        aux = aux->getNext();     
+    }	
+	
+    cout << endl << endl;
+}
+
+void collectResources(List<Materials> & materialsChain, List<BuildingInfo> & buildingsInfoChain, Map &andyMap){
+    string buildingDemolished;
+    Node<BuildingInfo> * ptrBuildInfoNode = buildingsInfoChain.getFirst();
+    
+    while(ptrBuildInfoNode != nullptr){
+        if(ptrBuildInfoNode->getData().getBuildingsMade() > 0){
+            addResourcesToMaterialsChain(materialsChain, ptrBuildInfoNode, andyMap);
+        }
+        ptrBuildInfoNode = ptrBuildInfoNode->getNext();
+    }
+}
+
+
+void addResourcesToMaterialsChain(List<Materials> & materialsChain, Node<BuildingInfo> * ptrBuildInfoNode, Map & andyMap){
+    int row, column;
+    string material;
+    int materialAmount;
+
+    for(int i = 0; i < ptrBuildInfoNode->getData().getArrayOfCoordinates().getSize(); i++){
+
+            row = ptrBuildInfoNode->getData().getArrayOfCoordinates()[i].row;
+            column = ptrBuildInfoNode->getData().getArrayOfCoordinates()[i].column;
+            material = ((CellBuildable*)(andyMap.getElement(row, column)))->getBuilding().getGeneratedMaterial();
+            materialAmount = ((CellBuildable*)(andyMap.getElement(row, column)))->getBuilding().getGeneratedMaterialAmount();
+
+            addMaterial(materialsChain, material, materialAmount);
+    }
+}
+
+void addMaterial(List<Materials> & materialsChain, string material, int materialAmount){
+    Node<Materials> * ptrMaterialsNode = materialsChain.getFirst();
+    bool flag = false;
+
+    while(ptrMaterialsNode != nullptr && flag == false){
+        if(ptrMaterialsNode->getData().getMaterial() == material){
+            ptrMaterialsNode->getData().setAmount(ptrMaterialsNode->getData().getAmount() + materialAmount);
+            flag = true;
+        }
+        else
+            ptrMaterialsNode = ptrMaterialsNode->getNext();
+    }
+}
+
+void resourcesStorm(Map & andyMap, List<CoordinatesOfBuilding> & roadsCoordinates){
+    int row, column, aux;
+    int generatedStone, generatedMetal, generatedWood;
+    Node<CoordinatesOfBuilding> * ptrRoadsCoordinate = roadsCoordinates.getFirst();
+
+    generatedStone = rand()%(RANDOM_MAX_STONE_AMOUNT - RANDOM_MIN_STONE_AMOUNT + 1) + RANDOM_MIN_STONE_AMOUNT; 
+    generatedWood = rand()%(RANDOM_MAX_WOOD_AMOUNT - RANDOM_MIN_WOOD_AMOUNT + 1) + RANDOM_MIN_WOOD_AMOUNT;
+    generatedMetal = rand()%(RANDOM_MAX_METAL_AMOUNT - RANDOM_MIN_METAL_AMOUNT + 1) + RANDOM_MIN_METAL_AMOUNT;
+
+    for (int i = 0; i < generatedStone; i++){
+        if(roadsCoordinates.getSize() > 0){                              //si es mayor a 0 es que todavia tengo caminos libres para asignar materiales
+            aux = rand() % (roadsCoordinates.getSize() - 1 + 1) + 1;    //esto me da un numero entre 1 y el tamaño de la lista.
+            for(int j = 1; j < aux; j++)                                // busco el nodo que está en la posicion aux de la lista
+                ptrRoadsCoordinate = ptrRoadsCoordinate->getNext();
+            row = ptrRoadsCoordinate->getData().row;
+            column = ptrRoadsCoordinate->getData().column;
+            ((CellPassable*)(andyMap.getElement(row, column)))->addMaterial(WORD_STONE);
+            roadsCoordinates.removeElement(*ptrRoadsCoordinate);
+        }
+        ptrRoadsCoordinate = roadsCoordinates.getFirst();
+    }
+
+    for (int i = 0; i < generatedMetal; i++){
+        if(roadsCoordinates.getSize() > 0){                              //si es mayor a 0 es que todavia tengo caminos libres para asignar materiales
+            aux = rand() % (roadsCoordinates.getSize() - 1 + 1) + 1;    //esto me da un numero entre 1 y el tamaño de la lista.
+            for(int j = 1; j < aux; j++)                                // busco el nodo que está en la posicion aux de la lista
+                ptrRoadsCoordinate = ptrRoadsCoordinate->getNext();
+            row = ptrRoadsCoordinate->getData().row;
+            column = ptrRoadsCoordinate->getData().column;
+            ((CellPassable*)(andyMap.getElement(row, column)))->addMaterial(WORD_METAL);
+            roadsCoordinates.removeElement(*ptrRoadsCoordinate);
+        }
+        ptrRoadsCoordinate = roadsCoordinates.getFirst();
+    }
+
+    for (int i = 0; i < generatedWood; i++){
+        if(roadsCoordinates.getSize() > 0){                              //si es mayor a 0 es que todavia tengo caminos libres para asignar materiales
+            aux = rand() % (roadsCoordinates.getSize() - 1 + 1) + 1;    //esto me da un numero entre 1 y el tamaño de la lista.
+            for(int j = 1; j < aux; j++)                                // busco el nodo que está en la posicion aux de la lista
+                ptrRoadsCoordinate = ptrRoadsCoordinate->getNext();
+            row = ptrRoadsCoordinate->getData().row;
+            column = ptrRoadsCoordinate->getData().column;
+            ((CellPassable*)(andyMap.getElement(row, column)))->addMaterial(WORD_WOOD);
+            roadsCoordinates.removeElement(*ptrRoadsCoordinate);
+        }
+        ptrRoadsCoordinate = roadsCoordinates.getFirst();
+    }
+}
+
+
+
+
+void saveAndQuit(List<Materials> & materialsChain, List<BuildingInfo> & buildingsInfoChain){
+    saveMaterials(materialsChain);
+    saveBuildingsLocation(buildingsInfoChain);
+}
+
+void saveMaterials(List<Materials> & materialsChain){
+    fstream file;
+    Node<Materials> * ptrMaterialsNode = materialsChain.getFirst();
+
+    file.open("materiales.txt", ios::out);
+
+    if(file.is_open()){
+        while(ptrMaterialsNode != 0){
+
+            file << (ptrMaterialsNode->getData()).getMaterial() << " ";
+            file << (ptrMaterialsNode->getData()).getAmount() << endl;
+
+            ptrMaterialsNode = ptrMaterialsNode->getNext();
+        }
+ 		file.close();
+    }
+	else
+		cerr << TXT_DARK_RED_1 << ERR_CANT_OPEN_FILE << END_COLOR << endl << endl;
+}
+
+void saveBuildingsLocation(List<BuildingInfo> & buildingsInfoChain){
+    fstream file;
+    Node<BuildingInfo> * ptrBuildInfoNode = buildingsInfoChain.getFirst();
+
+    file.open("ubicaciones.txt", ios::out);
+
+    if(file.is_open()){
+
+        while(ptrBuildInfoNode != 0){
+
+            for(int i = 0; i < ptrBuildInfoNode->getData().getArrayOfCoordinates().getSize(); i++){
+                file << (ptrBuildInfoNode->getData()).getBuildingName();
+                file << " " << "(";
+                file << ptrBuildInfoNode->getData().getArrayOfCoordinates()[i].row;
+                file << ",";
+                file << ptrBuildInfoNode->getData().getArrayOfCoordinates()[i].column;
+                file << ")" << endl;
+            }
+            ptrBuildInfoNode = ptrBuildInfoNode->getNext();
+        }
+ 		file.close();
+    }
+	else
+		cerr << TXT_DARK_RED_1 << ERR_CANT_OPEN_FILE << END_COLOR << endl << endl;
+}
+
+
+
+void printAllBuildings(Node<BuildingInfo> * aux){
+    int width = 11;
+
+    cout << left << TAB
+    << setw(2*width) << (aux->getData()).getBuildingName()  << setw(1) << "|" 
+    << setw(width) << (aux->getData()).getStoneRequired() << setw(1) << "|" 
+    << setw(width) << (aux->getData()).getWoodRequired()  << setw(1) << "|" 
+    << setw(width) << (aux->getData()).getMetalRequired() << setw(1) << "|" 
+    << setw(2*width) << (aux->getData()).getBuildingsMade() << setw(1) << "|" 
+    << setw(3*width + 1) <<(aux->getData()).getBuildingsAllowed() - (aux->getData()).getBuildingsMade() << "|" << setw(10*width);
+
+    if((aux->getData()).getBuildingName() == WORD_MINE)
+        cout << WORD_STONE << setw(1) << endl ;
+    else if ((aux->getData()).getBuildingName() == WORD_SAWMILL)
+        cout << WORD_WOOD << setw(1) << endl ;
+    else if ((aux->getData()).getBuildingName() == WORD_FACTORY)
+        cout << WORD_METAL << setw(1) << endl ;
     else
-        return false;
+        cout << "No entrega" << setw(1) << endl;
+
 }
 
-int Menu::obtener_opcion_usuario()
-{
-    int opcion_elegida;
-    cin >> opcion_elegida;
-    return opcion_elegida;
-}
-////////////////////////////////////////////////////////////////
-void Menu::mostrar_menu_juego()
-{
-    cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis, Jugador X!! ¿Que desea hacer?" << END_COLOR << " " << endl;
-    cout << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "╔══════════════════════════════════════════════╗" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 1. Construir edificios por nombre.           ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 2. Listar mis edificios construidos.         ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 3. Demoler un edificio por coordenada.       ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 4. Atacar un edificio por coordenada.        ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 5. Reparar un edificio por coordenada.       ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 6. Comprar bombas.                           ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 7. Consultar coordenada.                     ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 8. Mostrar inventario.                       ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 9. Mostrar objetivos.                        ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 10. Recolectar recursos producidos.          ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 11. Moverse a una coordenada.                ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 12. Finalizar turno.                         ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 13. Guardar y salir.                         ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "╚══════════════════════════════════════════════╝" << endl;
-    cout << END_COLOR;
-    cout << endl;
-    msjeInstruccion("Ingrese la opcion con un NUMERO del 1 al 13:");
-}
 
-void Menu::mostrar_menu_partida_nueva()
-{
-    cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis!! ¿Que desea hacer hoy?" << END_COLOR << " " << endl;
-    cout << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "╔══════════════════════════════════════════════╗" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 1.  Modificar edificio por nombre.           ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 2.  Listar todos los edificios.              ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 3.  Mostrar mapa de                          ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 4.  Comenzar partida                         ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 5.  Guardar y salir.                         ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "╚══════════════════════════════════════════════╝" << endl;
-    cout << END_COLOR;
-    cout << endl;
-    msjeInstruccion("Ingrese la opcion con un NUMERO del 1 al 5:");
-}
+void listBuildingsMade(List <BuildingInfo> & buildingsInfoChain){
+    Node<BuildingInfo> * aux = buildingsInfoChain.getFirst();
 
-void Menu::menu_juego(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int opcion_elegida)
-{
-    limpiar_pantalla();
-    do
-    {
-        mostrar_menu_juego();
-        opcion_elegida = obtener_opcion_usuario();
-        validar_opcion_juego(opcion_elegida);
-        procesar_opcion_juego(opcion_elegida, andypolis, bob, recurso);
-    } while (opcion_elegida != SALIR_JUEGO);
-}
+    printTitleBuildingsMade();
+    printHeaderBuildingsMade();
 
-void Menu::menu_partida_nueva(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int opcion_elegida)
-{
-    limpiar_pantalla();
-    do
-    {
-        mostrar_menu_partida_nueva();
-        opcion_elegida = obtener_opcion_usuario();
-        validar_opcion_partida_nueva(opcion_elegida);
-        procesar_opcion_partida_nueva(opcion_elegida, andypolis, bob, recurso);
-    } while (opcion_elegida != SALIR_INICIAL);
-}
+    while(aux != 0){
+        if((aux->getData()).getBuildingsMade() > 0)
+            printListOfBuildingsMade(aux);
 
-////////////////////////////////////////////////////////////////
-void Menu::validar_opcion_juego(int opcion_elegida)
-{
-    while (!es_opcion_valida(opcion_elegida, OPCION_MINIMA, OPCION_MAXIMA_JUEGO))
-    {
-        if (!cin.good())
-        {
-            cin.clear();
-            cin.ignore(100, '\n');
-            msjeError("Se tiene que ingresar un numero entero del " + to_string(OPCION_MINIMA) + "al " + to_string(OPCION_MAXIMA_JUEGO) + "\nIntentemos de nuevo:");
-            mostrar_menu_juego();
-            cin >> opcion_elegida;
-        }
-        cin.clear();
-        cin.ignore(100, '\n');
-        msjeError("Ese numero de opcion no es valido, intentemos otra vez:");
-        mostrar_menu_juego();
-        cin >> opcion_elegida;
+        aux = aux->getNext();
     }
+	
+    cout << endl;
 }
 
-void Menu::validar_opcion_partida_nueva(int opcion_elegida)
-{
-    while (!es_opcion_valida(opcion_elegida, OPCION_MINIMA, OPCION_MAXIMA_NUEVA_PARTIDA))
-    {
-        if (!cin.good())
-        {
-            cin.clear();
-            cin.ignore(100, '\n');
-            msjeError("Se tiene que ingresar un numero entero del " + to_string(OPCION_MINIMA) + "al " + to_string(OPCION_MAXIMA_NUEVA_PARTIDA) + "\nIntentemos de nuevo:");
-            mostrar_menu_partida_nueva();
-            opcion_elegida = obtener_opcion_usuario();
-        }
-        cin.clear();
-        cin.ignore(100, '\n');
-        msjeError("Ese numero de opcion no es valido, intentemos otra vez:");
-        mostrar_menu_partida_nueva();
-        opcion_elegida = obtener_opcion_usuario();
-    }
+
+void displayMenu(){
+
+    cout << TAB << BGND_DARK_AQUA_24 << TAB << TAB << TAB << TAB << TAB << " MENU" << TAB << TAB << TAB << TAB << TAB << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "_____________________________________________" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|  1. Construir edificio por nombre.        |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|  2. Listar los edificios construidos      |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|  3. Listar todos los edificios            |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|  4. Demoler un edificio por coordenada.   |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|  5. Mostrar mapa.                         |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|  6. Consultar coordenada.                 |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|  7. Mostrar inventario.                   |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|  8. Recolectar recursos producidos.       |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|  9. Lluvia de recursos.                   |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "| 10. Guardar y salir.                      |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|___________________________________________|" << END_COLOR << endl;
+
+    cout << TXT_ORANGE_166 << ENTER_OPTION << END_COLOR << endl;
+
 }
 
-bool Menu::es_opcion_valida(int elegida, const int opcion_minima, const int opcion_maxima)
-{
-    return (elegida >= opcion_minima && elegida <= opcion_maxima);
+void printTitleListOfMaterials(){
+    cout << TAB << BGND_DARK_AQUA_24 << "_________________________________________" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "| Listado de materiales de construccion |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|_______________________________________|" << END_COLOR << endl;
 }
 
-////////////////////////////////////////////////////////////////
-void Menu::volver()
-{
-    msjeInstruccion("\nPresiona ENTER para volver al menu..");
-    cin.get();
-
-    cin.get();
-    system(CLR_SCREEN);
+void printHeaderListOfMaterials(){
+    int width = 15;
+    cout << left << TAB << setw(width)  << "Material" << setw(1) << "|" << setw(width) << "Cantidad" << endl;
 }
 
-void Menu::limpiar_pantalla()
-{
-    system(CLR_SCREEN);
+
+void printListOfMaterials(Node<Materials> * aux){
+    int width = 15;
+    cout << left << TAB << setw(width) << (aux->getData()).getMaterial() << setw(1) << "|" 
+    << setw(width) << (aux->getData()).getAmount() << endl;
 }
 
-void Menu::despedir()
-{
-    msjeInstruccion("Hasta luego! :)");
-}
-////////////////////////////////////////////////////////////////
-void Menu::procesar_opcion_partida_nueva(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso)
-{
-    string nombre_edificio, x, y;
-    switch (opcion_elegida)
-    {
-    case MODIFICAR_EDIFICIO_POR_NOMBRE:
-        volver();
-        break;
-    case LISTAR_TODOS_EDIFICIOS:
-        volver();
-        break;
-    case MOSTRAR_MAPA:
-        andypolis.mostrar_mapa();
-        volver();
-        break;
-    case COMENZAR_PARTIDA:
-        // preguntar para cada jugador en que coordenada quiere empezar
-        // se genera aleatoriamente quien empieza a jugar
-        menu_juego(andypolis, bob, recurso, opcion_elegida);
-        break;
-    case SALIR_INICIAL:
-        despedir();
-        break;
-    default:
-        msjeError("Error: opcion invalida");
-    }
+void printConfirmationToBuild(){
+    cout << TXT_ORANGE_166 << CONFIRMATION_TO_BUILD << END_COLOR << endl;
+    cout << TXT_ORANGE_166 << ENTER_OPTION << END_COLOR << endl;
+    cout << TXT_ORANGE_166 << "1. Si" << END_COLOR << endl;
+    cout << TXT_ORANGE_166 << "2. No" << END_COLOR << endl;
 }
 
-void Menu::procesar_opcion_juego(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso)
-{
-    string nombre_edificio, x, y;
-    switch (opcion_elegida)
-    {
-    case CONSTRUIR_EDIFICIO:
-        andypolis.construir_por_nombre_coordenada(bob);
-        volver();
-        break;
-    case LISTAR_CONSTRUIDOS:
-        andypolis.mostrar_ubicaciones();
-        volver();
-        break;
-    case DEMOLER_POR_COORDENADA:
-        andypolis.demoler_por_coordenada();
-        volver();
-        break;
-    case ATACAR_POR_COORDENADA:
-        volver();
-        break;
-    case REPARAR_POR_COORDENADA:
-        volver();
-        break;
-    case COMPRAR_BOMBAS:
-        volver();
-        break;
-    case CONSULTAR_COORDENADA:
-        andypolis.consultar_coordenada_cin();
-        volver();
-        break;
-    case MOSTRAR_INVENTARIO:
-        andypolis.mostrar_inventario();
-        volver();
-        break;
-    case MOSTRAR_OBJETIVOS:
-        volver();
-        break;
-    case RECOLECTAR_RECURSOS:
-        andypolis.recolectar();
-        volver();
-        break;
-    case MOVERSE_COORDENADA:
-        volver();
-        break;
-    case FINALIZAR_TURNO:
-        //termina el juego y deja jugar al otro
-        //menu_juego(jugador X)
-        volver();
-        break;
-    case SALIR_JUEGO:
-        despedir();
-        break;
-
-    default:
-        msjeError("Error: opcion invalida");
-    }
+void printTitleAllBuildings(){
+    cout << TAB << BGND_DARK_AQUA_24 << "_________________________________________" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|    Listado de todos los edificios     |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|_______________________________________|" << END_COLOR << endl;
 }
 
-////////////////////////////////////////////////////////////////
-bool Menu::comenzo_nueva_partida(int opcion_elegida)
-{
-    return opcion_elegida == COMENZAR_PARTIDA;
+void printHeaderAllBuildings(){
+    int width = 11;
+    cout << left << TAB
+    << setw(2*width) << "Edificio"                          << setw(1) << "|" 
+    << setw(width) << "Piedra"                              << setw(1) << "|"
+    << setw(width) << "Madera"                              << setw(1) << "|"
+    << setw(width) << "Metal"                               << setw(1) << "|"
+    << setw(2*width) << "Cantidad construida"               << setw(1) << "|"
+    << setw(3*width + 1) << "Cantidad disponible para construir"  << setw(1) << "|"
+    << setw(width) << "Material que entrega"                << setw(1) 
+    << endl;
 }
 
-bool Menu::cerro_menu_inicial(int opcion_elegida)
-{
-    return opcion_elegida == SALIR_INICIAL;
+void printTitleBuildingsMade(){
+    cout << TAB << BGND_DARK_AQUA_24 << "_________________________________________" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|   Listado de edificios construidos    |" << END_COLOR << endl;
+    cout << TAB << BGND_DARK_AQUA_24 << "|_______________________________________|" << END_COLOR << endl;
 }
 
-bool Menu::cerro_juego(int opcion_elegida)
-{
-    return opcion_elegida == SALIR_JUEGO;
+void printHeaderBuildingsMade(){
+    int width = 15;
+    cout << left << TAB << setw(2*width)  << "Edificio" << setw(1) << "|" 
+    << setw(2*width) << "Cantidad construida" << setw(1) << "|"
+    << setw(2*width) << "Coordenadas" << endl;
+}
+
+void printListOfBuildingsMade(Node<BuildingInfo> * aux){
+    int width = 15;
+    cout << left << TAB 
+    << setw(2*width) << (aux->getData()).getBuildingName() << setw(1) << "|"
+    << setw(2*width) << (aux->getData()).getBuildingsMade() << setw(1) << "|";
+    
+    (aux->getData()).printCoordinates();
+
+    cout << endl;  
 }
