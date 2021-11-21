@@ -190,6 +190,7 @@ void Menu::procesar_opcion_partida_nueva(int opcion_elegida, Ciudad &andypolis, 
         volver();
         break;
     case MOSTRAR_MAPA:
+        andypolis.mostrar_mapa();
         volver();
         break;
     case COMENZAR_PARTIDA:
