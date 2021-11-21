@@ -28,7 +28,7 @@ int main()
     }
     else
     {
-        menu.menu_juego(andypolis, bob, recurso, opcion);
+        menu.menu_juego(andypolis, bob, recurso, opcion); //klsdjaflsa
     }
     return 0;
 }
