@@ -14,8 +14,8 @@ Ciudad::Ciudad(Parser &parser, Terreno &terreno, Constructor &bob, Recurso &recu
 
 Ciudad::Ciudad(const string &PATH1, const string &PATH2, const string &PATH3, Terreno &terreno, Constructor &bob, Recurso &recurso)
 {
-    inventario.cargar(PATH2, recurso);
-    cargar_ubicaciones(PATH3);
+    //inventario.cargar(PATH2, recurso);
+    //cargar_ubicaciones(PATH3);
 
     fstream archivo_mapa(PATH1, ios::in);
 
@@ -31,78 +31,28 @@ Ciudad::Ciudad(const string &PATH1, const string &PATH2, const string &PATH3, Te
 
     archivo_mapa >> filas_;
     archivo_mapa >> columnas_;
-    filas = stoi(filas_);
-    columnas = stoi(columnas_);
 
-    mapa = new Casillero **[filas];
-
-    for (int i = 0; i < filas; i++)
+    mapa.crear_memoria_mapa(stoi(filas_), stoi(columnas_));
+    for (int i = 0; i < mapa.obtener_filas(); i++)
     {
-        mapa[i] = new Casillero *[columnas];
-        for (int j = 0; j < columnas; j++)
+        for (int j = 0; j < mapa.obtener_columnas(); j++)
         {
             archivo_mapa >> casillero;
-            mapa[i][j] = terreno.agregar(casillero);
+            mapa.agregar_casillero(i, j, casillero, terreno);
         }
     }
-
     cargar_ubicaciones(bob);
     llenarcoordenadatransitable();
-}
-
-void Ciudad::actualizar_tam_mapa(int _filas, int _columnas)
-{
-    filas = _filas;
-    columnas = _columnas;
-}
-
-void Ciudad::crear_memoria_filas_mapa(int _filas)
-{
-    mapa = new Casillero **[filas];
-}
-
-void Ciudad::crear_memoria_columna_mapa(int posicion_fila, int _columnas)
-{
-    mapa[posicion_fila] = new Casillero *[_columnas];
-}
-
-void Ciudad::agregar_casillero(int x, int y, string casillero, Terreno &terreno)
-{
-    mapa[x][y] = terreno.agregar(casillero);
 }
 
 Ciudad::~Ciudad()
 {
     demoler_todo();
-
-    for (int i = 0; i < filas; i++)
-        for (int j = 0; j < columnas; j++)
-            delete mapa[i][j];
-
-    for (int i = 0; i < filas; i++)
-        delete[] mapa[i];
-
-    delete[] mapa;
-}
-
-void Ciudad::guardar_archivos()
-{
-    guardar_ubicaciones();
-    msjeOK("Se guardaron los cambios en los archivos ubicaciones.txt y materiales.txt");
-    msjeInstruccion("Hasta pronto!!");
 }
 
 void Ciudad::mostrar_mapa()
 {
-    msjeInstruccion("MAPA DE ANDYPOLIS:");
-    for (int i = 0; i < filas; i++)
-    {
-        for (int j = 0; j < columnas; j++)
-        {
-            mapa[i][j]->display();
-        }
-        cout << endl;
-    }
+    mapa.mostrar();
 }
 
 void Ciudad::consultar_coordenada_cin()
@@ -119,7 +69,7 @@ void Ciudad::consultar_coordenada_cin()
 void Ciudad::consultar_coordenada(int i, int j)
 {
     cout << "Hola, estás en la posición (" << i << ", " << j << ")" << endl;
-    mapa[i][j]->mostrar();
+    mapa.consultar_coordenada(i, j);
 }
 
 void Ciudad::demoler_por_coordenada()
@@ -157,19 +107,19 @@ void Ciudad::construir_por_nombre_coordenada(Constructor &bob)
 
 void Ciudad::construir(int x, int y, const string &eledificio, Constructor &bob)
 {
-    if (x < filas && y < columnas)
+    if (x < mapa.obtener_filas() && y < mapa.obtener_columnas())
     {
         Edificio *edificio = bob.construye(eledificio);
         if (inventario.chequear_stock(edificio, true))
         {
-            if (!mapa[x][y]->mostrar_edificio())
+            if (!mapa.obtener_edificio(x, y))
             {
                 string rta;
                 msjeInstruccion("Desea confirmar la construccion?(si/no)");
                 cin >> rta;
                 if (rta == "si")
                 {
-                    if (mapa[x][y]->agregar(edificio))
+                    if (mapa.agregar_contenido(x, y, edificio))
                     {
                         agregar_ubicacion(x, y, eledificio);
                         msjeOK("Se construyo el edificio y se agrego a la lista de ubicaciones");
@@ -187,7 +137,7 @@ void Ciudad::construir(int x, int y, const string &eledificio, Constructor &bob)
             }
             else
             {
-                mapa[x][y]->agregar(edificio);
+                mapa.agregar_contenido(x, y, edificio);
                 delete edificio;
             }
         }
@@ -197,9 +147,9 @@ void Ciudad::construir(int x, int y, const string &eledificio, Constructor &bob)
             delete edificio;
         }
     }
-    if (x > filas)
+    if (x > mapa.obtener_filas())
         msjeError("Esa coordenada X no existe en el mapa");
-    if (y > columnas)
+    if (y > mapa.obtener_columnas())
         msjeError("Esa coordenada Y no existe en el mapa");
 }
 
@@ -210,7 +160,7 @@ void Ciudad::cargar_ubicaciones(Constructor &bob)
     {
         ubicacion = edificios[i];
         Edificio *edificio = bob.construye(ubicacion.nombre);
-        mapa[ubicacion.coord_x][ubicacion.coord_y]->agregar(edificio);
+        mapa.agregar_contenido(ubicacion.coord_x, ubicacion.coord_y, edificio);
     }
 }
 
@@ -252,6 +202,7 @@ void Ciudad::cargar_ubicaciones(const string &PATH)
         edificios.alta(ubicacion);
     }
 }
+
 void Ciudad::agregar_ubicacion_edificio(Ubicacion ubicacion)
 {
     edificios.alta(ubicacion);
@@ -307,9 +258,9 @@ void Ciudad::agregar_ubicacion(int x, int y, string edificio)
 void Ciudad::demoler_edificio(int x, int y)
 {
     // int cuenta = 0;
-    if (x < filas && y < columnas)
+    if (x < mapa.obtener_filas() && y < mapa.obtener_columnas())
     {
-        Edificio *edificio = mapa[x][y]->mostrar_edificio();
+        Edificio *edificio = mapa.obtener_edificio(x, y);
 
         if (edificio)
         {
@@ -320,7 +271,7 @@ void Ciudad::demoler_edificio(int x, int y)
             if (rta == "si")
             {
                 inventario.llenar_stock(edificio);
-                mapa[x][y]->demoler();
+                mapa.demoler_contenido(x, y);
                 quitar_ubicacion(x, y);
                 msjeOK("Se demolio el edificio y se elimino de la lista de ubicaciones");
             }
@@ -332,9 +283,9 @@ void Ciudad::demoler_edificio(int x, int y)
         else
             msjeError("No hay edificio construido ahi");
     }
-    if (x > filas)
+    if (x > mapa.obtener_filas())
         msjeError("Esa coordenada X no existe en el mapa");
-    if (y > columnas)
+    if (y > mapa.obtener_columnas())
         msjeError("Esa coordenada Y no existe en el mapa");
 }
 
@@ -365,9 +316,9 @@ bool Ciudad::guardar_ubicaciones()
 void Ciudad::demoler_todo()
 {
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
-        mapa[edificios[i].coord_x][edificios[i].coord_y]->demoler();
+        mapa.demoler_contenido(edificios[i].coord_x, edificios[i].coord_y);
     for (int i = 1; i < materiales.mostrar_cantidad() + 1; i++)
-        mapa[materiales[i].coord_x][materiales[i].coord_y]->demoler();
+        mapa.demoler_contenido(materiales[i].coord_x, materiales[i].coord_y);
 }
 
 void Ciudad::mostrar_ubicaciones()
@@ -426,7 +377,7 @@ void Ciudad::recolectar()
     msjeOK("Se recolectaron los siguientes materiales:");
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
     {
-        edificio = mapa[edificios[i].coord_x][edificios[i].coord_y]->mostrar_edificio();
+        edificio = mapa.obtener_edificio(edificios[i].coord_x, edificios[i].coord_y);
         inventario.recolectar(edificio);
     }
     msjeOK("Se guardaron los materiales en la lista de materiales. Pueden ser usados para construir nuevos edificios :)");
@@ -443,9 +394,9 @@ void Ciudad::llenarcoordenadatransitable()
 {
     Ubicacion coordenada;
 
-    for (int x = 0; x < filas; x++)
-        for (int y = 0; y < columnas; y++)
-            if (mapa[x][y]->estransitable())
+    for (int x = 0; x < mapa.obtener_filas(); x++)
+        for (int y = 0; y < mapa.obtener_columnas(); y++)
+            if (mapa.coordenada_es_transitable(x, y))
             {
                 coordenada.coord_x = x;
                 coordenada.coord_y = y;
@@ -466,7 +417,7 @@ void Ciudad::lluvia(Recurso &recurso)
         while (cant_metal)
         {
             numero = rand() % (1 + coordenadasTransitables.mostrar_cantidad() - 1) + 1;
-            mapa[coordenadasTransitables[numero].coord_x][coordenadasTransitables[numero].coord_y]->agregar(recurso.dar_material("metal"));
+            mapa.agregar_contenido(coordenadasTransitables[numero].coord_x, coordenadasTransitables[numero].coord_y, recurso.dar_material("metal"));
             cout << "\t-> (" << coordenadasTransitables[numero].coord_x << ", " << coordenadasTransitables[numero].coord_y << ")" << endl;
             materiales.alta(coordenadasTransitables[numero]);
             coordenadasTransitables.baja(numero);
@@ -479,7 +430,7 @@ void Ciudad::lluvia(Recurso &recurso)
         while (cant_piedra)
         {
             numero = rand() % (1 + coordenadasTransitables.mostrar_cantidad() - 1) + 1;
-            mapa[coordenadasTransitables[numero].coord_x][coordenadasTransitables[numero].coord_y]->agregar(recurso.dar_material("piedra"));
+            mapa.agregar_contenido(coordenadasTransitables[numero].coord_x, coordenadasTransitables[numero].coord_y, recurso.dar_material("piedra"));
             cout << "\t-> (" << coordenadasTransitables[numero].coord_x << ", " << coordenadasTransitables[numero].coord_y << ")" << endl;
             materiales.alta(coordenadasTransitables[numero]);
             coordenadasTransitables.baja(numero);
@@ -492,7 +443,7 @@ void Ciudad::lluvia(Recurso &recurso)
         while (cant_madera)
         {
             numero = rand() % (1 + coordenadasTransitables.mostrar_cantidad() - 1) + 1;
-            mapa[coordenadasTransitables[numero].coord_x][coordenadasTransitables[numero].coord_y]->agregar(recurso.dar_material("madera"));
+            mapa.agregar_contenido(coordenadasTransitables[numero].coord_x, coordenadasTransitables[numero].coord_y, recurso.dar_material("madera"));
             cout << "\t-> (" << coordenadasTransitables[numero].coord_x << ", " << coordenadasTransitables[numero].coord_y << ")" << endl;
             materiales.alta(coordenadasTransitables[numero]);
             coordenadasTransitables.baja(numero);

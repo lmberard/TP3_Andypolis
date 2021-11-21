@@ -11,6 +11,7 @@
 #include "recurso.hpp"
 #include "material.hpp"
 #include "inventario.hpp"
+#include "mapa.hpp"
 
 class Ciudad
 {
@@ -21,10 +22,7 @@ class Ciudad
     Lista<Ubicacion> materiales;
 
     Lista<Ubicacion> coordenadasTransitables;
-
-    int filas;
-    int columnas;
-    Casillero ***mapa;
+    Mapa mapa;
 
 public:
     // PRE:
@@ -102,6 +100,7 @@ public:
     // PRE:
     // POS:
     void demoler_por_coordenada();
+
     // PRE:
     // POS:
     void demoler_edificio(int x, int y);
