@@ -24,27 +24,56 @@ const string PATH_MATERIALES = "materiales.txt";
 class Parser
 {
 public:
-    bool existe_archivo_ubicaciones();
-
-    bool existe_archivo_mapa();
-
-    bool existe_archivo_edificios();
-
-    bool existe_archivo_materiales();
-
-    void crear_archivo_vacio(const string &PATH, fstream &archivo);
-
-    //para cargar materiales.txt
+    /*---------------------------LECTURA--------------------------*/
+    // PRE:
+    // POS: Se carga la informacion de materiales.txt
     void cargar_inventario(Inventario &inventario, Recurso &recurso);
 
-    //para cargar edificios.txt
+    // PRE:
+    // POS: Se carga la informacion de edificios.txt
     void cargar_edificios(Constructor &bob);
 
-    //para cargar las ubicaciones.txt
-    //void cargar_ubicaciones(Ciudad &ciudad);
+    // PRE:
+    // POS: Se carga la informacion de ubicaciones.txt
+    void cargar_ubicaciones(Ciudad &ciudad);
 
-    //para cargar mapa.txt
-    //void cargar_mapa(Ciudad &ciudad, Terreno &terreno);
+    // PRE:
+    // POS: Se carga la informacion de mapa.txt
+    void cargar_mapa(Ciudad &ciudad, Terreno &terreno);
+
+    /*---------------------------GUARDADO--------------------------*/
+    // PRE:
+    // POS:
+    void guardar_archivos(Lista<Ubicacion> edificios, Inventario &inventario);
+
+    // PRE:
+    // POS:
+    bool guardar_ubicaciones(Lista<Ubicacion> edificios);
+
+    // PRE:
+    // POS:
+    bool guardar_inventario(Inventario &inventario);
+
+    /*----------------------------EXTRAS----------------------------*/
+    // PRE:
+    // POS:
+    bool existe_archivo_ubicaciones();
+
+    // PRE:
+    // POS:
+    bool existe_archivo_mapa();
+
+    // PRE:
+    // POS:
+    bool existe_archivo_edificios();
+
+    // PRE:
+    // POS:
+    bool existe_archivo_materiales();
+
+    // PRE:
+    // POS:
+    void crear_archivo_vacio(const string &PATH, fstream &archivo);
 };
 
 #endif // PARSER_HPP
