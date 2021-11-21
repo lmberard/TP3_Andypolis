@@ -42,6 +42,7 @@ bool Jugador::se_quedo_sin_energia()
     return puntos_energia <= 0;
 }
 
+//GRAFO
 void Jugador::moverse_a_coordenada(int x, int y)
 {
     cout << "algoritmo camino minimo" << endl;

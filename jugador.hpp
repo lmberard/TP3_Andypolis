@@ -27,8 +27,8 @@ private:
     Ubicacion ubicacion;
 
     int puntos_energia;
-    Objetivo objetivo_principal;
-    Lista<Objetivo> objetivos_secundarios;
+    //Objetivo objetivo_principal;
+    Lista<Objetivo> objetivos;
     int cantidad_objetivos;
 
 public:
