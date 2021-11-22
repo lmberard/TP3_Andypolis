@@ -11,7 +11,6 @@ class Camino : public CasilleroTransitable{
             color = BGND_LIGHT_GRAY_247 ; 
             casillero_nombre = "camino";
         }
-        ~Camino(){};
 };
 
 #endif //CAMINO_HPP
