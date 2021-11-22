@@ -8,7 +8,6 @@
 
 using namespace std;
 
-int main()
 {
     Menu menu;
     Parser lector_archivos;
