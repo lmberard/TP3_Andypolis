@@ -76,7 +76,7 @@ void Mapa::consultar_coordenada(int x, int y)
 
 Edificio *Mapa::obtener_edificio(int x, int y)
 {
-    mapa[x][y]->mostrar_edificio();
+    return mapa[x][y]->mostrar_edificio();
 }
 
 bool Mapa::coordenada_es_transitable(int x, int y)
@@ -87,11 +87,6 @@ bool Mapa::coordenada_es_transitable(int x, int y)
 void Mapa::demoler_contenido(int x, int y)
 {
     mapa[x][y]->demoler();
-}
-
-Edificio *Mapa::obtener_edificio(int x, int y)
-{
-    return mapa[x][y]->mostrar_edificio();
 }
 
 bool Mapa::agregar_contenido(int x, int y, Edificio *edificio)

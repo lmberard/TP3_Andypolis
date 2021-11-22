@@ -70,6 +70,7 @@ void Parser::cargar_edificios(Constructor &bob)
 }
 
 //para cargar las ubicaciones.txt
+/*
 void Parser::cargar_ubicaciones(Ciudad &ciudad)
 {
     fstream archivo_ubicaciones(PATH_UBICACIONES);
@@ -129,7 +130,7 @@ void Parser::cargar_mapa(Ciudad &ciudad, Terreno &terreno)
         }
     }
 }
-
+*/
 // GUARDAR INFORMACION EN LOS ARCHIVOS TXT -----------------------------
 void Parser::guardar_archivos(Lista<Ubicacion> edificios, Inventario &inventario)
 {

@@ -9,25 +9,31 @@
 #include <cctype>
 #include "colors.hpp"
 #include "lista.hpp"
-#include "ciudad.hpp"
 #include "ubicaciones.hpp"
 #include "constructor.hpp"
 #include "inventario.hpp"
 #include "recurso.hpp"
 #include "terreno.hpp"
 #include "jugador.hpp"
-#include "menu.hpp"
 
 class Juego
 {
 private:
-    /*Menu menu;
+    /*
+    //NO ESTOY SEGURA DE ESTOS ACA O AFUERA
+    Menu menu;
     Parser lector_archivos;
-
+    */
+    /*
     Terreno terreno;
     Constructor bob;
     Recurso recurso;
-    Ciudad ciudad;*/
+    Mapa mapa;
+
+    Lista<Ubicacion> edificios;
+    Lista<Ubicacion> materiales;
+    Lista<Ubicacion> coordenadasTransitables;
+    */
 
     Lista<Jugador> jugadores;
     int cant_jugadores;

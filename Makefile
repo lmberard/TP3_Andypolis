@@ -29,6 +29,12 @@ juego.o: juego.cpp juego.hpp
 jugador.o: jugador.cpp jugador.hpp 
 	$(CC) $(FLAGS) jugador.o
 
+mapa.o: mapa.cpp mapa.hpp 
+	$(CC) $(FLAGS) mapa.o
+
+ciudad.o: ciudad.cpp ciudad.hpp mapa.hpp
+	$(CC) $(FLAGS) ciudad.o
+
 objetivo.o: objetivo.cpp objetivo.hpp 
 	$(CC) $(FLAGS) objetivo.o
 
@@ -44,10 +50,10 @@ edificio.o: material.hpp edificio.hpp edificio.cpp edificioAserradero.cpp edific
 casillero.o: edificio.hpp material.hpp casillero.hpp casillero.cpp casilleroConstruible.cpp casilleroInaccesible.cpp casilleroTransitable.cpp 
 	$(CC) $(FLAGS) casillero.o
 
-menu.o: casillero.hpp edificio.hpp material.hpp menu.cpp menu.hpp
+menu.o: casillero.hpp edificio.hpp material.hpp menu.cpp menu.hpp ciudad.hpp mapa.hpp
 	$(CC) $(FLAGS) menu.o
 
-andypolis: objetivo.cpp juego.cpp jugador.cpp parser.cpp casillero.cpp casilleroConstruible.cpp casilleroInaccesible.cpp casilleroTransitable.cpp ciudad.cpp colors.cpp inventario.cpp constructor.cpp edificio.cpp edificioAserradero.cpp edificioEscuela.cpp edificioFabrica.cpp edificioMina.cpp edificioObelisco.cpp edificioPlantaElectrica.cpp edificioYacimiento.cpp main.cpp material.cpp materialMadera.cpp materialPiedra.cpp materialMetal.cpp recurso.cpp terreno.cpp menu.cpp 
+andypolis: mapa.cpp objetivo.cpp juego.cpp jugador.cpp parser.cpp casillero.cpp casilleroConstruible.cpp casilleroInaccesible.cpp casilleroTransitable.cpp ciudad.cpp colors.cpp inventario.cpp constructor.cpp edificio.cpp edificioAserradero.cpp edificioEscuela.cpp edificioFabrica.cpp edificioMina.cpp edificioObelisco.cpp edificioPlantaElectrica.cpp edificioYacimiento.cpp main.cpp material.cpp materialMadera.cpp materialPiedra.cpp materialMetal.cpp recurso.cpp terreno.cpp menu.cpp 
 	$(CC) $(FLAGS) $^ -o andypolis
 
 clean:

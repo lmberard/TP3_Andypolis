@@ -35,11 +35,11 @@ public:
 
     // PRE:
     // POS: Se carga la informacion de ubicaciones.txt
-    void cargar_ubicaciones(Ciudad &ciudad);
+    //void cargar_ubicaciones(Ciudad &ciudad);
 
     // PRE:
     // POS: Se carga la informacion de mapa.txt
-    void cargar_mapa(Ciudad &ciudad, Terreno &terreno);
+    //void cargar_mapa(Ciudad &ciudad, Terreno &terreno);
 
     /*---------------------------GUARDADO--------------------------*/
     // PRE:

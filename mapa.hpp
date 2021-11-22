@@ -9,13 +9,11 @@
 #include <cctype>
 #include "colors.hpp"
 #include "lista.hpp"
-#include "ubicaciones.hpp"
-#include "constructor.hpp"
-#include "inventario.hpp"
-#include "recurso.hpp"
+
+//#include "ubicaciones.hpp"
 #include "terreno.hpp"
-#include "jugador.hpp"
-#include "menu.hpp"
+#include "edificio.hpp"
+#include "material.hpp"
 
 class Mapa
 {
@@ -52,8 +50,6 @@ public:
     bool coordenada_es_transitable(int x, int y);
 
     void demoler_contenido(int x, int y);
-
-    Edificio *obtener_edificio(int x, int y);
 
     bool agregar_contenido(int x, int y, Edificio *edificio);
 
