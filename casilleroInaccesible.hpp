@@ -15,11 +15,11 @@ public:
 
     // PRE: -
     // POS: Muestra por la terminal que tipo de casillero es
-    virtual void info();
+    void info();
 
     // PRE: -
     // POS: Muestra por la terminal un cuadrado con el color del casillero innacesible
-    virtual void mostrar_por_pantalla();
+    void mostrar_por_pantalla();
 
 };
 
