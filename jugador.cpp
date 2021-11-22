@@ -5,7 +5,6 @@ Jugador::Jugador(int _id, Ubicacion _ubicacion, int puntos_iniciales)
     id = _id;
     ubicacion = _ubicacion;
     puntos_energia = puntos_iniciales;
-    cantidad_objetivos = 0;
 }
 
 Jugador::~Jugador()

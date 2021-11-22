@@ -1,15 +1,14 @@
 #include <string>
 #include <iostream>
 
-#include "ConstruirObelisco.hpp"
+#include "construirObelisco.hpp"
 
 using namespace std;
 
-
-ConstruirObelisco::ConstruirObelisco(string objetivo, string tipo) : Objetivo(objetivo, tipo){
-    
+ConstruirObelisco::ConstruirObelisco(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+{
 }
 
-
-ConstruirObelisco::~ConstruirObelisco(){
+ConstruirObelisco::~ConstruirObelisco()
+{
 }
