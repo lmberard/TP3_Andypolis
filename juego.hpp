@@ -29,14 +29,14 @@ const int CANT_JUGADORES = 2;
 class Juego
 {
 private:
-    //Inventario inventario;
+    Inventario inventario;
     Terreno terreno;
     Constructor bob;
     Recurso recurso;
 
     Mapa mapa;
     Lista<Ubicacion> coordenadasTransitables;
-    //Lista<Ubicacion> edificios;
+    Lista<Ubicacion> edificios;
     Lista<Ubicacion> materiales;
 
     Lista<Jugador> jugadores;
