@@ -17,13 +17,11 @@ public:
     Inventario();
 
     // PRE:
-    // POS: Carga la informacion del archivo txt de los materiales y crea la lista de materiales.
-    void cargar(const string &PATH, Recurso &recurso);
-
-    // PRE:
     // POS: Muestra por la terminal la lista de materiales con sus cantidades
     void mostrar_inventario();
 
+    // PRE:
+    // POS:
     void agregar_material(string nombre, int cantidad, Recurso &recurso);
 
     // PRE:
@@ -38,7 +36,21 @@ public:
     // POS: se destruye el inventario
     ~Inventario();
 
+    // PRE:
+    // POS:
     void recolectar(Edificio *edificio);
+
+    // PRE:
+    // POS:
+    int obtener_cantidad();
+
+    // PRE:
+    // POS:
+    string obtener_nombre_material(int posicion);
+
+    // PRE:
+    // POS:
+    int obtener_cant_material(int posicion);
 };
 
 #endif

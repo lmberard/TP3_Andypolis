@@ -88,7 +88,7 @@ void Menu::mostrar_menu_partida_nueva()
     msjeInstruccion("Ingrese la opcion con un NUMERO del 1 al 5:");
 }
 
-void Menu::menu_juego(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int opcion_elegida)
+void Menu::menu_juego(Juego &andypolis, int opcion_elegida)
 {
     limpiar_pantalla();
     do
@@ -96,11 +96,11 @@ void Menu::menu_juego(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int
         mostrar_menu_juego();
         opcion_elegida = obtener_opcion_usuario();
         validar_opcion_juego(opcion_elegida);
-        procesar_opcion_juego(opcion_elegida, andypolis, bob, recurso);
+        procesar_opcion_juego(opcion_elegida, andypolis);
     } while (opcion_elegida != SALIR_JUEGO);
 }
 
-void Menu::menu_partida_nueva(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int opcion_elegida)
+void Menu::menu_partida_nueva(Juego &andypolis, int opcion_elegida)
 {
     limpiar_pantalla();
     do
@@ -108,7 +108,7 @@ void Menu::menu_partida_nueva(Ciudad &andypolis, Constructor &bob, Recurso &recu
         mostrar_menu_partida_nueva();
         opcion_elegida = obtener_opcion_usuario();
         validar_opcion_partida_nueva(opcion_elegida);
-        procesar_opcion_partida_nueva(opcion_elegida, andypolis, bob, recurso);
+        procesar_opcion_partida_nueva(opcion_elegida, andypolis);
     } while (opcion_elegida != SALIR_INICIAL);
 }
 
@@ -178,7 +178,7 @@ void Menu::despedir()
     msjeInstruccion("Hasta luego! :)");
 }
 ////////////////////////////////////////////////////////////////
-void Menu::procesar_opcion_partida_nueva(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso)
+void Menu::procesar_opcion_partida_nueva(int opcion_elegida, Juego &andypolis)
 {
     string nombre_edificio, x, y;
     switch (opcion_elegida)
@@ -196,7 +196,7 @@ void Menu::procesar_opcion_partida_nueva(int opcion_elegida, Ciudad &andypolis, 
     case COMENZAR_PARTIDA:
         // preguntar para cada jugador en que coordenada quiere empezar
         // se genera aleatoriamente quien empieza a jugar
-        menu_juego(andypolis, bob, recurso, opcion_elegida);
+        menu_juego(andypolis, opcion_elegida);
         break;
     case SALIR_INICIAL:
         despedir();
@@ -206,21 +206,21 @@ void Menu::procesar_opcion_partida_nueva(int opcion_elegida, Ciudad &andypolis, 
     }
 }
 
-void Menu::procesar_opcion_juego(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso)
+void Menu::procesar_opcion_juego(int opcion_elegida, Juego &andypolis)
 {
     string nombre_edificio, x, y;
     switch (opcion_elegida)
     {
     case CONSTRUIR_EDIFICIO:
-        andypolis.construir_por_nombre_coordenada(bob);
+        //andypolis.construir_por_nombre_coordenada(bob);
         volver();
         break;
     case LISTAR_CONSTRUIDOS:
-        andypolis.mostrar_ubicaciones();
+        //andypolis.mostrar_ubicaciones();
         volver();
         break;
     case DEMOLER_POR_COORDENADA:
-        andypolis.demoler_por_coordenada();
+        //andypolis.demoler_por_coordenada();
         volver();
         break;
     case ATACAR_POR_COORDENADA:
@@ -233,11 +233,11 @@ void Menu::procesar_opcion_juego(int opcion_elegida, Ciudad &andypolis, Construc
         volver();
         break;
     case CONSULTAR_COORDENADA:
-        andypolis.consultar_coordenada_cin();
+        //andypolis.consultar_coordenada_cin();
         volver();
         break;
     case MOSTRAR_INVENTARIO:
-        andypolis.mostrar_inventario();
+        //andypolis.mostrar_inventario();
         volver();
         break;
     case MOSTRAR_OBJETIVOS:

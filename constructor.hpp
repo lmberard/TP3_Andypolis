@@ -4,7 +4,6 @@
 #include "lista.hpp"
 
 #include "edificio.hpp"
-
 #include "edificioAserradero.hpp"
 #include "edificioEscuela.hpp"
 #include "edificioYacimiento.hpp"

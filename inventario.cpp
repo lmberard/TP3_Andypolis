@@ -5,26 +5,6 @@ Inventario::Inventario()
 {
 }
 
-void Inventario::cargar(const string &PATH, Recurso &recurso)
-{
-    fstream archivo_materiales(PATH, ios::in);
-
-    if (!archivo_materiales.is_open())
-    {
-        cout << "No se encontro un archivo con nombre \"" << PATH << "\", se va a crear el archivo" << endl;
-        archivo_materiales.open(PATH, ios::out);
-        archivo_materiales.close();
-        archivo_materiales.open(PATH, ios::in);
-    }
-
-    string nombre, cantidad;
-    while (archivo_materiales >> nombre)
-    {
-        archivo_materiales >> cantidad;
-        materiales1.alta(recurso.dar_material(nombre, stoi(cantidad)));
-    }
-}
-
 void Inventario::agregar_material(string nombre, int cantidad, Recurso &recurso)
 {
     materiales1.alta(recurso.dar_material(nombre, cantidad));
@@ -115,10 +95,8 @@ void Inventario::llenar_stock(Edificio *edificio)
 
 Inventario::~Inventario()
 {
-    ofstream archivo_materiales("materiales.txt");
-    for (int i = 1; i < materiales1.mostrar_cantidad() + 1; i++)
+    for (int i = 1; i < obtener_cantidad() + 1; i++)
     {
-        archivo_materiales << materiales1[i]->obtener_nombre() << ' ' << materiales1[i]->obtener_cantidad() << '\n';
         delete materiales1[i];
     }
 }
@@ -135,4 +113,19 @@ void Inventario::recolectar(Edificio *edificio)
             materiales1[j]->modificar_cantidad(cuenta);
         }
     }
+}
+
+int Inventario::obtener_cantidad()
+{
+    return materiales1.mostrar_cantidad();
+}
+
+string Inventario::obtener_nombre_material(int posicion)
+{
+    return materiales1[posicion]->obtener_nombre();
+}
+
+int Inventario::obtener_cant_material(int posicion)
+{
+    return materiales1[posicion]->obtener_cantidad();
 }
