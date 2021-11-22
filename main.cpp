@@ -11,7 +11,7 @@ using namespace std;
 {
     Menu menu;
     Parser lector_archivos;
-    Juego andypolis(2);
+    Juego andypolis;
     //lector_archivos.cargar_edificios(bob);
     int opcion = 0;
     //si el archivo ubicaciones.txt no existe o esta vacio entonces es una partida nueva
