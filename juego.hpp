@@ -14,7 +14,7 @@
 #include "constructor.hpp"
 #include "inventario.hpp"
 #include "recurso.hpp"
-#include "terreno.hpp"
+#include "superficie.hpp"
 #include "jugador.hpp"
 #include "menu.hpp"
 

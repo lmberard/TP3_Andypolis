@@ -15,15 +15,12 @@ public:
 
     // PRE: -
     // POS: Muestra por la terminal que tipo de casillero es
-    void mostrar();
+    virtual void info();
 
     // PRE: -
     // POS: Muestra por la terminal un cuadrado con el color del casillero innacesible
-    void display();
+    virtual void mostrar_por_pantalla();
 
-    // PRE: -
-    // POS: No hace nada
-    void demoler();
 };
 
 #endif // CASILLEROINACCESIBLE_HPP

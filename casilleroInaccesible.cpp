@@ -1,19 +1,16 @@
 #include "casilleroInaccesible.hpp"
 
-CasilleroInaccesible ::CasilleroInaccesible() : Casillero() {}
+CasilleroInaccesible ::CasilleroInaccesible() : Casillero(){}
 
-CasilleroInaccesible ::~CasilleroInaccesible() {}
+CasilleroInaccesible ::~CasilleroInaccesible(){}
 
-void CasilleroInaccesible ::mostrar()
+void CasilleroInaccesible ::info()
 {
-    cout << TXT_BLUE_25 << "Es un casillero inaccesible" << END_COLOR << endl;
+    cout << "Es un " << casillero_nombre << ", es un casillero inaccesible" << endl;
 }
 
-void CasilleroInaccesible ::display()
+void CasilleroInaccesible ::mostrar_por_pantalla()
 {
-    cout << TXT_BLACK_16 << TXT_UNDERLINE << BGND_BLUE_25 << "   " << END_COLOR << " ";
+    cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "   " << END_COLOR << " ";
 }
 
-void CasilleroInaccesible ::demoler()
-{
-}

@@ -2,7 +2,7 @@
 #include <iomanip>
 
 Inventario::Inventario()
-{
+{    
 }
 
 void Inventario::cargar(const string &PATH, Recurso &recurso)

@@ -14,7 +14,7 @@
 #include "constructor.hpp"
 #include "inventario.hpp"
 #include "recurso.hpp"
-#include "terreno.hpp"
+#include "superficie.hpp"
 
 const string PATH_MAPA = "mapa.txt";
 const string PATH_UBICACIONES = "ubicaciones.txt";

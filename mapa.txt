@@ -5,5 +5,5 @@ L L C C T C C T T T
 C L T T T C C T T L 
 T L T T T L C T T C 
 T T T T T C C T T T 
-C C T C T C C T T T 
-T T T T T C C T T C
+B C T C T C C T T T 
+M T T T T C C T T C

@@ -6,7 +6,7 @@
 #include "lista.hpp"
 #include "parser.hpp"
 
-#include "terreno.hpp"
+#include "superficie.hpp"
 #include "constructor.hpp"
 #include "recurso.hpp"
 #include "material.hpp"
@@ -35,7 +35,7 @@ public:
 
     // PRE:
     // POS:
-    Ciudad(const string &, const string &, const string &, Terreno &terreno, Constructor &bob, Recurso &recurso);
+    Ciudad(const string &, const string &, const string &, Superficie &superficie, Constructor &bob, Recurso &recurso);
 
     // PRE:
     // POS: Se elimina la Ciudad (se eliminan los casilleros del mapa, el mapa y lo construido (ubicaciones y materiales))
@@ -81,7 +81,7 @@ public:
 
     void crear_memoria_columna_mapa(int posicion_fila, int _columnas);
 
-    void agregar_casillero(int x, int y, string casillero, Terreno &terreno);
+    void agregar_casillero(int x, int y, string casillero, Superficie &superficie);
 
     // PRE:
     // POS:

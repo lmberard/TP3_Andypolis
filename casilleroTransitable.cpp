@@ -2,27 +2,26 @@
 
 CasilleroTransitable ::CasilleroTransitable() : Casillero()
 {
-    material = 0;
+    material = NULL;
 }
 
-CasilleroTransitable ::~CasilleroTransitable() {}
+CasilleroTransitable ::~CasilleroTransitable(){}
 
-void CasilleroTransitable ::mostrar()
+void CasilleroTransitable::info()
 {
-    cout << TXT_LIGHT_GRAY_247 << "Es un casillero transitable" << END_COLOR << endl;
+    cout << "Es un " << casillero_nombre << ", es un casillero transitable" << endl;
     if (material)
         cout << "Hay un material del tipo '" << material->obtener_nombre() << "'. No te olvides de recolectarlo!" << endl;
-
     else
         cout << "No hay ningun material en esta parte del camino :)" << endl;
 }
 
-void CasilleroTransitable ::display()
+void CasilleroTransitable::mostrar_por_pantalla()
 {
     if (!material)
-        cout << TXT_BLACK_16 << TXT_UNDERLINE << BGND_LIGHT_GRAY_247 << "   " << END_COLOR << " ";
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "   " << END_COLOR << " ";
     else
-        cout << TXT_BLACK_16 << TXT_UNDERLINE << BGND_LIGHT_GRAY_247 << " " << material->obtener_codigo() << " " << END_COLOR << " ";
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << material->obtener_codigo() << " " << END_COLOR << " ";
 }
 
 bool CasilleroTransitable ::agregar(Material *material)
@@ -36,7 +35,7 @@ bool CasilleroTransitable ::agregar(Material *material)
     return true;
 }
 
-void CasilleroTransitable ::demoler()
+void CasilleroTransitable ::quitar_elemento()
 {
     delete material;
     material = NULL;

@@ -19,29 +19,29 @@ bool CasilleroConstruible ::agregar(Edificio *edificio)
     return true;
 }
 
-void CasilleroConstruible ::mostrar()
+void CasilleroConstruible ::info()
 {
-    cout << TXT_GREEN_2 << "Es un casillero construible" << END_COLOR << endl;
+    cout << "Es un " << casillero_nombre <<  ", es un casillero construible" << endl;
     if (edificio)
         cout << "Hay un edificio del tipo '" << edificio->obtener_nombre() << "' construido en esta coordenada" << endl;
     else
         cout << "Tengo lugar para construir un edificio" << endl;
 }
 
-void CasilleroConstruible ::display()
+void CasilleroConstruible ::mostrar_por_pantalla()
 {
     if (!edificio)
-        cout << TXT_BLACK_16 << TXT_UNDERLINE << BGND_GREEN_2 << "   " << END_COLOR << " ";
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "   " << END_COLOR << " ";
     else
-        cout << TXT_BLACK_16 << TXT_UNDERLINE << BGND_GREEN_2 << " " << edificio->obtener_codigo() << " " << END_COLOR << " ";
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << edificio->obtener_codigo() << " " << END_COLOR << " ";
 }
 
-Edificio *CasilleroConstruible::mostrar_edificio()
+Edificio *CasilleroConstruible::info_edificio()
 {
     return edificio;
 }
 
-void CasilleroConstruible::demoler()
+void CasilleroConstruible::quitar_elemento()
 {
     if (edificio)
     {

@@ -9,14 +9,14 @@
 using namespace std;
 
 int main()
-{
+{   
     Menu menu;
     Parser lector_archivos;
-    Terreno terreno;
+    Superficie superficie;
     Constructor bob;
     lector_archivos.cargar_edificios(bob);
     Recurso recurso;
-    Ciudad andypolis("mapa.txt", "materiales.txt", "ubicaciones.txt", terreno, bob, recurso);
+    Ciudad andypolis("mapa.txt", "materiales.txt", "ubicaciones.txt", superficie, bob, recurso);
     int opcion = 0;
     //si el archivo ubicaciones.txt no existe o esta vacio entonces es una partida nueva
     if (lector_archivos.existe_archivo_ubicaciones())

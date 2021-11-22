@@ -1,18 +1,17 @@
 #ifndef TERRENO_HPP
 #define TERRENO_HPP
 
-#include "casillero.hpp"
-#include "casilleroTransitable.hpp"
-#include "casilleroInaccesible.hpp"
+#include "colors.hpp"
 #include "casilleroConstruible.hpp"
 
-class Terreno
-{
+class Terreno : public CasilleroConstruible{
 
-public:
-    // PRE: -
-    // POST: Crea un casillero segun el tipo ingresado (L, T o C) y lo devuelve. Si se ingresa mal el nombre del casillero devuelve null(0)
-    Casillero *agregar(const string casillero_tipo);
+    public: 
+        Terreno(){
+            color = BGND_GREEN_2 ; 
+            casillero_nombre = "terreno";
+        }
+        ~Terreno(){};
 };
 
 #endif //TERRENO_HPP
