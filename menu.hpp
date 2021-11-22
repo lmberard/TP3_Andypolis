@@ -9,7 +9,7 @@
 #include <cctype>
 #include "colors.hpp"
 #include "lista.hpp"
-#include "ciudad.hpp"
+#include "juego.hpp"
 
 const int OPCION_MINIMA = 1;
 const int OPCION_MAXIMA_NUEVA_PARTIDA = 5;
@@ -58,16 +58,16 @@ public:
     // post: Imprime por pantalla el menu
     void mostrar_menu_juego();
 
-    void menu_partida_nueva(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int opcion_elegida);
+    void menu_partida_nueva(Juego &andypolis, int opcion_elegida);
 
-    void menu_juego(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int opcion_elegida);
+    void menu_juego(Juego &andypolis, int opcion_elegida);
 
     ////////////////////////////////
     // pre: El texto ingresado por el usuario tiene que ser un NUMERO entero
     // post: Realiza la opcion pedida
-    void procesar_opcion_juego(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso); // material *materiales_array, edificio *edificios_array, casillero **mapa, ubicacion *ubicaciones_array
+    void procesar_opcion_juego(int opcion_elegida, Juego &andypolis); // material *materiales_array, edificio *edificios_array, casillero **mapa, ubicacion *ubicaciones_array
 
-    void procesar_opcion_partida_nueva(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso);
+    void procesar_opcion_partida_nueva(int opcion_elegida, Juego &andypolis);
 
     ////////////////////////////////
     // pre: El texto ingresado por el usuario tiene que ser un NUMERO entero

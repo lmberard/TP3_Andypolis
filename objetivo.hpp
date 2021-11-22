@@ -9,7 +9,6 @@
 #include <cctype>
 #include "colors.hpp"
 #include "lista.hpp"
-#include "ciudad.hpp"
 #include "ubicaciones.hpp"
 #include "constructor.hpp"
 #include "inventario.hpp"

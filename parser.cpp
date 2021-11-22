@@ -70,8 +70,8 @@ void Parser::cargar_edificios(Constructor &bob)
 }
 
 //para cargar las ubicaciones.txt
-/*
-void Parser::cargar_ubicaciones(Ciudad &ciudad)
+
+void Parser::cargar_ubicaciones(Juego &juego)
 {
     fstream archivo_ubicaciones(PATH_UBICACIONES);
 
@@ -101,12 +101,13 @@ void Parser::cargar_ubicaciones(Ciudad &ciudad)
         ubicacion.coord_y = stoi(coord_y);
         getline(archivo_ubicaciones, aux);
 
-        ciudad.agregar_ubicacion_edificio(ubicacion);
+        juego.agregar_ubicacion_edificio(ubicacion);
     }
 }
 
 //para cargar mapa.txt
-void Parser::cargar_mapa(Ciudad &ciudad, Terreno &terreno)
+
+void Parser::cargar_mapa(Juego &juego)
 {
     fstream archivo_mapa(PATH_MAPA);
 
@@ -117,20 +118,18 @@ void Parser::cargar_mapa(Ciudad &ciudad, Terreno &terreno)
 
     archivo_mapa >> filas;
     archivo_mapa >> columnas;
-    ciudad.actualizar_tam_mapa(stoi(filas), stoi(columnas));
 
-    ciudad.crear_memoria_filas_mapa(stoi(filas));
+    juego.crear_mapa(stoi(filas), stoi(columnas));
     for (int i = 0; i < stoi(filas); i++)
     {
-        ciudad.crear_memoria_columna_mapa(i, stoi(columnas));
         for (int j = 0; j < stoi(columnas); j++)
         {
             archivo_mapa >> casillero;
-            ciudad.agregar_casillero(i, j, casillero, terreno);
+            juego.agregar_casillero(i, j, casillero);
         }
     }
 }
-*/
+
 // GUARDAR INFORMACION EN LOS ARCHIVOS TXT -----------------------------
 void Parser::guardar_archivos(Lista<Ubicacion> edificios, Inventario &inventario)
 {

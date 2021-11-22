@@ -9,12 +9,12 @@
 #include <cctype>
 #include "colors.hpp"
 #include "lista.hpp"
-#include "ciudad.hpp"
 #include "ubicaciones.hpp"
 #include "constructor.hpp"
 #include "inventario.hpp"
 #include "recurso.hpp"
 #include "terreno.hpp"
+#include "juego.hpp"
 
 const string PATH_MAPA = "mapa.txt";
 const string PATH_UBICACIONES = "ubicaciones.txt";
@@ -35,11 +35,11 @@ public:
 
     // PRE:
     // POS: Se carga la informacion de ubicaciones.txt
-    //void cargar_ubicaciones(Ciudad &ciudad);
+    void cargar_ubicaciones(Juego &juego);
 
     // PRE:
     // POS: Se carga la informacion de mapa.txt
-    //void cargar_mapa(Ciudad &ciudad, Terreno &terreno);
+    void cargar_mapa(Juego &juego);
 
     /*---------------------------GUARDADO--------------------------*/
     // PRE:
