@@ -1,8 +1,7 @@
 #include "juego.hpp"
 
-Juego::Juego(int _cant_jugadores)
+Juego::Juego()
 {
-    cant_jugadores = _cant_jugadores;
 }
 
 Juego::~Juego()
@@ -39,6 +38,7 @@ int Juego::obtener_columnas_mapa()
     return mapa.obtener_columnas();
 }
 
+//----------------------------------------------------------------
 void Juego::mostrar_mapa()
 {
     mapa.mostrar();
@@ -57,6 +57,7 @@ void Juego::consultar_coordenada()
     mapa.consultar_coordenada(stoi(x), stoi(y));
 }
 
+//----------------------------------------------------------------
 void Juego::construir_por_nombre_coordenada(Constructor &bob)
 {
     string x, y, nombre_edificio, aux;
@@ -189,51 +190,36 @@ void Juego::recolectar()
     msjeOK("Se guardaron los materiales en la lista de materiales. Pueden ser usados para construir nuevos edificios :)");
 }
 
-void Juego::lluvia(Recurso &recurso)
+void Juego::lluvia()
 {
-    int numero;
-
     if (coordenadasTransitables.mostrar_cantidad() > 6)
     {
         cout << "LLUVIA DE RECURSOS!" << endl;
-        int cant_metal = rand() % (1 + 4 - 2) + 2;
-        cout << TXT_BOLD << TXT_UNDERLINE << BGND_DARK_BLUE_17 << "Cantidad de metales generados: " << cant_metal << END_COLOR << endl;
+        int cant_metal = generar_valor_random(LLUVIA_METAL_MIN, LLUVIA_METAL_MAX);
+        msjeTitulo("Cantidad de metales generados: " + to_string(cant_metal));
+        agregar_materiales_casillero_random("metal", cant_metal);
 
-        while (cant_metal)
-        {
-            numero = rand() % (1 + coordenadasTransitables.mostrar_cantidad() - 1) + 1;
-            mapa.agregar_contenido(coordenadasTransitables[numero].coord_x, coordenadasTransitables[numero].coord_y, recurso.dar_material("metal"));
-            cout << "\t-> (" << coordenadasTransitables[numero].coord_x << ", " << coordenadasTransitables[numero].coord_y << ")" << endl;
-            materiales.alta(coordenadasTransitables[numero]);
-            coordenadasTransitables.baja(numero);
-            cant_metal--;
-        }
+        int cant_piedra = generar_valor_random(LLUVIA_PIEDRA_MIN, LLUVIA_PIEDRA_MAX);
+        msjeTitulo("Cantidad de piedras generadas: " + to_string(cant_piedra));
+        agregar_materiales_casillero_random("piedra", cant_piedra);
 
-        int cant_piedra = rand() % (1 + 2 - 1) + 1;
-        cout << TXT_BOLD << TXT_UNDERLINE << BGND_DARK_BLUE_17 << "Cantidad de piedras generadas: " << cant_piedra << END_COLOR << endl;
+        int cant_madera = generar_valor_random(LLUVIA_MADERA_MIN, LLUVIA_MADERA_MAX);
+        msjeTitulo("Cantidad de maderas generadas: " + to_string(cant_madera));
+        agregar_materiales_casillero_random("madera", cant_madera);
+    }
+}
 
-        while (cant_piedra)
-        {
-            numero = rand() % (1 + coordenadasTransitables.mostrar_cantidad() - 1) + 1;
-            mapa.agregar_contenido(coordenadasTransitables[numero].coord_x, coordenadasTransitables[numero].coord_y, recurso.dar_material("piedra"));
-            cout << "\t-> (" << coordenadasTransitables[numero].coord_x << ", " << coordenadasTransitables[numero].coord_y << ")" << endl;
-            materiales.alta(coordenadasTransitables[numero]);
-            coordenadasTransitables.baja(numero);
-            cant_piedra--;
-        }
-
-        int cant_madera = rand() % (2);
-        cout << TXT_BOLD << TXT_UNDERLINE << BGND_DARK_BLUE_17 << "Cantidad de maderas generadas: " << cant_madera << END_COLOR << endl;
-
-        while (cant_madera)
-        {
-            numero = rand() % (1 + coordenadasTransitables.mostrar_cantidad() - 1) + 1;
-            mapa.agregar_contenido(coordenadasTransitables[numero].coord_x, coordenadasTransitables[numero].coord_y, recurso.dar_material("madera"));
-            cout << "\t-> (" << coordenadasTransitables[numero].coord_x << ", " << coordenadasTransitables[numero].coord_y << ")" << endl;
-            materiales.alta(coordenadasTransitables[numero]);
-            coordenadasTransitables.baja(numero);
-            cant_madera--;
-        }
+//----------------------------------------------------------------
+void Juego::agregar_materiales_casillero_random(string nombre, int cantidad)
+{
+    while (cantidad)
+    {
+        int numero = generar_valor_random(1, coordenadasTransitables.mostrar_cantidad());
+        mapa.agregar_contenido(coordenadasTransitables[numero].coord_x, coordenadasTransitables[numero].coord_y, recurso.dar_material(nombre));
+        cout << "\t-> (" << coordenadasTransitables[numero].coord_x << ", " << coordenadasTransitables[numero].coord_y << ")" << endl;
+        materiales.alta(coordenadasTransitables[numero]);
+        coordenadasTransitables.baja(numero);
+        cantidad--;
     }
 }
 
@@ -335,7 +321,7 @@ void Juego::quitar_ubicacion(int x, int y)
             edificios.baja(i);
 }
 
-void Juego::llenarcoordenadatransitable()
+void Juego::llenar_coordenada_transitable()
 {
     Ubicacion coordenada;
 

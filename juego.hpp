@@ -16,30 +16,33 @@
 #include "terreno.hpp"
 #include "jugador.hpp"
 #include "mapa.hpp"
+#include "funciones.hpp"
 
+const int LLUVIA_METAL_MIN = 2;
+const int LLUVIA_METAL_MAX = 4;
+const int LLUVIA_MADERA_MIN = 0;
+const int LLUVIA_MADERA_MAX = 2;
+const int LLUVIA_PIEDRA_MIN = 1;
+const int LLUVIA_PIEDRA_MAX = 2;
+
+const int CANT_JUGADORES = 2;
 class Juego
 {
 private:
-    /*
-    //NO ESTOY SEGURA DE ESTOS ACA O AFUERA
-    Menu menu;
-    Parser lector_archivos;
-    */
-    Inventario inventario;
+    //Inventario inventario;
     Terreno terreno;
     Constructor bob;
-    //Recurso recurso;
-    Mapa mapa;
+    Recurso recurso;
 
-    Lista<Ubicacion> edificios;
-    Lista<Ubicacion> materiales;
+    Mapa mapa;
     Lista<Ubicacion> coordenadasTransitables;
+    //Lista<Ubicacion> edificios;
+    Lista<Ubicacion> materiales;
 
     Lista<Jugador> jugadores;
-    int cant_jugadores;
 
 public:
-    Juego(int _cant_jugadores);
+    Juego();
 
     ~Juego();
 
@@ -83,7 +86,7 @@ public:
 
     // PRE:
     // POS:
-    void lluvia(Recurso &recurso);
+    void lluvia();
     //----------------------------------------------------------------
     // PRE:
     // POS:
@@ -92,6 +95,8 @@ public:
     // PRE:
     // POS:
     void agregar_ubicacion_edificio(Ubicacion ubicacion);
+
+    void agregar_materiales_casillero_random(string nombre, int cantidad);
 
     bool chequear_permisos_edificio(const string &eledificio, Constructor &bob);
 
@@ -103,7 +108,7 @@ public:
 
     void quitar_ubicacion(int x, int y);
 
-    void llenarcoordenadatransitable();
+    void llenar_coordenada_transitable();
 
     void cargar_ubicaciones();
 

@@ -22,6 +22,9 @@ void msjeInstruccion(string msje);
 // post: Se imprime un mensaje con un color a eleccion
 void msjeColor(string msje, string color);
 
+void msjeTitulo(string msje);
+
+void msjeInfo(string msje);
 /* ╔═════════════════════════════════════════════════════════════════════════════════╗
    ║                                      USAGE                                      ║
    ║    To add color to your output texts follow the example:                        ║

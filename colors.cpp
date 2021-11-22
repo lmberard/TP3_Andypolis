@@ -19,3 +19,13 @@ void msjeColor(string msje, string color)
 {
     cout << color << msje << END_COLOR << endl;
 }
+
+void msjeTitulo(string msje)
+{
+    cout << TXT_BOLD << TXT_UNDERLINE << BGND_DARK_BLUE_17 << msje << END_COLOR << endl;
+}
+
+void msjeInfo(string msje)
+{
+    cout << msje << endl;
+}

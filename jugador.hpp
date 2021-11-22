@@ -26,9 +26,7 @@ private:
     Ubicacion ubicacion;
 
     int puntos_energia;
-    //Objetivo objetivo_principal;
     Lista<Objetivo> objetivos;
-    int cantidad_objetivos;
 
 public:
     Jugador(int _id, Ubicacion _ubicacion, int puntos_iniciales);

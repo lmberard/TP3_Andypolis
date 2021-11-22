@@ -2,22 +2,11 @@
 #include "casillero.hpp"
 
 using namespace std;
-////////////////////////////////////////////////////////////////
-bool char_son_iguales(char &c1, char &c2)
-{
-    if (c1 == c2)
-        return true;
-    else if (toupper(c1 == toupper(c2)))
-        return true;
-    return false;
-}
-
 bool strings_son_iguales(string &str1, string &str2)
 {
     return ((str1.size() == str2.size()) &&
             equal(str1.begin(), str1.end(), str2.begin(), &char_son_iguales));
 }
-
 ////////////////////////////////////////////////////////////////
 string Menu::devolver_rta_usuario()
 {
