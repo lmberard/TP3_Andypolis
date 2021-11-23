@@ -17,6 +17,7 @@
 #include "jugador.hpp"
 #include "mapa.hpp"
 #include "funciones.hpp"
+#include "edificio.hpp"
 
 const int LLUVIA_METAL_MIN = 2;
 const int LLUVIA_METAL_MAX = 4;
@@ -29,14 +30,14 @@ const int CANT_JUGADORES = 2;
 class Juego
 {
 private:
-    //Inventario inventario;
+    Inventario inventario;
     Terreno terreno;
     Constructor bob;
     Recurso recurso;
 
     Mapa mapa;
     Lista<Ubicacion> coordenadasTransitables;
-    //Lista<Ubicacion> edificios;
+    Lista<Ubicacion> edificios;
     Lista<Ubicacion> materiales;
 
     Lista<Jugador> jugadores;

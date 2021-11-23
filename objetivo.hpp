@@ -22,7 +22,7 @@ static const string OBJETIVO_SECUNDARIO = "secundario";
 
 class Objetivo
 {
-private:
+protected:
     string objetivo;
     string tipo;
     //bool objetivo_cumplido;
@@ -35,6 +35,9 @@ public:
 
     string obtener_objetivo()const;
     bool es_principal();
+
+    //virtual bool chequear_estado(inventario, lista edificios) = 0;
+    
 };
 
 

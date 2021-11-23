@@ -53,5 +53,11 @@ public:
 
     void mostrar_objetivos_y_progreso();
     void mostrar_inventario();
+
+/*
+    bool chequear_objetivos(Lista<Objetivo> objetivos){
+        if(obj.getobjetivo == "Construir Obelisco")
+            obj.chequear_estado()
+    }*/
 };
 #endif //JUGADOR_HPP
