@@ -17,6 +17,7 @@
 #include "jugador.hpp"
 #include "mapa.hpp"
 #include "funciones.hpp"
+#include "edificio.hpp"
 
 const int LLUVIA_METAL_MIN = 2;
 const int LLUVIA_METAL_MAX = 4;

@@ -29,6 +29,8 @@ public:
     // POS: Se carga la informacion de materiales.txt
     void cargar_inventario(Inventario &inventario, Recurso &recurso);
 
+    // void Parser::cargar_inventario(Recurso &recurso, Jugador jugador1, Jugador jugador2);
+
     // PRE:
     // POS: Se carga la informacion de edificios.txt
     void cargar_edificios(Constructor &bob);
