@@ -5,29 +5,34 @@
 
 using namespace std;
 
-Objetivo::Objetivo(){
+Objetivo::Objetivo()
+{
     objetivo.clear();
     tipo.clear();
 }
 
-Objetivo::Objetivo(string objetivo, string tipo){
+Objetivo::Objetivo(string objetivo, string tipo)
+{
     this->objetivo = objetivo;
     this->tipo = tipo;
 }
 
-Objetivo::~Objetivo(){
+Objetivo::~Objetivo()
+{
 }
 
-string Objetivo::obtener_objetivo()const{
+string Objetivo::obtener_objetivo() const
+{
     return objetivo;
 }
 
-bool Objetivo::es_principal(){
-    bool aux;
+bool Objetivo::es_principal()
+{
+    bool aux = false;
 
-    if(tipo == OBJETIVO_PRINCIPAL)
+    if (tipo == OBJETIVO_PRINCIPAL)
         aux = true;
-    else if(tipo == OBJETIVO_SECUNDARIO)
+    else if (tipo == OBJETIVO_SECUNDARIO)
         aux = false;
 
     return aux;

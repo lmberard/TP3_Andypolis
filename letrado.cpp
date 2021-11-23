@@ -5,11 +5,10 @@
 
 using namespace std;
 
-
-Letrado::Letrado(string objetivo, string tipo) : Objetivo(objetivo, tipo){
-    
+Letrado::Letrado(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+{
 }
 
-
-Letrado::~Letrado(){
+Letrado::~Letrado()
+{
 }

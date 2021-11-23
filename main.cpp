@@ -7,13 +7,17 @@
 #include "parser.hpp"
 
 using namespace std;
-
-int main() //fdksjfkjsadhfkasjfdsahfksja
+int main()
 {
     Menu menu;
     Parser lector_archivos;
     Juego andypolis;
+    //Recurso recurso;
+    //Inventario inventario;
+    //Jugador jugador1;
+    //Jugador jugador2;
     //lector_archivos.cargar_edificios(bob);
+    //lector_archivos.cargar_inventario(recurso, jugador1, jugador2);
     int opcion = 0;
     //si el archivo ubicaciones.txt no existe o esta vacio entonces es una partida nueva
     if (lector_archivos.existe_archivo_ubicaciones())

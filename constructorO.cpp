@@ -5,11 +5,10 @@
 
 using namespace std;
 
-
-ConstructorO::ConstructorO(string objetivo, string tipo) : Objetivo(objetivo, tipo){
-    
+ConstructorO::ConstructorO(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+{
 }
 
-
-ConstructorO::~ConstructorO(){
+ConstructorO::~ConstructorO()
+{
 }

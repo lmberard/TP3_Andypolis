@@ -129,3 +129,12 @@ int Inventario::obtener_cant_material(int posicion)
 {
     return materiales1[posicion]->obtener_cantidad();
 }
+
+void Inventario::modificar_cant_material(string nombre, int cantidad)
+{
+    for (int j = 1; j < materiales1.mostrar_cantidad() + 1; j++)
+    {
+        if (materiales1[j]->obtener_nombre() == nombre)
+            materiales1[j]->modificar_cantidad(cantidad);
+    }
+}

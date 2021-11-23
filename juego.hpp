@@ -40,7 +40,7 @@ private:
     Lista<Ubicacion> edificios;
     Lista<Ubicacion> materiales;
 
-    Lista<Jugador> jugadores;
+    //Jugador jugadores[CANT_JUGADORES];
 
 public:
     Juego();

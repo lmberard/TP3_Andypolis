@@ -33,6 +33,31 @@ void Parser::crear_archivo_vacio(const string &PATH, fstream &archivo)
 }
 
 // CARGAR INFORMACION DE LOS ARCHIVOS TXT ----------------------------
+
+// Esta OK
+
+/*
+
+void Parser::cargar_inventario(Recurso &recurso, Jugador jugador1, jugador jugador2)
+{
+    fstream archivo_materiales(PATH_MATERIALES);
+
+    if (!existe_archivo_materiales())
+        crear_archivo_vacio(PATH_MATERIALES, archivo_materiales);
+
+    string nombre, cantidad;
+    while (archivo_materiales >> nombre)
+    {
+        archivo_materiales >> cantidad;
+        jugador1.cargar_material_lista(nombre, stoi(cantidad), recurso);
+        archivo_materiales >> cantidad;
+        jugador2.cargar_material_lista(nombre, stoi(cantidad), recurso);
+    
+    }
+}
+
+*/
+
 void Parser::cargar_inventario(Inventario &inventario, Recurso &recurso)
 {
     fstream archivo_materiales(PATH_MATERIALES);
@@ -47,6 +72,42 @@ void Parser::cargar_inventario(Inventario &inventario, Recurso &recurso)
         inventario.agregar_material(nombre, stoi(cantidad), recurso);
     }
 }
+
+//donde iría is a number
+
+// Esta OK
+
+/*
+
+void Parser::cargar_edificios(Constructor &bob)
+{
+    fstream archivo_edificios(PATH_EDIFICIOS);
+
+    if (!existe_archivo_edificios())
+        crear_archivo_vacio(PATH_EDIFICIOS, archivo_edificios);
+
+    string nombre, piedra, madera, metal, permitidos, aux;
+
+    while (archivo_edificios >> nombre)
+    {
+            file >> aux;
+
+            if (isANumber(aux) == true) {
+                piedra = stoi(aux);
+            } else {
+                nombre = nombre + " " + aux;
+                file >> piedra;
+            }
+
+            file >> madera;
+            file >> metal;
+            file >> permitidos;
+
+            bob.agregar_edificio(nombre, stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos));
+    }
+}
+
+*/
 
 void Parser::cargar_edificios(Constructor &bob)
 {

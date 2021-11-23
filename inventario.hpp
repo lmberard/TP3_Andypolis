@@ -51,6 +51,8 @@ public:
     // PRE:
     // POS:
     int obtener_cant_material(int posicion);
+
+    void modificar_cant_material(string nombre, int cantidad);
 };
 
 #endif

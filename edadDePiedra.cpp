@@ -5,11 +5,10 @@
 
 using namespace std;
 
-
-EdadDePiedra::EdadDePiedra(string objetivo, string tipo) : Objetivo(objetivo, tipo){
-    
+EdadDePiedra::EdadDePiedra(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+{
 }
 
-
-EdadDePiedra::~EdadDePiedra(){
+EdadDePiedra::~EdadDePiedra()
+{
 }

@@ -5,11 +5,10 @@
 
 using namespace std;
 
-
-Armado::Armado(string objetivo, string tipo) : Objetivo(objetivo, tipo){
-    
+Armado::Armado(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+{
 }
 
-
-Armado::~Armado(){
+Armado::~Armado()
+{
 }

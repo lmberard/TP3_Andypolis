@@ -5,11 +5,10 @@
 
 using namespace std;
 
-
-Bombardero::Bombardero(string objetivo, string tipo) : Objetivo(objetivo, tipo){
-    
+Bombardero::Bombardero(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+{
 }
 
-
-Bombardero::~Bombardero(){
+Bombardero::~Bombardero()
+{
 }
