@@ -57,6 +57,15 @@ void Jugador::modificar_inventario(string nombre_material, int cantidad)
     cout << "no estoy segura de esto" << endl;
 }
 
+/*
+
+void Jugador::modificar_inventario(string nombre_material, int cantidad)
+{
+    cout << "no estoy segura de esto" << endl;
+}
+
+*/
+
 void Jugador::modificar_lista_edificios(string edificio, Ubicacion ubicacion)
 {
     cout << "no estoy segura de esto" << endl;

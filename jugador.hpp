@@ -21,7 +21,7 @@ class Jugador
 private:
     int id;
 
-    Lista<Ubicacion> edificios;
+    Lista<Ubicacion> edificios; // tiene que ser una lista que tenga nombre del edificio y arreglo (si o si) de coordenadas. xDDDDDDDD
     Inventario inventario;
     Ubicacion ubicacion;
 
@@ -43,6 +43,7 @@ public:
 
     bool cantidad_suficiente_material(Edificio *edificio, bool construir);
     void modificar_inventario(string nombre_material, int cantidad);
+    // void cargar_material_lista(string nombre_material, int cantidad, Recurso &recurso)
     void modificar_lista_edificios(string edificio, Ubicacion ubicacion);
 
     bool es_su_edificio(string nombre_edificio, Ubicacion ubicacion);
