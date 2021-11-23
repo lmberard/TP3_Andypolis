@@ -19,11 +19,11 @@
 class Jugador
 {
 private:
-    int id;                     //si es jugador 1, va el 1
-    Lista<Ubicacion> edificios; //ubicaciones de los edificios construidos por este jugador
-    Inventario inventario;      //lista de materiales de este jugador
-    int x;                      //coordenada x del jugador
-    int y;                      //coordenada y del jugador
+    int id;                       //si es jugador 1, va el 1
+    Lista<Ubicaciones> edificios; //ubicaciones de los edificios construidos por este jugador
+    Inventario inventario;        //lista de materiales de este jugador
+    Coordenada posicion_jugador;
+
     int puntos_energia;
     Lista<Objetivo> objetivos;
 
@@ -45,19 +45,19 @@ public:
     void setear_id(int _id);
 
     //--------------------------PARA PARSER----------------------------------
-    void agregar_material_al_inventario(string nombre, int cantidad, Recurso &recurso); //materiales.txt
-    void agregar_ubicacion_lista_edificios(Ubicacion ubicacion);                        //ubicaciones.txt
+    void agregar_material_al_inventario(string nombre, int cantidad, Recurso &recurso);    //materiales.txt
+    void agregar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio); //ubicaciones.txt
 
     //------------------------MODIFICADORES----------------------------------
     void modificar_puntos_energia(int cantidad);
     void modificar_andypoints(int cantidad);
 
     void modificar_cant_material(string nombre_material, int cantidad);
-    void eliminar_ubicacion_edificio(Ubicacion ubicacion);
+    bool eliminar_ubicacion_edificio(string nombre, Coordenada coordenada);
 
     //------------------------FUNCIONES UTILES-------------------------------
     bool se_quedo_sin_energia();
-    bool es_su_edificio(Ubicacion ubicacion);
+    bool es_su_edificio(string nombre, Coordenada coordenada);
     bool cantidad_suficiente_material(Edificio *edificio, bool construir);
 
     //------------------------OPCIONES JUGADOR-------------------------------
