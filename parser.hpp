@@ -26,10 +26,8 @@ class Parser
 public:
     /*---------------------------LECTURA--------------------------*/
     // PRE:
-    // POS: Se carga la informacion de materiales.txt
-    void cargar_inventario(Inventario &inventario, Recurso &recurso);
-
-    // void Parser::cargar_inventario(Recurso &recurso, Jugador jugador1, Jugador jugador2);
+    // POS: Se carga la informacion de materiales.txt en ambos jugadores
+    void cargar_inventario(Recurso &recurso, Jugador &jugador1, Jugador &jugador2);
 
     // PRE:
     // POS: Se carga la informacion de edificios.txt

@@ -4,16 +4,14 @@ Jugador::Jugador(int _id, int puntos_iniciales)
 {
     id = _id;
     puntos_energia = puntos_iniciales;
-    x = 0;
-    y = 0;
+    modificar_coordenada(posicion_jugador, 0, 0);
 }
 
 Jugador::Jugador()
 {
     id = 0;
     puntos_energia = 0;
-    x = 0;
-    y = 0;
+    modificar_coordenada(posicion_jugador, 0, 0);
 }
 
 Jugador::~Jugador()
@@ -64,9 +62,12 @@ void Jugador::agregar_material_al_inventario(string nombre, int cantidad, Recurs
 }
 
 //ubicaciones.txt
-void Jugador::agregar_ubicacion_lista_edificios(Ubicacion ubicacion)
+void Jugador::agregar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio)
 {
-    edificios.alta(ubicacion);
+    Ubicaciones nuevo_edificio_construido;
+    setear_nombre(nuevo_edificio_construido, nombre);
+    agregar_coordenada(nuevo_edificio_construido, coordenada_edificio);
+    edificios.alta(nuevo_edificio_construido);
 }
 
 //------------------------MODIFICADORES----------------------------------
@@ -88,15 +89,16 @@ void Jugador::modificar_andypoints(int cantidad)
     inventario.modificar_cant_material("andypoints", cantidad);
 }
 
-//CAMBIAR A LO DE BUILDING INFO DE PIPO Y GUILLE!
-void Jugador::eliminar_ubicacion_edificio(Ubicacion ubicacion)
+bool Jugador::eliminar_ubicacion_edificio(string nombre, Coordenada coordenada)
 {
     //este for empieza en 1 asi por como esta implementada la lista, hay que recorrerlo asi
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
     {
-        if (edificios[i].nombre == ubicacion.nombre && edificios[i].coord_x == ubicacion.coord_x && edificios[i].coord_y == ubicacion.coord_y)
-            edificios.baja(i);
+        if (edificios[i].nombre == nombre)
+            return eliminar_coordenada(edificios[i], coordenada);
     }
+    msjeError("Error: El jugador no tiene edificios construidos de ese estilo");
+    return false;
 }
 
 //------------------------FUNCIONES UTILES-------------------------------
@@ -111,14 +113,14 @@ bool Jugador::cantidad_suficiente_material(Edificio *edificio, bool construir)
     return inventario.chequear_stock(edificio, construir);
 }
 
-//CAMBIAR A LO DE BUILDING INFO DE PIPO Y GUILLE!
-bool Jugador::es_su_edificio(Ubicacion ubicacion)
+bool Jugador::es_su_edificio(string nombre, Coordenada coordenada)
 {
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
     {
-        if (edificios[i].nombre == ubicacion.nombre && edificios[i].coord_x == ubicacion.coord_x && edificios[i].coord_y == ubicacion.coord_y)
-            return true;
+        if (edificios[i].nombre == nombre)
+            return tiene_esa_coordenada(edificios[i], coordenada);
     }
+    msjeError("El jugador no tiene un edificio construido con ese nombre en esa coordenada");
     return false;
 }
 
