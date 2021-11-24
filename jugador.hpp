@@ -38,6 +38,8 @@ public:
     int obtener_puntos_energia();
     int obtener_cant_andycoins();
     int obtener_cant_bombas();
+    int obtener_cant_edificios_construidos(string nombre);
+    int obtener_tam_lista_ubicaciones();
 
     //-------------------------SETTERS---------------------------------------
     void setear_objetivos_secundarios();
@@ -54,6 +56,7 @@ public:
 
     void modificar_cant_material(string nombre_material, int cantidad);
     bool eliminar_ubicacion_edificio(string nombre, Coordenada coordenada);
+    void agregar_materiales_reciclados(Edificio *edificio);
 
     //------------------------FUNCIONES UTILES-------------------------------
     bool se_quedo_sin_energia();
@@ -63,15 +66,13 @@ public:
     //------------------------OPCIONES JUGADOR-------------------------------
     void moverse_a_coordenada(int x, int y);
     void mostrar_inventario();
-<<<<<<< HEAD
+    void mostrar_edificios_construidos();
+    void mostrar_objetivos_y_progreso();
 
-/*
+    /*
     bool chequear_objetivos(Lista<Objetivo> objetivos){
         if(obj.getobjetivo == "Construir Obelisco")
             obj.chequear_estado()
     }*/
-=======
-    void mostrar_objetivos_y_progreso();
->>>>>>> 907979593a0205da5274f9102aa2bf889964cc21
 };
 #endif //JUGADOR_HPP

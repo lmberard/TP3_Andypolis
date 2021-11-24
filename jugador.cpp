@@ -39,6 +39,19 @@ int Jugador::obtener_cant_bombas()
     return 0;
 }
 
+int Jugador::obtener_cant_edificios_construidos(string nombre)
+{
+    for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
+    {
+        if (edificios[i].nombre == nombre)
+            return obtener_cantidad(edificios[i]);
+    }
+    return 0;
+}
+int Jugador::obtener_tam_lista_ubicaciones()
+{
+    return edificios.mostrar_cantidad();
+}
 //-------------------------SETTERS---------------------------------------
 void Jugador::setear_objetivos_secundarios()
 {
@@ -101,6 +114,10 @@ bool Jugador::eliminar_ubicacion_edificio(string nombre, Coordenada coordenada)
     return false;
 }
 
+void Jugador::agregar_materiales_reciclados(Edificio *edificio)
+{
+    inventario.llenar_stock(edificio);
+}
 //------------------------FUNCIONES UTILES-------------------------------
 bool Jugador::se_quedo_sin_energia()
 {
@@ -134,6 +151,16 @@ void Jugador::moverse_a_coordenada(int x, int y)
 void Jugador::mostrar_objetivos_y_progreso()
 {
     cout << "FALTA ARMAR BIEN CLASE OBJETIVOS" << endl;
+}
+
+void Jugador::mostrar_edificios_construidos()
+{
+    for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
+    {
+        cout << "Tipo de edificio: " << edificios[i].nombre << endl;
+        cout << "\tCantidad construida: " << to_string(obtener_cantidad(edificios[i])) << endl;
+        mostrar_coordenadas(edificios[i]);
+    }
 }
 
 void Jugador::mostrar_inventario()
