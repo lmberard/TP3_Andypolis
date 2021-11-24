@@ -9,12 +9,14 @@ Objetivo::Objetivo()
 {
     objetivo.clear();
     tipo.clear();
+    objetivo_cumplido = false;
 }
 
 Objetivo::Objetivo(string objetivo, string tipo)
 {
     this->objetivo = objetivo;
     this->tipo = tipo;
+    objetivo_cumplido = false;
 }
 
 Objetivo::~Objetivo()
