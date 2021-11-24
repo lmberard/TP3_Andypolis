@@ -233,7 +233,7 @@ void Menu::procesar_opcion_juego(int opcion_elegida, Juego &andypolis)
         volver();
         break;
     case RECOLECTAR_RECURSOS:
-        andypolis.recolectar();
+        //andypolis.recolectar();
         volver();
         break;
     case MOVERSE_COORDENADA:
