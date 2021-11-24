@@ -2,7 +2,7 @@
 //---------------------STRUCT UBICACIONES--------------------------------
 int obtener_cantidad(Ubicaciones info_edificio)
 {
-    info_edificio.coordenadas.mostrar_cantidad();
+    return info_edificio.coordenadas.mostrar_cantidad();
 }
 
 void mostrar_coordenadas(Ubicaciones info_edificio)
@@ -61,4 +61,12 @@ void modificar_coordenada(Coordenada coordenada, int x, int y)
 bool coordenadas_son_iguales(Coordenada coord1, Coordenada coord2)
 {
     return (coord1.coord_y == coord2.coord_y && coord1.coord_x == coord2.coord_x);
+}
+
+Coordenada crear_coordenada(int x, int y)
+{
+    Coordenada coord;
+    coord.coord_x = x;
+    coord.coord_y = y;
+    return coord;
 }

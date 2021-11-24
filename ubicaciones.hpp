@@ -9,15 +9,16 @@
 
 using namespace std;
 
-struct Ubicaciones
-{
-    string nombre;
-    Lista<Coordenada> coordenadas;
-};
 struct Coordenada
 {
     int coord_x;
     int coord_y;
+};
+
+struct Ubicaciones
+{
+    string nombre;
+    Lista<Coordenada> coordenadas;
 };
 
 //---------------------STRUCT UBICACIONES--------------------------------
@@ -37,5 +38,7 @@ bool tiene_esa_coordenada(Ubicaciones info_edificio, Coordenada coordenada);
 void modificar_coordenada(Coordenada coordenada, int x, int y);
 
 bool coordenadas_son_iguales(Coordenada coord1, Coordenada coord2);
+
+Coordenada crear_coordenada(int x, int y);
 
 #endif // UBICACIONES_HPP
