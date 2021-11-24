@@ -25,7 +25,7 @@ class Objetivo
 protected:
     string objetivo;
     string tipo;
-    //bool objetivo_cumplido;
+    bool objetivo_cumplido;
 
 public:
 
@@ -36,7 +36,7 @@ public:
     string obtener_objetivo()const;
     bool es_principal();
 
-    //virtual bool chequear_estado(inventario, lista edificios) = 0;
+    //virtual bool chequear_estado(Inventario & inventario) = 0;
     
 };
 

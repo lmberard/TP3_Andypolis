@@ -63,15 +63,6 @@ public:
     //------------------------OPCIONES JUGADOR-------------------------------
     void moverse_a_coordenada(int x, int y);
     void mostrar_inventario();
-<<<<<<< HEAD
-
-/*
-    bool chequear_objetivos(Lista<Objetivo> objetivos){
-        if(obj.getobjetivo == "Construir Obelisco")
-            obj.chequear_estado()
-    }*/
-=======
     void mostrar_objetivos_y_progreso();
->>>>>>> 907979593a0205da5274f9102aa2bf889964cc21
 };
 #endif //JUGADOR_HPP
