@@ -10,7 +10,7 @@
 #include "colors.hpp"
 #include "lista.hpp"
 
-//#include "ubicaciones.hpp"
+#include "ubicaciones.hpp"
 #include "terreno.hpp"
 #include "edificio.hpp"
 #include "material.hpp"
@@ -41,23 +41,25 @@ public:
 
     int obtener_columnas();
 
-    Edificio *obtener_edificio(int x, int y);
+    Edificio *obtener_edificio(Coordenada coord);
 
     //----------------------------------------------------------------
-    void agregar_casillero(int x, int y, string casillero, Terreno &terreno);
+    void agregar_casillero(Coordenada coord, string casillero, Terreno &terreno);
 
-    bool agregar_contenido(int x, int y, Edificio *edificio);
+    bool agregar_contenido(Coordenada coord, Edificio *edificio);
 
-    bool agregar_contenido(int x, int y, Material *material);
+    bool agregar_contenido(Coordenada coord, Material *material);
 
     //----------------------------------------------------------------
     void mostrar();
 
-    void consultar_coordenada(int x, int y);
+    void consultar_coordenada(Coordenada coord);
 
-    bool coordenada_es_transitable(int x, int y);
+    bool coordenada_es_transitable(Coordenada coord);
 
-    void demoler_contenido(int x, int y);
+    void demoler_contenido(Coordenada coord);
+
+    bool coordenadas_validas(Coordenada coord);
 };
 
 #endif // MAPA_HPP

@@ -51,9 +51,9 @@ int Mapa::obtener_columnas()
     return columnas;
 }
 
-void Mapa::agregar_casillero(int x, int y, string casillero, Terreno &terreno)
+void Mapa::agregar_casillero(Coordenada coord, string casillero, Terreno &terreno)
 {
-    mapa[x][y] = terreno.agregar(casillero);
+    mapa[coord.coord_x][coord.coord_y] = terreno.agregar(casillero);
 }
 
 void Mapa::mostrar()
@@ -69,32 +69,46 @@ void Mapa::mostrar()
     }
 }
 
-void Mapa::consultar_coordenada(int x, int y)
+void Mapa::consultar_coordenada(Coordenada coord)
 {
-    mapa[x][y]->mostrar();
+    mapa[coord.coord_x][coord.coord_y]->mostrar();
 }
 
-Edificio *Mapa::obtener_edificio(int x, int y)
+Edificio *Mapa::obtener_edificio(Coordenada coord)
 {
-    return mapa[x][y]->mostrar_edificio();
+    return mapa[coord.coord_x][coord.coord_y]->mostrar_edificio();
 }
 
-bool Mapa::coordenada_es_transitable(int x, int y)
+bool Mapa::coordenada_es_transitable(Coordenada coord)
 {
-    return mapa[x][y]->estransitable();
+    return mapa[coord.coord_x][coord.coord_y]->estransitable();
 }
 
-void Mapa::demoler_contenido(int x, int y)
+void Mapa::demoler_contenido(Coordenada coord)
 {
-    mapa[x][y]->demoler();
+    mapa[coord.coord_x][coord.coord_y]->demoler();
 }
 
-bool Mapa::agregar_contenido(int x, int y, Edificio *edificio)
+bool Mapa::agregar_contenido(Coordenada coord, Edificio *edificio)
 {
-    return mapa[x][y]->agregar(edificio);
+    return mapa[coord.coord_x][coord.coord_y]->agregar(edificio);
 }
 
-bool Mapa::agregar_contenido(int x, int y, Material *material)
+bool Mapa::agregar_contenido(Coordenada coord, Material *material)
 {
-    return mapa[x][y]->agregar(material);
+    return mapa[coord.coord_x][coord.coord_y]->agregar(material);
+}
+
+bool Mapa::coordenadas_validas(Coordenada coord)
+{
+    int filas = obtener_filas();
+    int columnas = obtener_columnas();
+    if (!(coord.coord_x >= 0 && coord.coord_x <= filas && coord.coord_y >= 0 && coord.coord_y <= columnas))
+    {
+        msjeError("Las coordenadas estan fueras del mapa");
+        msjeInstruccion("Actualmente el mapa es una matriz de " + to_string(filas) + "x" + to_string(columnas));
+        return false;
+    }
+    else
+        return true;
 }
