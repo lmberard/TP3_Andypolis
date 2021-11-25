@@ -24,6 +24,11 @@ int Jugador::obtener_id()
     return id;
 }
 
+Coordenada Jugador::obtener_posicion_jugador()
+{
+    return posicion_jugador;
+} // YO
+
 int Jugador::obtener_puntos_energia()
 {
     return puntos_energia;
@@ -67,6 +72,13 @@ void Jugador::setear_id(int _id)
 {
     id = _id;
 }
+
+void Jugador::setear_posicion_jugador(Coordenada _posicion_jugador)
+{
+    posicion_jugador.coord_x = _posicion_jugador.coord_x;
+    posicion_jugador.coord_y = _posicion_jugador.coord_y;
+} //YO
+
 //--------------------------PARA PARSER----------------------------------
 //materiales.txt
 void Jugador::agregar_material_al_inventario(string nombre, int cantidad, Recurso &recurso)
