@@ -37,6 +37,7 @@ private:
     Mapa mapa;
     Lista<Coordenada> coordenadasTransitables;
     // tb hay materiales sueltos, donde los guardamos?
+    // corregir esto
     //Lista<Coordenada> materiales;
     //Lista<Ubicaciones> materiales;
 
