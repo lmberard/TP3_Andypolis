@@ -25,6 +25,11 @@ int Jugador::obtener_id()
     return id;
 }
 
+Coordenada Jugador::obtener_posicion_jugador()
+{
+    return posicion_jugador;
+} // YO
+
 int Jugador::obtener_puntos_energia()
 {
     return puntos_energia;

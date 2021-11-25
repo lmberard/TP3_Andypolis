@@ -35,6 +35,7 @@ public:
 
     //-------------------------GETTERS---------------------------------------
     int obtener_id();
+    Coordenada obtener_posicion_jugador(); //YO
     int obtener_puntos_energia();
     int obtener_cant_andycoins();
     int obtener_cant_bombas();
