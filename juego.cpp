@@ -19,6 +19,16 @@ int Juego::obtener_columnas_mapa()
     return mapa.obtener_columnas();
 }
 
+Jugador Juego::obtener_jugador_1()
+{    
+    return jugadores[0];
+} //YO
+
+Jugador Juego::obtener_jugador_2()
+{    
+    return jugadores[1];
+} //YO
+
 //----------------------------MAPA---------------------------------
 void Juego::crear_mapa(int filas, int columnas)
 {
