@@ -50,8 +50,6 @@ public:
     //--------------------------GETTERS--------------------------------
     int obtener_filas_mapa();
     int obtener_columnas_mapa();
-    Jugador obtener_jugador_1(); //YO
-    Jugador obtener_jugador_2(); //YO
 
     //---------------------MAPA PARSER---------------------------------
     void crear_mapa(int filas, int columnas);

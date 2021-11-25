@@ -35,7 +35,6 @@ public:
 
     //-------------------------GETTERS---------------------------------------
     int obtener_id();
-    Coordenada obtener_posicion_jugador(); //YO
     int obtener_puntos_energia();
     int obtener_cant_andycoins();
     int obtener_cant_bombas();
@@ -46,7 +45,6 @@ public:
     void setear_objetivos_secundarios();
     void setear_objetivo_principal();
     void setear_id(int _id);
-    void setear_posicion_jugador(Coordenada _posicion_jugador); //YO
 
     //--------------------------PARA PARSER----------------------------------
     void agregar_material_al_inventario(string nombre, int cantidad, Recurso &recurso);    //materiales.txt

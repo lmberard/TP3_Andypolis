@@ -107,23 +107,23 @@ void Parser::cargar_ubicaciones(Juego &juego)
         if(primer_str == "1"){
 
             estado_jugador_1 = true;
-            juego.obtener_jugador_1().setear_id(stoi(primer_str));
-            juego.obtener_jugador_1().setear_posicion_jugador(coordenadas);
+            //juego.obtener_jugador_1().setear_id(stoi(primer_str));
+            //juego.obtener_jugador_1().setear_posicion_jugador(coordenadas);
 
         } else if(primer_str == "2"){
 
             estado_jugador_1 = false;
             estado_jugador_2 = true;
-            juego.obtener_jugador_2().setear_id(stoi(primer_str));
-            juego.obtener_jugador_2().setear_posicion_jugador(coordenadas);
+            //juego.obtener_jugador_2().setear_id(stoi(primer_str));
+            //juego.obtener_jugador_2().setear_posicion_jugador(coordenadas);
 
         } else if(estado_jugador_1 == true){
             
-            juego.obtener_jugador_1().agregar_ubicacion_lista_edificios(primer_str, coordenadas);
+            //juego.obtener_jugador_1().agregar_ubicacion_lista_edificios(primer_str, coordenadas);
 
         } else if(estado_jugador_2 == true){
 
-            juego.obtener_jugador_2().agregar_ubicacion_lista_edificios(primer_str, coordenadas);
+            //juego.obtener_jugador_2().agregar_ubicacion_lista_edificios(primer_str, coordenadas);
 
         } else{
 
