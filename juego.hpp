@@ -35,7 +35,7 @@ private:
     Recurso recurso;
 
     Mapa mapa;
-    Lista<Coordenada> coordenadasTransitables;
+    Lista<Coordenada> coordenadasTransitables; //ESTO VA EN MAPA O ACA? LO USAMOS?
     // tb hay materiales sueltos, donde los guardamos?
     //Lista<Coordenada> materiales;
     //Lista<Ubicaciones> materiales;
@@ -51,9 +51,11 @@ public:
     int obtener_filas_mapa();
     int obtener_columnas_mapa();
 
-    //----------------------------MAPA---------------------------------
+    //---------------------MAPA PARSER---------------------------------
     void crear_mapa(int filas, int columnas);
     void agregar_casillero(Coordenada coord, string casillero);
+    void agregar_material_coordenada(string nombre, Coordenada coord);
+    void construir_edificio(Coordenada coord, const string &edificio, Constructor &bob, int id_jugador);
 
     //-------------------OPCIONES MENU PRINCIPAL-----------------------
     void modificar_edificio_por_nombre();
@@ -77,13 +79,10 @@ public:
 
     //-----------------------FUNCIONES UTILES--------------------------
     bool id_jugador_es_valido(int id_jugador);
+    bool chequear_permisos_edificio(const string &eledificio, Constructor &bob, int id_jugador);
 
     Coordenada pedir_coordenadas();
     string pedir_nombre_edificio();
-
-    void construir_edificio(Coordenada coord, const string &edificio, Constructor &bob, int id_jugador);
-    //void agregar_material_coordenada(string nombre, int cantidad, Coordenada coord);
-    bool chequear_permisos_edificio(const string &eledificio, Constructor &bob, int id_jugador);
 
     void demoler_edificio(Coordenada coord, int id_jugador);
     void llenar_coordenada_transitable();

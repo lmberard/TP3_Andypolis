@@ -30,6 +30,51 @@ void Juego::agregar_casillero(Coordenada coord, string casillero)
     mapa.agregar_casillero(coord, casillero, terreno);
 }
 
+//FALTAN DETALLES
+void Juego::construir_edificio(Coordenada coord, const string &eledificio, Constructor &bob, int id_jugador)
+{
+    if (mapa.coordenadas_validas(coord))
+    {
+        if (!mapa.obtener_edificio(coord))
+        {
+            Edificio *edificio = bob.construye(eledificio);
+            if (jugadores[id_jugador - 1].cantidad_suficiente_material(edificio, true))
+            {
+                string rta;
+                msjeInstruccion("Desea confirmar la construccion?(si/no)");
+                cin >> rta;
+                if (rta == "si")
+                {
+                    if (mapa.agregar_contenido(coord, edificio))
+                    {
+                        jugadores[id_jugador - 1].agregar_ubicacion_lista_edificios(eledificio, coord);
+                        // descontar materiales de cosntruccion al jugador de su inventario
+                        msjeOK("Se restaron los materiales de construccion, se construyo el edificio y se agrego a la lista de ubicaciones");
+                    }
+                }
+                else if (rta == "no")
+                {
+                    msjeInstruccion("No se construyo el edificio.");
+                    delete edificio;
+                }
+                else
+                    msjeError("Opcion invalida. Ingrese 'si' o 'no'");
+            }
+            else
+            {
+                msjeError("No hay materiales suficientes para la construccion de ese edificio :(");
+                delete edificio;
+            }
+        }
+        else
+            msjeError("Ya hay un edificio en esa coordenada");
+    }
+}
+
+void Juego::agregar_material_coordenada(string nombre, Coordenada coord)
+{
+    mapa.agregar_contenido(coord, recurso.dar_material(nombre));
+}
 //-------------------OPCIONES MENU PRINCIPAL-----------------------
 //FALTAA
 void Juego::modificar_edificio_por_nombre()
@@ -188,86 +233,6 @@ bool Juego::id_jugador_es_valido(int id_jugador)
     return (id_jugador >= 1 && id_jugador <= CANT_JUGADORES);
 }
 
-Coordenada Juego::pedir_coordenadas()
-{
-    string x, y;
-    msjeInstruccion("Ingrese las coordenadas.");
-    msjeInstruccion("Coordenada X:");
-    cin >> x;
-    msjeInstruccion("Coordenada Y:");
-    cin >> y;
-    return crear_coordenada(stoi(x), stoi(y));
-}
-
-string Juego::pedir_nombre_edificio()
-{
-    string nombre_edificio, aux;
-    msjeInstruccion("Ingrese el nombre del edificio:");
-    cin >> nombre_edificio;
-    if (nombre_edificio == "planta")
-    {
-        cin >> aux;
-        nombre_edificio = nombre_edificio + " " + aux;
-    }
-    return nombre_edificio;
-}
-
-//-----------------------------------------------------------------
-//FALTAN DETALLES
-void Juego::construir_edificio(Coordenada coord, const string &eledificio, Constructor &bob, int id_jugador)
-{
-    if (mapa.coordenadas_validas(coord))
-    {
-        if (!mapa.obtener_edificio(coord))
-        {
-            Edificio *edificio = bob.construye(eledificio);
-            if (jugadores[id_jugador - 1].cantidad_suficiente_material(edificio, true))
-            {
-                string rta;
-                msjeInstruccion("Desea confirmar la construccion?(si/no)");
-                cin >> rta;
-                if (rta == "si")
-                {
-                    if (mapa.agregar_contenido(coord, edificio))
-                    {
-                        jugadores[id_jugador - 1].agregar_ubicacion_lista_edificios(eledificio, coord);
-                        // descontar materiales de cosntruccion al jugador de su inventario
-                        msjeOK("Se restaron los materiales de construccion, se construyo el edificio y se agrego a la lista de ubicaciones");
-                    }
-                }
-                else if (rta == "no")
-                {
-                    msjeInstruccion("No se construyo el edificio.");
-                    delete edificio;
-                }
-                else
-                    msjeError("Opcion invalida. Ingrese 'si' o 'no'");
-            }
-            else
-            {
-                msjeError("No hay materiales suficientes para la construccion de ese edificio :(");
-                delete edificio;
-            }
-        }
-        else
-            msjeError("Ya hay un edificio en esa coordenada");
-    }
-}
-
-/*
-void Juego::agregar_material_coordenada(string nombre, int cantidad, Coordenada coord)
-{
-    while (cantidad)
-    {
-        int numero = generar_valor_random(1, coordenadasTransitables.mostrar_cantidad());
-        mapa.agregar_contenido(coordenadasTransitables[numero], recurso.dar_material(nombre));
-        cout << "\t-> (" << coordenadasTransitables[numero].coord_x << ", " << coordenadasTransitables[numero].coord_y << ")" << endl;
-        materiales.alta(coordenadasTransitables[numero]);
-        coordenadasTransitables.baja(numero);
-        cantidad--;
-    }
-}*/
-
 bool Juego::chequear_permisos_edificio(const string &eledificio, Constructor &bob, int id_jugador)
 {
     Edificio *edificio = bob.construye(eledificio);
@@ -294,6 +259,31 @@ bool Juego::chequear_permisos_edificio(const string &eledificio, Constructor &bo
     return flag;
 }
 
+Coordenada Juego::pedir_coordenadas()
+{
+    string x, y;
+    msjeInstruccion("Ingrese las coordenadas.");
+    msjeInstruccion("Coordenada X:");
+    cin >> x;
+    msjeInstruccion("Coordenada Y:");
+    cin >> y;
+    return crear_coordenada(stoi(x), stoi(y));
+}
+
+string Juego::pedir_nombre_edificio()
+{
+    string nombre_edificio, aux;
+    msjeInstruccion("Ingrese el nombre del edificio:");
+    cin >> nombre_edificio;
+    if (nombre_edificio == "planta")
+    {
+        cin >> aux;
+        nombre_edificio = nombre_edificio + " " + aux;
+    }
+    return nombre_edificio;
+}
+
+//-----------------------------------------------------------------
 void Juego::demoler_edificio(Coordenada coord, int id_jugador)
 {
     if (mapa.coordenadas_validas(coord))
