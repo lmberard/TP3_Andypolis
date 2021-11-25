@@ -2,6 +2,7 @@
 //--------------------CONSTRUCTORES DESTRUCTORES-------------------
 Juego::Juego()
 {
+    id_jugador_actual = 0;
 }
 
 Juego::~Juego()
@@ -19,6 +20,34 @@ int Juego::obtener_columnas_mapa()
     return mapa.obtener_columnas();
 }
 
+int Juego::obtener_cant_construidos(string nombre_edificio)
+{
+    int suma = 0;
+    for (int i = 0; i < CANT_JUGADORES; i++)
+        suma += jugadores[i].obtener_cant_edificios_construidos(nombre_edificio);
+
+    return suma;
+}
+
+int Juego::obtener_id_jugador_actual()
+{
+    return id_jugador_actual;
+}
+//--------------------------SETTERS--------------------------------
+void Juego::setear_coordenada_jugador(int id_jugador)
+{
+    msjeInstruccion("Jugador " + to_string(id_jugador) + ", donde quiere empezar el juego?");
+    Coordenada coord_jugador = pedir_coordenadas();
+    //esto deberia ser un loop para que te siga pidiendo
+    if (mapa.coordenadas_validas(coord_jugador))
+        jugadores[id_jugador - 1].setear_posicion(coord_jugador);
+}
+
+void Juego::setear_id_jugador_actual(int id_jugador)
+{
+    id_jugador_actual = id_jugador;
+}
+
 //----------------------------MAPA---------------------------------
 void Juego::crear_mapa(int filas, int columnas)
 {
@@ -31,14 +60,14 @@ void Juego::agregar_casillero(Coordenada coord, string casillero)
 }
 
 //FALTAN DETALLES
-void Juego::construir_edificio(Coordenada coord, const string &eledificio, Constructor &bob, int id_jugador)
+void Juego::construir_edificio(Coordenada coord, const string &eledificio)
 {
     if (mapa.coordenadas_validas(coord))
     {
         if (!mapa.obtener_edificio(coord))
         {
             Edificio *edificio = bob.construye(eledificio);
-            if (jugadores[id_jugador - 1].cantidad_suficiente_material(edificio, true))
+            if (jugadores[id_jugador_actual - 1].cantidad_suficiente_material(edificio, true))
             {
                 string rta;
                 msjeInstruccion("Desea confirmar la construccion?(si/no)");
@@ -47,7 +76,7 @@ void Juego::construir_edificio(Coordenada coord, const string &eledificio, Const
                 {
                     if (mapa.agregar_contenido(coord, edificio))
                     {
-                        jugadores[id_jugador - 1].agregar_ubicacion_lista_edificios(eledificio, coord);
+                        jugadores[id_jugador_actual - 1].agregar_ubicacion_lista_edificios(eledificio, coord);
                         // descontar materiales de cosntruccion al jugador de su inventario
                         msjeOK("Se restaron los materiales de construccion, se construyo el edificio y se agrego a la lista de ubicaciones");
                     }
@@ -76,22 +105,26 @@ void Juego::agregar_material_coordenada(string nombre, Coordenada coord)
     mapa.agregar_contenido(coord, recurso.dar_material(nombre));
 }
 //-------------------OPCIONES MENU PRINCIPAL-----------------------
-//FALTAA
+//FALTAA (hacer diccionario)
 void Juego::modificar_edificio_por_nombre()
 {
+    string nombre_edificio = pedir_nombre_edificio();
+    /*---verificar que exista el nombre---*/
+    //diccionario.nombre_es_valido(nombre_edificio);
+
+    /*---pedirle al usuario---*/
+    //string madera,piedra, metal, permitidos;
+    //pedir_datos_para_modificar(&madera, &piedra, &metal, &permitidos);
+
+    /*---modificar en el diccionario---*/
+    //diccionario.modificar(nombre_edificio,madera, piedra, madera, metal, permitidos)
     cout << "falta" << endl;
 }
 
-//FALTAN COSAS
 void Juego::mostrar_todos_edificios()
 {
-    /*
-   FALTA:
-    cuantos fueron construidos hasta el momento, 
-    cuantos más puedo construir3sin superar el máximo permitido 
-    */
-
     int cant_edificios = bob.cant_edificios();
+    int cant_construidos = 0, cant_disponible = 0;
     Edificio *edificio;
 
     cout << left << TXT_BOLD << TXT_UNDERLINE << BGND_BLUE_4
@@ -99,24 +132,28 @@ void Juego::mostrar_todos_edificios()
          << setw(23) << "Cant de madera" << '\t'
          << setw(23) << "Cant de metal" << '\t'
          << setw(23) << "Cant de piedra" << '\t'
-         << setw(23) << "Cant maxima" << '\t'
-         << setw(23) << "Cant de produccion" << '\t'
-         << setw(23) << "Tipo de material que produce"
+         << setw(23) << "Cant construida" << '\t'
+         << setw(23) << "Cant disponible para construir" << '\t'
+         << setw(23) << "Tipo de material que produce" << '\t'
+         << setw(23) << "Cant de produccion"
          << END_COLOR << endl;
     for (int i = 1; i < cant_edificios + 1; i++)
     {
         edificio = bob.mostrar_edificio(i);
+        cant_construidos = obtener_cant_construidos(edificio->obtener_nombre());
+        cant_disponible = edificio->obtener_cant_max() - cant_construidos;
+
         cout << left
              << setw(23) << edificio->obtener_nombre() << '\t'
              << setw(23) << edificio->obtener_madera() << '\t'
              << setw(23) << edificio->obtener_metal() << '\t'
              << setw(23) << edificio->obtener_piedra() << '\t'
-             << setw(23) << edificio->obtener_cant_max() << '\t'
-             << setw(23) << edificio->obtener_cant_mat_producido() << '\t'
-             << setw(23) << edificio->obtener_mat_producido()
+             << setw(23) << cant_construidos << '\t'
+             << setw(23) << cant_disponible << '\t'
+             << setw(23) << edificio->obtener_mat_producido() << '\t'
+             << setw(23) << edificio->obtener_cant_mat_producido()
              << endl;
     }
-    cout << "falta" << endl;
 }
 
 void Juego::mostrar_mapa()
@@ -124,75 +161,125 @@ void Juego::mostrar_mapa()
     mapa.mostrar();
 }
 
-//FALTAA
-void Juego::comenzar_partida()
+//detalles de interfaz(loops que sigan pidiendo cosas en vez de que te lo corte)
+bool Juego::comenzar_partida()
 {
-    /*
-    Se le deberá pedir al usuario que seleccione si desea ser
-    el jugador 1 o el jugador 2. 
-    Una vez seleccionadoel número de jugador se le pedirá a cada uno que 
-    ingrese la coordenada5en la cual desea posicionarse para comenzar el juego. 
-    Cuando ambos jugadores se encuentren posicionados se da por comenzado el juego
-    */
-    cout << "falta" << endl;
-}
-
-//-----------------------OPCIONES JUEGO----------------------------
-void Juego::construir_por_nombre_coordenada(int id_jugador, Constructor &bob)
-{
-    string nombre_edificio = pedir_nombre_edificio();
-
-    if (chequear_permisos_edificio(nombre_edificio, bob, id_jugador))
+    id_jugador_actual = pedir_id_jugador();
+    if (id_jugador_es_valido(id_jugador_actual))
     {
-        Coordenada coord = pedir_coordenadas();
-        construir_edificio(coord, nombre_edificio, bob, id_jugador);
+        setear_coordenada_jugador(id_jugador_actual);
+
+        for (int i = 0; i < CANT_JUGADORES; i++)
+        {
+            if ((id_jugador_actual - 1) != i)
+                setear_coordenada_jugador(i + 1);
+        }
+        return true;
+    }
+    else
+    {
+        msjeInstruccion("Intente de nuevo!");
+        return false;
     }
 }
 
-void Juego::mostrar_edificios_construidos(int id_jugador)
+//-----------------------OPCIONES JUEGO----------------------------
+void Juego::construir_por_nombre_coordenada()
 {
-    if (id_jugador_es_valido(id_jugador))
-        jugadores[id_jugador - 1].mostrar_edificios_construidos();
+    if (jugador_tiene_energia(CANT_ENERGIA_CONSTRUIR))
+    {
+        string nombre_edificio = pedir_nombre_edificio();
+
+        if (chequear_permisos_edificio(nombre_edificio))
+        {
+            Coordenada coord = pedir_coordenadas();
+            construir_edificio(coord, nombre_edificio);
+        }
+        jugadores[id_jugador_actual - 1].modificar_puntos_energia(-CANT_ENERGIA_CONSTRUIR);
+    }
 }
 
-void Juego::demoler_por_coordenada(int id_jugador)
+void Juego::mostrar_edificios_construidos()
 {
-    Coordenada coord = pedir_coordenadas();
-    demoler_edificio(coord, id_jugador);
+    if (jugador_tiene_energia(CANT_ENERGIA_LISTAR_EDIF))
+    {
+        if (id_jugador_es_valido(id_jugador_actual))
+            jugadores[id_jugador_actual - 1].mostrar_edificios_construidos();
+    }
+}
+
+void Juego::demoler_por_coordenada()
+{
+    if (jugador_tiene_energia(CANT_ENERGIA_DEMOLER))
+    {
+        Coordenada coord = pedir_coordenadas();
+        demoler_edificio(coord);
+    }
 }
 
 //FALTAA
-void Juego::atacar_por_coordenada(int id_jugador)
+void Juego::atacar_por_coordenada()
 {
-    cout << "falta" << endl;
+    if (jugador_tiene_energia(CANT_ENERGIA_ATACAR))
+    {
+        cout << "falta" << endl;
+    }
 }
 
 //FALTAA
-void Juego::reparar_por_coordenada(int id_jugador)
+void Juego::reparar_por_coordenada()
 {
-    cout << "falta" << endl;
+    if (jugador_tiene_energia(CANT_ENERGIA_REPARAR))
+    {
+        cout << "falta" << endl;
+    }
+}
+
+void Juego::comprar_bombas()
+{
+    if (jugador_tiene_energia(CANT_ENERGIA_COMPRAR_BOMBAS))
+    {
+        cout << "falta" << endl;
+    }
 }
 
 void Juego::consultar_coordenada()
 {
-    Coordenada coord = pedir_coordenadas();
-    if (mapa.coordenadas_validas(coord))
+    if (jugador_tiene_energia(CANT_ENERGIA_CONSULTAR))
     {
-        msjeInstruccion("Hola, estas en la posicion (" + to_string(coord.coord_x) + ", " + to_string(coord.coord_y) + ")");
-        mapa.consultar_coordenada(coord);
+        Coordenada coord = pedir_coordenadas();
+        if (mapa.coordenadas_validas(coord))
+        {
+            msjeInstruccion("Hola, estas en la posicion (" + to_string(coord.coord_x) + ", " + to_string(coord.coord_y) + ")");
+            mapa.consultar_coordenada(coord);
+        }
     }
 }
 
-void Juego::mostrar_inventario(int id_jugador)
+void Juego::mostrar_objetivos()
 {
-    if (id_jugador_es_valido(id_jugador))
-        jugadores[id_jugador - 1].mostrar_inventario();
+    if (jugador_tiene_energia(CANT_ENERGIA_MOSTRAR_OBJ))
+    {
+        cout << "falta" << endl;
+    }
+}
+
+void Juego::mostrar_inventario()
+{
+    if (jugador_tiene_energia(CANT_ENERGIA_MOSTRAR_INV))
+    {
+        if (id_jugador_es_valido(id_jugador_actual))
+            jugadores[id_jugador_actual - 1].mostrar_inventario();
+    }
 }
 
 //FALTAN COSAS
-void Juego::recolectar(int id_jugador)
+void Juego::recolectar()
 {
-    cout << "falta" << endl;
+    if (jugador_tiene_energia(CANT_ENERGIA_RECOLECTAR))
+    {
+        cout << "falta" << endl;
+    }
     /*
     Edificio *edificio;
 
@@ -212,34 +299,59 @@ void Juego::recolectar(int id_jugador)
 */
 }
 
-void Juego::moverse_a_coordenada(int id_jugador)
+void Juego::moverse_a_coordenada()
 {
-    if (id_jugador_es_valido(id_jugador))
+    if (id_jugador_es_valido(id_jugador_actual))
     {
         Coordenada coord = pedir_coordenadas();
-        jugadores[id_jugador - 1].moverse_a_coordenada(coord.coord_x, coord.coord_y);
+        jugadores[id_jugador_actual - 1].moverse_a_coordenada(coord.coord_x, coord.coord_y);
     }
 }
 
 //FALTAA
-void Juego::finalizar_turno(int id_jugador)
+void Juego::finalizar_turno()
 {
     cout << "falta" << endl;
 }
 
+//FALTAA
+void Juego::lluvia()
+{
+    cout << "falta la lluvia" << endl;
+}
+
+bool Juego::gano_el_juego()
+{
+    cout << "falta" << endl;
+    return false;
+}
+
+void Juego::cambiar_jugador()
+{
+    if (id_jugador_actual == 1)
+        id_jugador_actual = 2;
+    else if (id_jugador_actual == 2)
+        id_jugador_actual = 1;
+}
 //-----------------------FUNCIONES UTILES--------------------------
 bool Juego::id_jugador_es_valido(int id_jugador)
 {
-    return (id_jugador >= 1 && id_jugador <= CANT_JUGADORES);
+    if (id_jugador < 1 || id_jugador > CANT_JUGADORES)
+    {
+        msjeError("No existe ese numero de jugador");
+        return false;
+    }
+    else
+        return true;
 }
 
-bool Juego::chequear_permisos_edificio(const string &eledificio, Constructor &bob, int id_jugador)
+bool Juego::chequear_permisos_edificio(const string &eledificio)
 {
     Edificio *edificio = bob.construye(eledificio);
     int flag = 1;
     if (edificio)
     {
-        int cant_construidos = jugadores[id_jugador - 1].obtener_cant_edificios_construidos(eledificio);
+        int cant_construidos = jugadores[id_jugador_actual - 1].obtener_cant_edificios_construidos(eledificio);
         if (edificio->obtener_cant_max() > cant_construidos)
         {
             msjeOK("y todavia hay capacidad para construir edificios de ese estilo!");
@@ -259,10 +371,21 @@ bool Juego::chequear_permisos_edificio(const string &eledificio, Constructor &bo
     return flag;
 }
 
+bool Juego::jugador_tiene_energia(const int cantidad)
+{
+    if (!(jugadores[id_jugador_actual - 1].tiene_energia(CANT_ENERGIA_CONSTRUIR)))
+    {
+        msjeError("No se tiene energia suficiente para esa opcion");
+        return false;
+    }
+    else
+        return true;
+}
+
 Coordenada Juego::pedir_coordenadas()
 {
     string x, y;
-    msjeInstruccion("Ingrese las coordenadas.");
+    msjeInstruccion("Ingrese las coordenadas:");
     msjeInstruccion("Coordenada X:");
     cin >> x;
     msjeInstruccion("Coordenada Y:");
@@ -283,8 +406,21 @@ string Juego::pedir_nombre_edificio()
     return nombre_edificio;
 }
 
+//falta verificaciones
+int Juego::pedir_id_jugador()
+{
+    msjeInstruccion("Seleccione un jugador (ingrese el numero):");
+    for (int i = 0; i < CANT_JUGADORES; i++)
+        msjeInstruccion(to_string(i + 1) + ": Jugador nro " + to_string(i + 1));
+    //verificar si es valido (esto no porque se hace en otro lado)
+    //verificar que se ingrese un numero entero
+    int id;
+    cin >> id;
+    return id;
+}
+
 //-----------------------------------------------------------------
-void Juego::demoler_edificio(Coordenada coord, int id_jugador)
+void Juego::demoler_edificio(Coordenada coord)
 {
     if (mapa.coordenadas_validas(coord))
     {
@@ -298,8 +434,8 @@ void Juego::demoler_edificio(Coordenada coord, int id_jugador)
             cin >> rta;
             if (rta == "si")
             {
-                jugadores[id_jugador - 1].agregar_materiales_reciclados(edificio);
-                jugadores[id_jugador - 1].eliminar_ubicacion_edificio(edificio->obtener_nombre(), coord);
+                jugadores[id_jugador_actual - 1].agregar_materiales_reciclados(edificio);
+                jugadores[id_jugador_actual - 1].eliminar_ubicacion_edificio(edificio->obtener_nombre(), coord);
                 mapa.demoler_contenido(coord);
                 msjeOK("Se demolio el edificio, se elimino de la lista de ubicaciones y se agregaron los materiales reciclados al inventario");
             }
@@ -310,21 +446,5 @@ void Juego::demoler_edificio(Coordenada coord, int id_jugador)
         }
         else
             msjeError("No hay edificio construido ahi");
-    }
-}
-
-void Juego::llenar_coordenada_transitable()
-{
-    Coordenada coord;
-
-    for (int x = 0; x < mapa.obtener_filas(); x++)
-    {
-        for (int y = 0; y < mapa.obtener_columnas(); y++)
-        {
-            coord.coord_x = x;
-            coord.coord_y = y;
-            if (mapa.coordenada_es_transitable(coord))
-                coordenadasTransitables.alta(coord);
-        }
     }
 }

@@ -51,13 +51,16 @@ const int SALIR_JUEGO = 13;
 class Menu
 {
 public:
+    Menu();
+
+    ~Menu();
     // pre: -
     // post: Imprime por pantalla el menu
     void mostrar_menu_partida_nueva();
 
     // pre: -
     // post: Imprime por pantalla el menu
-    void mostrar_menu_juego();
+    void mostrar_menu_juego(int id_jugador);
 
     void menu_partida_nueva(Juego &andypolis, int opcion_elegida);
 
@@ -75,7 +78,7 @@ public:
     // post: devuelve true si la opcion recibida esta en el rango valido y sino devuelve false.
     bool es_opcion_valida(int elegida, const int opcion_minima, const int opcion_maxima);
 
-    void validar_opcion_juego(int opcion_elegida);
+    void validar_opcion_juego(int opcion_elegida, Juego &andypolis);
 
     void validar_opcion_partida_nueva(int opcion_elegida4);
 
@@ -93,6 +96,8 @@ public:
     // pre: -
     // post: Pregunta para volver al menu
     void volver();
+
+    void proxima_partida();
 
     void despedir();
     /////////////////////////////////
