@@ -86,38 +86,54 @@ void Parser::cargar_ubicaciones(Juego &juego)
 
     string primer_str, aux_coordenadas;
     Coordenada coordenadas;
+    bool estado_jugador_1, estado_jugador_2 = false;
     
     while(archivo_ubicaciones >> primer_str){
 
+        archivo_ubicaciones >> aux_coordenadas;
+
+            // funcion void guardar_coordenadas(string &primer_str, Coordenada &coordenadas) para que no quede tan largo
+
+        if (aux_coordenadas[0] == '(') {
+            coordenadas.coord_x = aux_coordenadas[1] - '0';
+            coordenadas.coord_y = aux_coordenadas[3] - '0';
+        } else {
+            primer_str = primer_str + " " + aux_coordenadas;
+            archivo_ubicaciones >> aux_coordenadas;
+            coordenadas.coord_x = aux_coordenadas[1] - '0';
+            coordenadas.coord_y = aux_coordenadas[3] - '0';
+        }
+
         if(primer_str == "1"){
-            
-            // agarra edificios del jugador 1
-            
-            //juego.jugadores[0].agregar_ubicacion_lista_edificios(str, coordenadas); //esto es cuando agrego un eficio al jugador
-        
+
+            estado_jugador_1 = true;
+            juego.obtener_jugador_1().setear_id(stoi(primer_str));
+            juego.obtener_jugador_1().setear_posicion_jugador(coordenadas);
+
         } else if(primer_str == "2"){
 
-            // agarra edificios del jugador 2
+            estado_jugador_1 = false;
+            estado_jugador_2 = true;
+            juego.obtener_jugador_2().setear_id(stoi(primer_str));
+            juego.obtener_jugador_2().setear_posicion_jugador(coordenadas);
+
+        } else if(estado_jugador_1 == true){
+            
+            juego.obtener_jugador_1().agregar_ubicacion_lista_edificios(primer_str, coordenadas);
+
+        } else if(estado_jugador_2 == true){
+
+            juego.obtener_jugador_2().agregar_ubicacion_lista_edificios(primer_str, coordenadas);
 
         } else{
 
-            archivo_ubicaciones >> aux_coordenadas;
-
-            if (aux_coordenadas[0] == '(') {
-                coordenadas.coord_x = aux_coordenadas[1] - '0';
-                coordenadas.coord_y = aux_coordenadas[3] - '0';
-            } else {
-                primer_str = primer_str + " " + aux_coordenadas;
-                archivo_ubicaciones >> aux_coordenadas;
-                coordenadas.coord_x = aux_coordenadas[1] - '0';
-                coordenadas.coord_y = aux_coordenadas[3] - '0';
-            }
-
-            // juego.agregar_ubicacion_lista_material();
+            //juego.agregar_material_coordenada(primer_str, coordenadas);
 
         }
 
     }
+
+/*
 
     string nombre, aux, coord_x, coord_y, aux2;
     while (getline(archivo_ubicaciones, nombre, ' '))
@@ -142,9 +158,14 @@ void Parser::cargar_ubicaciones(Juego &juego)
 
         juego.agregar_ubicacion_edificio(ubicacion);
     }
+
+*/
+
 }
 
 //para cargar mapa.txt
+
+/*
 
 void Parser::cargar_mapa(Juego &juego)
 {
@@ -168,6 +189,8 @@ void Parser::cargar_mapa(Juego &juego)
         }
     }
 }
+
+*/
 
 /*
 
