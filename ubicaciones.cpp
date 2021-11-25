@@ -1,28 +1,33 @@
 #include "ubicaciones.hpp"
 //---------------------STRUCT UBICACIONES--------------------------------
-int obtener_cantidad(Ubicaciones info_edificio)
+int obtener_cantidad(Ubicaciones info)
 {
-    return info_edificio.coordenadas.mostrar_cantidad();
+    return info.coordenadas.mostrar_cantidad();
 }
 
-void mostrar_coordenadas(Ubicaciones info_edificio)
+string obtener_nombre(Ubicaciones info)
 {
-    int cant_coordenadas = obtener_cantidad(info_edificio);
+    return info.nombre;
+}
+
+void mostrar_coordenadas(Ubicaciones info)
+{
+    int cant_coordenadas = obtener_cantidad(info);
     for (int i = 1; i < cant_coordenadas + 1; i++)
     {
-        cout << "\t->(" << info_edificio.coordenadas[i].coord_x << ", "
-             << info_edificio.coordenadas[i].coord_y << ") " << endl;
+        cout << "\t->(" << info.coordenadas[i].coord_x << ", "
+             << info.coordenadas[i].coord_y << ") " << endl;
     }
 }
 
-bool eliminar_coordenada(Ubicaciones info_edificio, Coordenada coordenada)
+bool eliminar_coordenada(Ubicaciones info, Coordenada coordenada)
 {
-    int cant_coordenadas = obtener_cantidad(info_edificio);
+    int cant_coordenadas = obtener_cantidad(info);
     for (int i = 1; i < cant_coordenadas + 1; i++)
     {
-        if (coordenadas_son_iguales(info_edificio.coordenadas[i], coordenada))
+        if (coordenadas_son_iguales(info.coordenadas[i], coordenada))
         {
-            info_edificio.coordenadas.baja(i);
+            info.coordenadas.baja(i);
             return true;
         }
     }
@@ -30,22 +35,22 @@ bool eliminar_coordenada(Ubicaciones info_edificio, Coordenada coordenada)
     return false;
 }
 
-void agregar_coordenada(Ubicaciones info_edificio, Coordenada coordenada)
+void agregar_coordenada(Ubicaciones info, Coordenada coordenada)
 {
-    info_edificio.coordenadas.alta(coordenada);
+    info.coordenadas.alta(coordenada);
 }
 
-void setear_nombre(Ubicaciones info_edificio, string nombre)
+void setear_nombre(Ubicaciones info, string nombre)
 {
-    info_edificio.nombre = nombre;
+    info.nombre = nombre;
 }
 
-bool tiene_esa_coordenada(Ubicaciones info_edificio, Coordenada coordenada)
+bool tiene_esa_coordenada(Ubicaciones info, Coordenada coordenada)
 {
-    int cant_coordenadas = obtener_cantidad(info_edificio);
+    int cant_coordenadas = obtener_cantidad(info);
     for (int i = 1; i < cant_coordenadas + 1; i++)
     {
-        if (coordenadas_son_iguales(info_edificio.coordenadas[i], coordenada))
+        if (coordenadas_son_iguales(info.coordenadas[i], coordenada))
             return true;
     }
     return false;

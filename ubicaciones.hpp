@@ -22,17 +22,19 @@ struct Ubicaciones
 };
 
 //---------------------STRUCT UBICACIONES--------------------------------
-int obtener_cantidad(Ubicaciones info_edificio);
+int obtener_cantidad(Ubicaciones info);
 
-void mostrar_coordenadas(Ubicaciones info_edificio);
+string obtener_nombre(Ubicaciones info);
 
-bool eliminar_coordenada(Ubicaciones info_edificio, Coordenada coordenada);
+void mostrar_coordenadas(Ubicaciones info);
 
-void agregar_coordenada(Ubicaciones info_edificio, Coordenada coordenada);
+bool eliminar_coordenada(Ubicaciones info, Coordenada coordenada);
 
-void setear_nombre(Ubicaciones info_edificio, string nombre);
+void agregar_coordenada(Ubicaciones info, Coordenada coordenada);
 
-bool tiene_esa_coordenada(Ubicaciones info_edificio, Coordenada coordenada);
+void setear_nombre(Ubicaciones info, string nombre);
+
+bool tiene_esa_coordenada(Ubicaciones info, Coordenada coordenada);
 
 //---------------------STRUCT COORDENADAS--------------------------------
 void modificar_coordenada(Coordenada coordenada, int x, int y);
