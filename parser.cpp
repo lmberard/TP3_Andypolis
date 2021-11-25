@@ -52,42 +52,6 @@ void Parser::cargar_inventario(Recurso &recurso, Jugador &jugador1, Jugador &jug
     }
 }
 
-//donde iría is a number
-
-// Esta OK
-
-/*
-
-void Parser::cargar_edificios(Constructor &bob)
-{
-    fstream archivo_edificios(PATH_EDIFICIOS);
-
-    if (!existe_archivo_edificios())
-        crear_archivo_vacio(PATH_EDIFICIOS, archivo_edificios);
-
-    string nombre, piedra, madera, metal, permitidos, aux;
-
-    while (archivo_edificios >> nombre)
-    {
-            file >> aux;
-
-            if (isANumber(aux) == true) {
-                piedra = stoi(aux);
-            } else {
-                nombre = nombre + " " + aux;
-                file >> piedra;
-            }
-
-            file >> madera;
-            file >> metal;
-            file >> permitidos;
-
-            bob.agregar_edificio(nombre, stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos));
-    }
-}
-
-*/
-
 void Parser::cargar_edificios(Constructor &bob)
 {
     fstream archivo_edificios(PATH_EDIFICIOS);
@@ -118,7 +82,42 @@ void Parser::cargar_ubicaciones(Juego &juego)
     if (!existe_archivo_ubicaciones())
         crear_archivo_vacio(PATH_UBICACIONES, archivo_ubicaciones);
 
-    Ubicacion ubicacion;
+    //Ubicacion ubicacion;
+
+    string primer_str, aux_coordenadas;
+    Coordenada coordenadas;
+    
+    while(archivo_ubicaciones >> primer_str){
+
+        if(primer_str == "1"){
+            
+            // agarra edificios del jugador 1
+            
+            //juego.jugadores[0].agregar_ubicacion_lista_edificios(str, coordenadas); //esto es cuando agrego un eficio al jugador
+        
+        } else if(primer_str == "2"){
+
+            // agarra edificios del jugador 2
+
+        } else{
+
+            archivo_ubicaciones >> aux_coordenadas;
+
+            if (aux_coordenadas[0] == '(') {
+                coordenadas.coord_x = aux_coordenadas[1] - '0';
+                coordenadas.coord_y = aux_coordenadas[3] - '0';
+            } else {
+                primer_str = primer_str + " " + aux_coordenadas;
+                archivo_ubicaciones >> aux_coordenadas;
+                coordenadas.coord_x = aux_coordenadas[1] - '0';
+                coordenadas.coord_y = aux_coordenadas[3] - '0';
+            }
+
+            // juego.agregar_ubicacion_lista_material();
+
+        }
+
+    }
 
     string nombre, aux, coord_x, coord_y, aux2;
     while (getline(archivo_ubicaciones, nombre, ' '))
@@ -170,6 +169,8 @@ void Parser::cargar_mapa(Juego &juego)
     }
 }
 
+/*
+
 // GUARDAR INFORMACION EN LOS ARCHIVOS TXT -----------------------------
 void Parser::guardar_archivos(Lista<Ubicacion> edificios, Inventario &inventario)
 {
@@ -217,3 +218,5 @@ bool Parser::guardar_inventario(Inventario &inventario)
     else
         return false;
 }
+
+*/

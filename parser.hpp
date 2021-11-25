@@ -44,15 +44,15 @@ public:
     /*---------------------------GUARDADO--------------------------*/
     // PRE:
     // POS:
-    void guardar_archivos(Lista<Ubicacion> edificios, Inventario &inventario);
+    // void guardar_archivos(Lista<Ubicacion> edificios, Inventario &inventario);
 
     // PRE:
     // POS:
-    bool guardar_ubicaciones(Lista<Ubicacion> edificios);
+    // bool guardar_ubicaciones(Lista<Ubicacion> edificios);
 
     // PRE:
     // POS:
-    bool guardar_inventario(Inventario &inventario);
+    // bool guardar_inventario(Inventario &inventario);
 
     /*----------------------------EXTRAS----------------------------*/
     // PRE:
