@@ -30,89 +30,62 @@ const int CANT_JUGADORES = 2;
 class Juego
 {
 private:
-    Inventario inventario;
     Terreno terreno;
     Constructor bob;
     Recurso recurso;
 
     Mapa mapa;
-    Lista<Ubicacion> coordenadasTransitables;
-    // Lista<Ubicacion> edificios;
-    Lista<Ubicaciones> materiales;
+    Lista<Coordenada> coordenadasTransitables;
+    // tb hay materiales sueltos, donde los guardamos?
+    //Lista<Coordenada> materiales;
+    //Lista<Ubicaciones> materiales;
 
     Jugador jugadores[CANT_JUGADORES];
 
 public:
+    //--------------------CONSTRUCTORES DESTRUCTORES-------------------
     Juego();
-
     ~Juego();
 
-    // PRE:
-    // POS: Elimina los edificios y materiales construidos
-    void demoler_todo();
-
-    void crear_mapa(int filas, int columnas);
-
-    void agregar_casillero(int x, int y, string casillero);
-
+    //--------------------------GETTERS--------------------------------
     int obtener_filas_mapa();
-
     int obtener_columnas_mapa();
 
-    //----------------------------------------------------------------
-    // PRE:
-    // POS: Muestra el mapa por la terminal con sus respectivos colores para cada tipo de casillero y con la inicial de lo que haya en el mismo (material o edificio)
+    //----------------------------MAPA---------------------------------
+    void crear_mapa(int filas, int columnas);
+    void agregar_casillero(Coordenada coord, string casillero);
+
+    //-------------------OPCIONES MENU PRINCIPAL-----------------------
+    void modificar_edificio_por_nombre();
+    void mostrar_todos_edificios();
     void mostrar_mapa();
+    void comenzar_partida();
 
-    // PRE:
-    // POS:
+    //-----------------------OPCIONES JUEGO----------------------------
+    void construir_por_nombre_coordenada(int id_jugador, Constructor &bob);
+    void mostrar_edificios_construidos(int id_jugador);
+    void demoler_por_coordenada(int id_jugador);
+    void atacar_por_coordenada(int id_jugador);
+    void reparar_por_coordenada(int id_jugador);
+    void comprar_bombas(int id_jugador);
     void consultar_coordenada();
+    void mostrar_objetivos(int id_jugador);
+    void mostrar_inventario(int id_jugador);
+    void recolectar(int id_jugador);
+    void moverse_a_coordenada(int id_jugador);
+    void finalizar_turno(int id_jugador);
 
-    //----------------------------------------------------------------
-    // PRE:
-    // POS:
-    void construir_por_nombre_coordenada(Constructor &bob);
+    //-----------------------FUNCIONES UTILES--------------------------
+    bool id_jugador_es_valido(int id_jugador);
 
-    // PRE:
-    // POS:
-    void demoler_por_coordenada();
+    Coordenada pedir_coordenadas();
+    string pedir_nombre_edificio();
 
-    // PRE:
-    // POS:
-    void mostrar_ubicaciones();
+    void construir_edificio(Coordenada coord, const string &edificio, Constructor &bob, int id_jugador);
+    //void agregar_material_coordenada(string nombre, int cantidad, Coordenada coord);
+    bool chequear_permisos_edificio(const string &eledificio, Constructor &bob, int id_jugador);
 
-    // PRE:
-    // POS:
-    void recolectar();
-
-    // PRE:
-    // POS:
-    void lluvia();
-    //----------------------------------------------------------------
-    // PRE:
-    // POS:
-    void construir(int x, int y, const string &edificio, Constructor &bob);
-
-    // PRE:
-    // POS:
-    void agregar_ubicacion_edificio(Ubicacion ubicacion);
-
-    void agregar_materiales_casillero_random(string nombre, int cantidad);
-
-    bool chequear_permisos_edificio(const string &eledificio, Constructor &bob);
-
-    int cant_construidos(const string &edificio);
-
-    void agregar_ubicacion(int x, int y, string edificio);
-
-    void demoler_edificio(int x, int y);
-
-    void quitar_ubicacion(int x, int y);
-
+    void demoler_edificio(Coordenada coord, int id_jugador);
     void llenar_coordenada_transitable();
-
-    void cargar_ubicaciones();
-
-    void listar_edificios();
 };
 #endif //JUEGO_HPP

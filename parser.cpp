@@ -58,20 +58,6 @@ void Parser::cargar_inventario(Recurso &recurso, Jugador &jugador1, Jugador &jug
 
 /*
 
-bool isANumber(string cadena){
-    bool status = true;
-
-    if (cadena.length() == 0)
-        status = false;
-
-    for (unsigned int i = 0; i < cadena.length(); i++){
-        if (!isdigit(cadena[i]))
-            status = false;
-    }
-
-    return status;
-}
-
 void Parser::cargar_edificios(Constructor &bob)
 {
     fstream archivo_edificios(PATH_EDIFICIOS);
@@ -125,39 +111,14 @@ void Parser::cargar_edificios(Constructor &bob)
 
 //para cargar las ubicaciones.txt
 
-// LO MIO -------------------------------
-
-void Parser::cargar_ubicaciones(Juego &juego, Jugador &jugador1, Jugador &jugador2)
+void Parser::cargar_ubicaciones(Juego &juego)
 {
     fstream archivo_ubicaciones(PATH_UBICACIONES);
 
     if (!existe_archivo_ubicaciones())
         crear_archivo_vacio(PATH_UBICACIONES, archivo_ubicaciones);
 
-    //Ubicacion ubicacion;
-
-    string primer_str, aux_coordenadas;
-    Coordenada coordenadas;
-    
-    while(archivo_ubicaciones >> primer_str){
-
-        archivo_ubicaciones >> aux_coordenadas;
-
-            if (aux_coordenadas[0] == '(') {
-                coordenadas.coord_x = aux_coordenadas[1] - '0';
-                coordenadas.coord_y = aux_coordenadas[3] - '0';
-            } else {
-                primer_str = primer_str + " " + aux_coordenadas;
-                archivo_ubicaciones >> aux_coordenadas;
-                coordenadas.coord_x = aux_coordenadas[1] - '0';
-                coordenadas.coord_y = aux_coordenadas[3] - '0';
-            }
-
-            // juego.agregar_ubicacion_lista_material();
-            
-            //juego.jugadores[0].agregar_ubicacion_lista_edificios(str, coordenadas); //esto es cuando agrego un eficio al jugador
-
-    }
+    Ubicacion ubicacion;
 
     string nombre, aux, coord_x, coord_y, aux2;
     while (getline(archivo_ubicaciones, nombre, ' '))
@@ -183,8 +144,6 @@ void Parser::cargar_ubicaciones(Juego &juego, Jugador &jugador1, Jugador &jugado
         juego.agregar_ubicacion_edificio(ubicacion);
     }
 }
-
-// LO MIO -------------------------------
 
 //para cargar mapa.txt
 
@@ -212,9 +171,6 @@ void Parser::cargar_mapa(Juego &juego)
 }
 
 // GUARDAR INFORMACION EN LOS ARCHIVOS TXT -----------------------------
-
-/*
-
 void Parser::guardar_archivos(Lista<Ubicacion> edificios, Inventario &inventario)
 {
     guardar_ubicaciones(edificios);
@@ -261,5 +217,3 @@ bool Parser::guardar_inventario(Inventario &inventario)
     else
         return false;
 }
-
-*/
