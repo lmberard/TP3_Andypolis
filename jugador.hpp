@@ -45,6 +45,7 @@ public:
     void setear_objetivos_secundarios();
     void setear_objetivo_principal();
     void setear_id(int _id);
+    void setear_posicion(Coordenada coord);
 
     //--------------------------PARA PARSER----------------------------------
     void agregar_material_al_inventario(string nombre, int cantidad, Recurso &recurso);    //materiales.txt
@@ -62,6 +63,7 @@ public:
     bool se_quedo_sin_energia();
     bool es_su_edificio(string nombre, Coordenada coordenada);
     bool cantidad_suficiente_material(Edificio *edificio, bool construir);
+    bool tiene_energia(int cantidad_necesaria);
 
     //------------------------OPCIONES JUGADOR-------------------------------
     void moverse_a_coordenada(int x, int y);

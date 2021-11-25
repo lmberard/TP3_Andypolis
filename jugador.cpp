@@ -16,6 +16,7 @@ Jugador::Jugador()
 
 Jugador::~Jugador()
 {
+    //eliminar memoria de las listas
 }
 
 //-------------------------GETTERS---------------------------------------
@@ -66,6 +67,11 @@ void Jugador::setear_objetivo_principal()
 void Jugador::setear_id(int _id)
 {
     id = _id;
+}
+
+void Jugador::setear_posicion(Coordenada coord)
+{
+    modificar_coordenada(posicion_jugador, coord.coord_x, coord.coord_y);
 }
 //--------------------------PARA PARSER----------------------------------
 //materiales.txt
@@ -139,6 +145,11 @@ bool Jugador::es_su_edificio(string nombre, Coordenada coordenada)
     }
     msjeError("El jugador no tiene un edificio construido con ese nombre en esa coordenada");
     return false;
+}
+
+bool Jugador::tiene_energia(int cantidad_necesaria)
+{
+    return puntos_energia >= cantidad_necesaria;
 }
 
 //------------------------OPCIONES JUGADOR-------------------------------
