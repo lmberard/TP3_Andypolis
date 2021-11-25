@@ -36,9 +36,17 @@ private:
     Recurso recurso;
 
     Mapa mapa;
+<<<<<<< HEAD
     Lista<Ubicacion> coordenadasTransitables;
     // Lista<Ubicacion> edificios;
     Lista<Ubicaciones> materiales;
+=======
+    Lista<Coordenada> coordenadasTransitables;
+    // tb hay materiales sueltos, donde los guardamos?
+    // corregir esto
+    //Lista<Coordenada> materiales;
+    //Lista<Ubicaciones> materiales;
+>>>>>>> 12acef729df0afffea13585a22c3c4aefc4c1b4f
 
     Jugador jugadores[CANT_JUGADORES];
 
