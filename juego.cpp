@@ -115,6 +115,11 @@ void Juego::construir_edificio(Coordenada coord, const string &eledificio)
     }
 }
 
+void Juego::agregar_material_coordenada_lista(string nombre, Coordenada coord)
+{
+    mapa.agregar_ubicacion_material_lista(nombre, coord);
+} //YO
+
 void Juego::agregar_material_coordenada(string nombre, Coordenada coord)
 {
     mapa.agregar_contenido(coord, recurso.dar_material(nombre));

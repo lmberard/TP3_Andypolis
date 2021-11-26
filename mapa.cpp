@@ -52,6 +52,11 @@ Edificio *Mapa::obtener_edificio(Coordenada coord)
     return mapa[coord.coord_x][coord.coord_y]->mostrar_edificio();
 }
 
+void Mapa::agregar_ubicacion_material_lista(string nombre, Coordenada coord)
+{
+    //TODO: Resolver el problema de la 2ble lista
+} //YO
+
 bool Mapa::agregar_contenido(Coordenada coord, Edificio *edificio)
 {
     return mapa[coord.coord_x][coord.coord_y]->agregar(edificio);
