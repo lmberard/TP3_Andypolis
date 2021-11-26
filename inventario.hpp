@@ -10,6 +10,8 @@ class Inventario
 
 private:
     Lista<Material *> materiales1;
+    int andycoins_contador;
+
 
 public:
     // PRE: -
@@ -39,6 +41,12 @@ public:
     // PRE:
     // POS:
     void recolectar(Edificio *edificio);
+
+
+    /////////////////////////GETTERS////////////////////////////
+    int obtener_andycoins_contador();
+    Material * obtener_material(string material_recibido); //Función de uso interna . Un PRE tendría que ser que el material_recibido esté en la lista.
+
 
     // PRE:
     // POS:

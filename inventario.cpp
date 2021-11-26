@@ -3,6 +3,7 @@
 
 Inventario::Inventario()
 {
+    andycoins_contador = 0;
 }
 
 void Inventario::agregar_material(string nombre, int cantidad, Recurso &recurso)
@@ -114,6 +115,26 @@ void Inventario::recolectar(Edificio *edificio)
         }
     }
 }
+
+
+//////////////////////////////GETTERS///////////////////////
+
+
+int Inventario::obtener_andycoins_contador()
+{
+    return andycoins_contador;
+}
+
+//Función de uso interna. Un PRE tendría que ser que el material_recibido esté en la lista.
+Material * Inventario::obtener_material(string material_recibido){
+
+    for (int i = 1; i < materiales1.mostrar_cantidad() + 1; i++){
+        if (materiales1[i]->obtener_nombre() == material_recibido)
+            return materiales1[i];
+    }
+
+}
+
 
 int Inventario::obtener_cantidad()
 {
