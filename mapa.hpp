@@ -21,6 +21,7 @@ private:
     int filas;
     int columnas;
     Casillero ***mapa;
+    Lista<Coordenada> materiales;
     Lista<Coordenada> coordenadas_transitables; //ver si es necesario
 
 public:
@@ -38,6 +39,8 @@ public:
     //------------------------SETTERS---------------------------------
     void agregar_coordenada_transitable(Coordenada coord);
     void agregar_casillero(Coordenada coord, string casillero, Terreno &terreno);
+    //TODO: Revisar nombre y metodo
+    void agregar_ubicacion_material_lista(string nombre, Coordenada coord); //YO
     bool agregar_contenido(Coordenada coord, Edificio *edificio);
     bool agregar_contenido(Coordenada coord, Material *material);
     void actualizar_tam_mapa(int _filas, int _columnas);

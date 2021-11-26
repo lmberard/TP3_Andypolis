@@ -40,7 +40,7 @@ void agregar_coordenada(Ubicaciones info, Coordenada coordenada)
     info.coordenadas.alta(coordenada);
 }
 
-void setear_nombre(Ubicaciones info, string nombre)
+void setear_nombre(Ubicaciones& info, string nombre)
 {
     info.nombre = nombre;
 }
@@ -57,7 +57,7 @@ bool tiene_esa_coordenada(Ubicaciones info, Coordenada coordenada)
 }
 
 //---------------------STRUCT COORDENADAS--------------------------------
-void modificar_coordenada(Coordenada coordenada, int x, int y)
+void modificar_coordenada(Coordenada& coordenada, int x, int y)
 {
     coordenada.coord_x = x;
     coordenada.coord_y = y;

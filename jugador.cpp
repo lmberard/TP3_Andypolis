@@ -183,3 +183,30 @@ void Jugador::mostrar_inventario()
 {
     inventario.mostrar_inventario();
 }
+
+void Jugador::mostrar_lista_de_edificios()
+{
+
+    cout << edificios.mostrar_cantidad() << endl;
+    /*
+    cout << left << TXT_BOLD << TXT_UNDERLINE << BGND_BLUE_4
+         << setw(23) << "Nombre" << '\t'
+         << setw(23) << "Coordenada X" << '\t'
+         << setw(23) << "Coordenada Y" << '\t'
+         << END_COLOR << endl;
+
+    */
+    for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
+    {
+        cout << "Nombre del edificio: " << edificios[i].nombre << " " << endl;
+        mostrar_coordenadas(edificios[i]);
+
+        
+        /*cout << left
+             << setw(23) << edificios[i].nombre << '\t'
+             << setw(23) << mostrar_coordenadas(edificios[i]) << '\t'
+             << setw(23) << "Hola" << '\t'
+             << endl;
+        */
+    }
+}//YO

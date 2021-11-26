@@ -69,8 +69,8 @@ public:
     //--------------------------GETTERS--------------------------------
     int obtener_filas_mapa();
     int obtener_columnas_mapa();
-    Jugador obtener_jugador_1(); //YO
-    Jugador obtener_jugador_2(); //YO
+    Jugador& obtener_jugador_1(); //YO
+    Jugador& obtener_jugador_2(); //YO
     Jugador* obtener_jugador(); // YO 
     int obtener_cant_construidos(string nombre_edificio);
     int obtener_id_jugador_actual();
@@ -81,6 +81,8 @@ public:
     //---------------------MAPA PARSER---------------------------------
     void crear_mapa(int filas, int columnas);
     void agregar_casillero(Coordenada coord, string casillero);
+    //TODO: Revisar nombre y metodo
+    void agregar_material_coordenada_lista(string nombre, Coordenada coord); //YO 
     void agregar_material_coordenada(string nombre, Coordenada coord);
     void construir_edificio(Coordenada coord, const string &edificio); //falta detalles
 

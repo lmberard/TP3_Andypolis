@@ -20,12 +20,12 @@ int Juego::obtener_columnas_mapa()
     return mapa.obtener_columnas();
 }
 
-Jugador Juego::obtener_jugador_1()
+Jugador& Juego::obtener_jugador_1()
 {    
     return jugadores[0];
 } //YO
 
-Jugador Juego::obtener_jugador_2()
+Jugador& Juego::obtener_jugador_2()
 {    
     return jugadores[1];
 } //YO
@@ -114,6 +114,11 @@ void Juego::construir_edificio(Coordenada coord, const string &eledificio)
             msjeError("Ya hay un edificio en esa coordenada");
     }
 }
+
+void Juego::agregar_material_coordenada_lista(string nombre, Coordenada coord)
+{
+    mapa.agregar_ubicacion_material_lista(nombre, coord);
+} //YO
 
 void Juego::agregar_material_coordenada(string nombre, Coordenada coord)
 {

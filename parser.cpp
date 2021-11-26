@@ -87,6 +87,10 @@ void Parser::cargar_ubicaciones(Juego &juego)
     string primer_str, aux_coordenadas;
     Coordenada coordenadas;
     bool estado_jugador_1, estado_jugador_2 = false;
+
+    // TODO: validar que las coordenadas esten dentro del mapa
+    // TODO: Primero cargar mapa.txt (acordarse que cambia) y despues cuando llamo a 
+    // esta funcion instanciar los materiales en transitables y los eficios en construibles.
     
     while(archivo_ubicaciones >> primer_str){
 
@@ -133,39 +137,20 @@ void Parser::cargar_ubicaciones(Juego &juego)
 
     }
 
-/*
+    //TODO: Despues sacarlo, es una prueba.
 
-    string nombre, aux, coord_x, coord_y, aux2;
-    while (getline(archivo_ubicaciones, nombre, ' '))
-    {
-        if (nombre == "planta")
-        {
-            getline(archivo_ubicaciones, aux, ' ');
-            ubicacion.nombre = nombre + ' ' + aux;
-        }
-        else
-        {
-            ubicacion.nombre = nombre;
-        }
-        getline(archivo_ubicaciones, aux, '(');
-        getline(archivo_ubicaciones, coord_x, ',');
-        ubicacion.coord_x = stoi(coord_x);
-
-        getline(archivo_ubicaciones, aux, ' ');
-        getline(archivo_ubicaciones, coord_y, ')');
-        ubicacion.coord_y = stoi(coord_y);
-        getline(archivo_ubicaciones, aux);
-
-        juego.agregar_ubicacion_edificio(ubicacion);
-    }
-
-*/
+    //cout << "ID Jugador 1: " << juego.obtener_jugador_1().obtener_id() << endl;
+    //cout << "Coordenada X Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_x << endl;
+    //cout << "Coordenada Y Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_y << endl;
+    juego.obtener_jugador_1().mostrar_lista_de_edificios();
+    //cout << "ID Jugador 2: " << juego.obtener_jugador_2().obtener_id() << endl;
+    //cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_x << endl;
+    //cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_y << endl;
+    juego.obtener_jugador_2().mostrar_lista_de_edificios();
 
 }
 
 //para cargar mapa.txt
-
-/*
 
 void Parser::cargar_mapa(Juego &juego)
 {
@@ -174,23 +159,25 @@ void Parser::cargar_mapa(Juego &juego)
     if (!existe_archivo_mapa())
         crear_archivo_vacio(PATH_MAPA, archivo_mapa);
 
-    string casillero, filas, columnas;
+    string casillero; 
+    int filas, columnas;
+    Coordenada coordenadas;
 
     archivo_mapa >> filas;
     archivo_mapa >> columnas;
 
-    juego.crear_mapa(stoi(filas), stoi(columnas));
-    for (int i = 0; i < stoi(filas); i++)
+    juego.crear_mapa(filas, columnas);
+    for (coordenadas.coord_x = 0; coordenadas.coord_x < filas; coordenadas.coord_x++)
     {
-        for (int j = 0; j < stoi(columnas); j++)
+        for (coordenadas.coord_y = 0; coordenadas.coord_y < columnas; coordenadas.coord_y++)
         {
             archivo_mapa >> casillero;
-            juego.agregar_casillero(i, j, casillero);
+            juego.agregar_casillero(coordenadas, casillero);
         }
     }
-}
 
-*/
+    juego.mostrar_mapa(); // TODO: Despues sacarlo, es una prueba.
+}
 
 /*
 
