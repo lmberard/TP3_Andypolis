@@ -23,8 +23,6 @@ public:
     int buscar_edificio(string edificio);
     Constructor();
     // PRE: -
-    // POS: Se construye el constructor con la informacion de los edificios en el archivo txt del path.
-    Constructor(const string &PATH);
 
     void agregar_edificio(string nombre, int piedra, int madera, int metal, int permitidos);
     // PRE: -

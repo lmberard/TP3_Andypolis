@@ -22,6 +22,8 @@ public:
     Casillero();
     virtual ~Casillero();
 
+    virtual void caracteristicas() = 0;
+
     virtual void info() = 0;
     virtual void mostrar_por_pantalla() = 0;
 

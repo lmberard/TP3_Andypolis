@@ -7,10 +7,8 @@
 class Lago : public CasilleroInaccesible{
   
     public: 
-        Lago(){
-            color = BGND_BLUE_25; 
-            casillero_nombre = "lago";
-        }
+        Lago();
+        void caracteristicas();
 };
 
 #endif //LAGO_HPP

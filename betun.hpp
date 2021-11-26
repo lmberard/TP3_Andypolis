@@ -7,10 +7,9 @@
 class Betun : public CasilleroTransitable{
 
     public: 
-        Betun(){
-            color = BGND_DARK_GRAY_59; 
-            casillero_nombre = "betun";
-        }
+        Betun();
+        void caracteristicas();
+
 };
 
 #endif //BETUN_HPP

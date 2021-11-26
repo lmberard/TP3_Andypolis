@@ -9,7 +9,6 @@
 #include <cctype>
 #include "colors.hpp"
 #include "lista.hpp"
-#include "ciudad.hpp"
 #include "ubicaciones.hpp"
 #include "constructor.hpp"
 #include "inventario.hpp"
@@ -24,27 +23,17 @@ const string PATH_MATERIALES = "materiales.txt";
 class Parser
 {
 public:
-    bool existe_archivo_ubicaciones();
+    // PRE:
+    // POS: Se carga la informacion de edificios.txt
+    void cargar(Constructor &bob);
 
-    bool existe_archivo_mapa();
 
-    bool existe_archivo_edificios();
+    // POS:
+    bool existe_archivo(const string & PATH);
 
-    bool existe_archivo_materiales();
-
+  
+    // POS:
     void crear_archivo_vacio(const string &PATH, fstream &archivo);
-
-    //para cargar materiales.txt
-    void cargar_inventario(Inventario &inventario, Recurso &recurso);
-
-    //para cargar edificios.txt
-    void cargar_edificios(Constructor &bob);
-
-    //para cargar las ubicaciones.txt
-    //void cargar_ubicaciones(Ciudad &ciudad);
-
-    //para cargar mapa.txt
-    //void cargar_mapa(Ciudad &ciudad, Terreno &terreno);
 };
 
 #endif // PARSER_HPP

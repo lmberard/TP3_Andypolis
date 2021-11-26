@@ -24,7 +24,7 @@ void CasilleroTransitable::mostrar_por_pantalla()
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << material->obtener_codigo() << " " << END_COLOR << " ";
 }
 
-bool CasilleroTransitable ::agregar(Material *material)
+bool CasilleroTransitable::agregar(Material *material)
 {
     if (this->material)
     {
@@ -35,13 +35,13 @@ bool CasilleroTransitable ::agregar(Material *material)
     return true;
 }
 
-void CasilleroTransitable ::quitar_elemento()
+void CasilleroTransitable::quitar_elemento()
 {
     delete material;
     material = NULL;
 }
 
-bool CasilleroTransitable ::estransitable()
+bool CasilleroTransitable::estransitable()
 {
     return true;
 }

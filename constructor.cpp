@@ -2,45 +2,6 @@
 
 Constructor::Constructor() {}
 
-Constructor::Constructor(const string &PATH)
-{
-    fstream archivo_edificios(PATH, ios::in);
-
-    if (!archivo_edificios.is_open())
-    {
-        cout << "No se encontro un archivo con nombre \"" << PATH << "\", se va a crear el archivo" << endl;
-        archivo_edificios.open(PATH, ios::out);
-        archivo_edificios.close();
-        archivo_edificios.open(PATH, ios::in);
-    }
-
-    string nombre, piedra, madera, metal, permitidos, aux;
-    while (archivo_edificios >> nombre)
-    {
-
-        if (nombre == "planta")
-            archivo_edificios >> aux;
-        archivo_edificios >> piedra;
-        archivo_edificios >> madera;
-        archivo_edificios >> metal;
-        archivo_edificios >> permitidos;
-
-        if (nombre == "aserradero")
-            edificios.alta(new Aserradero(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "fabrica")
-            edificios.alta(new Fabrica(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "escuela")
-            edificios.alta(new Escuela(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "yacimiento")
-            edificios.alta(new Yacimiento(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "mina")
-            edificios.alta(new Mina(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "obelisco")
-            edificios.alta(new Obelisco(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "planta")
-            edificios.alta(new PlantaElectrica(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-    }
-}
 void Constructor::agregar_edificio(string nombre, int piedra, int madera, int metal, int permitidos)
 {
     if (nombre == "aserradero")

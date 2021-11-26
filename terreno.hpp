@@ -7,10 +7,8 @@
 class Terreno : public CasilleroConstruible{
 
     public: 
-        Terreno(){
-            color = BGND_GREEN_2; 
-            casillero_nombre = "terreno";
-        }
+        Terreno();
+        void caracteristicas();
 };
 
 #endif //TERRENO_HPP

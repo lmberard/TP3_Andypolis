@@ -21,8 +21,8 @@
 class Juego
 {
 private:
-    /*Menu menu;
-    Parser lector_archivos;
+    //Menu menu;
+    /*Parser lector_archivos;
 
     Terreno terreno;
     Constructor bob;

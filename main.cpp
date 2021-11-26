@@ -10,25 +10,32 @@ using namespace std;
 
 int main()
 {   
+ 
     Menu menu;
     Parser lector_archivos;
-    Superficie superficie;
-    Constructor bob;
-    lector_archivos.cargar_edificios(bob);
+    Juego andypolis;
     Recurso recurso;
-    Ciudad andypolis("mapa.txt", "materiales.txt", "ubicaciones.txt", superficie, bob, recurso);
+    //Inventario inventario;
+    Jugador jugador1;
+    Jugador jugador2;
+    lector_archivos.cargar_mapa(andypolis);
+    lector_archivos.cargar_inventario(recurso, jugador1, jugador2);
+    lector_archivos.cargar_ubicaciones(andypolis);
+    //lector_archivos.cargar_edificios(bob);
+
     int opcion = 0;
     //si el archivo ubicaciones.txt no existe o esta vacio entonces es una partida nueva
-    if (lector_archivos.existe_archivo_ubicaciones())
+    /*
+    if (1)
     {
         do
         {
-            menu.menu_partida_nueva(andypolis, bob, recurso, opcion);
+            menu.menu_partida_nueva(andypolis, opcion);
         } while (menu.cerro_menu_inicial(opcion));
     }
     else
     {
-        menu.menu_juego(andypolis, bob, recurso, opcion);
-    }
+        menu.menu_juego(andypolis, opcion);
+    }*/
     return 0;
 }

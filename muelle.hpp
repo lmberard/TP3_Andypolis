@@ -7,10 +7,8 @@
 class Muelle : public CasilleroTransitable{
 
     public: 
-        Muelle(){
-            color = BGND_BROWN_94; 
-            casillero_nombre = "muelle";
-        }
+        Muelle();
+        void caracteristicas();
 };
 
 #endif //TERRENO_HPP

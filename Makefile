@@ -5,49 +5,84 @@ LDLFLAGS= -lm
 
 all: andypolis
 
-colors.o: colors.cpp colors.hpp
-	$(CC) $(FLAGS) colors.o
+#main: 
+andypolis: main.cpp
 
-lista.o: lista.cpp lista.hpp nodo.hpp nodo.cpp
-	$(CC) $(FLAGS) lista.o
+#lectora de archivos: 
+andypolis: parser.cpp
 
-parser.o: parser.cpp parser.hpp lista.hpp ciudad.cpp ubicaciones.hpp constructor.hpp 
-	$(CC) $(FLAGS) parser.o
+#menu: 
+andypolis: menu.cpp 
 
-recurso.o: recurso.cpp recurso.hpp 
-	$(CC) $(FLAGS) recurso.o	
+#juego: 
+andypolis: juego.cpp
 
-superficie.o: superficie.cpp superficie.hpp 
-	$(CC) $(FLAGS) superficie.o
+#jugador:
+andypolis: jugador.cpp 
 
-constructor.o: constructor.cpp constructor.hpp 
-	$(CC) $(FLAGS) constructor.o
+#ciudad:
+andypolis: ciudad.cpp
 
-juego.o: juego.cpp juego.hpp 
-	$(CC) $(FLAGS) juego.o
+#inventario: 
+andypolis: inventario.cpp
 
-jugador.o: jugador.cpp jugador.hpp 
-	$(CC) $(FLAGS) jugador.o
+#casilleros abstractos: 
+andypolis: casillero.cpp 
+andypolis: casilleroConstruible.cpp 
+andypolis: casilleroInaccesible.cpp
+andypolis: casilleroTransitable.cpp
 
-objetivo.o: objetivo.cpp objetivo.hpp 
-	$(CC) $(FLAGS) objetivo.o
+#casilleros: 
+andypolis: betun.cpp 
+andypolis: camino.cpp 
+andypolis: lago.cpp 
+andypolis: terreno.cpp 
+andypolis: muelle.cpp 
 
-inventario.o: inventario.cpp inventario.hpp 
-	$(CC) $(FLAGS) inventario.o
+#objetivo abstracto: 
+andypolis: objetivo.cpp
 
-material.o: material.cpp material.hpp materialMadera.cpp materialMetal.cpp materialPiedra.cpp
-	$(CC) $(FLAGS) material.o
+#objetivos: 
+andypolis: armado.cpp
+andypolis: bombardero.cpp
+andypolis: cansado.cpp
+andypolis: comprarAndypolis.cpp
+andypolis: constructorO.cpp
+andypolis: construirObelisco.cpp
+andypolis: edadDePiedra.cpp
+andypolis: energetico.cpp
+andypolis: extremista.cpp
+andypolis: letrado.cpp
+andypolis: minero.cpp
 
-edificio.o: material.hpp edificio.hpp edificio.cpp edificioAserradero.cpp edificioEscuela.cpp edificioFabrica.cpp edificioMina.cpp edificioObelisco.cpp edificioPlantaElectrica.cpp
-	$(CC) $(FLAGS) edificio.o
+#edificio abstracto:
+andypolis: edificio.cpp
 
-casillero.o: edificio.hpp material.hpp casillero.hpp casillero.cpp casilleroConstruible.cpp casilleroInaccesible.cpp casilleroTransitable.cpp 
-	$(CC) $(FLAGS) casillero.o
+#edificios: 
+andypolis: edificioAserradero.cpp
+andypolis: edificioEscuela.cpp 
+andypolis: edificioFabrica.cpp
+andypolis: edificioMina.cpp 
+andypolis: edificioObelisco.cpp 
+andypolis: edificioPlantaElectrica.cpp 
+andypolis: edificioYacimiento.cpp 
 
-menu.o: casillero.hpp edificio.hpp material.hpp menu.cpp menu.hpp
-	$(CC) $(FLAGS) menu.o
+#material abstracto: 
+andypolis: material.cpp
 
-andypolis: objetivo.cpp juego.cpp jugador.cpp parser.cpp casillero.cpp casilleroConstruible.cpp casilleroInaccesible.cpp casilleroTransitable.cpp ciudad.cpp colors.cpp inventario.cpp constructor.cpp edificio.cpp edificioAserradero.cpp edificioEscuela.cpp edificioFabrica.cpp edificioMina.cpp edificioObelisco.cpp edificioPlantaElectrica.cpp edificioYacimiento.cpp main.cpp material.cpp materialMadera.cpp materialPiedra.cpp materialMetal.cpp recurso.cpp superficie.cpp menu.cpp 
+#materiales: 
+andypolis: materialMadera.cpp 
+andypolis: materialPiedra.cpp 
+andypolis: materialMetal.cpp 
+
+#fabricas: 
+andypolis: constructor.cpp
+andypolis: recurso.cpp 
+andypolis: superficie.cpp 
+
+#libreria para los colores: 
+andypolis: colors.cpp 
+
 	$(CC) $(FLAGS) $^ -o andypolis
 
 clean:

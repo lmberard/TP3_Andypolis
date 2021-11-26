@@ -7,10 +7,8 @@
 class Camino : public CasilleroTransitable{
 
     public: 
-        Camino(){
-            color = BGND_LIGHT_GRAY_247 ; 
-            casillero_nombre = "camino";
-        }
+        Camino();
+        void caracteristicas();
 };
 
 #endif //CAMINO_HPP
