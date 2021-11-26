@@ -127,12 +127,14 @@ int Inventario::obtener_andycoins_contador()
 
 //Función de uso interna. Un PRE tendría que ser que el material_recibido esté en la lista.
 Material * Inventario::obtener_material(string material_recibido){
+    Material * aux = nullptr;
 
     for (int i = 1; i < materiales1.mostrar_cantidad() + 1; i++){
         if (materiales1[i]->obtener_nombre() == material_recibido)
-            return materiales1[i];
+            aux = materiales1[i];
     }
 
+    return aux;
 }
 
 
