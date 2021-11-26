@@ -27,7 +27,7 @@ int main()
     {
         do
         {
-            //menu.menu_partida_nueva(andypolis, opcion);
+            menu.menu_partida_nueva(andypolis, opcion);
             
         } while (menu.cerro_menu_inicial(opcion));
     }
