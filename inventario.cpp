@@ -4,6 +4,7 @@
 Inventario::Inventario()
 {
     andycoins_contador = 0;
+    bombas_usadas = 0;
 }
 
 void Inventario::agregar_material(string nombre, int cantidad, Recurso &recurso)
@@ -123,6 +124,11 @@ void Inventario::recolectar(Edificio *edificio)
 int Inventario::obtener_andycoins_contador()
 {
     return andycoins_contador;
+}
+
+int Inventario::obtener_bombas_usadas()
+{
+    return bombas_usadas;
 }
 
 //Función de uso interna. Un PRE tendría que ser que el material_recibido esté en la lista.

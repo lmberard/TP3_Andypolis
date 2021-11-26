@@ -12,3 +12,16 @@ Bombardero::Bombardero(string objetivo, string tipo) : Objetivo(objetivo, tipo)
 Bombardero::~Bombardero()
 {
 }
+
+bool Bombardero::chequear_estado(Inventario & inventario){
+    bool aux;
+
+    if(inventario.obtener_bombas_usadas() >= CANTIDAD_BOMBAS_USADAS_OBJETIVO){
+        aux = true;
+        objetivo_cumplido = true;
+    }
+    else
+        aux = false;
+
+    return aux;
+}
