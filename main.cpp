@@ -27,15 +27,7 @@ int main()
         do
         {
             menu.menu_partida_nueva(andypolis, opcion);
-            // jugador1.mostrar_inventario();
-            // jugador2.mostrar_inventario();
-            // cout << "ID Jugador 1: " << andypolis.obtener_jugador_1().obtener_id() << endl;
-            // cout << "Coordenada X Jugador 1: " << andypolis.obtener_jugador_1().obtener_posicion_jugador().coord_x << endl;
-            // cout << "Coordenada Y Jugador 1: " << andypolis.obtener_jugador_1().obtener_posicion_jugador().coord_y << endl;
-            // cout << "ID Jugador 2: " << andypolis.obtener_jugador_2().obtener_id() << endl;
-            // cout << "Coordenada X Jugador 2: " << andypolis.obtener_jugador_2().obtener_posicion_jugador().coord_x << endl;
-            // cout << "Coordenada X Jugador 2: " << andypolis.obtener_jugador_2().obtener_posicion_jugador().coord_y << endl;
-
+            
         } while (menu.cerro_menu_inicial(opcion));
     }
     else

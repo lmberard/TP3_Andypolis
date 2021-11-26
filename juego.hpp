@@ -69,8 +69,8 @@ public:
     //--------------------------GETTERS--------------------------------
     int obtener_filas_mapa();
     int obtener_columnas_mapa();
-    Jugador obtener_jugador_1(); //YO
-    Jugador obtener_jugador_2(); //YO
+    Jugador& obtener_jugador_1(); //YO
+    Jugador& obtener_jugador_2(); //YO
     Jugador* obtener_jugador(); // YO 
     int obtener_cant_construidos(string nombre_edificio);
     int obtener_id_jugador_actual();

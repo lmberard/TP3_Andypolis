@@ -37,7 +37,7 @@ void setear_nombre(Ubicaciones info, string nombre);
 bool tiene_esa_coordenada(Ubicaciones info, Coordenada coordenada);
 
 //---------------------STRUCT COORDENADAS--------------------------------
-void modificar_coordenada(Coordenada coordenada, int x, int y);
+void modificar_coordenada(Coordenada& coordenada, int x, int y);
 
 bool coordenadas_son_iguales(Coordenada coord1, Coordenada coord2);
 

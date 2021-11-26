@@ -87,6 +87,10 @@ void Parser::cargar_ubicaciones(Juego &juego)
     string primer_str, aux_coordenadas;
     Coordenada coordenadas;
     bool estado_jugador_1, estado_jugador_2 = false;
+
+    // TODO: validar que las coordenadas esten dentro del mapa
+    // TODO: Primero cargar mapa.txt (acordarse que cambia) y despues cuando llamo a 
+    // esta funcion instanciar los materiales en transitables y los eficios en construibles.
     
     while(archivo_ubicaciones >> primer_str){
 
@@ -132,6 +136,13 @@ void Parser::cargar_ubicaciones(Juego &juego)
         }
 
     }
+
+    cout << "ID Jugador 1: " << juego.obtener_jugador_1().obtener_id() << endl;
+    cout << "Coordenada X Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_x << endl;
+    cout << "Coordenada Y Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_y << endl;
+    cout << "ID Jugador 2: " << juego.obtener_jugador_2().obtener_id() << endl;
+    cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_x << endl;
+    cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_y << endl;
 
 /*
 
