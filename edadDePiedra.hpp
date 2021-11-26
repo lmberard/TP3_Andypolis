@@ -14,6 +14,9 @@
 #include "terreno.hpp"*/
 #include "objetivo.hpp"
 
+static const int CANTIDAD_PIEDRA_OBJETIVO = 50000;
+
+
 class EdadDePiedra : public Objetivo
 {
 private:
@@ -22,6 +25,8 @@ private:
 public:
     EdadDePiedra(string objetivo, string tipo);
     ~EdadDePiedra();
+
+   bool chequear_estado(Inventario & inventario);
 };
 
 
