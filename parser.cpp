@@ -137,40 +137,14 @@ void Parser::cargar_ubicaciones(Juego &juego)
 
     }
 
-    cout << "ID Jugador 1: " << juego.obtener_jugador_1().obtener_id() << endl;
-    cout << "Coordenada X Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_x << endl;
-    cout << "Coordenada Y Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_y << endl;
-    cout << "ID Jugador 2: " << juego.obtener_jugador_2().obtener_id() << endl;
-    cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_x << endl;
-    cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_y << endl;
-
-/*
-
-    string nombre, aux, coord_x, coord_y, aux2;
-    while (getline(archivo_ubicaciones, nombre, ' '))
-    {
-        if (nombre == "planta")
-        {
-            getline(archivo_ubicaciones, aux, ' ');
-            ubicacion.nombre = nombre + ' ' + aux;
-        }
-        else
-        {
-            ubicacion.nombre = nombre;
-        }
-        getline(archivo_ubicaciones, aux, '(');
-        getline(archivo_ubicaciones, coord_x, ',');
-        ubicacion.coord_x = stoi(coord_x);
-
-        getline(archivo_ubicaciones, aux, ' ');
-        getline(archivo_ubicaciones, coord_y, ')');
-        ubicacion.coord_y = stoi(coord_y);
-        getline(archivo_ubicaciones, aux);
-
-        juego.agregar_ubicacion_edificio(ubicacion);
-    }
-
-*/
+    //cout << "ID Jugador 1: " << juego.obtener_jugador_1().obtener_id() << endl;
+    //cout << "Coordenada X Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_x << endl;
+    //cout << "Coordenada Y Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_y << endl;
+    juego.obtener_jugador_1().mostrar_lista_de_edificios();
+    //cout << "ID Jugador 2: " << juego.obtener_jugador_2().obtener_id() << endl;
+    //cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_x << endl;
+    //cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_y << endl;
+    juego.obtener_jugador_2().mostrar_lista_de_edificios();
 
 }
 

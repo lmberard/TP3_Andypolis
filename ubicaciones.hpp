@@ -32,7 +32,7 @@ bool eliminar_coordenada(Ubicaciones info, Coordenada coordenada);
 
 void agregar_coordenada(Ubicaciones info, Coordenada coordenada);
 
-void setear_nombre(Ubicaciones info, string nombre);
+void setear_nombre(Ubicaciones& info, string nombre);
 
 bool tiene_esa_coordenada(Ubicaciones info, Coordenada coordenada);
 

@@ -69,6 +69,7 @@ public:
     //------------------------OPCIONES JUGADOR-------------------------------
     void moverse_a_coordenada(int x, int y);
     void mostrar_inventario();
+    void mostrar_lista_de_edificios(); //YO
     void mostrar_edificios_construidos();
     void mostrar_objetivos_y_progreso();
 

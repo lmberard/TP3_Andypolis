@@ -40,7 +40,7 @@ void agregar_coordenada(Ubicaciones info, Coordenada coordenada)
     info.coordenadas.alta(coordenada);
 }
 
-void setear_nombre(Ubicaciones info, string nombre)
+void setear_nombre(Ubicaciones& info, string nombre)
 {
     info.nombre = nombre;
 }
