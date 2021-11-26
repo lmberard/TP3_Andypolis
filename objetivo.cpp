@@ -39,3 +39,5 @@ bool Objetivo::es_principal()
 
     return aux;
 }
+
+bool Objetivo::chequear_estado(Inventario & inventario){return true;}

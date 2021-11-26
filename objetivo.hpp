@@ -33,10 +33,10 @@ public:
     Objetivo(string objetivo, string tipo);
     ~Objetivo();
 
-    string obtener_objetivo()const;
+    string obtener_objetivo() const;
     bool es_principal();
 
-    //virtual bool chequear_estado(Inventario & inventario) = 0;
+    virtual bool chequear_estado(Inventario & inventario);
     
 };
 
