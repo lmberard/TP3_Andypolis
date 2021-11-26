@@ -10,7 +10,7 @@ Casillero *Terreno::agregar(const string casillero_tipo)
     if (casillero_tipo == "T")
         casillero = new CasilleroConstruible();
 
-    if (casillero_tipo == "C")
+    if (casillero_tipo == "C" || casillero_tipo == "M" || casillero_tipo == "B")
         casillero = new CasilleroTransitable();
 
     return casillero;

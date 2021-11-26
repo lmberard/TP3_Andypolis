@@ -137,6 +137,8 @@ void Parser::cargar_ubicaciones(Juego &juego)
 
     }
 
+    //TODO: Despues sacarlo, es una prueba.
+
     //cout << "ID Jugador 1: " << juego.obtener_jugador_1().obtener_id() << endl;
     //cout << "Coordenada X Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_x << endl;
     //cout << "Coordenada Y Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_y << endl;
@@ -150,8 +152,6 @@ void Parser::cargar_ubicaciones(Juego &juego)
 
 //para cargar mapa.txt
 
-/*
-
 void Parser::cargar_mapa(Juego &juego)
 {
     fstream archivo_mapa(PATH_MAPA);
@@ -159,23 +159,25 @@ void Parser::cargar_mapa(Juego &juego)
     if (!existe_archivo_mapa())
         crear_archivo_vacio(PATH_MAPA, archivo_mapa);
 
-    string casillero, filas, columnas;
+    string casillero; 
+    int filas, columnas;
+    Coordenada coordenadas;
 
     archivo_mapa >> filas;
     archivo_mapa >> columnas;
 
-    juego.crear_mapa(stoi(filas), stoi(columnas));
-    for (int i = 0; i < stoi(filas); i++)
+    juego.crear_mapa(filas, columnas);
+    for (coordenadas.coord_x = 0; coordenadas.coord_x < filas; coordenadas.coord_x++)
     {
-        for (int j = 0; j < stoi(columnas); j++)
+        for (coordenadas.coord_y = 0; coordenadas.coord_y < columnas; coordenadas.coord_y++)
         {
             archivo_mapa >> casillero;
-            juego.agregar_casillero(i, j, casillero);
+            juego.agregar_casillero(coordenadas, casillero);
         }
     }
-}
 
-*/
+    juego.mostrar_mapa(); // TODO: Despues sacarlo, es una prueba.
+}
 
 /*
 

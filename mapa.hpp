@@ -21,6 +21,7 @@ private:
     int filas;
     int columnas;
     Casillero ***mapa;
+    Lista<Coordenada> materiales;
     Lista<Coordenada> coordenadas_transitables; //ver si es necesario
 
 public:
