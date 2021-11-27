@@ -1,8 +1,14 @@
 #include "juego.hpp"
 //--------------------CONSTRUCTORES DESTRUCTORES-------------------
 Juego::Juego()
-{
-    id_jugador_actual = 0;
+{   
+    archivo.cargar(bob);
+    archivo.cargar(superficie,mapa); 
+    //medio rancio no pasarle jugadores de una, pero quiero ver primero como terminamos de definir a jugadores
+    archivo.cargar(recurso,jugadores[0],jugadores[1]);
+
+    /*if(cargar_partida(mapa,bob,recurso, jugadores[0],jugadores[0]))
+        partida_nueva = false;*/
 }
 
 Juego::~Juego()

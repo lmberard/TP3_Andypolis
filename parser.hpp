@@ -14,7 +14,9 @@
 #include "inventario.hpp"
 #include "recurso.hpp"
 #include "superficie.hpp"
-#include "juego.hpp"
+//#include "juego.hpp"
+#include "mapa.hpp"
+#include "jugador.hpp"
 
 const string PATH_MAPA = "mapa.txt";
 const string PATH_UBICACIONES = "ubicaciones.txt";
@@ -40,19 +42,19 @@ public:
     /*---------------------------LECTURA--------------------------*/
     // PRE:
     // POS: Se carga la informacion de materiales.txt en ambos jugadores
-    void cargar_inventario(Recurso &recurso, Jugador &jugador1, Jugador &jugador2);
+    void cargar(Recurso &recurso, Jugador &jugador1, Jugador &jugador2);
 
     // PRE:
     // POS: Se carga la informacion de edificios.txt
-    void cargar_edificios(Constructor &bob);
+    void cargar(Constructor &bob);
 
     // PRE:
     // POS: Se carga la informacion de ubicaciones.txt
-    void cargar_ubicaciones(Juego &juego);
+    void cargar_ubicaciones(Mapa & mapa, Jugador & jugador1, Jugador & jugador2);
 
     // PRE:
     // POS: Se carga la informacion de mapa.txt
-    void cargar_mapa(Juego &juego);
+    void cargar(Superficie & superficie,Mapa & mapa);
 
     /*---------------------------GUARDADO--------------------------*/
     // PRE:

@@ -18,6 +18,7 @@
 #include "mapa.hpp"
 #include "funciones.hpp"
 #include "edificio.hpp"
+#include "parser.hpp"
 
 const int LLUVIA_METAL_MIN = 2;
 const int LLUVIA_METAL_MAX = 4;
@@ -50,6 +51,8 @@ private:
     Constructor bob;
     Recurso recurso;
 
+    Parser archivo;
+
     Mapa mapa;
     //Lista<Coordenada> coordenadasTransitables; //ESTO VA EN MAPA O ACA? LO USAMOS?
     // tb hay materiales sueltos, donde los guardamos?
@@ -60,8 +63,10 @@ private:
     /* esto se setea al principio de cada partida. lo que hace es que todas las 
     funciones trabajen con ese jugador, es decir jugadores[id_jugador_actual -1]*/
     Jugador jugadores[CANT_JUGADORES];
+    //Jugador jugador1;
+    //Jugador jugador2;
 
-    bool partida_nueva; 
+    bool partida_nueva = true; 
 
 public:
     //--------------------CONSTRUCTORES DESTRUCTORES-------------------
