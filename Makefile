@@ -21,7 +21,12 @@ andypolis: juego.cpp
 andypolis: jugador.cpp 
 
 #ciudad:
-andypolis: ciudad.cpp
+#andypolis: ciudad.cpp
+
+#mapa:
+andypolis: mapa.cpp
+andypolis: funciones.cpp
+andypolis: ubicaciones.cpp
 
 #inventario: 
 andypolis: inventario.cpp

@@ -10,6 +10,9 @@ class Inventario
 
 private:
     Lista<Material *> materiales1;
+    int andycoins_contador;
+    int bombas_usadas;
+
 
 public:
     // PRE: -
@@ -17,13 +20,11 @@ public:
     Inventario();
 
     // PRE:
-    // POS: Carga la informacion del archivo txt de los materiales y crea la lista de materiales.
-    void cargar(const string &PATH, Recurso &recurso);
-
-    // PRE:
     // POS: Muestra por la terminal la lista de materiales con sus cantidades
     void mostrar_inventario();
 
+    // PRE:
+    // POS:
     void agregar_material(string nombre, int cantidad, Recurso &recurso);
 
     // PRE:
@@ -38,7 +39,30 @@ public:
     // POS: se destruye el inventario
     ~Inventario();
 
+    // PRE:
+    // POS:
     void recolectar(Edificio *edificio);
+
+
+    /////////////////////////GETTERS////////////////////////////
+    int obtener_andycoins_contador();
+    int obtener_bombas_usadas();
+    Material * obtener_material(string material_recibido); //Función de uso interna . Un PRE tendría que ser que el material_recibido esté en la lista.
+
+
+    // PRE:
+    // POS:
+    int obtener_cantidad();
+
+    // PRE:
+    // POS:
+    string obtener_nombre_material(int posicion);
+
+    // PRE:
+    // POS:
+    int obtener_cant_material(int posicion);
+
+    void modificar_cant_material(string nombre, int cantidad);
 };
 
 #endif

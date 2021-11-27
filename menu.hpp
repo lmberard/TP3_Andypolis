@@ -9,7 +9,8 @@
 #include <cctype>
 #include "colors.hpp"
 #include "lista.hpp"
-#include "ciudad.hpp"
+#include "juego.hpp"
+#include "funciones.hpp"
 
 const int OPCION_MINIMA = 1;
 const int OPCION_MAXIMA_NUEVA_PARTIDA = 5;
@@ -50,31 +51,34 @@ const int SALIR_JUEGO = 13;
 class Menu
 {
 public:
+    Menu();
+
+    ~Menu();
     // pre: -
     // post: Imprime por pantalla el menu
     void mostrar_menu_partida_nueva();
 
     // pre: -
     // post: Imprime por pantalla el menu
-    void mostrar_menu_juego();
+    void mostrar_menu_juego(int id_jugador);
 
-    void menu_partida_nueva(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int opcion_elegida);
+    void menu_partida_nueva(Juego &andypolis, int opcion_elegida);
 
-    void menu_juego(Ciudad &andypolis, Constructor &bob, Recurso &recurso, int opcion_elegida);
+    void menu_juego(Juego &andypolis, int opcion_elegida);
 
     ////////////////////////////////
     // pre: El texto ingresado por el usuario tiene que ser un NUMERO entero
     // post: Realiza la opcion pedida
-    void procesar_opcion_juego(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso); // material *materiales_array, edificio *edificios_array, casillero **mapa, ubicacion *ubicaciones_array
+    void procesar_opcion_juego(int opcion_elegida, Juego &andypolis); // material *materiales_array, edificio *edificios_array, casillero **mapa, ubicacion *ubicaciones_array
 
-    void procesar_opcion_partida_nueva(int opcion_elegida, Ciudad &andypolis, Constructor &bob, Recurso &recurso);
+    void procesar_opcion_partida_nueva(int opcion_elegida, Juego &andypolis);
 
     ////////////////////////////////
     // pre: El texto ingresado por el usuario tiene que ser un NUMERO entero
     // post: devuelve true si la opcion recibida esta en el rango valido y sino devuelve false.
     bool es_opcion_valida(int elegida, const int opcion_minima, const int opcion_maxima);
 
-    void validar_opcion_juego(int opcion_elegida);
+    void validar_opcion_juego(int opcion_elegida, Juego &andypolis);
 
     void validar_opcion_partida_nueva(int opcion_elegida4);
 
@@ -93,6 +97,8 @@ public:
     // post: Pregunta para volver al menu
     void volver();
 
+    void proxima_partida();
+
     void despedir();
     /////////////////////////////////
     bool comenzo_nueva_partida(int opcion_elegida);
@@ -102,7 +108,6 @@ public:
     bool cerro_juego(int opcion_elegida);
 };
 
-bool char_son_iguales(char &c1, char &c2);
-
 bool strings_son_iguales(string &str1, string &str2);
+
 #endif // MENU_H

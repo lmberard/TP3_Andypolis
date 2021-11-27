@@ -2,27 +2,9 @@
 #include <iomanip>
 
 Inventario::Inventario()
-{    
-}
-
-void Inventario::cargar(const string &PATH, Recurso &recurso)
 {
-    fstream archivo_materiales(PATH, ios::in);
-
-    if (!archivo_materiales.is_open())
-    {
-        cout << "No se encontro un archivo con nombre \"" << PATH << "\", se va a crear el archivo" << endl;
-        archivo_materiales.open(PATH, ios::out);
-        archivo_materiales.close();
-        archivo_materiales.open(PATH, ios::in);
-    }
-
-    string nombre, cantidad;
-    while (archivo_materiales >> nombre)
-    {
-        archivo_materiales >> cantidad;
-        materiales1.alta(recurso.dar_material(nombre, stoi(cantidad)));
-    }
+    andycoins_contador = 0;
+    bombas_usadas = 0;
 }
 
 void Inventario::agregar_material(string nombre, int cantidad, Recurso &recurso)
@@ -115,10 +97,8 @@ void Inventario::llenar_stock(Edificio *edificio)
 
 Inventario::~Inventario()
 {
-    ofstream archivo_materiales("materiales.txt");
-    for (int i = 1; i < materiales1.mostrar_cantidad() + 1; i++)
+    for (int i = 1; i < obtener_cantidad() + 1; i++)
     {
-        archivo_materiales << materiales1[i]->obtener_nombre() << ' ' << materiales1[i]->obtener_cantidad() << '\n';
         delete materiales1[i];
     }
 }
@@ -134,5 +114,56 @@ void Inventario::recolectar(Edificio *edificio)
             cout << "\t-> " << edificio->obtener_cant_mat_producido() << " unidades de " << materiales1[j]->obtener_nombre() << " del edificio del tipo '" << edificio->obtener_nombre() << "'" << endl;
             materiales1[j]->modificar_cantidad(cuenta);
         }
+    }
+}
+
+
+//////////////////////////////GETTERS///////////////////////
+
+
+int Inventario::obtener_andycoins_contador()
+{
+    return andycoins_contador;
+}
+
+int Inventario::obtener_bombas_usadas()
+{
+    return bombas_usadas;
+}
+
+//Función de uso interna. Un PRE tendría que ser que el material_recibido esté en la lista.
+Material * Inventario::obtener_material(string material_recibido){
+    Material * aux = nullptr;
+
+    for (int i = 1; i < materiales1.mostrar_cantidad() + 1; i++){
+        if (materiales1[i]->obtener_nombre() == material_recibido)
+            aux = materiales1[i];
+    }
+
+    return aux;
+}
+
+
+int Inventario::obtener_cantidad()
+{
+    return materiales1.mostrar_cantidad();
+}
+
+string Inventario::obtener_nombre_material(int posicion)
+{
+    return materiales1[posicion]->obtener_nombre();
+}
+
+int Inventario::obtener_cant_material(int posicion)
+{
+    return materiales1[posicion]->obtener_cantidad();
+}
+
+void Inventario::modificar_cant_material(string nombre, int cantidad)
+{
+    for (int j = 1; j < materiales1.mostrar_cantidad() + 1; j++)
+    {
+        if (materiales1[j]->obtener_nombre() == nombre)
+            materiales1[j]->modificar_cantidad(cantidad);
     }
 }
