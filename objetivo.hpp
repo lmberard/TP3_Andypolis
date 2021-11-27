@@ -37,6 +37,7 @@ public:
     bool es_principal();
 
     virtual bool chequear_estado(Inventario & inventario);
+    virtual bool chequear_estado(int puntos_energia);
     
 };
 
