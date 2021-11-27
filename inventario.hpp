@@ -11,6 +11,7 @@ class Inventario
 private:
     Lista<Material *> materiales1;
     int andycoins_contador;
+    int bombas_contador;
     int bombas_usadas;
 
 

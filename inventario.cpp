@@ -4,6 +4,7 @@
 Inventario::Inventario()
 {
     andycoins_contador = 0;
+    bombas_contador = 0;
     bombas_usadas = 0;
 }
 
