@@ -127,6 +127,11 @@ int Inventario::obtener_andycoins_contador()
     return andycoins_contador;
 }
 
+int Inventario::obtener_bombas_contador()
+{
+    return bombas_contador;
+}
+
 int Inventario::obtener_bombas_usadas()
 {
     return bombas_usadas;

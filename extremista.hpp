@@ -14,6 +14,8 @@
 #include "terreno.hpp"*/
 #include "objetivo.hpp"
 
+static const int CANTIDAD_BOMBAS_COMPRADAS_OBJETIVO = 500;
+
 class Extremista : public Objetivo
 {
 private:
@@ -22,6 +24,8 @@ private:
 public:
     Extremista(string objetivo, string tipo);
     ~Extremista();
+
+    bool chequear_estado(Inventario & inventario);
 };
 
 
