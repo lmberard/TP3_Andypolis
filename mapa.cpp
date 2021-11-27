@@ -43,8 +43,6 @@ void Mapa::actualizar_tam_mapa(int _filas, int _columnas)
 void Mapa::agregar_casillero(Coordenada coord, string casillero, Superficie &superficie)
 {
     mapa[coord.coord_x][coord.coord_y] = superficie.agregar(casillero);
-    //if (casillero_es_transitable(casillero))
-    //    agregar_coordenada_transitable(coord);
 }
 
 Edificio *Mapa::obtener_edificio(Coordenada coord)

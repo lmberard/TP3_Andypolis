@@ -1,44 +1,12 @@
 #include "parser.hpp"
 
-bool Parser::existe_archivo_ubicaciones()
-{
-    fstream archivo(PATH_UBICACIONES);
-    return archivo.is_open();
-}
-
-bool Parser::existe_archivo_mapa()
-{
-    fstream archivo(PATH_MAPA);
-    return archivo.is_open();
-}
-
-bool Parser::existe_archivo_edificios()
-{
-    fstream archivo(PATH_EDIFICIOS);
-    return archivo.is_open();
-}
-
-bool Parser::existe_archivo_materiales()
-{
-    fstream archivo(PATH_MATERIALES);
-    return archivo.is_open();
-}
-
-void Parser::crear_archivo_vacio(const string &PATH, fstream &archivo)
-{
-    cout << "No se encontro un archivo con nombre \"" << PATH << "\", se va a crear el archivo" << endl;
-    archivo.open(PATH, ios::out);
-    archivo.close();
-    archivo.open(PATH, ios::in);
-}
-
-// CARGAR INFORMACION DE LOS ARCHIVOS TXT ----------------------------
+//LECTURA
 
 void Parser::cargar_inventario(Recurso &recurso, Jugador &jugador1, Jugador &jugador2)
 {
     fstream archivo_materiales(PATH_MATERIALES);
 
-    if (!existe_archivo_materiales())
+    if (!existe_archivo(PATH_MATERIALES))
         crear_archivo_vacio(PATH_MATERIALES, archivo_materiales);
 
     string nombre, cantidad;
@@ -56,7 +24,7 @@ void Parser::cargar_edificios(Constructor &bob)
 {
     fstream archivo_edificios(PATH_EDIFICIOS);
 
-    if (!existe_archivo_edificios())
+    if (!existe_archivo(PATH_EDIFICIOS))
         crear_archivo_vacio(PATH_EDIFICIOS, archivo_edificios);
 
     string nombre, piedra, madera, metal, permitidos, aux;
@@ -73,13 +41,11 @@ void Parser::cargar_edificios(Constructor &bob)
     }
 }
 
-//para cargar las ubicaciones.txt
-
 void Parser::cargar_ubicaciones(Juego &juego)
 {
     fstream archivo_ubicaciones(PATH_UBICACIONES);
 
-    if (!existe_archivo_ubicaciones())
+    if (!existe_archivo(PATH_UBICACIONES))
         crear_archivo_vacio(PATH_UBICACIONES, archivo_ubicaciones);
 
     //Ubicacion ubicacion;
@@ -87,13 +53,13 @@ void Parser::cargar_ubicaciones(Juego &juego)
     string primer_str, aux_coordenadas;
     Coordenada coordenadas;
     bool estado_jugador_1, estado_jugador_2 = false;
+    bool flag = true;
 
     // TODO: validar que las coordenadas esten dentro del mapa
     // TODO: Primero cargar mapa.txt (acordarse que cambia) y despues cuando llamo a 
     // esta funcion instanciar los materiales en transitables y los eficios en construibles.
-    
     while(archivo_ubicaciones >> primer_str){
-
+        flag = false;
         archivo_ubicaciones >> aux_coordenadas;
 
             // funcion void guardar_coordenadas(string &primer_str, Coordenada &coordenadas) para que no quede tan largo
@@ -134,50 +100,51 @@ void Parser::cargar_ubicaciones(Juego &juego)
             //juego.agregar_material_coordenada(primer_str, coordenadas);
 
         }
-
     }
+
+    juego.setear_estado_partida(flag);
 
     //TODO: Despues sacarlo, es una prueba.
 
     //cout << "ID Jugador 1: " << juego.obtener_jugador_1().obtener_id() << endl;
     //cout << "Coordenada X Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_x << endl;
     //cout << "Coordenada Y Jugador 1: " << juego.obtener_jugador_1().obtener_posicion_jugador().coord_y << endl;
-    juego.obtener_jugador_1().mostrar_lista_de_edificios();
+    //juego.obtener_jugador_1().mostrar_lista_de_edificios();
     //cout << "ID Jugador 2: " << juego.obtener_jugador_2().obtener_id() << endl;
     //cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_x << endl;
     //cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_y << endl;
-    juego.obtener_jugador_2().mostrar_lista_de_edificios();
+    //juego.obtener_jugador_2().mostrar_lista_de_edificios();
 
 }
-
-//para cargar mapa.txt
 
 void Parser::cargar_mapa(Juego &juego)
 {
     fstream archivo_mapa(PATH_MAPA);
 
-    if (!existe_archivo_mapa())
+    if (!existe_archivo(PATH_MAPA))
         crear_archivo_vacio(PATH_MAPA, archivo_mapa);
 
     string casillero; 
     int filas, columnas;
-    Coordenada coordenadas;
+    Coordenada coordenada;
 
     archivo_mapa >> filas;
     archivo_mapa >> columnas;
 
     juego.crear_mapa(filas, columnas);
-    for (coordenadas.coord_x = 0; coordenadas.coord_x < filas; coordenadas.coord_x++)
+    for (coordenada.coord_x = 0; coordenada.coord_x < filas; coordenada.coord_x++)
     {
-        for (coordenadas.coord_y = 0; coordenadas.coord_y < columnas; coordenadas.coord_y++)
+        for (coordenada.coord_y = 0; coordenada.coord_y < columnas; coordenada.coord_y++)
         {
             archivo_mapa >> casillero;
-            juego.agregar_casillero(coordenadas, casillero);
+            juego.agregar_casillero(coordenada, casillero);
         }
     }
 
-    juego.mostrar_mapa(); // TODO: Despues sacarlo, es una prueba.
+    cargar_ubicaciones(juego);
 }
+
+
 
 /*
 // GUARDAR INFORMACION EN LOS ARCHIVOS TXT -----------------------------
@@ -224,3 +191,18 @@ bool Parser::guardar_inventario(Inventario &inventario)
         return false;
 }
 */
+
+// EXTRAS:
+bool Parser::existe_archivo(const string & PATH)
+{
+    fstream archivo(PATH);
+    return archivo.is_open();
+}
+
+void Parser::crear_archivo_vacio(const string &PATH, fstream &archivo)
+{
+    cout << "No se encontro un archivo con nombre \"" << PATH << "\", se va a crear el archivo" << endl;
+    archivo.open(PATH, ios::out);
+    archivo.close();
+    archivo.open(PATH, ios::in);
+}

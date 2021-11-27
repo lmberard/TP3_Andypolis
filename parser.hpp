@@ -21,6 +21,19 @@ const string PATH_UBICACIONES = "ubicaciones.txt";
 const string PATH_EDIFICIOS = "edificios.txt";
 const string PATH_MATERIALES = "materiales.txt";
 
+/*CAMBIOS EN PARSER*/
+/*
+-LOS MÉTODOS QUE CHEQUEAN SI EXISTE EL ARCHIVO AHORA ES UNO SOLO, NO HAY UN MÉTODO 
+INDIVIDUAL PARA CHEQUEAR SI EXISTE EL ARCHIVO DE MATERIALES, OTRO PARA VER SI EXISTE EL ARCHIVO
+DE EDIFICIOS ETC. 
+
+-A LOS METODOS EXTRA LOS PUSE EN PRIVATE YA QUE SIRVEN PARA EL FUNCIONAMIENTO INTERNO DE LA CLASE
+
+-UBICACIONES.TXT TIENE UN FLAG AHORA PARA SETEAR EL ESTADO DE LA PARTIDA, SI EMPEZADO O NO 
+
+-CARGAR MAPA LLAMA A CARGAR UBICACIONES, YA QUE ESTOS DOS METODOS VAN EN CONJUNTO
+*/
+
 class Parser
 {
 public:
@@ -54,26 +67,17 @@ public:
     // POS:
     // bool guardar_inventario(Inventario &inventario);
 
+private:
     /*----------------------------EXTRAS----------------------------*/
-    // PRE:
-    // POS:
-    bool existe_archivo_ubicaciones();
 
-    // PRE:
-    // POS:
-    bool existe_archivo_mapa();
-
-    // PRE:
-    // POS:
-    bool existe_archivo_edificios();
-
-    // PRE:
-    // POS:
-    bool existe_archivo_materiales();
+    //PRE:
+    //POS:
+    bool existe_archivo(const string & PATH);
 
     // PRE:
     // POS:
     void crear_archivo_vacio(const string &PATH, fstream &archivo);
+
 };
 
 #endif // PARSER_HPP

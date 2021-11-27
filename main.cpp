@@ -13,17 +13,17 @@ int main()
     Parser lector_archivos;
     Juego andypolis;
     Recurso recurso;
+    Constructor bob;
     //Inventario inventario;
     Jugador jugador1;
     Jugador jugador2;
     lector_archivos.cargar_mapa(andypolis);
     lector_archivos.cargar_inventario(recurso, jugador1, jugador2);
-    lector_archivos.cargar_ubicaciones(andypolis);
-    //lector_archivos.cargar_edificios(bob);
+    lector_archivos.cargar_edificios(bob);
 
     int opcion = 0;
     //si el archivo ubicaciones.txt no existe o esta vacio entonces es una partida nueva
-    if (lector_archivos.existe_archivo_ubicaciones())
+    if (andypolis.es_partida_nueva())
     {
         do
         {
@@ -35,8 +35,6 @@ int main()
     {
         menu.menu_juego(andypolis, opcion);
     }
-
-
-
+    
     return 0;
 }
