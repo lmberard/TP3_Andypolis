@@ -76,15 +76,11 @@ public:
     Jugador* obtener_jugador(); // YO 
     int obtener_cant_construidos(string nombre_edificio);
     int obtener_id_jugador_actual();
-    bool es_partida_nueva(){
-        return partida_nueva;
-    }
+    bool es_partida_nueva();
     //--------------------------SETTERS--------------------------------
     void setear_coordenada_jugador(int id_jugador);
     void setear_id_jugador_actual(int id_jugador);
-    void setear_estado_partida(bool flag){
-        partida_nueva = flag;
-    }
+    void setear_estado_partida(bool flag);
     //---------------------MAPA PARSER---------------------------------
     void crear_mapa(int filas, int columnas);
     void agregar_casillero(Coordenada coord, string casillero);

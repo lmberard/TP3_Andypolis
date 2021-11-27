@@ -48,6 +48,12 @@ int Juego::obtener_id_jugador_actual()
 {
     return id_jugador_actual;
 }
+
+bool Juego::es_partida_nueva()
+{
+    return partida_nueva;
+}
+
 //--------------------------SETTERS--------------------------------
 void Juego::setear_coordenada_jugador(int id_jugador)
 {
@@ -61,6 +67,11 @@ void Juego::setear_coordenada_jugador(int id_jugador)
 void Juego::setear_id_jugador_actual(int id_jugador)
 {
     id_jugador_actual = id_jugador;
+}
+
+void Juego::setear_estado_partida(bool flag)
+{
+    partida_nueva = flag;
 }
 
 //----------------------------MAPA---------------------------------
