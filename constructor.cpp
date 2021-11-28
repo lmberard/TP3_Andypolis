@@ -1,6 +1,6 @@
 #include "constructor.hpp"
 
-Constructor::Constructor() {}
+Constructor::Constructor(){}
 
 void Constructor::agregar_edificio(string nombre, int piedra, int madera, int metal, int permitidos)
 {
