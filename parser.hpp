@@ -42,7 +42,7 @@ public:
     /*---------------------------LECTURA--------------------------*/
     // PRE:
     // POS: Se carga la informacion de materiales.txt en ambos jugadores
-    void cargar(Recurso &recurso, Jugador &jugador1, Jugador &jugador2);
+    void cargar(Recurso &recurso, Jugador*);
 
     // PRE:
     // POS: Se carga la informacion de edificios.txt
@@ -50,7 +50,7 @@ public:
 
     // PRE:
     // POS: Se carga la informacion de ubicaciones.txt
-    void cargar_ubicaciones(Mapa & mapa, Jugador & jugador1, Jugador & jugador2);
+    bool cargar_partida_guardada(Mapa & mapa, Constructor & bob, Recurso & recurso, Jugador* jugador);
 
     // PRE:
     // POS: Se carga la informacion de mapa.txt

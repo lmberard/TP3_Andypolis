@@ -1,4 +1,28 @@
 #include "ubicaciones.hpp"
+
+Ubicaciones::Ubicaciones(Ubicaciones& otro): nombre(otro.nombre) {
+
+  cout <<"nombre: " << otro.nombre << endl;
+
+  int cantidad =  otro.coordenadas.mostrar_cantidad();
+  for (int i = 0; i < cantidad; i++) {
+    cout << "x: " << otro.coordenadas[i].coord_x << endl;
+    cout << "y: " << otro.coordenadas[i].coord_y << endl;
+    coordenadas.alta(otro.coordenadas[i]);
+  }
+
+} // TODO: ARI MODIFICAR
+
+Ubicaciones& Ubicaciones::operator=(Ubicaciones& otro){
+  nombre = otro.nombre;
+  int cantidad =  otro.coordenadas.mostrar_cantidad();
+  for (int i = 0; i < cantidad; i++) {
+    coordenadas.alta(otro.coordenadas[i]);
+  }
+
+  return *this;
+} // TODO: ARI MODIFICAR
+
 //---------------------STRUCT UBICACIONES--------------------------------
 int obtener_cantidad(Ubicaciones info)
 {
@@ -35,7 +59,7 @@ bool eliminar_coordenada(Ubicaciones info, Coordenada coordenada)
     return false;
 }
 
-void agregar_coordenada(Ubicaciones info, Coordenada coordenada)
+void agregar_coordenada(Ubicaciones& info, Coordenada coordenada)
 {
     info.coordenadas.alta(coordenada);
 }

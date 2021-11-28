@@ -4,7 +4,7 @@
 
 #include "menu.hpp"
 #include "juego.hpp"
-#include "parser.hpp"
+//#include "parser.hpp"
 
 using namespace std;
 int main()

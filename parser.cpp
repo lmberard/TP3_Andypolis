@@ -2,7 +2,7 @@
 
 //LECTURA
 
-void Parser::cargar(Recurso &recurso, Jugador &jugador1, Jugador &jugador2)
+void Parser::cargar(Recurso &recurso, Jugador * jugador)
 {
     fstream archivo_materiales(PATH_MATERIALES);
 
@@ -13,10 +13,10 @@ void Parser::cargar(Recurso &recurso, Jugador &jugador1, Jugador &jugador2)
     while (archivo_materiales >> nombre)
     {
         archivo_materiales >> cantidad;
-        jugador1.agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
+        jugador[0].agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
 
         archivo_materiales >> cantidad;
-        jugador2.agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
+        jugador[1].agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
     }
 }
 
@@ -42,8 +42,7 @@ void Parser::cargar(Constructor &bob)
     }
 }
 
-
-void Parser::cargar_ubicaciones(Mapa & mapa, Jugador & jugador1 , Jugador & jugador2)
+bool Parser::cargar_partida_guardada(Mapa & mapa, Constructor & bob, Recurso & recurso, Jugador* jugador)
 {
     fstream archivo_ubicaciones(PATH_UBICACIONES);
 
@@ -51,7 +50,7 @@ void Parser::cargar_ubicaciones(Mapa & mapa, Jugador & jugador1 , Jugador & juga
         crear_archivo_vacio(PATH_UBICACIONES, archivo_ubicaciones);
 
     //Ubicacion ubicacion;
-
+    
     string primer_str, aux_coordenadas;
     Coordenada coordenadas;
     bool estado_jugador_1, estado_jugador_2 = false;
@@ -61,10 +60,8 @@ void Parser::cargar_ubicaciones(Mapa & mapa, Jugador & jugador1 , Jugador & juga
     // TODO: Primero cargar mapa.txt (acordarse que cambia) y despues cuando llamo a 
     // esta funcion instanciar los materiales en transitables y los eficios en construibles.
     while(archivo_ubicaciones >> primer_str){
-        //flag = false;
+        
         archivo_ubicaciones >> aux_coordenadas;
-
-            // funcion void guardar_coordenadas(string &primer_str, Coordenada &coordenadas) para que no quede tan largo
 
         if (aux_coordenadas[0] == '(') {
             coordenadas.coord_x = aux_coordenadas[1] - '0';
@@ -75,27 +72,25 @@ void Parser::cargar_ubicaciones(Mapa & mapa, Jugador & jugador1 , Jugador & juga
             coordenadas.coord_x = aux_coordenadas[1] - '0';
             coordenadas.coord_y = aux_coordenadas[3] - '0';
         }
-
         if(primer_str == "1"){
 
             estado_jugador_1 = true;
-            jugador1.setear_id(stoi(primer_str));
-            jugador1.setear_posicion(coordenadas);
+            jugador[0].setear_id(stoi(primer_str));
+            jugador[0].setear_posicion(coordenadas);
 
         } else if(primer_str == "2"){
 
             estado_jugador_1 = false;
             estado_jugador_2 = true;
-            jugador2.setear_id(stoi(primer_str));
-            jugador2.setear_posicion(coordenadas);
-
+            jugador[1].setear_id(stoi(primer_str));
+            jugador[1].setear_posicion(coordenadas);
         } else if(estado_jugador_1 == true){
             
-            jugador1.agregar_ubicacion_lista_edificios(primer_str, coordenadas);
+            jugador[0].agregar_ubicacion_lista_edificios(primer_str, coordenadas);
 
         } else if(estado_jugador_2 == true){
 
-            jugador2.agregar_ubicacion_lista_edificios(primer_str, coordenadas);
+            jugador[1].agregar_ubicacion_lista_edificios(primer_str, coordenadas);
 
         } else{
 
@@ -117,6 +112,7 @@ void Parser::cargar_ubicaciones(Mapa & mapa, Jugador & jugador1 , Jugador & juga
     //cout << "Coordenada X Jugador 2: " << juego.obtener_jugador_2().obtener_posicion_jugador().coord_y << endl;
     //juego.obtener_jugador_2().mostrar_lista_de_edificios();
 
+    return true;
 }
 
 void Parser::cargar(Superficie & superficie, Mapa & mapa)

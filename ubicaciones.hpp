@@ -19,6 +19,10 @@ struct Ubicaciones
 {
     string nombre;
     Lista<Coordenada> coordenadas;
+
+    Ubicaciones() = default; //TODO: ARI MODIFICAR
+    Ubicaciones(Ubicaciones& otro); //TODO: ARI MODIFICAR
+    Ubicaciones& operator=(Ubicaciones& otro); //TODO: ARI MODIFICAR
 };
 
 //---------------------STRUCT UBICACIONES--------------------------------
@@ -30,7 +34,7 @@ void mostrar_coordenadas(Ubicaciones info);
 
 bool eliminar_coordenada(Ubicaciones info, Coordenada coordenada);
 
-void agregar_coordenada(Ubicaciones info, Coordenada coordenada);
+void agregar_coordenada(Ubicaciones& info, Coordenada coordenada);
 
 void setear_nombre(Ubicaciones& info, string nombre);
 

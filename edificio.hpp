@@ -5,7 +5,7 @@
 #include <string>
 #include <fstream>
 
-using namespace std;
+#include "colors.hpp"
 
 class Edificio
 {

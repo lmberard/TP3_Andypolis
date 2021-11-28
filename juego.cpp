@@ -2,13 +2,18 @@
 //--------------------CONSTRUCTORES DESTRUCTORES-------------------
 Juego::Juego()
 {   
+    //carga los datos de los edificios en el diccionario del constructor
     archivo.cargar(bob);
-    archivo.cargar(superficie,mapa); 
-    //medio rancio no pasarle jugadores de una, pero quiero ver primero como terminamos de definir a jugadores
-    archivo.cargar(recurso,jugadores[0],jugadores[1]);
+    
+    //crea la superficie del mapa 
+    archivo.cargar(superficie,mapa);
 
-    /*if(cargar_partida(mapa,bob,recurso, jugadores[0],jugadores[0]))
-        partida_nueva = false;*/
+    //carga el inventario de cada jugador 
+    archivo.cargar(recurso,jugadores);
+
+    //carga una partida guardada 
+    if(archivo.cargar_partida_guardada(mapa,bob,recurso,jugadores)){}
+        //partida_nueva = false;
 }
 
 Juego::~Juego()

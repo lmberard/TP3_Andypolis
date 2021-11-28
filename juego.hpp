@@ -47,25 +47,26 @@ const int CANT_ENERGIA_RECOLECTAR = 20;
 class Juego
 {
 private:
+
+    //Gestor de archivos para cargar una partida del juego y sus elementos 
+    Parser archivo;
+
+    //elementos del juego: casilleros, edificios y materiales
     Superficie superficie;
     Constructor bob;
     Recurso recurso;
 
-    Parser archivo;
+    //Menú del juego
+    //Menu menu;
 
+    //mapa del juego
     Mapa mapa;
-    //Lista<Coordenada> coordenadasTransitables; //ESTO VA EN MAPA O ACA? LO USAMOS?
-    // tb hay materiales sueltos, donde los guardamos?
-    //Lista<Coordenada> materiales;
-    //Lista<Ubicaciones> materiales;
-
-    int id_jugador_actual;
-    /* esto se setea al principio de cada partida. lo que hace es que todas las 
-    funciones trabajen con ese jugador, es decir jugadores[id_jugador_actual -1]*/
+ 
+    //jugadores:
     Jugador jugadores[CANT_JUGADORES];
-    //Jugador jugador1;
-    //Jugador jugador2;
 
+    //Estado del juego, quien esta jugando ahora mismo y si la partida es nueva o no
+    int id_jugador_actual;
     bool partida_nueva = true; 
 
 public:

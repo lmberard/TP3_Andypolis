@@ -4,6 +4,7 @@
 Inventario::Inventario()
 {
     andycoins_contador = 0;
+    bombas_contador = 0;
     bombas_usadas = 0;
 }
 
@@ -124,6 +125,11 @@ void Inventario::recolectar(Edificio *edificio)
 int Inventario::obtener_andycoins_contador()
 {
     return andycoins_contador;
+}
+
+int Inventario::obtener_bombas_contador()
+{
+    return bombas_contador;
 }
 
 int Inventario::obtener_bombas_usadas()
