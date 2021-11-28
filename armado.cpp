@@ -23,3 +23,5 @@ bool Armado::chequear_estado(Inventario & inventario){
         
     return aux;
 }
+
+// TODO: BORRAR PIPO 
