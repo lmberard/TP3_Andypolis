@@ -11,6 +11,8 @@ class Inventario
 private:
     Lista<Material *> materiales1;
     int andycoins_contador;
+    int bombas_contador; //se puede reemplazar ya que Bombas inventario + Bombas usadas = bombas compradas en total
+    int bombas_usadas;
 
 
 public:
@@ -45,6 +47,8 @@ public:
 
     /////////////////////////GETTERS////////////////////////////
     int obtener_andycoins_contador();
+    int obtener_bombas_contador();
+    int obtener_bombas_usadas();
     Material * obtener_material(string material_recibido); //Función de uso interna . Un PRE tendría que ser que el material_recibido esté en la lista.
 
 

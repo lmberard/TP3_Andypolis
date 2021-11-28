@@ -40,4 +40,24 @@ bool Objetivo::es_principal()
     return aux;
 }
 
-bool Objetivo::chequear_estado(Inventario & inventario){return true;}
+bool Objetivo::chequear_estado(Inventario & inventario)
+{
+    return true;
+}
+
+bool Objetivo::chequear_estado(int puntos_energia)
+{
+    return true;
+}
+
+/*
+bool Objetivo::chequear_estado(Diccionario & diccionario, Lista<Ubicaciones> edificios;)
+{
+    return true;
+}
+*/
+
+bool Objetivo::chequear_estado(Lista<Ubicaciones> & edificios)
+{
+    return true;
+}
