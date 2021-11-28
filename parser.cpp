@@ -34,7 +34,7 @@ void Parser::crear_archivo_vacio(const string &PATH, fstream &archivo)
 
 // CARGAR INFORMACION DE LOS ARCHIVOS TXT ----------------------------
 
-void Parser::cargar_inventario(Recurso &recurso, Jugador &jugador1, Jugador &jugador2)
+void Parser::cargar_inventario(Recurso &recurso, Juego &juego)
 {
     fstream archivo_materiales(PATH_MATERIALES);
 
@@ -45,11 +45,14 @@ void Parser::cargar_inventario(Recurso &recurso, Jugador &jugador1, Jugador &jug
     while (archivo_materiales >> nombre)
     {
         archivo_materiales >> cantidad;
-        jugador1.agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
+        juego.obtener_jugador_1().agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
 
         archivo_materiales >> cantidad;
-        jugador2.agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
+        juego.obtener_jugador_2().agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
     }
+
+    juego.obtener_jugador_1().mostrar_inventario(); //TODO: SACAR (PRUEBA)
+    juego.obtener_jugador_2().mostrar_inventario(); //TODO: SACAR (PRUEBA)
 }
 
 void Parser::cargar_edificios(Constructor &bob)

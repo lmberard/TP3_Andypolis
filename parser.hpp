@@ -27,7 +27,7 @@ public:
     /*---------------------------LECTURA--------------------------*/
     // PRE:
     // POS: Se carga la informacion de materiales.txt en ambos jugadores
-    void cargar_inventario(Recurso &recurso, Jugador &jugador1, Jugador &jugador2);
+    void cargar_inventario(Recurso &recurso, Juego &juego);
 
     // PRE:
     // POS: Se carga la informacion de edificios.txt

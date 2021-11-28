@@ -14,10 +14,8 @@ int main()
     Juego andypolis;
     Recurso recurso;
     //Inventario inventario;
-    Jugador jugador1;
-    Jugador jugador2;
     lector_archivos.cargar_mapa(andypolis);
-    lector_archivos.cargar_inventario(recurso, jugador1, jugador2);
+    lector_archivos.cargar_inventario(recurso, andypolis);
     lector_archivos.cargar_ubicaciones(andypolis);
     //lector_archivos.cargar_edificios(bob);
 
