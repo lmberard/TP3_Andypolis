@@ -34,6 +34,17 @@ void Mapa::agregar_coordenada_transitable(Coordenada coord)
     coordenadas_transitables.alta(coord);
 }
 
+void Mapa::agregar_material(Coordenada coord, Material* material)
+{
+    mapa[coord.coord_x][coord.coord_y]->agregar(material);
+    materiales.alta(coord);
+}
+
+void Mapa::agregar_edificio(Coordenada coord, Edificio* edificio)
+{
+    mapa[coord.coord_x][coord.coord_y]->agregar(edificio);
+}
+
 void Mapa::actualizar_tam_mapa(int _filas, int _columnas)
 {
     filas = _filas;

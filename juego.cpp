@@ -12,8 +12,8 @@ Juego::Juego()
     archivo.cargar(recurso,jugadores);
 
     //carga una partida guardada 
-    if(archivo.cargar_partida_guardada(mapa,bob,recurso,jugadores)){}
-        //partida_nueva = false;
+    if(archivo.cargar_partida_guardada(mapa,bob,recurso,jugadores,CANT_JUGADORES))
+        partida_nueva = true;
 }
 
 Juego::~Juego()
@@ -243,11 +243,11 @@ void Juego::construir_por_nombre_coordenada()
 
 void Juego::mostrar_edificios_construidos()
 {
-    if (jugador_tiene_energia(CANT_ENERGIA_LISTAR_EDIF))
-    {
-        if (id_jugador_es_valido(id_jugador_actual))
+    //if (jugador_tiene_energia(CANT_ENERGIA_LISTAR_EDIF))
+    //{
+        //if (id_jugador_es_valido(id_jugador_actual))
             jugadores[id_jugador_actual - 1].mostrar_edificios_construidos();
-    }
+    //}
 }
 
 void Juego::demoler_por_coordenada()

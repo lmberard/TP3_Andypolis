@@ -14,6 +14,7 @@
 #include "superficie.hpp"
 #include "edificio.hpp"
 #include "material.hpp"
+#include "recurso.hpp"
 
 class Mapa
 {
@@ -38,6 +39,8 @@ public:
 
     //------------------------SETTERS---------------------------------
     void agregar_coordenada_transitable(Coordenada coord);
+    void agregar_material(Coordenada coord, Material* material);
+    void agregar_edificio(Coordenada coord, Edificio* edificio);
     void agregar_casillero(Coordenada coord, string casillero, Superficie &superficie);
     //TODO: Revisar nombre y metodo
     void agregar_ubicacion_material_lista(string nombre, Coordenada coord); //YO
