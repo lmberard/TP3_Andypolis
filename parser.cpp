@@ -28,9 +28,9 @@ void Parser::cargar(Constructor &bob)
 
     string nombre, piedra, madera, metal, permitidos, aux;
     while (archivo_edificios >> nombre){
-        if (nombre == "planta")
-            archivo_edificios >> aux;
         archivo_edificios >> piedra;
+        if(no_numero(piedra))
+            archivo_edificios >> piedra;
         archivo_edificios >> madera;
         archivo_edificios >> metal;
         archivo_edificios >> permitidos;
@@ -62,7 +62,7 @@ void Parser::cargar(Superficie & superficie, Mapa & mapa)
     }
 }
 
-bool Parser::cargar_partida_guardada(Mapa & mapa, Constructor & bob, Recurso & recurso, Jugador* jugador, int cant_jugadores)
+bool Parser::cargar_partida_guardada(Mapa & mapa, Jugador* jugador, Constructor & bob, Recurso & recurso)
 {
     fstream archivo_ubicaciones(PATH_UBICACIONES);
 
@@ -71,14 +71,15 @@ bool Parser::cargar_partida_guardada(Mapa & mapa, Constructor & bob, Recurso & r
     
     string aux;
     bool partida_guardada = true;
-    
+    int cant_jugadores = 2;
+
     if(archivo_ubicaciones >> aux){
 
-        if(cambio_jugador(aux))
+        if(no_numero(aux))
             cargar_materiales(archivo_ubicaciones, recurso, mapa, aux);
         for(int i = 0; i < cant_jugadores; i++){
-            cargar_posicion(archivo_ubicaciones, jugador[i], mapa, aux);
-            if(cambio_jugador(aux))
+            cargar_posicion(archivo_ubicaciones, jugador[i], aux);
+            if(no_numero(aux))
                 cargar_edificios(archivo_ubicaciones,jugador[i],mapa,bob, aux);
         }
     }
@@ -88,53 +89,53 @@ bool Parser::cargar_partida_guardada(Mapa & mapa, Constructor & bob, Recurso & r
     return partida_guardada;
 }
 
-/*
-// GUARDAR INFORMACION EN LOS ARCHIVOS TXT -----------------------------
-void Parser::guardar_archivos(Lista<Ubicacion> edificios, Inventario &inventario)
+//GUARDADO---------------------------------------------------------------------------------------------------
+
+bool Parser::guardar(Constructor & bob)
 {
-    guardar_ubicaciones(edificios);
-    guardar_inventario(inventario);
-    msjeOK("Se guardaron los cambios en los archivos" + PATH_UBICACIONES + "y" + PATH_MATERIALES);
-    msjeInstruccion("Hasta pronto!!");
-}
-bool Parser::guardar_ubicaciones(Lista<Ubicacion> edificios)
-{
-    ofstream ubicaciones_out;
-    ubicaciones_out.open(PATH_UBICACIONES);
-    if (ubicaciones_out.is_open())
-    {
-        int i = 0;
-        for (i = 1; i < edificios.mostrar_cantidad(); i++)
-        {
-            ubicaciones_out << edificios[i].nombre << " "
-                            << "(" << edificios[i].coord_x << ", "
-                            << edificios[i].coord_y << ")" << endl;
+    ofstream archivo_edificios(PATH_EDIFICIOS);
+  
+    if (archivo_edificios.is_open())
+    {   
+        Edificio *edificio;
+        for (int i = 1; i < bob.cant_edificios() + 1; i++){
+            edificio = bob.mostrar_edificio(i);
+            archivo_edificios << edificio->obtener_nombre() << ' ' 
+            <<  edificio->obtener_piedra() << ' '
+            <<  edificio->obtener_madera() << ' '
+            <<  edificio->obtener_metal() << ' '
+            <<  edificio->obtener_cant_max() << '\n';
         }
-        ubicaciones_out << edificios[i].nombre << " "
-                        << "(" << edificios[i].coord_x << ", "
-                        << edificios[i].coord_y << ")";
+
         return true;
     }
     else
         return false;
 }
-bool Parser::guardar_inventario(Inventario &inventario)
+
+bool Parser::guardar_inventario(Jugador * jugadores)
 {
     ofstream archivo_materiales(PATH_MATERIALES);
+
     if (archivo_materiales.is_open())
     {
-        for (int i = 1; i < inventario.obtener_cantidad() + 1; i++)
-        {
-            archivo_materiales << inventario.obtener_nombre_material(i) << ' ' << inventario.obtener_cant_material(i) << endl;
-        }
+        for (int i = 1; i < jugadores[0].inv().obtener_cantidad() + 1; i++)
+            archivo_materiales << jugadores[0].inv().obtener_nombre_material(i) << ' ' 
+            << jugadores[0].inv().obtener_cant_material(i) << ' '
+            << jugadores[1].inv().obtener_cant_material(i) << '\n';
+
         return true;
     }
     else
         return false;
 }
-*/
 
-// EXTRAS:
+bool Parser::guardar_partida(Mapa & mapa,Jugador *jugadores){
+
+    return true;
+}
+
+//EXTRA-----------------------------------------------------------------------------------------------
 bool Parser::existe_archivo(const string & PATH)
 {
     fstream archivo(PATH);
@@ -149,7 +150,7 @@ void Parser::crear_archivo_vacio(const string &PATH, fstream &archivo)
     archivo.open(PATH, ios::in);
 }
 
-bool Parser::cambio_jugador(string & aux)
+bool Parser::no_numero(string & aux)
 {
     bool status = false;
 
@@ -180,7 +181,7 @@ Coordenada Parser::obtener_coordenada(fstream & archivo_ubicaciones)
 
 void Parser::cargar_materiales(fstream & archivo_ubicaciones, Recurso & recurso, Mapa & mapa, string & aux)
 {   
-    while(cambio_jugador(aux)){
+    while(no_numero(aux)){
         string material = aux;
         Coordenada coordenada = obtener_coordenada(archivo_ubicaciones);
         mapa.agregar_material(coordenada,recurso.dar_material(material));
@@ -190,7 +191,7 @@ void Parser::cargar_materiales(fstream & archivo_ubicaciones, Recurso & recurso,
 
 void Parser::cargar_edificios(fstream & archivo_ubicaciones, Jugador & jugador, Mapa & mapa, Constructor & bob, string & aux)
 {   
-    while(cambio_jugador(aux)){
+    while(no_numero(aux)){
         string edificio = aux;
         Coordenada coordenada = obtener_coordenada(archivo_ubicaciones);
         mapa.agregar_edificio(coordenada, bob.construye(edificio));
@@ -200,7 +201,7 @@ void Parser::cargar_edificios(fstream & archivo_ubicaciones, Jugador & jugador, 
     }
 }
 
-void Parser::cargar_posicion(fstream & archivo_ubicaciones, Jugador & jugador, Mapa & mapa, string & aux)
+void Parser::cargar_posicion(fstream & archivo_ubicaciones, Jugador & jugador, string & aux)
 {
     jugador.setear_posicion(obtener_coordenada(archivo_ubicaciones));
     //FALTA VER COMO QUEREMOS REPRESENTAR ESTO EN EL MAPA :U

@@ -32,7 +32,6 @@ public:
     Jugador(int _id, int puntos_iniciales);
     Jugador();
     ~Jugador();
-
     //-------------------------GETTERS---------------------------------------
     int obtener_id();
     Coordenada obtener_posicion_jugador(); //YO
@@ -72,6 +71,7 @@ public:
     void mostrar_lista_de_edificios(); //YO
     void mostrar_edificios_construidos();
     void mostrar_objetivos_y_progreso();
+    Inventario & inv(){return inventario;}
 
     /*
     bool chequear_objetivos(Lista<Objetivo> objetivos){

@@ -54,7 +54,7 @@ public:
 
     // PRE:
     // POS: Se carga la informacion de ubicaciones.txt
-    bool cargar_partida_guardada(Mapa & mapa, Constructor & bob, Recurso & recurso, Jugador* jugador, int);
+    bool cargar_partida_guardada(Mapa & mapa, Jugador* jugador, Constructor & bob, Recurso & recurso);
 
     /*---------------------------GUARDADO--------------------------*/
     // PRE:
@@ -69,6 +69,10 @@ public:
     // POS:
     // bool guardar_inventario(Inventario &inventario);
 
+    bool guardar_inventario(Jugador * jugadores);
+    bool guardar(Constructor & bob);
+    bool guardar_partida(Mapa & mapa,Jugador * jugadores);
+
 private:
     /*----------------------------EXTRAS----------------------------*/
 
@@ -80,7 +84,7 @@ private:
     // POS:
     void crear_archivo_vacio(const string &PATH, fstream &archivo);
 
-    bool cambio_jugador(string & aux);
+    bool no_numero(string & aux);
 
     Coordenada obtener_coordenada(fstream & archivo_ubicaciones);
 
@@ -88,7 +92,7 @@ private:
 
     void cargar_edificios(fstream & archivo_ubicaciones, Jugador & jugador, Mapa & mapa, Constructor & bob, string & aux);
 
-    void cargar_posicion(fstream & archivo_ubicaciones,Jugador & jugador,Mapa & mapa, string & aux);
+    void cargar_posicion(fstream & archivo_ubicaciones,Jugador & jugador, string & aux);
 
 };
 

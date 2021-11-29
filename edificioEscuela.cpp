@@ -13,6 +13,6 @@ Escuela::Escuela(int s, int w, int m, int p) : Edificio(s, w, m, p)
     //material3 = "metal";
 }
 
-Escuela::Escuela(Edificio *edificio): Edificio(edificio){  }
+Escuela::Escuela(Edificio *edificio): Edificio(edificio){}
 
 Escuela::~Escuela(){}

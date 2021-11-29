@@ -36,8 +36,11 @@ void Mapa::agregar_coordenada_transitable(Coordenada coord)
 
 void Mapa::agregar_material(Coordenada coord, Material* material)
 {
+    Ubicaciones nuevo_material;
+    setear_nombre(nuevo_material, material->obtener_nombre());
+    agregar_coordenada(nuevo_material, coord);
+    materiales.alta(nuevo_material);
     mapa[coord.coord_x][coord.coord_y]->agregar(material);
-    materiales.alta(coord);
 }
 
 void Mapa::agregar_edificio(Coordenada coord, Edificio* edificio)

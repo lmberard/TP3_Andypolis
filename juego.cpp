@@ -12,39 +12,23 @@ Juego::Juego()
     archivo.cargar(recurso,jugadores);
 
     //carga una partida guardada 
-    if(archivo.cargar_partida_guardada(mapa,bob,recurso,jugadores,CANT_JUGADORES))
+    if(archivo.cargar_partida_guardada(mapa,jugadores,bob,recurso))
         partida_nueva = true;
 }
 
 Juego::~Juego()
-{
+{   
+    //guarda los valores seteados en edificios.txt
+    archivo.guardar(bob);
+
+    //guarda el inventario de los jugadores en materiales.txt
+    archivo.guardar_inventario(jugadores);
+
+    //guarda la partida 
+    archivo.guardar_partida(mapa,jugadores);
 }
 
 //--------------------------GETTERS--------------------------------
-int Juego::obtener_filas_mapa()
-{
-    return mapa.obtener_filas();
-}
-
-int Juego::obtener_columnas_mapa()
-{
-    return mapa.obtener_columnas();
-}
-
-Jugador& Juego::obtener_jugador_1()
-{    
-    return jugadores[0];
-} //YO
-
-Jugador& Juego::obtener_jugador_2()
-{    
-    return jugadores[1];
-} //YO
-
-Jugador* Juego::obtener_jugador()
-{
-    return jugadores;
-}
 
 int Juego::obtener_cant_construidos(string nombre_edificio)
 {
@@ -86,15 +70,6 @@ void Juego::setear_estado_partida(bool flag)
 }
 
 //----------------------------MAPA---------------------------------
-void Juego::crear_mapa(int filas, int columnas)
-{
-    mapa.crear_memoria_mapa(filas, columnas);
-}
-
-void Juego::agregar_casillero(Coordenada coord, string casillero)
-{
-    mapa.agregar_casillero(coord, casillero, superficie);
-}
 
 //FALTAN DETALLES
 void Juego::construir_edificio(Coordenada coord, const string &eledificio)
@@ -137,15 +112,7 @@ void Juego::construir_edificio(Coordenada coord, const string &eledificio)
     }
 }
 
-void Juego::agregar_material_coordenada_lista(string nombre, Coordenada coord)
-{
-    mapa.agregar_ubicacion_material_lista(nombre, coord);
-} //YO
 
-void Juego::agregar_material_coordenada(string nombre, Coordenada coord)
-{
-    mapa.agregar_contenido(coord, recurso.dar_material(nombre));
-}
 //-------------------OPCIONES MENU PRINCIPAL-----------------------
 //FALTAA (hacer diccionario)
 void Juego::modificar_edificio_por_nombre()
