@@ -1,5 +1,4 @@
 #include "inventario.hpp"
-#include <iomanip>
 
 Inventario::Inventario()
 {
@@ -8,9 +7,9 @@ Inventario::Inventario()
     bombas_usadas = 0;
 }
 
-void Inventario::agregar_material(string nombre, int cantidad, Recurso &recurso)
+void Inventario::agregar_material(Material * material)
 {
-    materiales1.alta(recurso.dar_material(nombre, cantidad));
+    materiales1.alta(material);
 }
 
 void Inventario::mostrar_inventario()

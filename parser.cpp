@@ -12,10 +12,10 @@ void Parser::cargar(Recurso &recurso, Jugador * jugador)
     string nombre, cantidad;
     while (archivo_materiales >> nombre){
         archivo_materiales >> cantidad;
-        jugador[0].agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
-
+       
+        jugador[0].agregar_material_al_inventario(recurso.dar_material(nombre, stoi(cantidad)));
         archivo_materiales >> cantidad;
-        jugador[1].agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
+        jugador[1].agregar_material_al_inventario(recurso.dar_material(nombre, stoi(cantidad)));
     }
 }
 
@@ -57,7 +57,7 @@ void Parser::cargar(Superficie & superficie, Mapa & mapa)
     for (coordenada.coord_x = 0; coordenada.coord_x < filas; coordenada.coord_x++){
         for (coordenada.coord_y = 0; coordenada.coord_y < columnas; coordenada.coord_y++){
             archivo_mapa >> casillero;
-            mapa.agregar_casillero(coordenada, casillero, superficie);
+            mapa.agregar_casillero(coordenada, superficie.agregar(casillero));
         }
     }
 }

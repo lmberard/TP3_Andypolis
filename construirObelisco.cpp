@@ -1,6 +1,3 @@
-#include <string>
-#include <iostream>
-
 #include "construirObelisco.hpp"
 
 using namespace std;

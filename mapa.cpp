@@ -54,9 +54,9 @@ void Mapa::actualizar_tam_mapa(int _filas, int _columnas)
     columnas = _columnas;
 }
 
-void Mapa::agregar_casillero(Coordenada coord, string casillero, Superficie &superficie)
+void Mapa::agregar_casillero(Coordenada coord, Casillero* casillero)
 {
-    mapa[coord.coord_x][coord.coord_y] = superficie.agregar(casillero);
+    mapa[coord.coord_x][coord.coord_y] = casillero;
 }
 
 Edificio *Mapa::obtener_edificio(Coordenada coord)

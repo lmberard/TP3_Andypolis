@@ -1,6 +1,6 @@
 #ifndef CONSTRUCTOR_H
 #define CONSTRUCTOR_H
-#include <fstream>
+
 #include "lista.hpp"
 
 #include "edificio.hpp"

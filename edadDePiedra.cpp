@@ -1,6 +1,3 @@
-#include <string>
-#include <iostream>
-
 #include "edadDePiedra.hpp"
 
 using namespace std;

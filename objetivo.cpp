@@ -1,6 +1,3 @@
-#include <string>
-#include <iostream>
-
 #include "objetivo.hpp"
 
 using namespace std;

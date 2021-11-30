@@ -1,6 +1,3 @@
-#include <string>
-#include <iostream>
-
 #include "extremista.hpp"
 
 using namespace std;

@@ -1,6 +1,3 @@
-#include <string>
-#include <iostream>
-
 #include "armado.hpp"
 
 using namespace std;

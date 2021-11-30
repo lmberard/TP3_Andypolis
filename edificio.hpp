@@ -1,10 +1,6 @@
 #ifndef EDIFICIO_HPP
 #define EDIFICIO_HPP
 
-#include <iostream>
-#include <string>
-#include <fstream>
-
 #include "colors.hpp"
 
 class Edificio

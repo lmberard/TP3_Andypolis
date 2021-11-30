@@ -1,6 +1,3 @@
-#include <string>
-#include <iostream>
-
 #include "constructorO.hpp"
 
 using namespace std;

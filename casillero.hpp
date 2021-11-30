@@ -1,10 +1,8 @@
 #ifndef CASILLERO_HPP
 #define CASILLERO_HPP
 
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "colors.hpp"
+
 #include "material.hpp"
 #include "edificio.hpp"
 

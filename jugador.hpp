@@ -1,19 +1,9 @@
 #ifndef JUGADOR_HPP
 #define JUGADOR_HPP
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <fstream>
-#include <cstdlib>
-#include <iomanip>
-#include <cctype>
-#include "colors.hpp"
+
 #include "lista.hpp"
 #include "ubicaciones.hpp"
-#include "constructor.hpp"
 #include "inventario.hpp"
-#include "recurso.hpp"
-#include "superficie.hpp"
 #include "objetivo.hpp"
 
 class Jugador
@@ -48,7 +38,7 @@ public:
     void setear_posicion(Coordenada coord);
 
     //--------------------------PARA PARSER----------------------------------
-    void agregar_material_al_inventario(string nombre, int cantidad, Recurso &recurso);    //materiales.txt
+    void agregar_material_al_inventario(Material * material);    //materiales.txt
     void agregar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio); //ubicaciones.txt
 
     //------------------------MODIFICADORES----------------------------------

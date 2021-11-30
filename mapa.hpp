@@ -1,20 +1,9 @@
 #ifndef MAPA_HPP
 #define MAPA_HPP
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <fstream>
-#include <cstdlib>
-#include <iomanip>
-#include <cctype>
-#include "colors.hpp"
-#include "lista.hpp"
 
+#include "lista.hpp"
 #include "ubicaciones.hpp"
-#include "superficie.hpp"
-#include "edificio.hpp"
-#include "material.hpp"
-#include "recurso.hpp"
+#include "casillero.hpp"
 
 class Mapa
 {
@@ -41,7 +30,7 @@ public:
     void agregar_coordenada_transitable(Coordenada coord);
     void agregar_material(Coordenada coord, Material* material);
     void agregar_edificio(Coordenada coord, Edificio* edificio);
-    void agregar_casillero(Coordenada coord, string casillero, Superficie &superficie);
+    void agregar_casillero(Coordenada coord, Casillero* casillero);
     //TODO: Revisar nombre y metodo
     void agregar_ubicacion_material_lista(string nombre, Coordenada coord); //YO
     bool agregar_contenido(Coordenada coord, Edificio *edificio);
