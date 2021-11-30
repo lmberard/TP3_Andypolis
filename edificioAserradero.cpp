@@ -1,4 +1,3 @@
-#include "edificio.hpp"
 #include "edificioAserradero.hpp"
 
 Aserradero::Aserradero(int s, int w, int m, int p) : Edificio(s, w, m, p)

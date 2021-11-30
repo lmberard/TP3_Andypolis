@@ -25,7 +25,6 @@ andypolis: jugador.cpp
 
 #mapa:
 andypolis: mapa.cpp
-andypolis: funciones.cpp
 andypolis: ubicaciones.cpp
 
 #inventario: 

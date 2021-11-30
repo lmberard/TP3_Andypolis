@@ -1,5 +1,4 @@
 #include "edificioEscuela.hpp"
-#include "edificio.hpp"
 
 Escuela::Escuela(int s, int w, int m, int p) : Edificio(s, w, m, p)
 {

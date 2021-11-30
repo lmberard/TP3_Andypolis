@@ -1,5 +1,4 @@
 #include "edificioMina.hpp"
-#include "edificio.hpp"
 
 Mina::Mina(int s, int w, int m, int p) : Edificio(s, w, m, p)
 {
