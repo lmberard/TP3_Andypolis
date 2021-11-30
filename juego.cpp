@@ -159,8 +159,8 @@ void Juego::mostrar_todos_edificios()
              << setw(23) << edificio->obtener_piedra() << '\t'
              << setw(23) << cant_construidos << '\t'
              << setw(23) << cant_disponible << '\t'
-             << setw(23) << edificio->obtener_mat_producido() << '\t'
-             << setw(23) << edificio->obtener_cant_mat_producido()
+             << setw(23) << edificio->obtener_tipo_produccion() << '\t'
+             << setw(23) << edificio->obtener_cant_produccion()
              << endl;
     }
 }

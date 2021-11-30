@@ -9,11 +9,9 @@ public:
     // POS:
     Yacimiento(int s, int w, int m, int p);
 
-    Yacimiento(Edificio *edificio);
-
     // PRE:
     // POS:
-    ~Yacimiento();
+    Yacimiento(Edificio *edificio);
 };
 
 #endif // EDIFICIOPLANTAELECTRICA_HPP

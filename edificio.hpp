@@ -13,10 +13,12 @@ protected:
     int madera;
     int metal;
 
-    int cant_max_construccion;
+    int cantidad_permitida;
 
-    string mat_que_produce;
-    int cant_mat_que_produce;
+    string produccion;
+    int cant_produccion;
+
+    int vida;
 
 public:
     // PRE: -
@@ -53,15 +55,23 @@ public:
 
     // PRE: -
     // POS: Devuelve la cantidad del material que produce
-    int obtener_cant_mat_producido();
+    int obtener_cant_produccion();
 
     // PRE: -
     // POS: Devuelve el nombre del material que produce
-    string obtener_mat_producido();
+    string obtener_tipo_produccion();
 
     // PRE: -
-    // POS: Muestra por la terminal el tipo de edificio y sus atributos
-    void mostrar_edificio();
+    // POS: -
+    int obtener_vida();
+
+    // PRE: -
+    // POS: -
+    void bajar_vida();
+
+    // PRE: -
+    // POS: -
+    void subir_vida();
 };
 
 #endif // EDIFICIO_HPP
