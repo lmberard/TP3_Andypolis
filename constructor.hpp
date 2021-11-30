@@ -10,6 +10,7 @@
 #include "edificioYacimiento.hpp"
 #include "edificioObelisco.hpp"
 #include "edificioMina.hpp"
+#include "edificioMinaOro.hpp"
 #include "edificioFabrica.hpp"
 #include "edificioPlantaElectrica.hpp"
 

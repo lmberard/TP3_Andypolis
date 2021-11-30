@@ -52,9 +52,9 @@ private:
     // POS:
     void crear_archivo_vacio(const string &PATH, fstream &archivo);
 
-    bool no_numero(string & aux);
+    bool es_palabra(string & aux);
 
-    Coordenada obtener_coordenada(fstream & archivo_ubicaciones);
+    Coordenada obtener_coordenada(string & aux_coordenada);
 
     void cargar_materiales(fstream & archivo_ubicaciones, Recurso & recurso, Mapa & mapa, string & aux);
 

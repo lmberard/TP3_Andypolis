@@ -67,6 +67,7 @@ andypolis: edificioAserradero.cpp
 andypolis: edificioEscuela.cpp 
 andypolis: edificioFabrica.cpp
 andypolis: edificioMina.cpp 
+andypolis: edificioMinaOro.cpp 
 andypolis: edificioObelisco.cpp 
 andypolis: edificioPlantaElectrica.cpp 
 andypolis: edificioYacimiento.cpp 
