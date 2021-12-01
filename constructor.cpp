@@ -14,9 +14,11 @@ void Constructor::agregar_edificio(string nombre, int piedra, int madera, int me
         edificios.alta(new Yacimiento(piedra, madera, metal, permitidos));
     if (nombre == "mina")
         edificios.alta(new Mina(piedra, madera, metal, permitidos));
+    if (nombre == "mina oro")
+        edificios.alta(new MinaOro(piedra, madera, metal, permitidos));
     if (nombre == "obelisco")
         edificios.alta(new Obelisco(piedra, madera, metal, permitidos));
-    if (nombre == "planta")
+    if (nombre == "planta electrica")
         edificios.alta(new PlantaElectrica(piedra, madera, metal, permitidos));
 }
 

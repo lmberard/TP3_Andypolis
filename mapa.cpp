@@ -34,15 +34,29 @@ void Mapa::agregar_coordenada_transitable(Coordenada coord)
     coordenadas_transitables.alta(coord);
 }
 
+void Mapa::agregar_material(Coordenada coord, Material* material)
+{
+    Ubicaciones nuevo_material;
+    setear_nombre(nuevo_material, material->obtener_nombre());
+    agregar_coordenada(nuevo_material, coord);
+    materiales.alta(nuevo_material);
+    mapa[coord.coord_x][coord.coord_y]->agregar(material);
+}
+
+void Mapa::agregar_edificio(Coordenada coord, Edificio* edificio)
+{
+    mapa[coord.coord_x][coord.coord_y]->agregar(edificio);
+}
+
 void Mapa::actualizar_tam_mapa(int _filas, int _columnas)
 {
     filas = _filas;
     columnas = _columnas;
 }
 
-void Mapa::agregar_casillero(Coordenada coord, string casillero, Superficie &superficie)
+void Mapa::agregar_casillero(Coordenada coord, Casillero* casillero)
 {
-    mapa[coord.coord_x][coord.coord_y] = superficie.agregar(casillero);
+    mapa[coord.coord_x][coord.coord_y] = casillero;
 }
 
 Edificio *Mapa::obtener_edificio(Coordenada coord)

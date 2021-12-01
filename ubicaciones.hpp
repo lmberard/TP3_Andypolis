@@ -1,9 +1,6 @@
 #ifndef UBICACIONES_HPP
 #define UBICACIONES_HPP
 
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "lista.hpp"
 #include "colors.hpp"
 

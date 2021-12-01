@@ -1,16 +1,10 @@
 #ifndef MENU_H
 #define MENU_H
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <fstream>
-#include <cstdlib>
-#include <iomanip>
-#include <cctype>
+
 #include "colors.hpp"
-#include "lista.hpp"
 #include "juego.hpp"
-#include "funciones.hpp"
+
+//#include "funciones.hpp"
 
 const int OPCION_MINIMA = 1;
 const int OPCION_MAXIMA_NUEVA_PARTIDA = 5;
@@ -109,5 +103,6 @@ public:
 };
 
 bool strings_son_iguales(string &str1, string &str2);
+bool char_son_iguales(char &c1, char &c2);
 
 #endif // MENU_H

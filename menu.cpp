@@ -1,7 +1,15 @@
 #include "menu.hpp"
-#include "casillero.hpp"
 
 using namespace std;
+bool char_son_iguales(char &c1, char &c2)
+{
+    if (c1 == c2)
+        return true;
+    else if (toupper(c1 == toupper(c2)))
+        return true;
+    return false;
+}
+
 bool strings_son_iguales(string &str1, string &str2)
 {
     return ((str1.size() == str2.size()) &&
@@ -289,3 +297,4 @@ bool Menu::cerro_juego(int opcion_elegida)
 {
     return opcion_elegida == SALIR_JUEGO;
 }
+

@@ -1,6 +1,3 @@
-#include <string>
-#include <iostream>
-
 #include "energetico.hpp"
 
 using namespace std;

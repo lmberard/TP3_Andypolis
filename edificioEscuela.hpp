@@ -10,10 +10,8 @@ public:
     // POS: Se crea un edificio Escuela con los parametros para la piedra(s), madera(w), metal(s) y cantidad permitida de construccion(p)
     Escuela(int s, int w, int m, int p);
 
-    Escuela(Edificio *edificio);
-
     // PRE:
-    // POS: Se destruye el edificio Escuela
-    ~Escuela();
+    // POS:
+    Escuela(Edificio *edificio);
 };
 #endif // EDIFICIOESCUELA_HPP

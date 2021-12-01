@@ -1,19 +1,9 @@
 #ifndef JUGADOR_HPP
 #define JUGADOR_HPP
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <fstream>
-#include <cstdlib>
-#include <iomanip>
-#include <cctype>
-#include "colors.hpp"
+
 #include "lista.hpp"
 #include "ubicaciones.hpp"
-#include "constructor.hpp"
 #include "inventario.hpp"
-#include "recurso.hpp"
-#include "superficie.hpp"
 #include "objetivo.hpp"
 
 class Jugador
@@ -32,7 +22,6 @@ public:
     Jugador(int _id, int puntos_iniciales);
     Jugador();
     ~Jugador();
-
     //-------------------------GETTERS---------------------------------------
     int obtener_id();
     Coordenada obtener_posicion_jugador(); //YO
@@ -49,7 +38,7 @@ public:
     void setear_posicion(Coordenada coord);
 
     //--------------------------PARA PARSER----------------------------------
-    void agregar_material_al_inventario(string nombre, int cantidad, Recurso &recurso);    //materiales.txt
+    void agregar_material_al_inventario(Material * material);    //materiales.txt
     void agregar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio); //ubicaciones.txt
 
     //------------------------MODIFICADORES----------------------------------
@@ -72,6 +61,7 @@ public:
     void mostrar_lista_de_edificios(); //YO
     void mostrar_edificios_construidos();
     void mostrar_objetivos_y_progreso();
+    Inventario & inv(){return inventario;}
 
     /*
     bool chequear_objetivos(Lista<Objetivo> objetivos){

@@ -9,11 +9,9 @@ public:
     // POS: Se crea un edificio Obelisco con los parametros para la piedra(s), madera(w), metal(s) y cantidad permitida de construccion(p)
     Obelisco(int s, int w, int m, int p);
 
-    Obelisco(Edificio *edificio);
-
     // PRE:
-    // POS: se destruye el edificio obelisco
-    ~Obelisco();
+    // POS:
+    Obelisco(Edificio *edificio);
 };
 
 #endif // EDIFICIOOBELISCO_HPP

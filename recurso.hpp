@@ -1,9 +1,8 @@
 #ifndef RECURSO_HPP
 #define RECURSO_HPP
 
-#include "lista.hpp"
-
 #include "material.hpp"
+
 #include "materialMadera.hpp"
 #include "materialMetal.hpp"
 #include "materialPiedra.hpp"

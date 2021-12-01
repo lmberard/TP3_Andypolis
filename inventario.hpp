@@ -1,10 +1,12 @@
 #ifndef INVENTARIO_HPP
 #define INVENTARIO_HPP
 
+#include <iomanip>
+
 #include "lista.hpp"
+#include "material.hpp"
 #include "edificio.hpp"
-#include "recurso.hpp"
-#include <fstream>
+
 class Inventario
 {
 
@@ -26,7 +28,7 @@ public:
 
     // PRE:
     // POS:
-    void agregar_material(string nombre, int cantidad, Recurso &recurso);
+    void agregar_material(Material * material);
 
     // PRE:
     // POS: Verifica si hay materiales suficientes para la construccion de un edificio. Devuelve true si tiene y false si no.

@@ -25,7 +25,6 @@ andypolis: jugador.cpp
 
 #mapa:
 andypolis: mapa.cpp
-andypolis: funciones.cpp
 andypolis: ubicaciones.cpp
 
 #inventario: 
@@ -68,6 +67,7 @@ andypolis: edificioAserradero.cpp
 andypolis: edificioEscuela.cpp 
 andypolis: edificioFabrica.cpp
 andypolis: edificioMina.cpp 
+andypolis: edificioMinaOro.cpp 
 andypolis: edificioObelisco.cpp 
 andypolis: edificioPlantaElectrica.cpp 
 andypolis: edificioYacimiento.cpp 

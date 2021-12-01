@@ -1,7 +1,6 @@
 #ifndef MUELLE_HPP
 #define MUELLE_HPP
 
-#include "colors.hpp"
 #include "casilleroTransitable.hpp"
 
 class Muelle : public CasilleroTransitable{
@@ -11,4 +10,4 @@ class Muelle : public CasilleroTransitable{
         void caracteristicas();
 };
 
-#endif //TERRENO_HPP
+#endif //MUELLE_HPP

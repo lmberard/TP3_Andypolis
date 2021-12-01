@@ -1,8 +1,4 @@
-#include <string>
-#include <iostream>
-
 #include "minero.hpp"
-#include "ubicaciones.hpp"
 
 using namespace std;
 

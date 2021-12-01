@@ -80,9 +80,9 @@ void Jugador::setear_posicion(Coordenada coord)
 }
 //--------------------------PARA PARSER----------------------------------
 //materiales.txt
-void Jugador::agregar_material_al_inventario(string nombre, int cantidad, Recurso &recurso)
+void Jugador::agregar_material_al_inventario(Material* material)
 {
-    inventario.agregar_material(nombre, cantidad, recurso);
+    inventario.agregar_material(material);
 }
 
 //ubicaciones.txt
@@ -187,7 +187,7 @@ void Jugador::mostrar_objetivos_y_progreso()
 void Jugador::mostrar_edificios_construidos()
 {
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
-    {
+    {   
         cout << "Tipo de edificio: " << edificios[i].nombre << endl;
         cout << "\tCantidad construida: " << to_string(obtener_cantidad(edificios[i])) << endl;
         mostrar_coordenadas(edificios[i]);

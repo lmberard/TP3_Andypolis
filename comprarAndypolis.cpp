@@ -1,6 +1,3 @@
-#include <string>
-#include <iostream>
-
 #include "comprarAndypolis.hpp"
 
 using namespace std;

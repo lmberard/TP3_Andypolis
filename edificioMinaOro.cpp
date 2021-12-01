@@ -1,25 +1,14 @@
 #include "edificioMinaOro.hpp"
 
-MinaOro::MinaOro()
-{
-    caracteristicas();
-}
-
-void MinaOro::caracteristicas()
+MinaOro::MinaOro(int s, int w, int m, int p) : Edificio(s, w, m, p)
 {
     nombre = "mina oro";
     codigo = "G";
 
-    material_producido = "andycoins";
-    cantidad_producida = 50;
+    vida = 2;
+
+    produccion = "andycoins";
+    cant_produccion = 50;
 }
 
-int MinaOro::obtener_cantidad_producida()
-{
-    return  cantidad_producida;
-}
-
-string MinaOro::recurso_producido()
-{
-    return material_producido;
-}
+MinaOro::MinaOro(Edificio *edificio) : Edificio(edificio) {}

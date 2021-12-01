@@ -1,6 +1,3 @@
-#include <string>
-#include <iostream>
-
 #include "cansado.hpp"
 
 using namespace std;
