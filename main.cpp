@@ -10,19 +10,11 @@ using namespace std;
 int main()
 {
     Menu menu;
-    //Parser lector_archivos;
     Juego andypolis;
-    //Recurso recurso;
-    //Constructor bob;
-    //Inventario inventario;
-    //Jugador jugador1;
-    //Jugador jugador2;
-    //lector_archivos.cargar_mapa(andypolis);
-    //lector_archivos.cargar_inventario(recurso, jugador1, jugador2);
-    //lector_archivos.cargar_edificios(bob);
 
     int opcion = 0;
     //si el archivo ubicaciones.txt no existe o esta vacio entonces es una partida nueva
+    
     if (andypolis.es_partida_nueva())
     {
         do

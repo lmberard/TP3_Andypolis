@@ -88,6 +88,21 @@ void Jugador::agregar_material_al_inventario(string nombre, int cantidad, Recurs
 //ubicaciones.txt
 void Jugador::agregar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio)
 {
+    //TODO: MODIFIQUE ESTO
+
+    cout << "x: " << coordenada_edificio.coord_x << endl;
+    cout << "y: " << coordenada_edificio.coord_y << endl;
+
+    cout << "Nombre: " << nombre << endl; 
+
+    for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
+    {
+        if (edificios[i].nombre == nombre){
+            agregar_coordenada(edificios[i], coordenada_edificio);
+            return;
+        }
+    }   
+
     Ubicaciones nuevo_edificio_construido;
     setear_nombre(nuevo_edificio_construido, nombre);
     agregar_coordenada(nuevo_edificio_construido, coordenada_edificio);
@@ -176,6 +191,7 @@ void Jugador::mostrar_edificios_construidos()
         cout << "Tipo de edificio: " << edificios[i].nombre << endl;
         cout << "\tCantidad construida: " << to_string(obtener_cantidad(edificios[i])) << endl;
         mostrar_coordenadas(edificios[i]);
+        //cout << "hola" << endl;
     }
 }
 

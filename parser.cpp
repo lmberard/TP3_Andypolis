@@ -18,6 +18,7 @@ void Parser::cargar(Recurso &recurso, Jugador * jugador)
         archivo_materiales >> cantidad;
         jugador[1].agregar_material_al_inventario(nombre, stoi(cantidad), recurso);
     }
+
 }
 
 
@@ -87,16 +88,19 @@ bool Parser::cargar_partida_guardada(Mapa & mapa, Constructor & bob, Recurso & r
         } else if(estado_jugador_1 == true){
             
             jugador[0].agregar_ubicacion_lista_edificios(primer_str, coordenadas);
+            // TODO: CARGAR EN EL MAPA
 
         } else if(estado_jugador_2 == true){
 
             jugador[1].agregar_ubicacion_lista_edificios(primer_str, coordenadas);
+            // TODO: CARGAR EN EL MAPA
 
         } else{
 
             //juego.agregar_material_coordenada(primer_str, coordenadas);
 
         }
+
     }
 
     //partida_nueva = flag;

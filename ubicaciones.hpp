@@ -19,11 +19,8 @@ struct Ubicaciones
 {
     string nombre;
     Lista<Coordenada> coordenadas;
-
-    Ubicaciones() = default; //TODO: ARI MODIFICAR
-    Ubicaciones(Ubicaciones& otro); //TODO: ARI MODIFICAR
-    Ubicaciones& operator=(Ubicaciones& otro); //TODO: ARI MODIFICAR
 };
+
 
 //---------------------STRUCT UBICACIONES--------------------------------
 int obtener_cantidad(Ubicaciones info);

@@ -243,11 +243,13 @@ void Juego::construir_por_nombre_coordenada()
 
 void Juego::mostrar_edificios_construidos()
 {
-    if (jugador_tiene_energia(CANT_ENERGIA_LISTAR_EDIF))
+    /*if (jugador_tiene_energia(CANT_ENERGIA_LISTAR_EDIF))
     {
         if (id_jugador_es_valido(id_jugador_actual))
             jugadores[id_jugador_actual - 1].mostrar_edificios_construidos();
-    }
+    }*/
+
+    jugadores[id_jugador_actual - 1].mostrar_edificios_construidos();
 }
 
 void Juego::demoler_por_coordenada()
@@ -313,6 +315,8 @@ void Juego::mostrar_inventario()
         if (id_jugador_es_valido(id_jugador_actual))
             jugadores[id_jugador_actual - 1].mostrar_inventario();
     }
+
+    //TODO: BORRAR -> jugadores[id_jugador_actual - 1].mostrar_inventario(); 
 }
 
 //FALTAN COSAS
