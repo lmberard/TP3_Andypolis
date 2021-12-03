@@ -25,6 +25,11 @@ public:
     Edificio *obtener_edificio(Coordenada coord);
     string obtener_nombre_material(Coordenada coord);
     int obtener_cant_material(Coordenada coord);
+    int obtener_tam_lista_ubicaciones();
+    int obtener_cant_material(int i);
+    string obtener_nombre_material(int i);
+    Coordenada obtener_coordenada(int i, int j);
+    Lista<Ubicaciones> & lista_materiales();
 
     //------------------------SETTERS---------------------------------
     void agregar_coordenada_transitable(Coordenada coord);

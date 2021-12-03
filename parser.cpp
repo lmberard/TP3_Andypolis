@@ -1,6 +1,6 @@
 #include "parser.hpp"
 
-//LECTURA
+//LECTURA-----------------------------------------------------------------------------------------------
 
 void Parser::cargar(Recurso &recurso, Jugador * jugador)
 {
@@ -116,16 +116,17 @@ bool Parser::guardar(Constructor & bob)
         return false;
 }
 
-bool Parser::guardar_inventario(Jugador * jugadores)
+//PODRIA ESTAR MEJOR PERO FUE, FUNCIONA BIEN
+bool Parser::guardar_inventario(Jugador * jugador)
 {
     ofstream archivo_materiales(PATH_MATERIALES);
 
     if (archivo_materiales.is_open())
     {
-        for (int i = 1; i < jugadores[0].inv().obtener_cantidad() + 1; i++)
-            archivo_materiales << jugadores[0].inv().obtener_nombre_material(i) << ' ' 
-            << jugadores[0].inv().obtener_cant_material(i) << ' '
-            << jugadores[1].inv().obtener_cant_material(i) << '\n';
+        for (int i = 1; i < jugador[0].inv().obtener_cantidad() + 1; i++)
+            archivo_materiales << jugador[0].inv().obtener_nombre_material(i) << ' ' 
+            << jugador[0].inv().obtener_cant_material(i) << ' '
+            << jugador[1].inv().obtener_cant_material(i) << '\n';
 
         return true;
     }
@@ -133,10 +134,25 @@ bool Parser::guardar_inventario(Jugador * jugadores)
         return false;
 }
 
-//FALTA!!!
-bool Parser::guardar_partida(Mapa & mapa,Jugador *jugadores){
+bool Parser::guardar_partida(Mapa & mapa,Jugador *jugador)
+{
 
-    return true;
+    ofstream archivo_ubicaciones(PATH_UBICACIONES);
+
+    if (archivo_ubicaciones.is_open()){
+       
+        guardar_ubicaciones(mapa.lista_materiales(), archivo_ubicaciones);
+
+        for(int i = 0; i < 2; i++){
+            guardar_ubicacion_jugador(jugador[i], i, archivo_ubicaciones);
+            guardar_ubicaciones(jugador[i].lista_edificios(), archivo_ubicaciones);
+        }
+
+        return true;
+    }
+    else
+        return false;
+   
 }
 
 //EXTRA-----------------------------------------------------------------------------------------------
@@ -214,4 +230,32 @@ bool Parser::es_palabra(string & aux)
     }
 
     return status;
+}
+
+void Parser::guardar_ubicaciones(Lista<Ubicaciones> & lista, ofstream & archivo_ubicaciones)
+{
+    Coordenada coordenada;
+    
+    for (int i = 1; i < lista.mostrar_cantidad() + 1; i++){   
+        for(int j = 1; j < obtener_cantidad(lista[i]) + 1; j++){
+            archivo_ubicaciones << lista[i].nombre << ' ';
+            coordenada = lista[i].coordenadas[j];
+            guardar_coordenadas(coordenada, archivo_ubicaciones);
+        }
+    }
+}
+
+void Parser::guardar_ubicacion_jugador(Jugador & jugador, int i, ofstream & archivo_ubicaciones)
+{
+    Coordenada coordenada;
+    
+    archivo_ubicaciones << i+1 << ' ';
+    coordenada = jugador.obtener_posicion_jugador();
+    guardar_coordenadas(coordenada, archivo_ubicaciones);
+}
+
+void Parser::guardar_coordenadas(Coordenada & coordenada, ofstream & archivo_ubicaciones)
+{
+    archivo_ubicaciones << "(" << coordenada.coord_x <<", ";
+    archivo_ubicaciones << coordenada.coord_y << ")" << '\n';
 }

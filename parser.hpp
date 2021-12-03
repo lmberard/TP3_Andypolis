@@ -37,9 +37,17 @@ public:
 
     /*---------------------------GUARDADO--------------------------*/
 
-    bool guardar_inventario(Jugador * jugadores);
+    //PRE:
+    //POS:
     bool guardar(Constructor & bob);
-    bool guardar_partida(Mapa & mapa,Jugador * jugadores);
+
+    //PRE:
+    //POS:
+    bool guardar_inventario(Jugador * jugador);
+
+    //PRE:
+    //POS:
+    bool guardar_partida(Mapa & mapa,Jugador * jugador);
 
 private:
     /*----------------------------EXTRAS----------------------------*/
@@ -52,15 +60,37 @@ private:
     // POS:
     void crear_archivo_vacio(const string &PATH, fstream &archivo);
 
+    //PRE:
+    //POS:
     bool es_palabra(string & aux);
 
+    //PRE:
+    //POS:
     Coordenada obtener_coordenada(fstream &archivo_ubicaciones, string & aux_coordenada);
 
+    //PRE:
+    //POS:
     void cargar_materiales(fstream & archivo_ubicaciones, Recurso & recurso, Mapa & mapa, string & aux);
 
+    //PRE:
+    //POS:
     void cargar_edificios(fstream & archivo_ubicaciones, Jugador & jugador, Mapa & mapa, Constructor & bob, string & aux);
 
+    //PRE:
+    //POS:
     void cargar_posicion(fstream & archivo_ubicaciones,Jugador & jugador, string & aux);
+
+    //PRE:
+    //POS:
+    void guardar_ubicaciones(Lista<Ubicaciones> & lista, ofstream & archivo_ubicaciones);
+
+    //PRE:
+    //POS:
+    void guardar_ubicacion_jugador(Jugador & jugador, int i, ofstream & archivo_ubicaciones);
+
+    //PRE:
+    //POS:
+    void guardar_coordenadas(Coordenada & coordenada, ofstream & archivo_ubicaciones);
 
 };
 

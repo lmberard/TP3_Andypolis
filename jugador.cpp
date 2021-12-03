@@ -40,6 +40,11 @@ int Jugador::obtener_cant_andycoins()
     return 0;
 }
 
+Coordenada Jugador::obtener_coordenada(int i, int j)
+{
+    return edificios[i].coordenadas[j];
+}
+
 int Jugador::obtener_cant_bombas()
 {
     return 0;
@@ -54,9 +59,25 @@ int Jugador::obtener_cant_edificios_construidos(string nombre)
     }
     return 0;
 }
+
+int Jugador::obtener_cant_edificios_construidos(int i)
+{
+    return obtener_cantidad(edificios[i]); 
+}
+
 int Jugador::obtener_tam_lista_ubicaciones()
 {
     return edificios.mostrar_cantidad();
+}
+
+string Jugador::obtener_nombre_edificio(int i)
+{
+    return edificios[i].nombre;
+}
+
+Lista<Ubicaciones> & Jugador::lista_edificios()
+{
+    return edificios;
 }
 //-------------------------SETTERS---------------------------------------
 void Jugador::setear_objetivos_secundarios()
@@ -186,7 +207,6 @@ void Jugador::mostrar_edificios_construidos()
         cout << "Tipo de edificio: " << edificios[i].nombre << endl;
         cout << "\tCantidad construida: " << to_string(obtener_cantidad(edificios[i])) << endl;
         mostrar_coordenadas(edificios[i]);
-        //cout << "hola" << endl;
     }
 }
 

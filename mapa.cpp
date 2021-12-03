@@ -28,6 +28,31 @@ int Mapa::obtener_columnas()
     return columnas;
 }
 
+int Mapa::obtener_tam_lista_ubicaciones()
+{
+    return materiales.mostrar_cantidad();
+}
+
+int Mapa::obtener_cant_material(int i)
+{
+    return obtener_cantidad(materiales[i]); 
+}
+
+Coordenada Mapa::obtener_coordenada(int i, int j)
+{
+    return materiales[i].coordenadas[j];
+}
+
+string Mapa::obtener_nombre_material(int i)
+{
+    return materiales[i].nombre;
+}
+
+Lista<Ubicaciones> & Mapa::lista_materiales()
+{
+    return materiales;
+}
+
 //------------------------SETTERS---------------------------------
 void Mapa::agregar_coordenada_transitable(Coordenada coord)
 {
@@ -36,6 +61,15 @@ void Mapa::agregar_coordenada_transitable(Coordenada coord)
 
 void Mapa::agregar_material(Coordenada coord, Material* material)
 {
+
+    for (int i = 1; i < materiales.mostrar_cantidad() + 1; i++)
+    {
+        if (materiales[i].nombre == material->obtener_nombre()){
+            agregar_coordenada(materiales[i], coord);
+            return;
+        }
+    }   
+
     Ubicaciones nuevo_material;
     setear_nombre(nuevo_material, material->obtener_nombre());
     agregar_coordenada(nuevo_material, coord);

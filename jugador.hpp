@@ -29,7 +29,12 @@ public:
     int obtener_cant_andycoins();
     int obtener_cant_bombas();
     int obtener_cant_edificios_construidos(string nombre);
+    int obtener_cant_edificios_construidos(int i);
     int obtener_tam_lista_ubicaciones();
+    string obtener_nombre_edificio(int i);
+    Coordenada obtener_coordenada(int i, int j);
+
+    Lista<Ubicaciones> & lista_edificios();
 
     //-------------------------SETTERS---------------------------------------
     void setear_objetivos_secundarios();

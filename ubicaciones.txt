@@ -1,7 +1,7 @@
 madera (1, 0)
 1 (7, 6)
 escuela (3, 1)
-aserradero (4, 0)
+escuela (4, 0)
 mina oro (5, 0)
 2 (2, 7)
 planta electrica (1, 1)
