@@ -54,7 +54,7 @@ private:
 
     bool es_palabra(string & aux);
 
-    Coordenada obtener_coordenada(string & aux_coordenada);
+    Coordenada obtener_coordenada(fstream &archivo_ubicaciones, string & aux_coordenada);
 
     void cargar_materiales(fstream & archivo_ubicaciones, Recurso & recurso, Mapa & mapa, string & aux);
 

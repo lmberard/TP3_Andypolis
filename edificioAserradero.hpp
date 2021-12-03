@@ -4,7 +4,6 @@
 
 class Aserradero : public Edificio
 {
-
 public:
     // PRE:
     // POS: Se crea un edificio Aserradero con los parametros para la piedra(s), madera(w), metal(s) y cantidad permitida de construccion(p)

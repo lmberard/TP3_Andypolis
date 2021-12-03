@@ -31,8 +31,6 @@ Edificio *Constructor::construye(const string &edificio)
     if (pos > edificios.mostrar_cantidad())
         return construido;
 
-    if (edificio == "yacimiento")
-        construido = new Yacimiento(edificios[pos]);
     if (edificio == "aserradero")
         construido = new Aserradero(edificios[pos]);
     if (edificio == "escuela")
@@ -41,10 +39,14 @@ Edificio *Constructor::construye(const string &edificio)
         construido = new Fabrica(edificios[pos]);
     if (edificio == "mina")
         construido = new Mina(edificios[pos]);
+    if (edificio == "mina oro")
+        construido = new Mina(edificios[pos]);
     if (edificio == "obelisco")
         construido = new Obelisco(edificios[pos]);
-    if (edificio == "planta electrica")
+    if (edificio == "planta electrica"){};
         construido = new PlantaElectrica(edificios[pos]);
+    if (edificio == "yacimiento")
+        construido = new Yacimiento(edificios[pos]);
 
     return construido;
 }

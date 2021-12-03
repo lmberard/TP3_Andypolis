@@ -154,15 +154,15 @@ void Parser::crear_archivo_vacio(const string &PATH, fstream &archivo)
     archivo.open(PATH, ios::in);
 }
 
-Coordenada Parser::obtener_coordenada(string & aux_coordenada)
+Coordenada Parser::obtener_coordenada(fstream &archivo_ubicaciones, string & aux_coordenada)
 {
     Coordenada coordenada;
-
-        if (aux_coordenada[0] == '('){
-            coordenada.coord_x = aux_coordenada[1] - '0';
-            coordenada.coord_y = aux_coordenada[3] - '0';
-        }
-
+    string aux_coordenada2;
+ 
+    coordenada.coord_x = aux_coordenada[1] - '0';
+    archivo_ubicaciones >> aux_coordenada2;
+    coordenada.coord_y = aux_coordenada2[0] - '0';
+      
     return coordenada;
 }
 
@@ -171,7 +171,7 @@ void Parser::cargar_materiales(fstream & archivo_ubicaciones, Recurso & recurso,
     while(es_palabra(aux)){
         string material = aux;
         archivo_ubicaciones >> aux;
-        Coordenada coordenada = obtener_coordenada(aux);
+        Coordenada coordenada = obtener_coordenada(archivo_ubicaciones, aux);
         mapa.agregar_material(coordenada,recurso.dar_material(material));
         archivo_ubicaciones >> aux;
     }
@@ -182,9 +182,11 @@ void Parser::cargar_edificios(fstream & archivo_ubicaciones, Jugador & jugador, 
     while(es_palabra(aux)){
         string edificio = aux;
         archivo_ubicaciones >> aux;
-        if(es_palabra(aux))                      
+        if(es_palabra(aux)){                      
             edificio = edificio + " " + aux;
-        Coordenada coordenada = obtener_coordenada(aux);
+            archivo_ubicaciones >> aux;
+        }
+        Coordenada coordenada = obtener_coordenada(archivo_ubicaciones, aux);
         mapa.agregar_edificio(coordenada, bob.construye(edificio));
         jugador.agregar_ubicacion_lista_edificios(edificio, coordenada);
         if(!(archivo_ubicaciones >> aux))
@@ -195,7 +197,7 @@ void Parser::cargar_edificios(fstream & archivo_ubicaciones, Jugador & jugador, 
 void Parser::cargar_posicion(fstream & archivo_ubicaciones, Jugador & jugador, string & aux)
 {   
     archivo_ubicaciones >> aux;
-    jugador.setear_posicion(obtener_coordenada(aux));
+    jugador.setear_posicion(obtener_coordenada(archivo_ubicaciones, aux));
     archivo_ubicaciones >> aux;
 }
 

@@ -21,7 +21,7 @@ andypolis: juego.cpp
 andypolis: jugador.cpp 
 
 #diccionario
-andypolis: diccionario.cpp 
+#andypolis: diccionario.cpp 
 
 #ciudad:
 #andypolis: ciudad.cpp

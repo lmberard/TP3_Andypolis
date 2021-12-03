@@ -90,11 +90,6 @@ void Jugador::agregar_ubicacion_lista_edificios(string nombre, Coordenada coorde
 {
     //TODO: MODIFIQUE ESTO
 
-    cout << "x: " << coordenada_edificio.coord_x << endl;
-    cout << "y: " << coordenada_edificio.coord_y << endl;
-
-    cout << "Nombre: " << nombre << endl; 
-
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
     {
         if (edificios[i].nombre == nombre){
