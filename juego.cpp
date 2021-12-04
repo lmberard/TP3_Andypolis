@@ -439,6 +439,57 @@ int Juego::pedir_id_jugador()
     return id;
 }
 
+void Juego::asignar_objetivos(){
+    int numero;
+    bool flag;
+
+    for(int i = 0; i < CANT_JUGADORES ; i++){
+        int numeros_generados[CANT_OBJETIVOS_SECUNDARIOS_JUGADOR] = {}; //inicializa en 0;
+
+        for(int j = 0; j < CANT_OBJETIVOS_SECUNDARIOS_JUGADOR; j++){
+            
+            do{
+                flag = false;
+                numero = rand()%(1 - CANT_OBJETIVOS_SECUNDARIOS_JUEGO + 1) + CANT_OBJETIVOS_SECUNDARIOS_JUEGO; 
+                for (int k = 0; k < CANT_OBJETIVOS_SECUNDARIOS_JUGADOR; k++){
+                    if(numeros_generados[k] == numero)
+                        flag = true;
+                }
+            } while(flag == true);     
+            
+            numeros_generados[j] = numero;
+/*
+            if(numero == 1)
+                jugadores[i].asignar_objetivos_jugador(new ComprarAndypolis());
+            if(numero == 2)
+                jugadores[i].asignar_objetivos_jugador(new EdadDePiedra());    
+            if(numero == 3)
+                jugadores[i].asignar_objetivos_jugador(new Bombardero());
+            if(numero == 4)
+                jugadores[i].asignar_objetivos_jugador(new Energetico());
+            if(numero == 5)
+                jugadores[i].asignar_objetivos_jugador(new Letrado());
+            if(numero == 6)
+                jugadores[i].asignar_objetivos_jugador(new Minero());
+            if(numero == 7)
+                jugadores[i].asignar_objetivos_jugador(new Cansado());
+            if(numero == 8)
+                jugadores[i].asignar_objetivos_jugador(new ConstructorO());
+            if(numero == 9)
+                jugadores[i].asignar_objetivos_jugador(new Armado());
+            if(numero == 10)
+                jugadores[i].asignar_objetivos_jugador(new Extremista());
+*/                   
+        }
+    }
+
+}
+
+
+
+
+
+
 //-----------------------------------------------------------------
 void Juego::demoler_edificio(Coordenada coord)
 {

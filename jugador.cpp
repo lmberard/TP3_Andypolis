@@ -157,6 +157,13 @@ bool Jugador::tiene_energia(int cantidad_necesaria)
     return puntos_energia >= cantidad_necesaria;
 }
 
+void Jugador::asignar_objetivos_jugador(Objetivo * objetivo){
+    objetivos.alta(objetivo);
+}
+
+
+
+
 //------------------------OPCIONES JUGADOR-------------------------------
 //GRAFO
 void Jugador::moverse_a_coordenada(int x, int y)
