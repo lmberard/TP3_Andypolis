@@ -27,3 +27,7 @@ bool Cansado::chequear_estado(int puntos_energia){
 string Cansado::obtener_objetivo(){
     return "Cansado";
 }
+
+bool Cansado::es_principal(){
+    return false;
+}

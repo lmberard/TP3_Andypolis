@@ -25,6 +25,7 @@ public:
 
     bool chequear_estado(Lista<Ubicaciones> & edificios);
     string obtener_objetivo();
+    bool es_principal();
 };
 
 

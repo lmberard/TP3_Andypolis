@@ -28,3 +28,7 @@ string EdadDePiedra::obtener_objetivo(){
     return "Edad de Piedra";
 }
 
+bool EdadDePiedra::es_principal(){
+    return false;
+}
+

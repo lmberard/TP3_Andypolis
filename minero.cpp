@@ -36,3 +36,7 @@ string Minero::obtener_objetivo(){
     return "Minero";
 }
 
+bool Minero::es_principal(){
+    return false;
+}
+

@@ -24,6 +24,7 @@ public:
     ~Letrado();
 
     string obtener_objetivo();
+    bool es_principal();
 };
 
 

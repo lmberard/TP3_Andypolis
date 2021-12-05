@@ -49,3 +49,7 @@ string ConstructorO::obtener_objetivo(){
     return "ConstructorO";
 }
 
+bool ConstructorO::es_principal(){
+    return false;
+}
+

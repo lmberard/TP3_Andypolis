@@ -17,3 +17,6 @@ string Letrado::obtener_objetivo(){
     return "Letrado";
 }
 
+bool Letrado::es_principal(){
+    return false;
+}

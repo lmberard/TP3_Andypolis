@@ -28,3 +28,6 @@ string Extremista::obtener_objetivo(){
     return "Extremista";
 }
 
+bool Extremista::es_principal(){
+    return false;
+}

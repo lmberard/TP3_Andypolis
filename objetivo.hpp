@@ -30,9 +30,8 @@ public:
     Objetivo();
     ~Objetivo();
 
-    virtual string obtener_objetivo() = 0; //HACER VIRTUAL
-    bool es_principal();             //HACER VIRTUAL
-
+    virtual string obtener_objetivo() = 0; 
+    virtual bool es_principal() = 0;             
     virtual bool chequear_estado(Inventario & inventario);
     virtual bool chequear_estado(int puntos_energia);
     //virtual bool chequear_estado(Diccionario & diccionario, Lista<Ubicaciones> edificios); /*esto para objetivo Letrado*/

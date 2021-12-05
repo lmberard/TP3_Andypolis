@@ -17,3 +17,7 @@ string ConstruirObelisco::obtener_objetivo(){
     return "Construir Obelisco";
 }
 
+bool ConstruirObelisco::es_principal(){
+    return true;
+}
+

@@ -27,3 +27,8 @@ bool Armado::chequear_estado(Inventario & inventario){
 string Armado::obtener_objetivo(){
     return "Armado";
 }
+
+bool Armado::es_principal(){
+    return false;
+}
+

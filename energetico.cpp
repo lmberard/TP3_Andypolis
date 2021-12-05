@@ -27,3 +27,7 @@ bool Energetico::chequear_estado(int puntos_energia){
 string Energetico::obtener_objetivo(){
     return "Energetico";
 }
+
+bool Energetico::es_principal(){
+    return false;
+}

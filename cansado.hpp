@@ -27,6 +27,7 @@ public:
 
     bool chequear_estado(int energia);
     string obtener_objetivo();
+    bool es_principal();
 };
 
 

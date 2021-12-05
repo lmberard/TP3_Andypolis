@@ -27,3 +27,7 @@ bool Bombardero::chequear_estado(Inventario & inventario){
 string Bombardero::obtener_objetivo(){
     return "Bombardero";
 }
+
+bool Bombardero::es_principal(){
+    return false;
+}

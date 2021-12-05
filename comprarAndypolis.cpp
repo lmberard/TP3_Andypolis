@@ -27,3 +27,7 @@ bool ComprarAndypolis::chequear_estado(Inventario & inventario){
 string ComprarAndypolis::obtener_objetivo(){
     return "Comprar Andypolis";
 }
+
+bool ComprarAndypolis::es_principal(){
+    return false;
+}
