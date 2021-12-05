@@ -42,7 +42,7 @@ Edificio *Constructor::construye(const string &edificio)
         construido = new Mina(edificios[pos]);
     if (edificio == "obelisco")
         construido = new Obelisco(edificios[pos]);
-    if (edificio == "planta electrica"){};
+    if (edificio == "planta electrica")
         construido = new PlantaElectrica(edificios[pos]);
     if (edificio == "yacimiento")
         construido = new Yacimiento(edificios[pos]);

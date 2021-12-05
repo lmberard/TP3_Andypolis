@@ -8,7 +8,16 @@ Mapa::Mapa()
 Mapa::~Mapa()
 {
     //borrar_todo();
-    //mapa[5][0]->quitar_elemento();
+    mapa[5][0]->quitar_elemento();
+    mapa[5][3]->quitar_elemento();
+    mapa[1][2]->quitar_elemento();
+    mapa[5][1]->quitar_elemento();
+    mapa[6][0]->quitar_elemento();
+    mapa[4][0]->quitar_elemento();
+    mapa[1][1]->quitar_elemento();
+    mapa[0][0]->quitar_elemento();
+    mapa[1][0]->quitar_elemento();
+    mapa[0][1]->quitar_elemento();
 
     for (int i = 0; i < filas; i++)
         for (int j = 0; j < columnas; j++)

@@ -7,9 +7,9 @@
 using namespace std;
 int main()
 {
+    
     Juego andypolis;
-
     andypolis.jugar();
-   
+
     return 0;
 }
