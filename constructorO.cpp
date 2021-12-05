@@ -44,3 +44,8 @@ bool ConstructorO::chequear_estado(Lista<Ubicaciones> & edificios){
     
     return aux;
 }
+
+string ConstructorO::obtener_objetivo(){
+    return "ConstructorO";
+}
+

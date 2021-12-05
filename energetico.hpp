@@ -26,6 +26,7 @@ public:
     ~Energetico();
 
     bool chequear_estado(int energia);
+    string obtener_objetivo();
 };
 
 

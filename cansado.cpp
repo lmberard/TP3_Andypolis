@@ -24,3 +24,6 @@ bool Cansado::chequear_estado(int puntos_energia){
     return aux;
 }
 
+string Cansado::obtener_objetivo(){
+    return "Cansado";
+}

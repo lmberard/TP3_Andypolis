@@ -31,3 +31,8 @@ bool Minero::chequear_estado(Lista<Ubicaciones> & edificios){
     
     return aux;
 }
+
+string Minero::obtener_objetivo(){
+    return "Minero";
+}
+

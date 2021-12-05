@@ -22,6 +22,8 @@ private:
 public:
     ConstruirObelisco();
     ~ConstruirObelisco();
+
+    string obtener_objetivo();
 };
 
 

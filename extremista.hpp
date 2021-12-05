@@ -26,6 +26,7 @@ public:
     ~Extremista();
 
     bool chequear_estado(Inventario & inventario);
+    string obtener_objetivo();
 };
 
 

@@ -24,3 +24,7 @@ bool Extremista::chequear_estado(Inventario & inventario){
     return aux;
 }
 
+string Extremista::obtener_objetivo(){
+    return "Extremista";
+}
+

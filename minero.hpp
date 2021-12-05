@@ -24,6 +24,7 @@ public:
     ~Minero();
 
     bool chequear_estado(Lista<Ubicaciones> & edificios);
+    string obtener_objetivo();
 };
 
 

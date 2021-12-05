@@ -23,3 +23,7 @@ bool Bombardero::chequear_estado(Inventario & inventario){
 
     return aux;
 }
+
+string Bombardero::obtener_objetivo(){
+    return "Bombardero";
+}

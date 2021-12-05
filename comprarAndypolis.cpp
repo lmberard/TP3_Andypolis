@@ -23,3 +23,7 @@ bool ComprarAndypolis::chequear_estado(Inventario & inventario){
 
     return aux;
 }
+
+string ComprarAndypolis::obtener_objetivo(){
+    return "Comprar Andypolis";
+}

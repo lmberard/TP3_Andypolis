@@ -23,3 +23,7 @@ bool Energetico::chequear_estado(int puntos_energia){
 
     return aux;
 }
+
+string Energetico::obtener_objetivo(){
+    return "Energetico";
+}

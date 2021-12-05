@@ -16,11 +16,6 @@ Objetivo::~Objetivo()
 }
 
 /*
-string Objetivo::obtener_objetivo() const
-{
-    return objetivo;
-}
-
 bool Objetivo::es_principal()
 {
     bool aux = false;

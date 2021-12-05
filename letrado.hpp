@@ -22,6 +22,8 @@ private:
 public:
     Letrado();
     ~Letrado();
+
+    string obtener_objetivo();
 };
 
 

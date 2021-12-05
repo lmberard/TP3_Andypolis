@@ -12,3 +12,8 @@ ConstruirObelisco::ConstruirObelisco() : Objetivo()
 ConstruirObelisco::~ConstruirObelisco()
 {
 }
+
+string ConstruirObelisco::obtener_objetivo(){
+    return "Construir Obelisco";
+}
+

@@ -30,7 +30,7 @@ public:
     Objetivo();
     ~Objetivo();
 
-    string obtener_objetivo() const; //HACER VIRTUAL
+    virtual string obtener_objetivo() = 0; //HACER VIRTUAL
     bool es_principal();             //HACER VIRTUAL
 
     virtual bool chequear_estado(Inventario & inventario);

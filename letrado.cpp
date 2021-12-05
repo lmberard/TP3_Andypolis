@@ -12,3 +12,8 @@ Letrado::Letrado() : Objetivo()
 Letrado::~Letrado()
 {
 }
+
+string Letrado::obtener_objetivo(){
+    return "Letrado";
+}
+

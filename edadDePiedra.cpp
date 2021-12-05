@@ -23,3 +23,8 @@ bool EdadDePiedra::chequear_estado(Inventario & inventario){
         
     return aux;
 }
+
+string EdadDePiedra::obtener_objetivo(){
+    return "Edad de Piedra";
+}
+

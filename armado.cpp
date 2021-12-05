@@ -24,4 +24,6 @@ bool Armado::chequear_estado(Inventario & inventario){
     return aux;
 }
 
-// TODO: BORRAR PIPO 
+string Armado::obtener_objetivo(){
+    return "Armado";
+}
