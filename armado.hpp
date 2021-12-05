@@ -22,7 +22,7 @@ private:
 
 
 public:
-    Armado(string objetivo, string tipo);
+    Armado();
     ~Armado();
 
     bool chequear_estado(Inventario & inventario);

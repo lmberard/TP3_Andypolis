@@ -20,7 +20,7 @@ private:
 
 
 public:
-    Minero(string objetivo, string tipo);
+    Minero();
     ~Minero();
 
     bool chequear_estado(Lista<Ubicaciones> & edificios);

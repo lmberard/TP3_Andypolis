@@ -22,7 +22,7 @@ private:
 
 
 public:
-    ComprarAndypolis(string objetivo, string tipo);
+    ComprarAndypolis();
     ~ComprarAndypolis();
 
     bool chequear_estado(Inventario & inventario);

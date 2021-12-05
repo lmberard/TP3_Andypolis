@@ -20,7 +20,7 @@ private:
 
 
 public:
-    Letrado(string objetivo, string tipo);
+    Letrado();
     ~Letrado();
 };
 

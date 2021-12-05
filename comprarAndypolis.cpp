@@ -5,7 +5,7 @@
 
 using namespace std;
 
-ComprarAndypolis::ComprarAndypolis(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+ComprarAndypolis::ComprarAndypolis() : Objetivo()
 {
 }
 

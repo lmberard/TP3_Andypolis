@@ -23,7 +23,7 @@ private:
 
 
 public:
-    EdadDePiedra(string objetivo, string tipo);
+    EdadDePiedra();
     ~EdadDePiedra();
 
    bool chequear_estado(Inventario & inventario);

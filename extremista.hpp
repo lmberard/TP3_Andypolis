@@ -22,7 +22,7 @@ private:
 
 
 public:
-    Extremista(string objetivo, string tipo);
+    Extremista();
     ~Extremista();
 
     bool chequear_estado(Inventario & inventario);

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Minero::Minero(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+Minero::Minero() : Objetivo()
 {
 }
 

@@ -20,7 +20,7 @@ private:
 
 
 public:
-    ConstructorO(string objetivo, string tipo);
+    ConstructorO();
     ~ConstructorO();
 
     bool chequear_estado(Lista<Ubicaciones> & edificios);

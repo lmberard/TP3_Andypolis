@@ -22,7 +22,7 @@ private:
 
 
 public:
-    Energetico(string objetivo, string tipo);
+    Energetico();
     ~Energetico();
 
     bool chequear_estado(int energia);

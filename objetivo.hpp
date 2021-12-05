@@ -23,18 +23,15 @@ static const string OBJETIVO_SECUNDARIO = "secundario";
 class Objetivo
 {
 protected:
-    string objetivo;
-    string tipo;
     bool objetivo_cumplido;
 
 public:
 
     Objetivo();
-    Objetivo(string objetivo, string tipo);
     ~Objetivo();
 
-    string obtener_objetivo() const;
-    bool es_principal();
+    string obtener_objetivo() const; //HACER VIRTUAL
+    bool es_principal();             //HACER VIRTUAL
 
     virtual bool chequear_estado(Inventario & inventario);
     virtual bool chequear_estado(int puntos_energia);

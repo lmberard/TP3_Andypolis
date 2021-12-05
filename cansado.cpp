@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Cansado::Cansado(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+Cansado::Cansado() : Objetivo()
 {
 }
 

@@ -458,7 +458,7 @@ void Juego::asignar_objetivos(){
             } while(flag == true);     
             
             numeros_generados[j] = numero;
-/*
+
             if(numero == 1)
                 jugadores[i].asignar_objetivos_jugador(new ComprarAndypolis());
             if(numero == 2)
@@ -479,7 +479,7 @@ void Juego::asignar_objetivos(){
                 jugadores[i].asignar_objetivos_jugador(new Armado());
             if(numero == 10)
                 jugadores[i].asignar_objetivos_jugador(new Extremista());
-*/                   
+                   
         }
     }
 

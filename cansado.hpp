@@ -22,7 +22,7 @@ private:
 
 
 public:
-    Cansado(string objetivo, string tipo);
+    Cansado();
     ~Cansado();
 
     bool chequear_estado(int energia);
