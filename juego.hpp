@@ -18,6 +18,7 @@
 #include "mapa.hpp"
 #include "funciones.hpp"
 #include "edificio.hpp"
+#include "construirObelisco.hpp"
 
 const int LLUVIA_METAL_MIN = 2;
 const int LLUVIA_METAL_MAX = 4;

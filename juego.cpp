@@ -444,6 +444,7 @@ void Juego::asignar_objetivos(){
     bool flag;
 
     for(int i = 0; i < CANT_JUGADORES ; i++){
+        jugadores[i].asignar_objetivos_jugador(new ConstruirObelisco()); //Objetivo principal
         int numeros_generados[CANT_OBJETIVOS_SECUNDARIOS_JUGADOR] = {}; //inicializa en 0;
 
         for(int j = 0; j < CANT_OBJETIVOS_SECUNDARIOS_JUGADOR; j++){
