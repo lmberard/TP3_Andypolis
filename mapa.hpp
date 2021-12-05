@@ -56,6 +56,7 @@ public:
     bool coordenadas_validas(Coordenada coord);
     bool coordenada_es_transitable(Coordenada coord);
     bool casillero_es_transitable(string tipo_casillero);
+    //void borrar_todo();
 };
 
 #endif // MAPA_HPP

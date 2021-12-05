@@ -24,7 +24,6 @@ void Constructor::agregar_edificio(string nombre, int piedra, int madera, int me
 
 Edificio *Constructor::construye(const string &edificio)
 {
-
     Edificio *construido = NULL;
     int pos = buscar_edificio(edificio);
 

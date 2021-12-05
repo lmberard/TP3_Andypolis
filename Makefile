@@ -12,11 +12,11 @@ andypolis: main.cpp
 andypolis: parser.cpp
 
 #menu: 
-andypolis: menu.cpp 
-
+#andypolis: menu.cpp 
+andypolis: menu2.cpp 
 #juego: 
-andypolis: juego.cpp
-
+#andypolis: juego.cpp
+andypolis: juego2.cpp
 #jugador:
 andypolis: jugador.cpp 
 
@@ -87,6 +87,16 @@ andypolis: materialMetal.cpp
 andypolis: constructor.cpp
 andypolis: recurso.cpp 
 andypolis: superficie.cpp 
+
+#jugadas:
+andypolis: jugada.cpp
+
+andypolis: comenzarpartida.cpp
+andypolis: finalizarturno.cpp
+andypolis: listaredificios.cpp
+andypolis: mostrarinventario.cpp
+andypolis: mostrarmapa.cpp
+
 
 #libreria para los colores: 
 andypolis: colors.cpp 

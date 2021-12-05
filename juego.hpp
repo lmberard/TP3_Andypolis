@@ -41,22 +41,32 @@ class Juego
 {
 private:
 
-    //Gestor de archivos para cargar una partida del juego y sus elementos 
-    Parser archivo;
+    /*El juego andypolis consta de casilleros (Superficie) dispuestos en un mapa (Mapa) que puede 
+    tener edificios (Constructor) y materiales (Recursos), en donde 2 jugadores (Jugador) toman 
+    decisiones (Jugada) para lograr sus objetivos (Objetivo) y ganar la partida  */
 
     //elementos del juego: casilleros, edificios y materiales
     Superficie superficie;
     Constructor bob;
     Recurso recurso;
 
-    //Menú del juego
-    //Menu menu;
-
     //mapa del juego
     Mapa mapa;
  
     //jugadores:
     Jugador jugadores[CANT_JUGADORES];
+
+    //Objetivo:
+    Objetivo *objetivo;
+
+    //Jugada:
+    //Jugada *jugada;
+
+    //Gestor de archivos para cargar una partida del juego y sus elementos 
+    Parser archivo;
+
+    //Menú del juego
+    //Menu menu;
 
     //Estado del juego, quien esta jugando ahora mismo y si la partida es nueva o no
     int id_jugador_actual;
@@ -69,13 +79,12 @@ public:
 
     //--------------------------GETTERS--------------------------------
 
-    int obtener_cant_construidos(string nombre_edificio);
+    //int obtener_cant_construidos(string nombre_edificio);
     int obtener_id_jugador_actual();
     bool es_partida_nueva();
     //--------------------------SETTERS--------------------------------
     void setear_coordenada_jugador(int id_jugador);
     void setear_id_jugador_actual(int id_jugador);
-    void setear_estado_partida(bool flag);
     //---------------------MAPA PARSER---------------------------------
   
     //TODO: Revisar nombre y metodo
@@ -116,5 +125,6 @@ public:
     int pedir_id_jugador();
 
     void demoler_edificio(Coordenada coord);
+
 };
 #endif //JUEGO_HPP

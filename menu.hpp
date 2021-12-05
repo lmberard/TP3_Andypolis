@@ -82,7 +82,7 @@ public:
     // post: Obtiene una respuesta del usuario y la devuelve en minusculas.
     string devolver_rta_usuario();
 
-    bool confirmacion_usuario();
+    //bool confirmacion_usuario();
 
     ////////////////////////////////
     void limpiar_pantalla();
@@ -102,7 +102,7 @@ public:
     bool cerro_juego(int opcion_elegida);
 };
 
-bool strings_son_iguales(string &str1, string &str2);
-bool char_son_iguales(char &c1, char &c2);
+//bool strings_son_iguales(string &str1, string &str2);
+//bool char_son_iguales(char &c1, char &c2);
 
 #endif // MENU_H

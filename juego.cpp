@@ -29,7 +29,7 @@ Juego::~Juego()
 }
 
 //--------------------------GETTERS--------------------------------
-
+/*
 int Juego::obtener_cant_construidos(string nombre_edificio)
 {
     int suma = 0;
@@ -38,7 +38,7 @@ int Juego::obtener_cant_construidos(string nombre_edificio)
 
     return suma;
 }
-
+*/
 int Juego::obtener_id_jugador_actual()
 {
     return id_jugador_actual;
@@ -62,11 +62,6 @@ void Juego::setear_coordenada_jugador(int id_jugador)
 void Juego::setear_id_jugador_actual(int id_jugador)
 {
     id_jugador_actual = id_jugador;
-}
-
-void Juego::setear_estado_partida(bool flag)
-{
-    partida_nueva = flag;
 }
 
 //----------------------------MAPA---------------------------------
@@ -133,7 +128,7 @@ void Juego::modificar_edificio_por_nombre()
 void Juego::mostrar_todos_edificios()
 {
     int cant_edificios = bob.cant_edificios();
-    int cant_construidos = 0, cant_disponible = 0;
+    //int cant_construidos = 0, cant_disponible = 0;
     Edificio *edificio;
 
     cout << left << TXT_BOLD << TXT_UNDERLINE << BGND_BLUE_4
@@ -149,16 +144,16 @@ void Juego::mostrar_todos_edificios()
     for (int i = 1; i < cant_edificios + 1; i++)
     {
         edificio = bob.mostrar_edificio(i);
-        cant_construidos = obtener_cant_construidos(edificio->obtener_nombre());
-        cant_disponible = edificio->obtener_cant_max() - cant_construidos;
+        //cant_construidos = obtener_cant_construidos(edificio->obtener_nombre());
+        //cant_disponible = edificio->obtener_cant_max() - cant_construidos;
 
         cout << left
              << setw(23) << edificio->obtener_nombre() << '\t'
              << setw(23) << edificio->obtener_madera() << '\t'
              << setw(23) << edificio->obtener_metal() << '\t'
              << setw(23) << edificio->obtener_piedra() << '\t'
-             << setw(23) << cant_construidos << '\t'
-             << setw(23) << cant_disponible << '\t'
+             << setw(23) << 0 << '\t'
+             << setw(23) << edificio->obtener_cant_max() << '\t'
              << setw(23) << edificio->obtener_tipo_produccion() << '\t'
              << setw(23) << edificio->obtener_cant_produccion()
              << endl;
