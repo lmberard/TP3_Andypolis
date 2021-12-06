@@ -22,10 +22,12 @@ private:
 
 
 public:
-    Bombardero(string objetivo, string tipo);
+    Bombardero();
     ~Bombardero();
 
     bool chequear_estado(Inventario & inventario);
+    string obtener_objetivo();
+    bool es_principal();
 };
 
 

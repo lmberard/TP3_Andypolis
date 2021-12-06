@@ -5,6 +5,16 @@
 #include "ubicaciones.hpp"
 #include "inventario.hpp"
 #include "objetivo.hpp"
+#include "comprarAndypolis.hpp"
+#include "edadDePiedra.hpp"
+#include "bombardero.hpp"
+#include "energetico.hpp"
+#include "letrado.hpp"
+#include "minero.hpp"
+#include "cansado.hpp"
+#include "constructorO.hpp"
+#include "armado.hpp"
+#include "extremista.hpp"
 
 class Jugador
 {
@@ -15,7 +25,7 @@ private:
     Coordenada posicion_jugador;
 
     int puntos_energia;
-    Lista<Objetivo> objetivos;
+    Lista<Objetivo *> objetivos;
 
 public:
     //-----------------CONSTRUCTORES DESTRUCTORES----------------------------
@@ -54,6 +64,7 @@ public:
     bool es_su_edificio(string nombre, Coordenada coordenada);
     bool cantidad_suficiente_material(Edificio *edificio, bool construir);
     bool tiene_energia(int cantidad_necesaria);
+    void asignar_objetivos_jugador(Objetivo * objetivo);
 
     //------------------------OPCIONES JUGADOR-------------------------------
     void moverse_a_coordenada(int x, int y);

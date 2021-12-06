@@ -5,10 +5,18 @@
 
 using namespace std;
 
-Letrado::Letrado(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+Letrado::Letrado() : Objetivo()
 {
 }
 
 Letrado::~Letrado()
 {
+}
+
+string Letrado::obtener_objetivo(){
+    return "Letrado";
+}
+
+bool Letrado::es_principal(){
+    return false;
 }

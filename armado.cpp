@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Armado::Armado(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+Armado::Armado() : Objetivo()
 {
 }
 
@@ -24,4 +24,11 @@ bool Armado::chequear_estado(Inventario & inventario){
     return aux;
 }
 
-// TODO: BORRAR PIPO 
+string Armado::obtener_objetivo(){
+    return "Armado";
+}
+
+bool Armado::es_principal(){
+    return false;
+}
+

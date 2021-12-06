@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Energetico::Energetico(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+Energetico::Energetico() : Objetivo()
 {
 }
 
@@ -22,4 +22,12 @@ bool Energetico::chequear_estado(int puntos_energia){
     }
 
     return aux;
+}
+
+string Energetico::obtener_objetivo(){
+    return "Energetico";
+}
+
+bool Energetico::es_principal(){
+    return false;
 }

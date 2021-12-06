@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Bombardero::Bombardero(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+Bombardero::Bombardero() : Objetivo()
 {
 }
 
@@ -22,4 +22,12 @@ bool Bombardero::chequear_estado(Inventario & inventario){
     }
 
     return aux;
+}
+
+string Bombardero::obtener_objetivo(){
+    return "Bombardero";
+}
+
+bool Bombardero::es_principal(){
+    return false;
 }

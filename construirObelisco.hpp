@@ -20,8 +20,11 @@ private:
 
 
 public:
-    ConstruirObelisco(string objetivo, string tipo);
+    ConstruirObelisco();
     ~ConstruirObelisco();
+
+    string obtener_objetivo();
+    bool es_principal();
 };
 
 

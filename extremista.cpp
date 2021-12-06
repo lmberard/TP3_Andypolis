@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Extremista::Extremista(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+Extremista::Extremista() : Objetivo()
 {
 }
 
@@ -24,3 +24,10 @@ bool Extremista::chequear_estado(Inventario & inventario){
     return aux;
 }
 
+string Extremista::obtener_objetivo(){
+    return "Extremista";
+}
+
+bool Extremista::es_principal(){
+    return false;
+}

@@ -12,6 +12,7 @@
 #include "mapa.hpp"
 #include "funciones.hpp"
 #include "edificio.hpp"
+#include "construirObelisco.hpp"
 
 const int LLUVIA_METAL_MIN = 2;
 const int LLUVIA_METAL_MAX = 4;
@@ -21,6 +22,8 @@ const int LLUVIA_PIEDRA_MIN = 1;
 const int LLUVIA_PIEDRA_MAX = 2;
 
 const int CANT_JUGADORES = 2;
+const int CANT_OBJETIVOS_SECUNDARIOS_JUEGO = 10; 
+const int CANT_OBJETIVOS_SECUNDARIOS_JUGADOR = 3; 
 
 const int CANT_ENERGIA_FIN_PARTIDA = 20;
 const int CANT_ENERGIA_NUEVA_PARTIDA = 50;
@@ -108,6 +111,7 @@ public:
     bool id_jugador_es_valido(int id_jugador);
     bool chequear_permisos_edificio(const string &eledificio);
     bool jugador_tiene_energia(const int cantidad);
+    void asignar_objetivos();
 
     Coordenada pedir_coordenadas();
     string pedir_nombre_edificio();

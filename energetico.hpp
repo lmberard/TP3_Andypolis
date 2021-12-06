@@ -22,10 +22,12 @@ private:
 
 
 public:
-    Energetico(string objetivo, string tipo);
+    Energetico();
     ~Energetico();
 
     bool chequear_estado(int energia);
+    string obtener_objetivo();
+    bool es_principal();
 };
 
 

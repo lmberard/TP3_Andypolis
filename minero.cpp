@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Minero::Minero(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+Minero::Minero() : Objetivo()
 {
 }
 
@@ -31,3 +31,12 @@ bool Minero::chequear_estado(Lista<Ubicaciones> & edificios){
     
     return aux;
 }
+
+string Minero::obtener_objetivo(){
+    return "Minero";
+}
+
+bool Minero::es_principal(){
+    return false;
+}
+

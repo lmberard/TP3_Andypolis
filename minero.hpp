@@ -20,10 +20,12 @@ private:
 
 
 public:
-    Minero(string objetivo, string tipo);
+    Minero();
     ~Minero();
 
     bool chequear_estado(Lista<Ubicaciones> & edificios);
+    string obtener_objetivo();
+    bool es_principal();
 };
 
 

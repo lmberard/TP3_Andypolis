@@ -20,8 +20,11 @@ private:
 
 
 public:
-    Letrado(string objetivo, string tipo);
+    Letrado();
     ~Letrado();
+
+    string obtener_objetivo();
+    bool es_principal();
 };
 
 
