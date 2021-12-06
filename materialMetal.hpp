@@ -1,11 +1,7 @@
 #ifndef MATERIALMETAL_HPP
 #define MATERIALMETAL_HPP
-#include "material.hpp"
 
-#include <iostream>
-#include <string>
-#include <fstream>
-#include "colors.hpp"
+#include "material.hpp"
 
 using namespace std;
 

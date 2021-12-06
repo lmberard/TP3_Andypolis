@@ -1,20 +1,13 @@
 #ifndef OBJETIVO_HPP
 #define OBJETIVO_HPP
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <fstream>
-#include <cstdlib>
-#include <iomanip>
-#include <cctype>
-#include "colors.hpp"
+
 #include "lista.hpp"
 #include "ubicaciones.hpp"
 #include "constructor.hpp"
 #include "inventario.hpp"
-#include "recurso.hpp"
-#include "terreno.hpp"
-#include "objetivo.hpp"
+
+static const string OBJETIVO_PRINCIPAL = "principal";
+static const string OBJETIVO_SECUNDARIO = "secundario";
 
 static const string OBJETIVO_PRINCIPAL = "principal";
 static const string OBJETIVO_SECUNDARIO = "secundario";

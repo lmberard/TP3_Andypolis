@@ -1,46 +1,7 @@
 #include "constructor.hpp"
 
-Constructor::Constructor() {}
+Constructor::Constructor(){}
 
-Constructor::Constructor(const string &PATH)
-{
-    fstream archivo_edificios(PATH, ios::in);
-
-    if (!archivo_edificios.is_open())
-    {
-        cout << "No se encontro un archivo con nombre \"" << PATH << "\", se va a crear el archivo" << endl;
-        archivo_edificios.open(PATH, ios::out);
-        archivo_edificios.close();
-        archivo_edificios.open(PATH, ios::in);
-    }
-
-    string nombre, piedra, madera, metal, permitidos, aux;
-    while (archivo_edificios >> nombre)
-    {
-
-        if (nombre == "planta")
-            archivo_edificios >> aux;
-        archivo_edificios >> piedra;
-        archivo_edificios >> madera;
-        archivo_edificios >> metal;
-        archivo_edificios >> permitidos;
-
-        if (nombre == "aserradero")
-            edificios.alta(new Aserradero(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "fabrica")
-            edificios.alta(new Fabrica(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "escuela")
-            edificios.alta(new Escuela(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "yacimiento")
-            edificios.alta(new Yacimiento(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "mina")
-            edificios.alta(new Mina(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "obelisco")
-            edificios.alta(new Obelisco(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-        if (nombre == "planta")
-            edificios.alta(new PlantaElectrica(stoi(piedra), stoi(madera), stoi(metal), stoi(permitidos)));
-    }
-}
 void Constructor::agregar_edificio(string nombre, int piedra, int madera, int metal, int permitidos)
 {
     if (nombre == "aserradero")
@@ -53,23 +14,22 @@ void Constructor::agregar_edificio(string nombre, int piedra, int madera, int me
         edificios.alta(new Yacimiento(piedra, madera, metal, permitidos));
     if (nombre == "mina")
         edificios.alta(new Mina(piedra, madera, metal, permitidos));
+    if (nombre == "mina oro")
+        edificios.alta(new MinaOro(piedra, madera, metal, permitidos));
     if (nombre == "obelisco")
         edificios.alta(new Obelisco(piedra, madera, metal, permitidos));
-    if (nombre == "planta")
+    if (nombre == "planta electrica")
         edificios.alta(new PlantaElectrica(piedra, madera, metal, permitidos));
 }
 
 Edificio *Constructor::construye(const string &edificio)
 {
-
     Edificio *construido = NULL;
     int pos = buscar_edificio(edificio);
 
     if (pos > edificios.mostrar_cantidad())
         return construido;
 
-    if (edificio == "yacimiento")
-        construido = new Yacimiento(edificios[pos]);
     if (edificio == "aserradero")
         construido = new Aserradero(edificios[pos]);
     if (edificio == "escuela")
@@ -78,10 +38,14 @@ Edificio *Constructor::construye(const string &edificio)
         construido = new Fabrica(edificios[pos]);
     if (edificio == "mina")
         construido = new Mina(edificios[pos]);
+    if (edificio == "mina oro")
+        construido = new Mina(edificios[pos]);
     if (edificio == "obelisco")
         construido = new Obelisco(edificios[pos]);
     if (edificio == "planta electrica")
         construido = new PlantaElectrica(edificios[pos]);
+    if (edificio == "yacimiento")
+        construido = new Yacimiento(edificios[pos]);
 
     return construido;
 }

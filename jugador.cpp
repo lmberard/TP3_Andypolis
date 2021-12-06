@@ -194,7 +194,6 @@ void Jugador::mostrar_lista_de_edificios()
          << setw(23) << "Coordenada X" << '\t'
          << setw(23) << "Coordenada Y" << '\t'
          << END_COLOR << endl;
-
     */
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
     {

@@ -1,12 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <fstream>
-#include <cstdlib>
-#include <iomanip>
-#include <cctype>
+
 #include "colors.hpp"
 #include "lista.hpp"
 #include "juego.hpp"
@@ -88,7 +82,7 @@ public:
     // post: Obtiene una respuesta del usuario y la devuelve en minusculas.
     string devolver_rta_usuario();
 
-    bool confirmacion_usuario();
+    //bool confirmacion_usuario();
 
     ////////////////////////////////
     void limpiar_pantalla();

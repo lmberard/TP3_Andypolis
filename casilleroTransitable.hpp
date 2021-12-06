@@ -17,11 +17,11 @@ public:
 
     // PRE:
     // POS: Muestra por la terminal que tipo de casillero es y si tiene material o no.
-    void mostrar();
+    void info();
 
     // PRE:
     // POS: Muestra por la terminal un cuadrado con el color del casillero construible y si hay un material, su primera letra del nombre.
-    void display();
+    void mostrar_por_pantalla();
 
     // PRE: -
     // POS: Devuelve true
@@ -33,7 +33,7 @@ public:
 
     // PRE:
     // POS: Elimina el material en el casillero y apunta a null a su atributo.
-    void demoler();
+    void quitar_elemento();
 };
 
 #endif // CASILLEROTRANSITABLE_HPP

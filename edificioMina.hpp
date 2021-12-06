@@ -9,10 +9,8 @@ public:
     // POS: Se crea un edificio Mina con los parametros para la piedra(s), madera(w), metal(s) y cantidad permitida de construccion(p)
     Mina(int s, int w, int m, int p);
 
-    Mina(Edificio *edificio);
-
     // PRE:
-    // POS: Se destruye el edificio mina
-    ~Mina();
+    // POS: 
+    Mina(Edificio *edificio);
 };
 #endif // EDIFICIOMINA_HPP

@@ -1,51 +1,38 @@
 #ifndef CASILLERO_HPP
 #define CASILLERO_HPP
 
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "colors.hpp"
+
 #include "material.hpp"
 #include "edificio.hpp"
 
 using namespace std;
 
-class Casillero
-{
+class Casillero{
+
+protected: 
+
+    string color;
+    string casillero_nombre;
+
 public:
-    // PRE:
-    // POS:
+  
     Casillero();
+    virtual ~Casillero();
 
-    // PRE:
-    // POS:
-    virtual ~Casillero(){};
+    virtual void caracteristicas() = 0;
 
-    // PRE:
-    // POS:
-    virtual void mostrar() = 0;
+    virtual void info() = 0;
+    virtual void mostrar_por_pantalla() = 0;
 
-    // PRE:
-    // POS:
-    virtual void display() = 0;
-
-    // PRE:
-    // POS:
     virtual bool agregar(Edificio *);
+    virtual bool agregar(Material *);
 
-    virtual Edificio *mostrar_edificio();
+    virtual Edificio *info_edificio();
+    virtual void quitar_elemento();
 
-    virtual void demoler() = 0;
-
-    virtual bool estransitable()
-    {
-        return false;
-    }
-
-    virtual bool agregar(Material *material)
-    {
-        return false;
-    }
+    //DUDA CON ESTO :/ 
+    virtual bool estransitable();
 };
 
 #endif // CASILLERO_HPP

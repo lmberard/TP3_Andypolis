@@ -22,6 +22,29 @@ public:
         cantidad = 0;
     }
 
+    Lista(Lista& otra){
+        primero = 0;
+        cantidad =  0;
+        for (int i = 1; i < otra.cantidad + 1; i++) {
+            this->alta(otra[i]);
+        }
+    } //TODO: Cambie esto
+
+    Lista& operator=(Lista& otra){
+        this->vaciar();
+        cantidad =  0;
+        for (int i = 1; i < otra.cantidad + 1; i++) {
+            this->alta(otra[i]);  
+        }
+
+        return *this;
+    } //TODO: Cambie esto
+
+    void vaciar() {
+        while (! vacia())
+            baja(1);
+    } //TODO: Cambie esto
+
     //PRE: 1 <= pos <= cantidad + 1
     //POS: agrega d arriba de la pila e incrementa tope en 1
     void alta(Dato d){

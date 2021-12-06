@@ -1,5 +1,4 @@
 #include "menu.hpp"
-#include "casillero.hpp"
 
 using namespace std;
 bool strings_son_iguales(string &str1, string &str2)
@@ -18,7 +17,7 @@ string Menu::devolver_rta_usuario()
     cin >> rta;
     return rta;
 }
-
+/*
 bool Menu::confirmacion_usuario()
 {
     string rta, si = "si", no = "no";
@@ -32,7 +31,7 @@ bool Menu::confirmacion_usuario()
     }
     else
         return false;
-}
+}*/
 
 int Menu::obtener_opcion_usuario()
 {
@@ -289,3 +288,4 @@ bool Menu::cerro_juego(int opcion_elegida)
 {
     return opcion_elegida == SALIR_JUEGO;
 }
+

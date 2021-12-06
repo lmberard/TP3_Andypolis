@@ -1,10 +1,12 @@
 #ifndef INVENTARIO_HPP
 #define INVENTARIO_HPP
 
+#include <iomanip>
+
 #include "lista.hpp"
+#include "material.hpp"
 #include "edificio.hpp"
-#include "recurso.hpp"
-#include <fstream>
+
 class Inventario
 {
 

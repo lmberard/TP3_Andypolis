@@ -1,19 +1,9 @@
 #ifndef JUGADOR_HPP
 #define JUGADOR_HPP
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <fstream>
-#include <cstdlib>
-#include <iomanip>
-#include <cctype>
-#include "colors.hpp"
+
 #include "lista.hpp"
 #include "ubicaciones.hpp"
-#include "constructor.hpp"
 #include "inventario.hpp"
-#include "recurso.hpp"
-#include "terreno.hpp"
 #include "objetivo.hpp"
 
 class Jugador
@@ -32,7 +22,6 @@ public:
     Jugador(int _id, int puntos_iniciales);
     Jugador();
     ~Jugador();
-
     //-------------------------GETTERS---------------------------------------
     int obtener_id();
     Coordenada obtener_posicion_jugador(); //YO

@@ -1,20 +1,28 @@
 #ifndef PARSER_H
 #define PARSER_H
-#include <iostream>
-#include <string>
-#include <algorithm>
+
 #include <fstream>
+<<<<<<< HEAD
 #include <cstdlib>
 #include <iomanip>
 #include <cctype>
 #include "colors.hpp"
 #include "lista.hpp"
 #include "ubicaciones.hpp"
+=======
+
+>>>>>>> marian
 #include "constructor.hpp"
-#include "inventario.hpp"
 #include "recurso.hpp"
+<<<<<<< HEAD
 #include "terreno.hpp"
 #include "juego.hpp"
+=======
+#include "superficie.hpp"
+
+#include "mapa.hpp"
+#include "jugador.hpp"
+>>>>>>> marian
 
 const string PATH_MAPA = "mapa.txt";
 const string PATH_UBICACIONES = "ubicaciones.txt";

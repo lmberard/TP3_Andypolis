@@ -1,9 +1,12 @@
 #ifndef UBICACIONES_HPP
 #define UBICACIONES_HPP
 
+<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <fstream>
+=======
+>>>>>>> marian
 #include "lista.hpp"
 #include "colors.hpp"
 

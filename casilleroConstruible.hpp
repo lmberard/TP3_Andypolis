@@ -21,18 +21,18 @@ public:
 
     // PRE: -
     // POS: Muestra por la terminal que tipo de casillero es y si tiene un edificio construido o no.
-    void mostrar();
+    void info();
 
     // PRE: -
     // POS: Muestra por la terminal un cuadrado con el color del casillero construible y si hay un edificio construido, su primera letra del nombre.
-    void display();
+    void mostrar_por_pantalla();
 
     // PRE: -
     // POS: Elimina el edificio en el casillero y apunta a null a su atributo.
-    void demoler();
+    void quitar_elemento();
 
     // PRE: -
     // POS: Devuelve el edificio que esta construido en el casillero. Si no hay edificio construido devuelve NULL (cero)
-    Edificio *mostrar_edificio();
+    Edificio *info_edificio();
 };
 #endif // CASILLEROONSTRUIBLE_HPP

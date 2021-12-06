@@ -1,5 +1,4 @@
 #include "material.hpp"
-#include <string>
 
 using namespace std;
 

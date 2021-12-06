@@ -1,5 +1,6 @@
 #ifndef MAPA_HPP
 #define MAPA_HPP
+<<<<<<< HEAD
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -14,6 +15,12 @@
 #include "terreno.hpp"
 #include "edificio.hpp"
 #include "material.hpp"
+=======
+
+#include "lista.hpp"
+#include "ubicaciones.hpp"
+#include "casillero.hpp"
+>>>>>>> marian
 
 class Mapa
 {

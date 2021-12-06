@@ -1,5 +1,4 @@
 #include "inventario.hpp"
-#include <iomanip>
 
 Inventario::Inventario()
 {
@@ -109,10 +108,10 @@ void Inventario::recolectar(Edificio *edificio)
     int cuenta;
     for (int j = 1; j < materiales1.mostrar_cantidad() + 1; j++)
     {
-        if (edificio->obtener_mat_producido() == materiales1[j]->obtener_nombre())
+        if (edificio->obtener_tipo_produccion() == materiales1[j]->obtener_nombre())
         {
-            cuenta = materiales1[j]->obtener_cantidad() + edificio->obtener_cant_mat_producido();
-            cout << "\t-> " << edificio->obtener_cant_mat_producido() << " unidades de " << materiales1[j]->obtener_nombre() << " del edificio del tipo '" << edificio->obtener_nombre() << "'" << endl;
+            cuenta = materiales1[j]->obtener_cantidad() + edificio->obtener_cant_produccion();
+            cout << "\t-> " << edificio->obtener_cant_produccion() << " unidades de " << materiales1[j]->obtener_nombre() << " del edificio del tipo '" << edificio->obtener_nombre() << "'" << endl;
             materiales1[j]->modificar_cantidad(cuenta);
         }
     }

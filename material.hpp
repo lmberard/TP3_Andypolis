@@ -1,9 +1,6 @@
 #ifndef MATERIAL_HPP
 #define MATERIAL_HPP
 
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "colors.hpp"
 
 using namespace std;
