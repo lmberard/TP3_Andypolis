@@ -1,8 +1,11 @@
+#include <string>
+#include <iostream>
+
 #include "cansado.hpp"
 
 using namespace std;
 
-Cansado::Cansado(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+Cansado::Cansado() : Objetivo()
 {
 }
 
@@ -19,4 +22,12 @@ bool Cansado::chequear_estado(int puntos_energia){
     }
 
     return aux;
+}
+
+string Cansado::obtener_objetivo(){
+    return "Cansado";
+}
+
+bool Cansado::es_principal(){
+    return false;
 }

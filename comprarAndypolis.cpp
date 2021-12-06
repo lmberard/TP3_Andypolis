@@ -1,8 +1,11 @@
+#include <string>
+#include <iostream>
+
 #include "comprarAndypolis.hpp"
 
 using namespace std;
 
-ComprarAndypolis::ComprarAndypolis(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+ComprarAndypolis::ComprarAndypolis() : Objetivo()
 {
 }
 
@@ -19,4 +22,12 @@ bool ComprarAndypolis::chequear_estado(Inventario & inventario){
     }
 
     return aux;
+}
+
+string ComprarAndypolis::obtener_objetivo(){
+    return "Comprar Andypolis";
+}
+
+bool ComprarAndypolis::es_principal(){
+    return false;
 }

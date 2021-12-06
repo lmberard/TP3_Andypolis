@@ -16,6 +16,8 @@
 #include "menu2.hpp"
 #include "parser.hpp"
 
+#include "construirObelisco.hpp"
+
 const int LLUVIA_METAL_MIN = 2;
 const int LLUVIA_METAL_MAX = 4;
 const int LLUVIA_MADERA_MIN = 0;
@@ -24,6 +26,8 @@ const int LLUVIA_PIEDRA_MIN = 1;
 const int LLUVIA_PIEDRA_MAX = 2;
 
 const int CANT_JUGADORES = 2;
+const int CANT_OBJETIVOS_SECUNDARIOS_JUEGO = 10; 
+const int CANT_OBJETIVOS_SECUNDARIOS_JUGADOR = 3; 
 
 const int CANT_ENERGIA_FIN_PARTIDA = 20;
 const int CANT_ENERGIA_NUEVA_PARTIDA = 50;

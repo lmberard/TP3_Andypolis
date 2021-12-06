@@ -1,8 +1,11 @@
+#include <string>
+#include <iostream>
+
 #include "edadDePiedra.hpp"
 
 using namespace std;
 
-EdadDePiedra::EdadDePiedra(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+EdadDePiedra::EdadDePiedra() : Objetivo()
 {
 }
 
@@ -20,3 +23,12 @@ bool EdadDePiedra::chequear_estado(Inventario & inventario){
         
     return aux;
 }
+
+string EdadDePiedra::obtener_objetivo(){
+    return "Edad de Piedra";
+}
+
+bool EdadDePiedra::es_principal(){
+    return false;
+}
+

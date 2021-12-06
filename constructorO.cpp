@@ -1,8 +1,11 @@
+#include <string>
+#include <iostream>
+
 #include "constructorO.hpp"
 
 using namespace std;
 
-ConstructorO::ConstructorO(string objetivo, string tipo) : Objetivo(objetivo, tipo)
+ConstructorO::ConstructorO() : Objetivo()
 {
 }
 
@@ -41,3 +44,12 @@ bool ConstructorO::chequear_estado(Lista<Ubicaciones> & edificios){
     
     return aux;
 }
+
+string ConstructorO::obtener_objetivo(){
+    return "ConstructorO";
+}
+
+bool ConstructorO::es_principal(){
+    return false;
+}
+

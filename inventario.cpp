@@ -1,5 +1,6 @@
 #include "inventario.hpp"
 
+
 Inventario::Inventario()
 {
     andycoins_contador = 0;
