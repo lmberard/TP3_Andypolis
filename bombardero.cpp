@@ -13,7 +13,7 @@ Bombardero::~Bombardero()
 {
 }
 
-bool Bombardero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios){
+bool Bombardero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno){
     bool aux = false;
 
     if(inventario.obtener_bombas_usadas() >= CANTIDAD_BOMBAS_USADAS_OBJETIVO){

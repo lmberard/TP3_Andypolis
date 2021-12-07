@@ -9,5 +9,6 @@ void FinalizarTurno::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador 
 
     turno ++;
 
-    bool fin_turno = true;
+    //bool fin_turno = true;
+
 }

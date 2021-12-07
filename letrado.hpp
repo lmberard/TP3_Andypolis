@@ -23,6 +23,7 @@ public:
     Letrado();
     ~Letrado();
 
+    bool chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno);
     string obtener_objetivo();
     bool es_principal();
 };

@@ -28,7 +28,7 @@ bool Objetivo::es_principal()
     return aux;
 }
 */
-bool Objetivo::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, bool fin_turno)
+bool Objetivo::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
 {   
     return true;
 }

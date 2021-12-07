@@ -13,7 +13,7 @@ Energetico::~Energetico()
 {
 }
 
-bool Energetico::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios){
+bool Energetico::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno){
     bool aux = false;
 
     if(puntos_energia == CANTIDAD_MAX_ENERGIA){

@@ -13,7 +13,7 @@ Extremista::~Extremista()
 {
 }
 
-bool Extremista::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios){
+bool Extremista::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno){
     bool aux = false;
 
     if(inventario.obtener_bombas_contador() >= CANTIDAD_BOMBAS_COMPRADAS_OBJETIVO){
