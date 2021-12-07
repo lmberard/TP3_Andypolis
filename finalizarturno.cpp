@@ -9,6 +9,7 @@ void FinalizarTurno::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador 
 
     turno ++;
 
-    //bool fin_turno = true;
+    bool fin_turno = true;
+    jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);
 
 }
