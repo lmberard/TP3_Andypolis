@@ -140,28 +140,23 @@ Jugada * Menu::procesar_opcion_partida_nueva(int opcion_elegida)
     {
     case MODIFICAR_EDIFICIO_POR_NOMBRE:
         jugada = new ModificarEdificio();
-        return jugada;
         break;
     case LISTAR_TODOS_EDIFICIOS:
         jugada = new ListarEdificios();
-        return jugada;
         break;
     case MOSTRAR_MAPA:
         jugada = new MostrarMapa();
-        return jugada;
         break;
     case COMENZAR_PARTIDA:
         jugada = new ComenzarPartida();
-        return jugada;
         break;
     case SALIR_INICIAL:
         despedir();
-        return jugada;
         break;
     default:
         msjeError("Error: opcion invalida");
-        return jugada;
     }
+    return jugada;
 }
 
 Jugada* Menu::procesar_opcion_juego(int opcion_elegida)
@@ -171,58 +166,46 @@ Jugada* Menu::procesar_opcion_juego(int opcion_elegida)
     {
     case CONSTRUIR_EDIFICIO:
         jugada = new Construir();
-        return jugada;
         break;
     case LISTAR_CONSTRUIDOS:
         jugada = new ListarConstruidos();
-        return jugada;
         break;
     case DEMOLER_POR_COORDENADA:
         jugada = new Demoler();
-        return jugada;
         break;
     case ATACAR_POR_COORDENADA:
         jugada = new Atacar();
-        return jugada;
         break;
     case REPARAR_POR_COORDENADA:
         jugada = new Reparar();
-        return jugada;
         break;
     case COMPRAR_BOMBAS:
         jugada = new Comprar();
-        return jugada;
         break;
     case CONSULTAR_COORDENADA:
         jugada = new ConsultarCoordenada();
-        return jugada;
         break;
     case MOSTRAR_INVENTARIO:
         jugada = new MostrarInventario();
-        return jugada;
         break;
     case MOSTRAR_OBJETIVOS:
         jugada = new MostrarObjetivos();
-        return jugada;
         break;
     case RECOLECTAR_RECURSOS:
         jugada = new Recolectar();
-        return jugada;
         break;
     case MOVERSE_COORDENADA:
         jugada = new Moverse();
-        return jugada;
         break;
     case FINALIZAR_TURNO:
         jugada = new FinalizarTurno();
-        return jugada;
         break;
     case SALIR_JUEGO:
-        return jugada;
         despedir();
         break;
     default:
         msjeError("Error: opcion invalida");
-        return jugada;
     }
+
+    return jugada;
 }
