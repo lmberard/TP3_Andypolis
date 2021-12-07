@@ -23,9 +23,6 @@ andypolis: jugador.cpp
 #diccionario
 #andypolis: diccionario.cpp 
 
-#ciudad:
-#andypolis: ciudad.cpp
-
 #mapa:
 andypolis: mapa.cpp
 andypolis: ubicaciones.cpp

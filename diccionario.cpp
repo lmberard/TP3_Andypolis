@@ -61,7 +61,8 @@ int Diccionario::obtener_cant_madera(string nombre, Constructor &bob)
     if (!edif_buscado)
         return false;
 
-    BSTNode<Edificio> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
+    //OJO
+    BSTNode<Edificio*> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
     int cant_madera = resultado->get_data().obtener_madera();
 
     delete edif_buscado;
@@ -74,7 +75,7 @@ int Diccionario::obtener_cant_piedra(string nombre, Constructor &bob)
     if (!edif_buscado)
         return false;
 
-    BSTNode<Edificio> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
+    BSTNode<Edificio*> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
     int cant = resultado->get_data().obtener_piedra();
 
     delete edif_buscado;
@@ -87,7 +88,7 @@ int Diccionario::obtener_cant_metal(string nombre, Constructor &bob)
     if (!edif_buscado)
         return false;
 
-    BSTNode<Edificio> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
+    BSTNode<Edificio*> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
     int cant = resultado->get_data().obtener_metal();
 
     delete edif_buscado;
@@ -100,7 +101,7 @@ int Diccionario::obtener_cant_permitida(string nombre, Constructor &bob)
     if (!edif_buscado)
         return false;
 
-    BSTNode<Edificio> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
+    BSTNode<Edificio*> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
     int cant = resultado->get_data().obtener_cant_max();
 
     delete edif_buscado;
@@ -113,7 +114,7 @@ int Diccionario::obtener_cant_material_prod(string nombre, Constructor &bob)
     if (!edif_buscado)
         return false;
 
-    BSTNode<Edificio> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
+    BSTNode<Edificio*> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
     int cant = resultado->get_data().obtener_cant_mat_producido();
 
     delete edif_buscado;
@@ -126,7 +127,7 @@ string Diccionario::obtener_tipo_material_prod(string nombre, Constructor &bob)
     if (!edif_buscado)
         return false;
 
-    BSTNode<Edificio> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
+    BSTNode<Edificio*> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
     string material = resultado->get_data().obtener_mat_producido();
 
     delete edif_buscado;
@@ -139,7 +140,7 @@ string Diccionario::obtener_codigo(string nombre, Constructor &bob)
     if (!edif_buscado)
         return false;
 
-    BSTNode<Edificio> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
+    BSTNode<Edificio*> *resultado = diccionario.search(diccionario.get_root(), edif_buscado);
     string codigo = resultado->get_data().obtener_codigo();
 
     delete edif_buscado;

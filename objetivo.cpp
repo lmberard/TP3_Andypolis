@@ -28,15 +28,20 @@ bool Objetivo::es_principal()
     return aux;
 }
 */
-bool Objetivo::chequear_estado(Inventario & inventario)
+bool Objetivo::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios)
 {
     return true;
 }
 
+bool Objetivo::cumplido()
+{
+    return objetivo_cumplido;
+}
+/*
 bool Objetivo::chequear_estado(int puntos_energia)
 {
     return true;
-}
+}*/
 
 /*
 bool Objetivo::chequear_estado(Diccionario & diccionario, Lista<Ubicaciones> edificios;)
@@ -44,8 +49,8 @@ bool Objetivo::chequear_estado(Diccionario & diccionario, Lista<Ubicaciones> edi
     return true;
 }
 */
-
+/*
 bool Objetivo::chequear_estado(Lista<Ubicaciones> & edificios)
 {
     return true;
-}
+}*/

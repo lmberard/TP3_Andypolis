@@ -37,6 +37,9 @@ const int CANT_ENERGIA_CONSULTAR = 0;
 const int CANT_ENERGIA_MOSTRAR_OBJ = 0;
 const int CANT_ENERGIA_MOSTRAR_INV = 0;
 const int CANT_ENERGIA_RECOLECTAR = 20;
+
+const int CANT_OBJETIVOS_SECUNDARIOS_JUGADOR = 3;
+
 class Juego
 {
 private:

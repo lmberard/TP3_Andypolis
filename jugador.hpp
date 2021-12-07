@@ -29,36 +29,24 @@ private:
 
 public:
     //-----------------CONSTRUCTORES DESTRUCTORES----------------------------
-    Jugador(int _id, int puntos_iniciales);
     Jugador();
     ~Jugador();
     //-------------------------GETTERS---------------------------------------
-    int obtener_id();
-    Coordenada obtener_posicion_jugador(); //YO
-    int obtener_puntos_energia();
-    int obtener_cant_andycoins();
-    int obtener_cant_bombas();
-    int obtener_cant_edificios_construidos(string nombre);
-    int obtener_cant_edificios_construidos(int i);
-    int obtener_tam_lista_ubicaciones();
-    string obtener_nombre_edificio(int i);
-    Coordenada obtener_coordenada(int i, int j);
-
+    Coordenada obtener_posicion_jugador(); 
     Lista<Ubicaciones> & lista_edificios();
+    int obtener_energia();
 
+    //esta capaz es util para objetivos tipo "letrado", pero no va aca:
+    int obtener_cant_edificios_construidos(string nombre);
     //-------------------------SETTERS---------------------------------------
-    void setear_objetivos_secundarios();
-    void setear_objetivo_principal();
-    void setear_id(int _id);
-    void setear_posicion(Coordenada coord);
+    /*funciones que se utilizan para parser o bien entrada por consola*/
 
-    //--------------------------PARA PARSER----------------------------------
+    void setear_posicion(Coordenada coord);
     void agregar_material_al_inventario(Material * material);    //materiales.txt
     void agregar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio); //ubicaciones.txt
 
     //------------------------MODIFICADORES----------------------------------
     void modificar_puntos_energia(int cantidad);
-    void modificar_andypoints(int cantidad);
 
     void modificar_cant_material(string nombre_material, int cantidad);
     bool eliminar_ubicacion_edificio(string nombre, Coordenada coordenada);
@@ -74,15 +62,14 @@ public:
     //------------------------OPCIONES JUGADOR-------------------------------
     void moverse_a_coordenada(int x, int y);
     void mostrar_inventario();
-    void mostrar_lista_de_edificios(); //YO
+    //void mostrar_lista_de_edificios(); //YO
     void mostrar_edificios_construidos();
     void mostrar_objetivos_y_progreso();
     Inventario & inv(){return inventario;}
 
-    /*
-    bool chequear_objetivos(Lista<Objetivo> objetivos){
-        if(obj.getobjetivo == "Construir Obelisco")
-            obj.chequear_estado()
-    }*/
+    void chequear_objetivos();
+
+    bool gano();
+
 };
 #endif //JUGADOR_HPP

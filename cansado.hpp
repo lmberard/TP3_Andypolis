@@ -25,7 +25,7 @@ public:
     Cansado();
     ~Cansado();
 
-    bool chequear_estado(int energia);
+    bool chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios);
     string obtener_objetivo();
     bool es_principal();
 };

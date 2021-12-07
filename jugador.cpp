@@ -1,11 +1,5 @@
 #include "jugador.hpp"
 //-----------------CONSTRUCTORES DESTRUCTORES----------------------------
-Jugador::Jugador(int _id, int puntos_iniciales)
-{
-    id = _id;
-    puntos_energia = puntos_iniciales;
-    modificar_coordenada(posicion_jugador, 0, 0);
-}
 
 Jugador::Jugador()
 {
@@ -16,39 +10,16 @@ Jugador::Jugador()
 
 Jugador::~Jugador()
 {
-    //eliminar memoria de las listas
+    for(int i = 1; i < objetivos.mostrar_cantidad()+1;i++)
+        delete objetivos[i];
 }
 
 //-------------------------GETTERS---------------------------------------
-int Jugador::obtener_id()
-{
-    return id;
-}
 
 Coordenada Jugador::obtener_posicion_jugador()
 {
     return posicion_jugador;
-} // YO
-
-int Jugador::obtener_puntos_energia()
-{
-    return puntos_energia;
-}
-
-int Jugador::obtener_cant_andycoins()
-{
-    return 0;
-}
-
-Coordenada Jugador::obtener_coordenada(int i, int j)
-{
-    return edificios[i].coordenadas[j];
-}
-
-int Jugador::obtener_cant_bombas()
-{
-    return 0;
-}
+} 
 
 int Jugador::obtener_cant_edificios_construidos(string nombre)
 {
@@ -60,40 +31,16 @@ int Jugador::obtener_cant_edificios_construidos(string nombre)
     return 0;
 }
 
-int Jugador::obtener_cant_edificios_construidos(int i)
-{
-    return obtener_cantidad(edificios[i]); 
-}
-
-int Jugador::obtener_tam_lista_ubicaciones()
-{
-    return edificios.mostrar_cantidad();
-}
-
-string Jugador::obtener_nombre_edificio(int i)
-{
-    return edificios[i].nombre;
-}
-
 Lista<Ubicaciones> & Jugador::lista_edificios()
 {
     return edificios;
 }
+
+int Jugador::obtener_energia()
+{
+    return puntos_energia;
+}
 //-------------------------SETTERS---------------------------------------
-void Jugador::setear_objetivos_secundarios()
-{
-    cout << "FALTA ARMAR BIEN CLASE OBJETIVOS" << endl;
-}
-
-void Jugador::setear_objetivo_principal()
-{
-    cout << "FALTA ARMAR BIEN CLASE OBJETIVOS" << endl;
-}
-
-void Jugador::setear_id(int _id)
-{
-    id = _id;
-}
 
 void Jugador::setear_posicion(Coordenada coord)
 {
@@ -136,17 +83,8 @@ void Jugador::modificar_cant_material(string nombre_material, int cantidad)
     inventario.modificar_cant_material(nombre_material, cantidad);
 }
 
-/*esta funcion es lit lo mismo que la anterior pero para que sea mas legible quizas :) 
-se podria hacer una tb para las bombas pero creo que es al pedo jeje 
-la pueden borrar si no les cabe*/
-void Jugador::modificar_andypoints(int cantidad)
-{
-    inventario.modificar_cant_material("andypoints", cantidad);
-}
-
 bool Jugador::eliminar_ubicacion_edificio(string nombre, Coordenada coordenada)
 {
-    //este for empieza en 1 asi por como esta implementada la lista, hay que recorrerlo asi
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
     {
         if (edificios[i].nombre == nombre)
@@ -172,6 +110,7 @@ bool Jugador::cantidad_suficiente_material(Edificio *edificio, bool construir)
     return inventario.chequear_stock(edificio, construir);
 }
 
+//MARIANO: DUDA
 bool Jugador::es_su_edificio(string nombre, Coordenada coordenada)
 {
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
@@ -192,17 +131,19 @@ void Jugador::asignar_objetivos_jugador(Objetivo * objetivo){
     objetivos.alta(objetivo);
 }
 
-
 //------------------------OPCIONES JUGADOR-------------------------------
 //GRAFO
+/*-----------------------------VER-----------------------------------------*/
 void Jugador::moverse_a_coordenada(int x, int y)
 {
     cout << "algoritmo camino minimo" << endl;
 }
-
+/*-------------------------------------------------------------------------*/
 void Jugador::mostrar_objetivos_y_progreso()
 {
-    cout << "FALTA ARMAR BIEN CLASE OBJETIVOS" << endl;
+    for(int i = 1; i < objetivos.mostrar_cantidad()+1;i++){
+        cout << objetivos[i]->obtener_objetivo() << endl;
+    }
 }
 
 void Jugador::mostrar_edificios_construidos()
@@ -220,28 +161,25 @@ void Jugador::mostrar_inventario()
     inventario.mostrar_inventario();
 }
 
-void Jugador::mostrar_lista_de_edificios()
+bool Jugador::gano()
 {
+    int objetivos_cumplidos = 0;
+    bool gano = false;
 
-    cout << edificios.mostrar_cantidad() << endl;
-    /*
-    cout << left << TXT_BOLD << TXT_UNDERLINE << BGND_BLUE_4
-         << setw(23) << "Nombre" << '\t'
-         << setw(23) << "Coordenada X" << '\t'
-         << setw(23) << "Coordenada Y" << '\t'
-         << END_COLOR << endl;
-    */
-    for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
-    {
-        cout << "Nombre del edificio: " << edificios[i].nombre << " " << endl;
-        mostrar_coordenadas(edificios[i]);
-
-        
-        /*cout << left
-             << setw(23) << edificios[i].nombre << '\t'
-             << setw(23) << mostrar_coordenadas(edificios[i]) << '\t'
-             << setw(23) << "Hola" << '\t'
-             << endl;
-        */
+    for(int i = 1; i < objetivos.mostrar_cantidad()+1;i++){
+        if(objetivos[i]->es_principal() && objetivos[i]->cumplido())
+            gano = true;
+        if(objetivos[i]->cumplido())
+            objetivos_cumplidos++;
     }
-}//YO
+    if(objetivos_cumplidos == 2)
+        gano = true;
+
+    return gano;
+}
+
+void Jugador::chequear_objetivos()
+{
+    for(int i = 1; i < objetivos.mostrar_cantidad()+1; i++)
+        objetivos[i]->chequear_estado(inventario, puntos_energia, edificios);
+}

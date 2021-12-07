@@ -14,7 +14,7 @@ Minero::~Minero()
 {
 }
 
-bool Minero::chequear_estado(Lista<Ubicaciones> & edificios){
+bool Minero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios){
     bool aux = false;
     bool mina_chequeado = false;
     bool mina_oro_chequeado = false;

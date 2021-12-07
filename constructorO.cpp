@@ -13,7 +13,7 @@ ConstructorO::~ConstructorO()
 {
 }
 
-bool ConstructorO::chequear_estado(Lista<Ubicaciones> & edificios){
+bool ConstructorO::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios){
     bool aux = false;
     
     bool mina_chequeado = false;

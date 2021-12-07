@@ -6,7 +6,7 @@
 class ListarConstruidos : public Jugada{
     public: 
         void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual){
-            cout << "tengo que listar los edificios construidos" << endl;
+            jugador[id_jugador_actual - 1].mostrar_edificios_construidos();
         }
 };
 

@@ -7,7 +7,7 @@
 class Diccionario
 {
 private:
-    BST<Edificio> diccionario;
+    BST<Edificio*> diccionario;
 
 public:
     //----------------------------------------------------------------

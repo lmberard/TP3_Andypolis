@@ -72,10 +72,10 @@ void Juego::asignar_objetivos(){
         int numeros_generados[CANT_OBJETIVOS_SECUNDARIOS_JUGADOR] = {}; //inicializa en 0;
 
         for(int j = 0; j < CANT_OBJETIVOS_SECUNDARIOS_JUGADOR; j++){
-            
+    
             do{
                 flag = false;
-                numero = rand()%(1 - CANT_OBJETIVOS_SECUNDARIOS_JUEGO + 1) + CANT_OBJETIVOS_SECUNDARIOS_JUEGO; 
+                numero = rand()%(CANT_OBJETIVOS_SECUNDARIOS_JUEGO) + 1;
                 for (int k = 0; k < CANT_OBJETIVOS_SECUNDARIOS_JUGADOR; k++){
                     if(numeros_generados[k] == numero)
                         flag = true;
@@ -83,7 +83,7 @@ void Juego::asignar_objetivos(){
             } while(flag == true);     
             
             numeros_generados[j] = numero;
-
+           
             if(numero == 1)
                 jugadores[i].asignar_objetivos_jugador(new ComprarAndypolis());
             if(numero == 2)
@@ -126,8 +126,8 @@ void Juego::comenzar_partida()
             mapa.mostrar();
             jugada->jugar(bob,mapa,turno,jugadores,id_jugador_actual);
         }
-        //if(jugadores[id_jugador_actual].gano()) chequea si cumplio poner el obelisco o los 2 auxiliares;
-        //    ganador;
+        if(jugadores[id_jugador_actual-1].gano())
+            ganador = true;
         if(turno == CANT_JUGADORES){
             lluvia_recursos();
             turno = 0;
@@ -138,6 +138,7 @@ void Juego::comenzar_partida()
 
     if(ganador)
         celebrar();
+    
 }
 
 void Juego::lluvia_recursos()

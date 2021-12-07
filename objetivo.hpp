@@ -28,14 +28,15 @@ protected:
 public:
 
     Objetivo();
-    ~Objetivo();
+    virtual ~Objetivo();
 
     virtual string obtener_objetivo() = 0; 
     virtual bool es_principal() = 0;             
-    virtual bool chequear_estado(Inventario & inventario);
-    virtual bool chequear_estado(int puntos_energia);
+    virtual bool chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios);
+    //virtual bool chequear_estado(int puntos_energia);
     //virtual bool chequear_estado(Diccionario & diccionario, Lista<Ubicaciones> edificios); /*esto para objetivo Letrado*/
-    virtual bool chequear_estado(Lista<Ubicaciones> & edificios);
+    //virtual bool chequear_estado(Lista<Ubicaciones> & edificios);
+    virtual bool cumplido();
 };
 
 

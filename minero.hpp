@@ -23,7 +23,7 @@ public:
     Minero();
     ~Minero();
 
-    bool chequear_estado(Lista<Ubicaciones> & edificios);
+    bool chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios);
     string obtener_objetivo();
     bool es_principal();
 };

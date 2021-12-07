@@ -13,7 +13,7 @@ EdadDePiedra::~EdadDePiedra()
 {
 }
 
-bool EdadDePiedra::chequear_estado(Inventario & inventario){
+bool EdadDePiedra::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios){
     bool aux = false;
 
     if(inventario.obtener_material("piedra")->obtener_cantidad() >= CANTIDAD_PIEDRA_OBJETIVO){

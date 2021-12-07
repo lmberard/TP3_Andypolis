@@ -13,7 +13,7 @@ Armado::~Armado()
 {
 }
 
-bool Armado::chequear_estado(Inventario & inventario){
+bool Armado::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios){
     bool aux = false;
 
     if(inventario.obtener_material("bomba")->obtener_cantidad() >= CANTIDAD_BOMBAS_INVENTARIO_OBJETIVO){

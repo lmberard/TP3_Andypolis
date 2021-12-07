@@ -13,7 +13,7 @@ Cansado::~Cansado()
 {
 }
 
-bool Cansado::chequear_estado(int puntos_energia){
+bool Cansado::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios){
     bool aux = false;
 
     if(puntos_energia == CANTIDAD_MIN_ENERGIA){
