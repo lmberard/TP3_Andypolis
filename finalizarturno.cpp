@@ -8,4 +8,6 @@ void FinalizarTurno::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador 
         id_jugador_actual = 1;
 
     turno ++;
+
+    bool fin_turno = true;
 }

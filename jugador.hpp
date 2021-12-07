@@ -67,7 +67,7 @@ public:
     void mostrar_objetivos_y_progreso();
     Inventario & inv(){return inventario;}
 
-    void chequear_objetivos();
+    void chequear_objetivos(bool fin_turno);
 
     bool gano();
 

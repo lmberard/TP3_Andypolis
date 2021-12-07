@@ -178,8 +178,8 @@ bool Jugador::gano()
     return gano;
 }
 
-void Jugador::chequear_objetivos()
+void Jugador::chequear_objetivos(bool fin_turno)
 {
     for(int i = 1; i < objetivos.mostrar_cantidad()+1; i++)
-        objetivos[i]->chequear_estado(inventario, puntos_energia, edificios);
+        objetivos[i]->chequear_estado(inventario, puntos_energia, edificios, fin_turno);
 }
