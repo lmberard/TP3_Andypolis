@@ -85,6 +85,7 @@ private:
     void preparar_partida();
     void asignar_objetivos();
     void comenzar_partida();
+    void asignar_objetivos_secundarios(int numero, int i);
     
     void lluvia_recursos();
     void colocar_material_random(int , string, const int );

@@ -80,33 +80,36 @@ void Juego::asignar_objetivos(){
                     if(numeros_generados[k] == numero)
                         flag = true;
                 }
-            } while(flag == true);     
-            
+            } while(flag == true);                 
             numeros_generados[j] = numero;
-           
-            if(numero == 1)
-                jugadores[i].asignar_objetivos_jugador(new ComprarAndypolis());
-            if(numero == 2)
-                jugadores[i].asignar_objetivos_jugador(new EdadDePiedra());    
-            if(numero == 3)
-                jugadores[i].asignar_objetivos_jugador(new Bombardero());
-            if(numero == 4)
-                jugadores[i].asignar_objetivos_jugador(new Energetico());
-            if(numero == 5)
-                jugadores[i].asignar_objetivos_jugador(new Letrado());
-            if(numero == 6)
-                jugadores[i].asignar_objetivos_jugador(new Minero());
-            if(numero == 7)
-                jugadores[i].asignar_objetivos_jugador(new Cansado());
-            if(numero == 8)
-                jugadores[i].asignar_objetivos_jugador(new ConstructorO());
-            if(numero == 9)
-                jugadores[i].asignar_objetivos_jugador(new Armado());
-            if(numero == 10)
-                jugadores[i].asignar_objetivos_jugador(new Extremista());
-                   
+
+            asignar_objetivos_secundarios(numero, i);
         }
     }
+}
+
+void Juego::asignar_objetivos_secundarios(int numero, int i)
+{
+    if(numero == 1)
+        jugadores[i].asignar_objetivos_jugador(new ComprarAndypolis());
+    if(numero == 2)
+        jugadores[i].asignar_objetivos_jugador(new EdadDePiedra());    
+    if(numero == 3)
+        jugadores[i].asignar_objetivos_jugador(new Bombardero());
+    if(numero == 4)
+        jugadores[i].asignar_objetivos_jugador(new Energetico());
+    if(numero == 5)
+        jugadores[i].asignar_objetivos_jugador(new Letrado());
+    if(numero == 6)
+        jugadores[i].asignar_objetivos_jugador(new Minero());
+    if(numero == 7)
+        jugadores[i].asignar_objetivos_jugador(new Cansado());
+    if(numero == 8)
+        jugadores[i].asignar_objetivos_jugador(new ConstructorO());
+    if(numero == 9)
+        jugadores[i].asignar_objetivos_jugador(new Armado());
+    if(numero == 10)
+        jugadores[i].asignar_objetivos_jugador(new Extremista());
 }
 
 void Juego::comenzar_partida()

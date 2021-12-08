@@ -7,7 +7,7 @@ Mapa::Mapa()
 
 Mapa::~Mapa()
 {
-    //borrar_todo();
+    liberar_materiales();
 
     for (int i = 0; i < filas; i++)
         for (int j = 0; j < columnas; j++)
@@ -191,11 +191,14 @@ bool Mapa::casillero_es_transitable(string tipo_casillero)
     return (tipo_casillero == "C" || tipo_casillero == "B" || tipo_casillero == "M");
 }
 
-/*
-void Mapa::borrar_todo()
+
+void Mapa::liberar_materiales()
 {
-    for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
-        mapa[edificios[i].coord_x][edificios[i].coord_y]->demoler();
-    for (int i = 1; i < materiales.mostrar_cantidad() + 1; i++)
-        mapa[materiales[i].coord_x][materiales[i].coord_y]->demoler();
-}*/
+    Coordenada coordenada;
+    for (int i = 1; i < materiales.mostrar_cantidad() + 1; i++){   
+        for(int j = 1; j < obtener_cantidad(materiales[i]) + 1; j++){
+            coordenada = materiales[i].coordenadas[j];
+            mapa[coordenada.coord_x][coordenada.coord_y]->quitar_elemento();
+        }
+    }
+}
