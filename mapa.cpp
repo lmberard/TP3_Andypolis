@@ -202,3 +202,14 @@ void Mapa::liberar_materiales()
         }
     }
 }
+
+void Mapa::liberar_edificios(Lista<Ubicaciones> & lista)
+{
+    Coordenada coordenada;
+    for (int i = 1; i < lista.mostrar_cantidad() + 1; i++){   
+        for(int j = 1; j < obtener_cantidad(lista[i]) + 1; j++){
+            coordenada = lista[i].coordenadas[j];
+            mapa[coordenada.coord_x][coordenada.coord_y]->quitar_elemento();
+        }
+    }
+}

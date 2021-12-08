@@ -26,6 +26,9 @@ Juego::~Juego()
 
     //guarda la partida 
     archivo.guardar_partida(mapa,jugadores);
+
+    for(int i = 0; i < 2; i++)
+        mapa.liberar_edificios(jugadores[i].lista_edificios());
 }
 
 void Juego::jugar()
