@@ -79,6 +79,7 @@ andypolis: material.cpp
 andypolis: materialMadera.cpp 
 andypolis: materialPiedra.cpp 
 andypolis: materialMetal.cpp 
+andypolis: andycoins.cpp
 
 #fabricas: 
 andypolis: constructor.cpp

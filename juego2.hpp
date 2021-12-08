@@ -24,10 +24,13 @@ const int LLUVIA_MADERA_MIN = 0;
 const int LLUVIA_MADERA_MAX = 3;
 const int LLUVIA_PIEDRA_MIN = 1;
 const int LLUVIA_PIEDRA_MAX = 2;
+const int LLUVIA_ANDYCOINS_MIN = 0;
+const int LLUVIA_ANDYCOINS_MAX = 1;
 
 const int CANT_MADERA_BLOQUE = 50;
 const int CANT_PIEDRA_BLOQUE = 100;
 const int CANT_METAL_BLOQUE = 50;
+const int CANT_ANDYCOINS_BLOQUE = 250;
 
 const int CANT_JUGADORES = 2;
 const int CANT_OBJETIVOS_SECUNDARIOS_JUEGO = 10; 

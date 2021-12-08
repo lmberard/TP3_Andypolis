@@ -66,7 +66,8 @@ void Juego::preparar_partida()
     partida_nueva = partida;
 }
 
-void Juego::asignar_objetivos(){
+void Juego::asignar_objetivos()
+{
     int numero;
     bool flag;
 
@@ -145,7 +146,9 @@ void Juego::comenzar_partida()
     if(ganador)
         celebrar();
 }
-void Juego::colocar_material_random(int cantidad,string material, const int cant_bloque){
+
+void Juego::colocar_material_random(int cantidad,string material, const int cant_bloque)
+{
     int numero;
     while (cantidad)
     {
@@ -158,6 +161,7 @@ void Juego::colocar_material_random(int cantidad,string material, const int cant
         cantidad--;
     }
 }
+
 void Juego::lluvia_recursos()
 {
     if(mapa.cant_coord_transitables())
@@ -170,6 +174,9 @@ void Juego::lluvia_recursos()
 
         cantidad = rand() % (1 + LLUVIA_MADERA_MAX - LLUVIA_MADERA_MIN) + LLUVIA_MADERA_MIN;
         colocar_material_random(cantidad, "madera", CANT_MADERA_BLOQUE);   
+
+        cantidad = rand() % (1 + LLUVIA_ANDYCOINS_MAX - LLUVIA_ANDYCOINS_MIN) + LLUVIA_ANDYCOINS_MIN;
+        colocar_material_random(cantidad, "andycoins", CANT_ANDYCOINS_BLOQUE);   
     }
     else
         cout << "estan todos los casilleros ocupados" << endl;    
