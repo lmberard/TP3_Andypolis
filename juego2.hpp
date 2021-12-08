@@ -21,9 +21,13 @@
 const int LLUVIA_METAL_MIN = 2;
 const int LLUVIA_METAL_MAX = 4;
 const int LLUVIA_MADERA_MIN = 0;
-const int LLUVIA_MADERA_MAX = 2;
+const int LLUVIA_MADERA_MAX = 3;
 const int LLUVIA_PIEDRA_MIN = 1;
 const int LLUVIA_PIEDRA_MAX = 2;
+
+const int CANT_MADERA_BLOQUE = 50;
+const int CANT_PIEDRA_BLOQUE = 100;
+const int CANT_METAL_BLOQUE = 50;
 
 const int CANT_JUGADORES = 2;
 const int CANT_OBJETIVOS_SECUNDARIOS_JUEGO = 10; 
@@ -83,6 +87,7 @@ private:
     void comenzar_partida();
     
     void lluvia_recursos();
+    void colocar_material_random(int , string, const int );
     void celebrar();
 
 };

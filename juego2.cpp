@@ -116,7 +116,7 @@ void Juego::comenzar_partida()
     bool ganador = false;
 
     asignar_objetivos();
-    //lluvia_recursos();
+    lluvia_recursos();
     
     do{  
         mapa.mostrar();
@@ -138,12 +138,35 @@ void Juego::comenzar_partida()
 
     if(ganador)
         celebrar();
-    
 }
-
+void Juego::colocar_material_random(int cantidad,string material, const int cant_bloque){
+    int numero;
+    while (cantidad)
+    {
+        if(mapa.cant_coord_transitables()){
+            numero = rand() % (1 + mapa.cant_coord_transitables() - 1) + 1;
+            mapa.agregar_material(mapa.obtener_coord_transitables(numero), recurso.dar_material(material,cant_bloque));
+        }
+        else
+            cantidad = 1;
+        cantidad--;
+    }
+}
 void Juego::lluvia_recursos()
 {
-    cout << "lluviaaaaaaaaaaa" << endl;
+    if(mapa.cant_coord_transitables())
+    {
+        int cantidad = rand() % (1 + LLUVIA_METAL_MAX - LLUVIA_METAL_MIN) + LLUVIA_METAL_MIN;
+        colocar_material_random(cantidad, "metal",CANT_METAL_BLOQUE);
+    
+        cantidad = rand() % (1 + LLUVIA_PIEDRA_MAX - LLUVIA_PIEDRA_MIN) + LLUVIA_PIEDRA_MIN;
+        colocar_material_random(cantidad, "piedra", CANT_PIEDRA_BLOQUE);
+
+        cantidad = rand() % (1 + LLUVIA_MADERA_MAX - LLUVIA_MADERA_MIN) + LLUVIA_MADERA_MIN;
+        colocar_material_random(cantidad, "madera", CANT_MADERA_BLOQUE);   
+    }
+    else
+        cout << "estan todos los casilleros ocupados" << endl;    
 }
 
 void Juego::celebrar()

@@ -19,6 +19,23 @@ public:
     Mapa();
     ~Mapa();
 
+    int  cant_coord_transitables(){
+        return coordenadas_transitables.mostrar_cantidad();
+    }
+
+    Coordenada  obtener_coord_transitables(int i){
+        return coordenadas_transitables[i];
+    }
+
+    void quitar_coord_transitable(Coordenada coord){
+        for (int i = 1; i < coordenadas_transitables.mostrar_cantidad() + 1; i++){
+            if ((coordenadas_transitables[i].coord_x == coord.coord_x) && (coordenadas_transitables[i].coord_y == coord.coord_y)){
+                coordenadas_transitables.baja(i);
+            }
+        }   
+    }
+
+
     //------------------------GETTERS---------------------------------
     int obtener_filas();
     int obtener_columnas();

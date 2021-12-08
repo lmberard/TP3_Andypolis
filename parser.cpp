@@ -142,7 +142,6 @@ bool Parser::guardar_partida(Mapa & mapa,Jugador *jugador)
     if (archivo_ubicaciones.is_open()){
        
         guardar_ubicaciones(mapa.lista_materiales(), archivo_ubicaciones);
-
         for(int i = 0; i < 2; i++){
             guardar_ubicacion_jugador(jugador[i], i, archivo_ubicaciones);
             guardar_ubicaciones(jugador[i].lista_edificios(), archivo_ubicaciones);
@@ -173,11 +172,16 @@ void Parser::crear_archivo_vacio(const string &PATH, fstream &archivo)
 Coordenada Parser::obtener_coordenada(fstream &archivo_ubicaciones, string & aux_coordenada)
 {
     Coordenada coordenada;
-    string aux_coordenada2;
+    //string aux_coordenada2;
  
-    coordenada.coord_x = aux_coordenada[1] - '0';
-    archivo_ubicaciones >> aux_coordenada2;
-    coordenada.coord_y = aux_coordenada2[0] - '0';
+    aux_coordenada.erase(remove(aux_coordenada.begin(), aux_coordenada.end(), '('), aux_coordenada.end());
+    aux_coordenada.erase(remove(aux_coordenada.begin(), aux_coordenada.end(), ','), aux_coordenada.end());
+    coordenada.coord_x = stoi(aux_coordenada);
+
+    archivo_ubicaciones >> aux_coordenada;
+
+    aux_coordenada.erase(remove(aux_coordenada.begin(), aux_coordenada.end(), ')'), aux_coordenada.end());
+    coordenada.coord_y = stoi(aux_coordenada);
       
     return coordenada;
 }

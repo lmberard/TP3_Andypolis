@@ -1,3 +1,0 @@
-piedra 400 100
-madera 700 200
-metal 800 300

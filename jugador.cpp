@@ -57,7 +57,6 @@ void Jugador::agregar_material_al_inventario(Material* material)
 void Jugador::agregar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio)
 {
     //TODO: MODIFIQUE ESTO
-
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
     {
         if (edificios[i].nombre == nombre){

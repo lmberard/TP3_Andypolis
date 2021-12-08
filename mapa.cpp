@@ -63,20 +63,24 @@ void Mapa::agregar_coordenada_transitable(Coordenada coord)
 
 void Mapa::agregar_material(Coordenada coord, Material* material)
 {
-
+    bool se_encontro = false;
     for (int i = 1; i < materiales.mostrar_cantidad() + 1; i++)
     {
         if (materiales[i].nombre == material->obtener_nombre()){
             agregar_coordenada(materiales[i], coord);
-            return;
+            se_encontro = true;
         }
     }   
-
-    Ubicaciones nuevo_material;
-    setear_nombre(nuevo_material, material->obtener_nombre());
-    agregar_coordenada(nuevo_material, coord);
-    materiales.alta(nuevo_material);
+    if(!se_encontro)
+    {
+        Ubicaciones nuevo_material;
+        setear_nombre(nuevo_material, material->obtener_nombre());
+        agregar_coordenada(nuevo_material, coord);
+        materiales.alta(nuevo_material);
+    }
+    
     mapa[coord.coord_x][coord.coord_y]->agregar(material);
+    quitar_coord_transitable(coord);
 }
 
 void Mapa::agregar_edificio(Coordenada coord, Edificio* edificio)
@@ -91,7 +95,10 @@ void Mapa::actualizar_tam_mapa(int _filas, int _columnas)
 }
 
 void Mapa::agregar_casillero(Coordenada coord, Casillero* casillero)
-{
+{   
+    if(casillero->estransitable())
+        coordenadas_transitables.alta(coord);
+
     mapa[coord.coord_x][coord.coord_y] = casillero;
 }
 
