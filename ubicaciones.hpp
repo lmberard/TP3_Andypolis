@@ -41,4 +41,6 @@ bool coordenadas_son_iguales(Coordenada coord1, Coordenada coord2);
 
 Coordenada crear_coordenada(int x, int y);
 
+bool es_coordenada(string cadena);
+
 #endif // UBICACIONES_HPP

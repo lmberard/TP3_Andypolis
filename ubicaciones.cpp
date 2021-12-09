@@ -76,3 +76,18 @@ Coordenada crear_coordenada(int x, int y)
     coord.coord_y = y;
     return coord;
 }
+
+bool es_coordenada(string cadena){
+    bool estado = true;
+
+    if (cadena.length() == 0)
+        estado = false;
+
+    for (unsigned int i = 0; i < cadena.length(); i++){
+        if (!isdigit(cadena[i]))
+            estado = false;
+    }
+
+    return estado;
+}
+

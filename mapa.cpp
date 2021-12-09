@@ -169,7 +169,8 @@ void Mapa::demoler_contenido(Coordenada coord)
 //--------------------FUNCIONES UTILES-----------------------------
 bool Mapa::coordenadas_validas(Coordenada coord)
 {
-    int filas = obtener_filas();
+    //to do: filas y columnas son accesibles. Ta de más
+    int filas = obtener_filas();  
     int columnas = obtener_columnas();
     if (!(coord.coord_x >= 0 && coord.coord_x <= filas && coord.coord_y >= 0 && coord.coord_y <= columnas))
     {
