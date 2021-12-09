@@ -80,3 +80,15 @@ void Edificio::subir_vida()
 {
     vida++;
 }
+
+void Edificio::setear_madera(int madera){
+    this->madera = madera;
+}
+
+void Edificio::setear_piedra(int piedra){
+    this->piedra = piedra;
+}
+
+void Edificio::setear_metal(int metal){
+    this->metal = metal;
+}

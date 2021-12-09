@@ -72,6 +72,20 @@ public:
     // PRE: -
     // POS: -
     void subir_vida();
+
+    // PRE: -
+    // POS: -
+    void setear_piedra(int piedra);
+
+    // PRE: -
+    // POS: -
+    void setear_madera(int madera);
+
+    // PRE: -
+    // POS: -
+    void setear_metal(int metal);
+
+
 };
 
 #endif // EDIFICIO_HPP
