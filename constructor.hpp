@@ -2,6 +2,7 @@
 #define CONSTRUCTOR_H
 
 #include "lista.hpp"
+#include "ABB.hpp"
 
 #include "edificio.hpp"
 
@@ -17,6 +18,7 @@
 class Constructor
 {
     Lista<Edificio *> edificios;
+    ABB<Edificio,string> diccionario;
 
 public:
     // PRE: -

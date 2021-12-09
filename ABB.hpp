@@ -1,360 +1,482 @@
+#ifndef ABB_H
+#define ABB_H
 
-#include "ABBNode.hpp"
+#include "ABBNodo.hpp"
 #include <iostream>
-#include <cstddef>
 
-#ifndef ABB_HPP
-#define ABB_HPP
-
-template <class T>
-class BST
+template <typename T, typename C>
+class ABB
 {
 private:
-    BSTNode<T> *root;
-    // cada nodo de estos tiene 3 punteros:
-    //  el de la derecha, el de la izquierda y el padre
+    // Atributos:
+    ABBNodo<T,C>* raiz;
+
+    // Metodos:
+
+    ABBNodo<T,C>* insertar(ABBNodo<T,C>* nodo, T* dato, C clave);
+    //void imprimir_en_orden(ABBNodo<T,C>* nodo); // Posiblemente lo saque
+    ABBNodo<T,C>* buscar(ABBNodo<T,C>* nodo, C clave);
+    ABBNodo<T,C>* buscar_const(ABBNodo<T,C>* nodo, C clave) const;
+    C buscar_minimo(ABBNodo<T,C>* nodo);
+    C buscar_maximo(ABBNodo<T,C>* nodo);
+    C sucesor(ABBNodo<T,C>* nodo);
+    C predecesor(ABBNodo<T,C>* nodo);
+    ABBNodo<T,C>* remover(ABBNodo<T,C>* nodo, C clave);
+    void remover_todo(ABBNodo<T,C>* nodo);
 
 public:
-    // Creates an empty tree
-    BST();
 
-    // Adds a new node to the actual BST. If its the tree is empty
-    // the node inserted will be the root
-    void insert(T data);
+    // Metodos:
 
-    // Prints all the data stored in the BST, sorted from the
-    // smallest value to the greatest value.
-    void print_in_order();
+    // pre:
+    // pos:
+    ABB();
+    
+    // pre:
+    // pos:
+    void insertar(T* dato, C clave);
 
-    // Finds a given value in the BST. If the key exists it returns
-    // TRUE, otherwise it returns FALSE.
-    bool search(T data);
+    // pre:
+    // pos:
+    //void imprimir_en_orden();
 
-    // Finds the minimum value that exist in the BST.
-    T find_min();
+    // pre:
+    // pos:
+    bool buscar(C clave);
 
-    // Finds the maximum value that exist in the BST.
-    T find_max();
+    // pre:
+    // pos:
+    ABBNodo<T,C>* consultar(C clave);
 
-    // Finds the successor of a given data value.
-    T successor(T data);
+    // pre:
+    // pos:
+    ABBNodo<T,C>* consultar_const(C clave) const;
 
-    // Finds the predecessor of a given data value.
-    T predecessor(T data);
+    // pre:
+    // pos:
+    C buscar_minimo();
 
-    // Removes a given data from the BST
-    void remove(T data);
+    // pre:
+    // pos:
+    C buscar_maximo();
 
-    BSTNode<T> *get_root();
+    // pre:
+    // pos:
+    C sucesor(C clave);
 
-    bool empty();
+    // pre:
+    // pos:
+    C predecesor(C clave);
 
-    // Deletes all the nodes in the BST
-    void delete_all();
+    // pre:
+    // pos:
+    void remover(C clave);
 
-    ~BST<T>();
+    // pre:
+    // pos:
+    ABBNodo<T,C>* obtener_raiz();
 
-private:
-    /*los metodos que haya que ingresar el nodo son privados
-ya que no se tiene porque saber como esta implementada el abb
-aca es donde esta la implementacion posta, los otros son solo
-como una interfaz para la persona que use el ABB
-*/
-    BSTNode<T> *insert(BSTNode<T> *node, T data);
-    void print_in_order(BSTNode<T> *node);
-    BSTNode<T> *search(BSTNode<T> *node, T data);
-    T find_min(BSTNode<T> *node);
-    T find_max(BSTNode<T> *node);
-    T successor(BSTNode<T> *node);
-    T predecessor(BSTNode<T> *node);
-    BSTNode<T> *remove(BSTNode<T> *node, T data);
-    void delete_all(BSTNode<T> *node);
+    // pre:
+    // pos:
+    bool vacio();
+
+    // pre:
+    // pos:
+    void remover_todo();
+
+    // pre:
+    // pos:
+    ~ABB<T,C>();
+
 };
 
-// Creates an empty tree
-// Inicializa la raiz en cero
-template <class T>
-BST<T>::BST()
-{
-    this->root = NULL;
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+ABB<T,C>::ABB(){
+
+    this -> raiz = NULL;
 }
 
-template <class T>
-BSTNode<T> *BST<T>::insert(BSTNode<T> *node, T data)
-{
-    // cuando llega a un nodo que esta vacio lo agrega
-    if (node == NULL)
-    {
-        ////corte de la recursion. caso base
-        node = new BSTNode<T>(data);
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+ABBNodo<T,C>* ABB<T,C>::insertar(ABBNodo<T,C>* nodo, T* dato, C clave) {
+
+    if(nodo == NULL){
+        nodo = new ABBNodo<T,C>(dato, clave);
     }
-    // si es mas grande lo pongo a la derecha
-    else if (data > node->get_data())
-    {
-        // aca hay recursividad, pero en vez de acceder al nodo raiz
-        // accede al nodo que tiene a la derecha (ver implement del nodo)
-        node->set_right(insert(node->get_right(), data), node);
-        // le setea el nodo
+
+    else if (clave > nodo -> obtener_clave()){
+        nodo -> colocar_derecha(insertar(nodo -> obtener_derecha(), dato, clave), nodo);
     }
-    // si no a la izquierda
+
+    else {
+        nodo -> colocar_izquierda(insertar(nodo -> obtener_izquierda(), dato, clave), nodo);
+    }
+
+    return nodo;
+}
+
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+void ABB<T,C>::insertar(T* dato, C clave){
+
+    this -> raiz = insertar(this -> raiz, dato, clave);
+}
+
+
+// -----------------------------------------------------------------------------------------
+/*
+// Este deberia sacarlo o modificarlo
+template <typename T, typename C>
+void ABB<T,C>::imprimir_en_orden(ABBNodo<T,C>* nodo){
+
+    if (nodo != NULL){
+        imprimir_en_orden(nodo -> obtener_izquierda());
+        std::cout << nodo -> obtener_dato() << ' ';
+        imprimir_en_orden(nodo -> obtener_derecha());
+    }
+}
+*/
+
+// -----------------------------------------------------------------------------------------
+
+/*
+template <typename T, typename C>
+void ABB<T,C>::imprimir_en_orden(){
+    
+    this -> imprimir_en_orden(this -> raiz);
+}
+*/
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+ABBNodo<T,C>* ABB<T,C>::buscar(ABBNodo<T,C>* nodo, C clave){
+
+    if (nodo == NULL || nodo -> obtener_clave() == clave){
+        return nodo;
+    }
+
+    if (clave > nodo -> obtener_clave())
+        return buscar(nodo -> obtener_derecha(), clave);
+    
+    return buscar(nodo -> obtener_izquierda(), clave);
+}
+
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+ABBNodo<T,C>* ABB<T,C>::buscar_const(ABBNodo<T,C>* nodo, C clave) const{
+
+    if (nodo == NULL || nodo -> obtener_clave() == clave){
+        return nodo;
+    }
+
+    if (clave > nodo -> obtener_clave())
+        return buscar_const(nodo -> obtener_derecha(), clave);
+    
+    return buscar_const(nodo -> obtener_izquierda(), clave);
+}
+
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+bool ABB<T,C>::buscar(C clave){
+
+    ABBNodo<T,C>* resultado = buscar(this -> raiz, clave);
+
+    return resultado != NULL;
+}
+
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+ABBNodo<T,C>* ABB<T,C>::consultar(C clave){
+
+    ABBNodo<T,C>* resultado = buscar(this -> raiz, clave);
+
+    return resultado;
+}
+
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+ABBNodo<T,C>* ABB<T,C>::consultar_const(C clave) const{
+
+    ABBNodo<T,C>* resultado = buscar_const(this -> raiz, clave);
+
+    return resultado;
+}
+
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+C ABB<T,C>::buscar_minimo(ABBNodo<T,C>* nodo){
+
+    if(nodo == NULL)
+        return "?"; // Antes habia un '-1'
+
+    else if(nodo -> obtener_izquierda() == NULL)
+        return nodo -> obtener_clave();
+
     else
-    {
-        node->set_left(insert(node->get_left(), data), node);
-    }
-    return node;
-    /*
-    Cual es la complejidad de este algoritmo?
-    Cuando el arbol no esta balanceada la complejidad no es tan precisa, se puede calcular una
-    cota superior. Aca se recorre la cantidad de veces como niveles, es la altura.
-    y la altura se calcula como log_2(cantNodos)
-    */
+        return buscar_minimo(nodo -> obtener_izquierda());
 }
 
-template <class T>
-void BST<T>::insert(T data)
-{
-    this->root = insert(this->root, data);
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+C ABB<T,C>::buscar_minimo(){
+    return buscar_minimo(this -> raiz);
 }
 
-template <class T>
-void BST<T>::print_in_order(BSTNode<T> *node)
-{
-    // me imprime de menor a mayor
-    // el menor es cuando el nodo de la izquierda es nulo
-    if (node != NULL)
-    {
-        print_in_order(node->get_left());
-        // si es nulo se corta ahi y sigue del otro lado
-        std::cout << node->get_data() << ' ';
-        print_in_order(node->get_right());
-    }
-    // la complejidad es O(n) siendo n la cant de nodos
-}
 
-template <class T>
-void BST<T>::print_in_order()
-{
-    this->print_in_order(this->root);
-}
+// -----------------------------------------------------------------------------------------
 
-template <class T>
-BSTNode<T> *BST<T>::search(BSTNode<T> *node, T data)
-{
-    if (node == NULL || node->get_data() == data)
-        return node; // devuelve null si no encontro o el nodo si lo encontro
 
-    // busco de una parte y si no busco del otro (busqueda binaria)
-    if (data > node->get_data())
-        return search(node->get_right(), data);
+template <typename T, typename C>
+C ABB<T,C>::buscar_maximo(ABBNodo<T,C>* nodo){
 
-    return search(node->get_left(), data);
-    // complejidad logaritmica
-}
+    if(nodo == NULL)
+        return "?"; //Antes habia un '-1'
+    
+    else if(nodo -> obtener_derecha() == NULL)
+        return nodo -> obtener_clave();
 
-template <class T>
-bool BST<T>::search(T data)
-{
-    BSTNode<T> *result = search(this->root, data);
-
-    return result != NULL;
-}
-
-template <class T>
-T BST<T>::find_min(BSTNode<T> *node)
-{
-
-    if (node == NULL)
-        return -1;                     // arbol vacio
-    else if (node->get_left() == NULL) // el minimo no tiene un nodo a la izquierda!
-        return node->get_data();       // caso corte de recursividad
     else
-        return find_min(node->get_left()); // recursividad hasta encontrar el min
-    // complejidad es logaritmica porque siempre divido a la mitad.
-    // es la altura. osea log(n)
+        return buscar_maximo(nodo -> obtener_derecha());
 }
 
-template <class T>
-T BST<T>::find_min()
-{
-    return find_min(this->root);
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+C ABB<T,C>::buscar_maximo(){
+    return buscar_maximo(this -> raiz);
 }
 
-template <class T>
-T BST<T>::find_max(BSTNode<T> *node)
-{
-    // el maximo es que no tiene nodo a la derecha
-    if (node == NULL)
-        return -1;
-    else if (node->get_right() == NULL)
-        return node->get_data();
-    else
-        return find_max(node->get_right());
-}
 
-template <class T>
-T BST<T>::find_max()
-{
-    return find_max(this->root);
-}
+// -----------------------------------------------------------------------------------------
 
-template <class T>
-T BST<T>::successor(BSTNode<T> *node)
-{
-    if (node->get_right() != NULL) // si tiene subarbol derecho
-    {
-        return find_min(node->get_right());
+
+template <typename T, typename C>
+C ABB<T,C>::sucesor(ABBNodo<T,C>* nodo){
+
+    if(nodo -> obtener_derecha() != NULL){
+
+        return buscar_minimo(nodo -> obtener_derecha());
     }
-    BSTNode<T> *successor = NULL;
-    BSTNode<T> *ancestor = this->root;
-    while (ancestor != node)
-    { // tengo que buscar el mayor que el actual
-        if (node->get_data() < ancestor->get_data())
-        {
-            successor = ancestor;
-            ancestor = ancestor->get_left();
+
+    ABBNodo<T,C>* sucesor = NULL;
+    ABBNodo<T,C>* ancestro = this -> raiz;
+    while(ancestro != nodo){
+        if(nodo -> obtener_clave() < ancestro -> obtener_clave()){
+            sucesor = ancestro;
+            ancestro = ancestro -> obtener_izquierda();
         }
         else
-            ancestor = ancestor->get_right();
-    }
-    return successor->get_data();
-}
-
-template <class T>
-T BST<T>::successor(T data)
-{
-    BSTNode<T> *data_node = this->search(this->root, data);
-    // Return the key. If the key is not found or successor is not found, return -1
-    if (data_node == NULL)
-        return -1;
-    else
-        return successor(data_node); // metodo privado
-}
-
-template <class T>
-T BST<T>::predecessor(BSTNode<T> *node)
-{
-    if (node->get_left() != NULL)
-    {
-        return find_max(node->get_left());
+            ancestro = ancestro -> obtener_derecha();
     }
 
-    BSTNode<T> *successor = NULL;
-    BSTNode<T> *ancestor = this->root;
-    while (ancestor != node)
+    return sucesor -> obtener_clave();
+}
+
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+C ABB<T,C>::sucesor(C clave){
+
+    ABBNodo<T,C>* nodo_clave = this -> buscar(this -> raiz, clave);
+
+    if(nodo_clave == NULL)
+        return "?"; // Antes habia un '-1'
+    
+    else return sucesor(nodo_clave);
+}
+
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+C ABB<T,C>::predecesor(ABBNodo<T,C>* nodo)
+{
+    if (nodo -> obtener_izquierda() != NULL)
     {
-        if (node->get_data() > ancestor->get_data())
-        {
-            successor = ancestor; // so far this is the deepest node for which current node is in left
-            ancestor = ancestor->get_right();
+        return buscar_maximo(nodo -> obtener_izquierda());
+    }
+
+    ABBNodo<T,C>* sucesor = NULL;
+    ABBNodo<T,C>* ancestro = this -> raiz;
+    while(ancestro != nodo){
+        if(nodo -> obtener_clave() < ancestro -> obtener_clave()){
+            sucesor = ancestro;
+            ancestro = ancestro -> obtener_derecha();
         }
         else
-            ancestor = ancestor->get_left();
+            ancestro = ancestro -> obtener_izquierda();
     }
-    return successor->get_data();
+
+    return sucesor -> obtener_clave();
 }
 
-template <class T>
-T BST<T>::predecessor(T data)
-{
-    BSTNode<T> *data_node = this->search(this->root, data);
 
-    if (data_node == NULL)
-        return -1;
-    else
-        return predecessor(data_node);
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+C ABB<T,C>::predecesor(C clave)
+{
+    ABBNodo<T,C>* nodo_clave = this -> buscar(this -> raiz, clave);
+
+    if(nodo_clave == NULL)
+        return "?"; // Antes habia un '-1'
+    
+    else return predecesor(nodo_clave);
 }
 
-template <class T>
-BSTNode<T> *BST<T>::remove(BSTNode<T> *node, T data)
-{
-    // The given node is not found in BST
-    if (node == NULL)
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+ABBNodo<T,C>* ABB<T,C>::remover(ABBNodo<T,C>* nodo, C clave){
+
+    if(nodo == NULL)
         return NULL;
 
-    if (node->get_data() == data)
-    {
-        if (node->isLeaf())
-            delete node;
-        else if (node->rightChildOnly())
-        {
-            // The only child will be connected to the parent's of node directly
-            node->get_right()->set_parent(node->get_parent());
-            // Bypass node
-            BSTNode<T> *aux = node;
-            node = node->get_right();
-            delete aux;
-        }
-        else if (node->leftChildOnly())
-        {
-            // The only child will be connected to the parent's of node directly
-            node->get_left()->set_parent(node->get_parent());
-            // Bypass node
-            BSTNode<T> *aux = node;
-            node = node->get_left();
+    if(nodo -> obtener_clave() == clave){
+
+        if(nodo -> es_hoja())
+            delete nodo;
+        
+        else if(nodo -> tiene_solo_hijo_derecho()){
+
+            nodo -> obtener_derecha() -> colocar_padre(nodo -> obtener_padre());
+
+            ABBNodo<T,C>* aux = nodo;
+            nodo = nodo -> obtener_derecha();
             delete aux;
         }
 
-        // The node has two children (left and right)
-        else
-        {
-            // Find successor or predecessor to avoid quarrel
-            T successor_data = this->successor(data);
+        else if(nodo -> tiene_solo_hijo_izquierdo()){
 
-            // Replace node's key with successor's key
-            node->set_data(successor_data);
+            nodo -> obtener_izquierda() -> colocar_padre(nodo -> obtener_padre());
 
-            // Delete the old successor's key
-            node->set_right(remove(node->get_right(), successor_data));
+            ABBNodo<T,C>* aux = nodo;
+            nodo = nodo -> obtener_izquierda();
+            delete aux;
+        }
+
+        else{
+
+            C clave_sucesor = this -> sucesor(clave);
+
+            T* dato_sucesor = this -> consultar(clave_sucesor) -> obtener_dato();
+
+            nodo -> colocar_dato(dato_sucesor);
+
+            nodo -> colocar_derecha(remover(nodo -> obtener_derecha(), clave_sucesor));
         }
     }
 
-    else if (node->get_data() < data)
-        node->set_right(remove(node->get_right(), data));
+    else if(nodo -> obtener_clave() < clave)
+        nodo -> colocar_derecha(remover(nodo -> obtener_derecha(), clave));
 
     else
-        node->set_left(remove(node->get_left(), data));
+        nodo -> colocar_izquierda(remover(nodo -> obtener_izquierda(), clave));
 
-    return node;
+    return nodo;    
 }
 
-template <class T>
-void BST<T>::remove(T data)
-{
-    this->root = remove(this->root, data);
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+void ABB<T,C>::remover(C clave){
+
+    this -> raiz = remover(this -> raiz, clave);
 }
 
-template <class T>
-BSTNode<T> *BST<T>::get_root()
-{
-    return this->root;
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+ABBNodo<T,C>* ABB<T,C>::obtener_raiz(){
+
+    return this -> raiz;
 }
 
-template <class T>
-bool BST<T>::empty()
-{
-    return this->root == NULL;
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+bool ABB<T,C>::vacio(){
+
+    return this -> raiz == NULL;
 }
 
-template <class T>
-void BST<T>::delete_all(BSTNode<T> *node)
-{
-    if (node == NULL)
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+void ABB<T,C>::remover_todo(ABBNodo<T,C>* nodo){
+
+    if(nodo == NULL)
         return;
-    this->delete_all(node->get_left());
-    this->delete_all(node->get_right());
-    delete node;
+    this -> remover_todo(nodo -> obtener_izquierda());
+    this -> remover_todo(nodo -> obtener_derecha());
+    delete nodo;
 }
 
-template <class T>
-void BST<T>::delete_all()
-{
-    this->delete_all(this->root);
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+void ABB<T,C>::remover_todo(){
+
+    this -> remover_todo(this -> raiz);
 }
 
-template <class T>
-BST<T>::~BST<T>()
-{
-    this->delete_all();
+
+// -----------------------------------------------------------------------------------------
+
+
+template <typename T, typename C>
+ABB<T,C>::~ABB<T,C>(){
+
+    this -> remover_todo();
 }
 
-#endif // ABB_BST_H
+
+#endif // ABB_H

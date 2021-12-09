@@ -4,49 +4,66 @@ Constructor::Constructor(){}
 
 void Constructor::agregar_edificio(string nombre, int piedra, int madera, int metal, int permitidos)
 {
-    if (nombre == "aserradero")
-        edificios.alta(new Aserradero(piedra, madera, metal, permitidos));
-    if (nombre == "fabrica")
-        edificios.alta(new Fabrica(piedra, madera, metal, permitidos));
-    if (nombre == "escuela")
-        edificios.alta(new Escuela(piedra, madera, metal, permitidos));
-    if (nombre == "yacimiento")
-        edificios.alta(new Yacimiento(piedra, madera, metal, permitidos));
-    if (nombre == "mina")
-        edificios.alta(new Mina(piedra, madera, metal, permitidos));
-    if (nombre == "mina oro")
-        edificios.alta(new MinaOro(piedra, madera, metal, permitidos));
-    if (nombre == "obelisco")
-        edificios.alta(new Obelisco(piedra, madera, metal, permitidos));
-    if (nombre == "planta electrica")
-        edificios.alta(new PlantaElectrica(piedra, madera, metal, permitidos));
+    if (nombre == "aserradero"){
+        diccionario.insertar(new Aserradero(piedra, madera, metal, permitidos), "aserradero");
+        //edificios.alta(new Aserradero(piedra, madera, metal, permitidos));
+    }
+    if (nombre == "fabrica"){
+        diccionario.insertar(new Fabrica(piedra, madera, metal, permitidos), "fabrica");
+        //edificios.alta(new Fabrica(piedra, madera, metal, permitidos));
+    }
+    if (nombre == "escuela"){
+        diccionario.insertar(new Escuela(piedra, madera, metal, permitidos), "escuela");
+        //edificios.alta(new Escuela(piedra, madera, metal, permitidos));
+    }
+    if (nombre == "yacimiento"){
+        diccionario.insertar(new Yacimiento(piedra, madera, metal, permitidos), "yacimiento");
+        //edificios.alta(new Yacimiento(piedra, madera, metal, permitidos));
+    }
+    if (nombre == "mina"){
+        diccionario.insertar(new Mina(piedra, madera, metal, permitidos), "mina");
+        //edificios.alta(new Mina(piedra, madera, metal, permitidos));
+    }
+    if (nombre == "mina oro"){
+        diccionario.insertar(new MinaOro(piedra, madera, metal, permitidos), "mina oro");
+        //edificios.alta(new MinaOro(piedra, madera, metal, permitidos));
+    }
+    if (nombre == "obelisco"){
+        diccionario.insertar(new Obelisco(piedra, madera, metal, permitidos), "obelisco");
+        //edificios.alta(new Obelisco(piedra, madera, metal, permitidos));
+    }
+    if (nombre == "planta electrica"){
+        diccionario.insertar(new PlantaElectrica(piedra, madera, metal, permitidos), "planta electrica");
+        //edificios.alta(new PlantaElectrica(piedra, madera, metal, permitidos));
+    }
+        
 }
 
 Edificio *Constructor::construye(const string &edificio)
 {
     Edificio *construido = NULL;
-    int pos = buscar_edificio(edificio);
+    //int pos = buscar_edificio(edificio);
 
-    if (pos > edificios.mostrar_cantidad())
-        return construido;
-
+    /*if (pos > edificios.mostrar_cantidad())
+        return construido;*/
+    
     if (edificio == "aserradero")
-        construido = new Aserradero(edificios[pos]);
+        construido = new Aserradero(diccionario.consultar(edificio)->obtener_dato());
     if (edificio == "escuela")
-        construido = new Escuela(edificios[pos]);
+        construido = new Escuela(diccionario.consultar(edificio)->obtener_dato());
     if (edificio == "fabrica")
-        construido = new Fabrica(edificios[pos]);
+        construido = new Fabrica(diccionario.consultar(edificio)->obtener_dato());
     if (edificio == "mina")
-        construido = new Mina(edificios[pos]);
+        construido = new Mina(diccionario.consultar(edificio)->obtener_dato());
     if (edificio == "mina oro")
-        construido = new Mina(edificios[pos]);
+        construido = new Mina(diccionario.consultar(edificio)->obtener_dato());
     if (edificio == "obelisco")
-        construido = new Obelisco(edificios[pos]);
+        construido = new Obelisco(diccionario.consultar(edificio)->obtener_dato());
     if (edificio == "planta electrica")
-        construido = new PlantaElectrica(edificios[pos]);
+        construido = new PlantaElectrica(diccionario.consultar(edificio)->obtener_dato());
     if (edificio == "yacimiento")
-        construido = new Yacimiento(edificios[pos]);
-
+        construido = new Yacimiento(diccionario.consultar(edificio)->obtener_dato());
+    
     return construido;
 }
 
