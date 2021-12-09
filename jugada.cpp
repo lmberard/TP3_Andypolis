@@ -10,12 +10,12 @@ Coordenada Jugada::pedir_coordenadas()
     msjeInstruccion("Ingrese las coordenadas:");
 
     msjeInstruccion("Coordenada X:");
-    getline(cin, aux);
+    cin >> aux;
     if (es_coordenada(aux) == true)
         x = stoi(aux);
 
     msjeInstruccion("Coordenada Y:");
-    getline(cin, aux);
+    cin >> aux;
     if (es_coordenada(aux) == true)
         y = stoi(aux);
     
@@ -30,8 +30,9 @@ int Jugada::pedir_id_jugador()
         //verificar si es valido (esto no porque se hace en otro lado)
         //verificar que se ingrese un numero entero
     int id;
-    cin >> id;
     
+    cin >> id;
+
     return id;
 }
 
