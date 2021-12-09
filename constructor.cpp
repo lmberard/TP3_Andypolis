@@ -27,6 +27,9 @@ void Constructor::agregar_edificio(string nombre, int piedra, int madera, int me
 Edificio *Constructor::construye(const string &edificio)
 {
     Edificio *construido = NULL;
+
+    if(!diccionario.buscar(edificio))
+        return construido;
     
     if (edificio == "aserradero")
         construido = new Aserradero(diccionario.consultar(edificio)->obtener_dato());
