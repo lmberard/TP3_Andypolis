@@ -5,14 +5,21 @@ Jugada::~Jugada(){}
         
 Coordenada Jugada::pedir_coordenadas()
 {
-    string x, y;
+    int x, y;
+    string aux;
     msjeInstruccion("Ingrese las coordenadas:");
+
     msjeInstruccion("Coordenada X:");
-    cin >> x;
+    getline(cin, aux);
+    if (es_coordenada(aux) == true)
+        x = stoi(aux);
+
     msjeInstruccion("Coordenada Y:");
-    cin >> y;
+    getline(cin, aux);
+    if (es_coordenada(aux) == true)
+        y = stoi(aux);
     
-    return crear_coordenada(stoi(x), stoi(y));
+    return crear_coordenada(x, y);
 }
 
 int Jugada::pedir_id_jugador()
