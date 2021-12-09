@@ -42,10 +42,6 @@ void Constructor::agregar_edificio(string nombre, int piedra, int madera, int me
 Edificio *Constructor::construye(const string &edificio)
 {
     Edificio *construido = NULL;
-    //int pos = buscar_edificio(edificio);
-
-    /*if (pos > edificios.mostrar_cantidad())
-        return construido;*/
     
     if (edificio == "aserradero")
         construido = new Aserradero(diccionario.consultar(edificio)->obtener_dato());
@@ -93,8 +89,4 @@ int Constructor::cant_edificios()
 
 Constructor::~Constructor()
 {
-    for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
-    {
-        delete edificios[i];
-    }
 }
