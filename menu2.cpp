@@ -7,7 +7,10 @@ using namespace std;
 int Menu::obtener_opcion_usuario()
 {
     int opcion_elegida;
-    cin >> opcion_elegida;
+    //cin >> opcion_elegida;
+    string aux;
+    getline(cin, aux);
+    opcion_elegida = stoi(aux);
     return opcion_elegida;
 }
 ////////////////////////////////////////////////////////////////
@@ -119,7 +122,7 @@ void Menu::volver()
     msjeInstruccion("\nPresiona ENTER para volver al menu..");
     cin.get();
 
-    cin.get();
+    //cin.get();
     system(CLR_SCREEN);
 }
 
