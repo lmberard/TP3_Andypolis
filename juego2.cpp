@@ -25,7 +25,8 @@ Juego::~Juego()
     archivo.guardar_inventario(jugadores);
 
     //guarda la partida 
-    archivo.guardar_partida(mapa,jugadores);
+    if(!partida_nueva)
+        archivo.guardar_partida(mapa,jugadores);
 
     for(int i = 0; i < 2; i++)
         mapa.liberar_edificios(jugadores[i].lista_edificios());
