@@ -1,4 +1,7 @@
-madera 1150 1100
-piedra 2175 2065
-metal 3023 3026
+metal 300 300
+piedra 200 200
+madera 100 100
 andycoins 15 1000
+metal 3023 3026
+piedra 2175 2065
+madera 1150 1100

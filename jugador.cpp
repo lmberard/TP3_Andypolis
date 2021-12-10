@@ -3,17 +3,11 @@
 
 Jugador::Jugador()
 {
-<<<<<<< HEAD
-    id = 0;
-    puntos_energia = 50;
-    modificar_coordenada(posicion_jugador, 0, 0);
-=======
     //id = 0;
     puntos_energia = 50;
     fobia_al_agua = false;
     odio_al_muelle = false;
     //modificar_coordenada(posicion_jugador, 0, 0);
->>>>>>> d9dce29db7fac3fc87788a4807a77f646a4a05f1
 }
 
 Jugador::~Jugador()
