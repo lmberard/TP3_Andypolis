@@ -19,29 +19,39 @@
 class Jugador
 {
 private:
-    int id;                       //si es jugador 1, va el 1
-    Lista<Ubicaciones> edificios; //ubicaciones de los edificios construidos por este jugador
-    Inventario inventario;        //lista de materiales de este jugador
-    Coordenada posicion_jugador;
-
-    int puntos_energia;
+    
+    string codigo;
     Lista<Objetivo*> objetivos;
+
+    Inventario inventario;        //lista de materiales de este jugador
+    int puntos_energia;
+    
+    bool fobia_al_agua;
+    bool odio_al_muelle;
+
+    //QUE ESTA LISTA SEA UN ATRIBUTO DE JUGADOR NO SE SI ESTA TAAAN BIEN, PERO YA FUE 
+    Lista<Ubicaciones> edificios; //ubicaciones de los edificios construidos por este jugador
+    
+    //ESTOS ATRIBUTOS NO VAN MAS:
+    //Coordenada posicion_jugador;
+    //int id;                       //si es jugador 1, va el 1
 
 public:
     //-----------------CONSTRUCTORES DESTRUCTORES----------------------------
     Jugador();
     ~Jugador();
     //-------------------------GETTERS---------------------------------------
-    Coordenada obtener_posicion_jugador(); 
+    //Coordenada obtener_posicion_jugador(); 
     Lista<Ubicaciones> & lista_edificios();
     int obtener_energia();
 
     //esta capaz es util para objetivos tipo "letrado", pero no va aca:
     int obtener_cant_edificios_construidos(string nombre);
+    string obtener_codigo();
     //-------------------------SETTERS---------------------------------------
     /*funciones que se utilizan para parser o bien entrada por consola*/
-
-    void setear_posicion(Coordenada coord);
+    void setear_jugador(int id);
+    //void setear_posicion(Coordenada coord);
     void agregar_material_al_inventario(Material * material);    //materiales.txt
     void agregar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio); //ubicaciones.txt
 

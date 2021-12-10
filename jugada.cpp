@@ -54,8 +54,10 @@ void Jugada::setear_coordenada_jugador(int id_jugador, Jugador * jugadores, Mapa
     msjeInstruccion("Jugador " + to_string(id_jugador) + ", donde quiere empezar el juego?");
     Coordenada coord_jugador = pedir_coordenadas();
     //esto deberia ser un loop para que te siga pidiendo
-    if(mapa.coordenadas_validas(coord_jugador))
-        jugadores[id_jugador - 1].setear_posicion(coord_jugador);
+    if(mapa.coordenadas_validas(coord_jugador)){
+        mapa.agregar_jugador(coord_jugador,&jugadores[id_jugador - 1],id_jugador);
+        //jugadores[id_jugador - 1].setear_posicion(coord_jugador);
+    }
 }
 
         

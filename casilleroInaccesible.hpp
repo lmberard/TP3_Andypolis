@@ -21,6 +21,8 @@ public:
     // POS: Muestra por la terminal un cuadrado con el color del casillero innacesible
     void mostrar_por_pantalla();
 
+    bool agregar(Jugador *jugador);
+
 };
 
 #endif // CASILLEROINACCESIBLE_HPP

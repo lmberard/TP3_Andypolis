@@ -81,7 +81,8 @@ bool Parser::cargar_partida_guardada(Mapa & mapa, Jugador* jugador, Constructor 
         if(es_palabra(aux))
             cargar_materiales(archivo_ubicaciones, recurso, mapa, aux);
         for(int i = 0; i < cant_jugadores; i++){
-            cargar_posicion(archivo_ubicaciones, jugador[i], aux);
+            jugador[i].setear_jugador(i+1);
+            cargar_posicion(archivo_ubicaciones, jugador[i], mapa, i, aux);
             if(es_palabra(aux))
                 cargar_edificios(archivo_ubicaciones,jugador[i],mapa,bob, aux);
         }
@@ -143,7 +144,7 @@ bool Parser::guardar_partida(Mapa & mapa,Jugador *jugador)
        
         guardar_ubicaciones(mapa.lista_materiales(), archivo_ubicaciones);
         for(int i = 0; i < 2; i++){
-            guardar_ubicacion_jugador(jugador[i], i, archivo_ubicaciones);
+            guardar_ubicacion_jugador(mapa, i, archivo_ubicaciones);
             guardar_ubicaciones(jugador[i].lista_edificios(), archivo_ubicaciones);
         }
 
@@ -214,16 +215,16 @@ void Parser::cargar_edificios(fstream & archivo_ubicaciones, Jugador & jugador, 
     }
 }
 
-void Parser::cargar_posicion(fstream & archivo_ubicaciones, Jugador & jugador, string & aux)
+void Parser::cargar_posicion(fstream & archivo_ubicaciones, Jugador & jugador, Mapa & mapa, int i, string & aux)
 {   
     archivo_ubicaciones >> aux;
-    jugador.setear_posicion(obtener_coordenada(archivo_ubicaciones, aux));
+    mapa.agregar_jugador(obtener_coordenada(archivo_ubicaciones,aux), &jugador, i+1);
     archivo_ubicaciones >> aux;
 }
 
 bool Parser::es_palabra(string & aux)
 {
-        bool status = true;
+    bool status = true;
 
     if (aux.empty())
         status = false;
@@ -249,12 +250,12 @@ void Parser::guardar_ubicaciones(Lista<Ubicaciones> & lista, ofstream & archivo_
     }
 }
 
-void Parser::guardar_ubicacion_jugador(Jugador & jugador, int i, ofstream & archivo_ubicaciones)
+void Parser::guardar_ubicacion_jugador(Mapa & mapa, int i, ofstream & archivo_ubicaciones)
 {
     Coordenada coordenada;
     
     archivo_ubicaciones << i+1 << ' ';
-    coordenada = jugador.obtener_posicion_jugador();
+    coordenada = mapa.obtener_posicion_jugador(i+1);
     guardar_coordenadas(coordenada, archivo_ubicaciones);
 }
 

@@ -78,7 +78,7 @@ private:
 
     //PRE:
     //POS:
-    void cargar_posicion(fstream & archivo_ubicaciones,Jugador & jugador, string & aux);
+    void cargar_posicion(fstream & archivo_ubicaciones,Jugador & jugador, Mapa & mapa, int i, string & aux);
 
     //PRE:
     //POS:
@@ -86,7 +86,7 @@ private:
 
     //PRE:
     //POS:
-    void guardar_ubicacion_jugador(Jugador & jugador, int i, ofstream & archivo_ubicaciones);
+    void guardar_ubicacion_jugador(Mapa & mapa, int i, ofstream & archivo_ubicaciones);
 
     //PRE:
     //POS:
