@@ -14,6 +14,7 @@ class ListarConstruidos : public Jugada{
             
             for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++){   
                 cout << "Tipo de edificio: " << edificios[i].nombre << endl;
+                cout << "Cantidad: " << obtener_cantidad(edificios[i]) << endl;
                 vida = bob.mostrar_edificio(edificios[i].nombre)->obtener_vida();
                 for(int j = 1; j < obtener_cantidad(edificios[i]) + 1; j++){
                     coordenada = edificios[i].coordenadas[j];

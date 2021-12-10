@@ -34,5 +34,7 @@ public:
     // PRE: -
     // POS: Devuelve el edificio que esta construido en el casillero. Si no hay edificio construido devuelve NULL (cero)
     Edificio *info_edificio();
+
+    bool agregar(Jugador *jugador);
 };
 #endif // CASILLEROONSTRUIBLE_HPP

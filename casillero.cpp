@@ -1,6 +1,8 @@
 #include "casillero.hpp"
 
-Casillero::Casillero(){}
+Casillero::Casillero(){
+    jugador = NULL;
+}
 
 Casillero::~Casillero(){}
 

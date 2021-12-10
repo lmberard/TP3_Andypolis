@@ -24,6 +24,20 @@ Coordenada Jugada::pedir_coordenadas()
     return crear_coordenada(x, y);
 }
 
+string Jugada::pedir_edificio(){
+    string edificio;
+
+    msjeInstruccion("Ingrese el edificio:");
+    getline(cin, edificio);
+
+    return edificio;
+}
+
+
+
+
+
+
 int Jugada::pedir_id_jugador()
 {
     msjeInstruccion("Seleccione un jugador (ingrese el numero):");
@@ -54,8 +68,10 @@ void Jugada::setear_coordenada_jugador(int id_jugador, Jugador * jugadores, Mapa
     msjeInstruccion("Jugador " + to_string(id_jugador) + ", donde quiere empezar el juego?");
     Coordenada coord_jugador = pedir_coordenadas();
     //esto deberia ser un loop para que te siga pidiendo
-    if(mapa.coordenadas_validas(coord_jugador))
-        jugadores[id_jugador - 1].setear_posicion(coord_jugador);
+    if(mapa.coordenadas_validas(coord_jugador)){
+        mapa.agregar_jugador(coord_jugador,&jugadores[id_jugador - 1],id_jugador);
+        //jugadores[id_jugador - 1].setear_posicion(coord_jugador);
+    }
 }
 
         

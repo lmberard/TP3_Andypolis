@@ -45,6 +45,8 @@ public:
     // POS: Devuelve la cantidad de edificios en la lista de edificios
     int cant_edificios();
 
+    bool existe(string edificio);
+
 };
 
 #endif // CONSTRUCTOR_H

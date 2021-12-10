@@ -11,7 +11,10 @@ private:
     int filas;
     int columnas;
     Casillero ***mapa;
+
     Lista<Ubicaciones> materiales;
+    Coordenada jugador1;
+    Coordenada jugador2;
     Lista<Coordenada> coordenadas_transitables; //ver si es necesario
 
 public:
@@ -19,22 +22,13 @@ public:
     Mapa();
     ~Mapa();
 
-    int  cant_coord_transitables(){
-        return coordenadas_transitables.mostrar_cantidad();
-    }
+    int cant_coord_transitables();
 
-    Coordenada  obtener_coord_transitables(int i){
-        return coordenadas_transitables[i];
-    }
+    Coordenada obtener_posicion_jugador(int i);
 
-    void quitar_coord_transitable(Coordenada coord){
-        for (int i = 1; i < coordenadas_transitables.mostrar_cantidad() + 1; i++){
-            if ((coordenadas_transitables[i].coord_x == coord.coord_x) && (coordenadas_transitables[i].coord_y == coord.coord_y)){
-                coordenadas_transitables.baja(i);
-            }
-        }   
-    }
+    Coordenada  obtener_coord_transitables(int i);
 
+    void quitar_coord_transitable(Coordenada coord);
 
     //------------------------GETTERS---------------------------------
     int obtener_filas();
@@ -53,6 +47,7 @@ public:
     void agregar_material(Coordenada coord, Material* material);
     void agregar_edificio(Coordenada coord, Edificio* edificio);
     void agregar_casillero(Coordenada coord, Casillero* casillero);
+    void agregar_jugador(Coordenada coord, Jugador *jugador, int i);
     //TODO: Revisar nombre y metodo
     void agregar_ubicacion_material_lista(string nombre, Coordenada coord); //YO
     bool agregar_contenido(Coordenada coord, Edificio *edificio);

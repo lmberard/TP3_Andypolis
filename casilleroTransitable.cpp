@@ -18,10 +18,12 @@ void CasilleroTransitable::info()
 
 void CasilleroTransitable::mostrar_por_pantalla()
 {
-    if (!material)
+    if (!material && !jugador)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "   " << END_COLOR << " ";
-    else
+    if(material)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << material->obtener_codigo() << " " << END_COLOR << " ";
+    if(jugador)
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << jugador->obtener_codigo() << " " << END_COLOR << " ";
 }
 
 bool CasilleroTransitable::agregar(Material *material)
@@ -32,6 +34,18 @@ bool CasilleroTransitable::agregar(Material *material)
         return false;
     }
     this->material = material;
+    return true;
+}
+
+bool CasilleroTransitable::agregar(Jugador *jugador)
+{
+    if (material || this->jugador)
+    {
+        msjeError("Ya hay un edificio en esta posicion. No se puede agregar otro");
+        return false;
+    }
+
+    this->jugador = jugador;
     return true;
 }
 

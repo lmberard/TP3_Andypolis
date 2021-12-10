@@ -88,6 +88,16 @@ void Mapa::agregar_edificio(Coordenada coord, Edificio* edificio)
     mapa[coord.coord_x][coord.coord_y]->agregar(edificio);
 }
 
+void Mapa::agregar_jugador(Coordenada coord, Jugador* jugador, int i)
+{
+    if(i == 1)
+        jugador1 = coord;
+    if(i == 2)
+        jugador2 = coord;
+    mapa[coord.coord_x][coord.coord_y]->agregar(jugador);
+    quitar_coord_transitable(coord);
+}
+
 void Mapa::actualizar_tam_mapa(int _filas, int _columnas)
 {
     filas = _filas;
@@ -213,4 +223,31 @@ void Mapa::liberar_edificios(Lista<Ubicaciones> & lista)
             mapa[coordenada.coord_x][coordenada.coord_y]->quitar_elemento();
         }
     }
+}
+
+int  Mapa::cant_coord_transitables()
+{
+    return coordenadas_transitables.mostrar_cantidad();
+}
+
+Coordenada Mapa::obtener_posicion_jugador(int i)
+{
+    if(i == 1)
+        return jugador1;
+    else
+        return jugador2;
+} 
+
+Coordenada Mapa::obtener_coord_transitables(int i)
+{
+    return coordenadas_transitables[i];
+}
+
+void Mapa::quitar_coord_transitable(Coordenada coord)
+{
+    for (int i = 1; i < coordenadas_transitables.mostrar_cantidad() + 1; i++){
+        if ((coordenadas_transitables[i].coord_x == coord.coord_x) && (coordenadas_transitables[i].coord_y == coord.coord_y)){
+            coordenadas_transitables.baja(i);
+        }
+    }   
 }

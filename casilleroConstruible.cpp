@@ -9,13 +9,25 @@ CasilleroConstruible ::~CasilleroConstruible() {}
 
 bool CasilleroConstruible ::agregar(Edificio *edificio)
 {
-    if (this->edificio)
+    if (this->edificio || jugador)
     {
         msjeError("Ya hay un edificio en esta posicion. No se puede agregar otro");
         return false;
     }
 
     this->edificio = edificio;
+    return true;
+}
+
+bool CasilleroConstruible ::agregar(Jugador *jugador)
+{
+    if (edificio || this->jugador)
+    {
+        msjeError("Ya hay un edificio en esta posicion. No se puede agregar otro");
+        return false;
+    }
+
+    this->jugador = jugador;
     return true;
 }
 
@@ -30,10 +42,12 @@ void CasilleroConstruible ::info()
 
 void CasilleroConstruible ::mostrar_por_pantalla()
 {
-    if (!edificio)
+    if (!edificio && !jugador)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "   " << END_COLOR << " ";
-    else
+    if(edificio)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << edificio->obtener_codigo() << " " << END_COLOR << " ";
+    if(jugador)
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << jugador->obtener_codigo() << " " << END_COLOR << " ";
 }
 
 Edificio *CasilleroConstruible::info_edificio()

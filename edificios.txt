@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+=======
+mina oro 100 100 2 4
+mina 100 100 2 4
+planta electrica 100 100 0 1
+yacimiento 125 140 0 2
+escuela 250 200 45 1
+fabrica 100 100 250 4
+aserradero 1000 1000 1000 2
+>>>>>>> d9dce29db7fac3fc87788a4807a77f646a4a05f1
 obelisco 1000 1000 1000 1
 aserradero 30 100 50 2
 fabrica 100 100 250 4

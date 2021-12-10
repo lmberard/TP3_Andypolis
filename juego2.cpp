@@ -13,7 +13,7 @@ Juego::Juego()
 
     //carga una partida guardada 
     if(archivo.cargar_partida_guardada(mapa,jugadores,bob,recurso))
-        partida_nueva = true;
+        partida_nueva = false;
 }
 
 Juego::~Juego()
@@ -121,6 +121,7 @@ void Juego::comenzar_partida()
     Jugada * jugada;
     int turno = 0;
     bool ganador = false;
+    id_jugador_actual = 1;
 
     asignar_objetivos();
     lluvia_recursos();
@@ -186,4 +187,3 @@ void Juego::celebrar()
 {
     cout << "felicidades jugador  " << id_jugador_actual << ", ganaste :)" << endl; 
 }
-

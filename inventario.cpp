@@ -149,6 +149,11 @@ Material * Inventario::obtener_material(string material_recibido){
     return aux;
 }
 
+Lista<Material *> & Inventario::obtener_lista_de_materiales(){
+    return materiales1;
+}
+
+
 
 int Inventario::obtener_cantidad()
 {

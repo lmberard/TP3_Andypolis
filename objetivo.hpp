@@ -13,7 +13,6 @@
 #include "constructor.hpp"
 #include "inventario.hpp"
 #include "recurso.hpp"
-#include "terreno.hpp"
 #include "objetivo.hpp"
 
 static const string OBJETIVO_PRINCIPAL = "principal";

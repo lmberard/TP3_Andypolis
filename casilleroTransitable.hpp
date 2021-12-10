@@ -34,6 +34,8 @@ public:
     // PRE:
     // POS: Elimina el material en el casillero y apunta a null a su atributo.
     void quitar_elemento();
+
+    bool agregar(Jugador *jugador);
 };
 
 #endif // CASILLEROTRANSITABLE_HPP

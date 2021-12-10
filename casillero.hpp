@@ -5,6 +5,7 @@
 
 #include "material.hpp"
 #include "edificio.hpp"
+#include "jugador.hpp"
 
 using namespace std;
 
@@ -14,7 +15,8 @@ protected:
 
     string color;
     string casillero_nombre;
-
+    Jugador *jugador;
+    
 public:
   
     Casillero();
@@ -27,6 +29,7 @@ public:
 
     virtual bool agregar(Edificio *);
     virtual bool agregar(Material *);
+    virtual bool agregar(Jugador *) = 0;
 
     virtual Edificio *info_edificio();
     virtual void quitar_elemento();

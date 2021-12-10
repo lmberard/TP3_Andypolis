@@ -3,9 +3,17 @@
 
 Jugador::Jugador()
 {
+<<<<<<< HEAD
     id = 0;
     puntos_energia = 50;
     modificar_coordenada(posicion_jugador, 0, 0);
+=======
+    //id = 0;
+    puntos_energia = 50;
+    fobia_al_agua = false;
+    odio_al_muelle = false;
+    //modificar_coordenada(posicion_jugador, 0, 0);
+>>>>>>> d9dce29db7fac3fc87788a4807a77f646a4a05f1
 }
 
 Jugador::~Jugador()
@@ -15,12 +23,12 @@ Jugador::~Jugador()
 }
 
 //-------------------------GETTERS---------------------------------------
-
+/*
 Coordenada Jugador::obtener_posicion_jugador()
 {
     return posicion_jugador;
 } 
-
+*/
 int Jugador::obtener_cant_edificios_construidos(string nombre)
 {
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
@@ -41,11 +49,11 @@ int Jugador::obtener_energia()
     return puntos_energia;
 }
 //-------------------------SETTERS---------------------------------------
-
+/*
 void Jugador::setear_posicion(Coordenada coord)
 {
     modificar_coordenada(posicion_jugador, coord.coord_x, coord.coord_y);
-}
+}*/
 //--------------------------PARA PARSER----------------------------------
 //materiales.txt
 void Jugador::agregar_material_al_inventario(Material* material)
@@ -217,4 +225,21 @@ void Jugador::chequear_objetivos(bool fin_turno, Constructor & bob)
 {
     for(int i = 1; i < objetivos.mostrar_cantidad()+1; i++)
         objetivos[i]->chequear_estado(inventario, puntos_energia, edificios, bob, fin_turno);
+}
+
+string Jugador::obtener_codigo()
+{
+    return codigo;
+}
+
+void Jugador::setear_jugador(int id)
+{
+    if(id == 1){
+        odio_al_muelle = true;
+        codigo = "J";
+    }
+    if(id == 2){
+        fobia_al_agua = true;
+        codigo = "U";
+    }
 }
