@@ -65,3 +65,8 @@ int Constructor::cant_edificios()
 {
     return edificios.mostrar_cantidad();
 }
+
+bool Constructor::existe(string edificio)
+{
+    return diccionario.buscar(edificio);
+}

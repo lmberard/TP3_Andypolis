@@ -4,11 +4,16 @@ void Construir::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jug
     Coordenada coordenadas;
     Edificio * edif_ptr;
     string edificio;
-    
 
     if(jugadores[id_jugador_actual].obtener_energia() >= 15){
 
-        pedir_edificio();
+        edificio = pedir_edificio();
+        //TE PUSE ESTA COSITA PORQUE SI METES UNA CLAVE EN "MOSTRAR_EDIFICIO(string) que no existe, se caga"
+        if(!bob.existe(edificio)){
+            cout << "pipo, esta funcion sirve para validar si existe o no el edificio" << endl;
+            return;
+        }
+
         edif_ptr = bob.mostrar_edificio(edificio);
 
         if(edif_ptr){
@@ -34,7 +39,7 @@ void Construir::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jug
 }
 
 
-bool Construir::chequear_requerimientos_edificio(Edificio * edif_ptr, Jugador jugador){
+bool Construir::chequear_requerimientos_edificio(Edificio * edif_ptr, Jugador & jugador){
     Lista<Material *> lista_materiales = jugador.inv().obtener_lista_de_materiales();       
     int i = 1;
     bool piedra_chequeada = false, madera_chequeada = false, metal_chequeado, estado = false;
