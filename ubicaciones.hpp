@@ -26,7 +26,7 @@ string obtener_nombre(Ubicaciones info);
 
 void mostrar_coordenadas(Ubicaciones info);
 
-bool eliminar_coordenada(Ubicaciones info, Coordenada coordenada);
+bool eliminar_coordenada(Ubicaciones& info, Coordenada coordenada);
 
 void agregar_coordenada(Ubicaciones& info, Coordenada coordenada);
 
@@ -42,5 +42,7 @@ bool coordenadas_son_iguales(Coordenada coord1, Coordenada coord2);
 Coordenada crear_coordenada(int x, int y);
 
 bool es_coordenada(string cadena);
+
+bool esta_lista_vacia(Ubicaciones& info);
 
 #endif // UBICACIONES_HPP

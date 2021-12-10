@@ -21,19 +21,24 @@ void mostrar_coordenadas(Ubicaciones info)
     }
 }
 
-bool eliminar_coordenada(Ubicaciones info, Coordenada coordenada)
+bool eliminar_coordenada(Ubicaciones& info, Coordenada coordenada)
 {
+    bool estado = false;
     int cant_coordenadas = obtener_cantidad(info);
-    for (int i = 1; i < cant_coordenadas + 1; i++)
+
+    for (int i = 1; i < cant_coordenadas + 1 && (estado == false); i++)
     {
         if (coordenadas_son_iguales(info.coordenadas[i], coordenada))
         {
             info.coordenadas.baja(i);
-            return true;
+            estado = true;
         }
     }
-    msjeError("No existe eso construido en esa coordenada.");
-    return false;
+
+    if(estado == false)
+        msjeError("No existe eso construido en esa coordenada.");
+    
+    return estado;
 }
 
 void agregar_coordenada(Ubicaciones& info, Coordenada coordenada)
@@ -48,13 +53,17 @@ void setear_nombre(Ubicaciones& info, string nombre)
 
 bool tiene_esa_coordenada(Ubicaciones info, Coordenada coordenada)
 {
+    bool esta_la_coordenada = false;
     int cant_coordenadas = obtener_cantidad(info);
-    for (int i = 1; i < cant_coordenadas + 1; i++)
+
+    for (int i = 1; i < cant_coordenadas + 1 && (esta_la_coordenada == false); i++)
     {
-        if (coordenadas_son_iguales(info.coordenadas[i], coordenada))
-            return true;
+        if (coordenadas_son_iguales(info.coordenadas[i], coordenada)){
+            esta_la_coordenada = true;
+        }
     }
-    return false;
+    
+    return esta_la_coordenada;
 }
 
 //---------------------STRUCT COORDENADAS--------------------------------
@@ -91,3 +100,6 @@ bool es_coordenada(string cadena){
     return estado;
 }
 
+bool esta_lista_vacia(Ubicaciones& info){
+    return obtener_cantidad(info) == 0;
+}

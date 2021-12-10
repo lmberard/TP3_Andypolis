@@ -4,7 +4,7 @@
 Jugador::Jugador()
 {
     id = 0;
-    puntos_energia = 0;
+    puntos_energia = 50;
     modificar_coordenada(posicion_jugador, 0, 0);
 }
 
@@ -61,7 +61,7 @@ void Jugador::agregar_ubicacion_lista_edificios(string nombre, Coordenada coorde
     {
         if (edificios[i].nombre == nombre){
             agregar_coordenada(edificios[i], coordenada_edificio);
-            return;
+            return; //TODO: CAMBIAR RETURN
         }
     }   
 
@@ -69,6 +69,23 @@ void Jugador::agregar_ubicacion_lista_edificios(string nombre, Coordenada coorde
     setear_nombre(nuevo_edificio_construido, nombre);
     agregar_coordenada(nuevo_edificio_construido, coordenada_edificio);
     edificios.alta(nuevo_edificio_construido);
+}
+
+bool Jugador::eliminar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio)
+{
+    bool edificio_demolido = false;
+    
+    for (int i = 1 ; i < edificios.mostrar_cantidad() + 1 && (edificio_demolido == false); i++)
+    {
+        if (edificios[i].nombre == nombre){
+            eliminar_coordenada(edificios[i], coordenada_edificio);
+            if(esta_lista_vacia(edificios[i]))
+                edificios.baja(i);
+            edificio_demolido = true;
+        }
+    }
+
+    return edificio_demolido;
 }
 
 //------------------------MODIFICADORES----------------------------------
@@ -128,6 +145,25 @@ bool Jugador::tiene_energia(int cantidad_necesaria)
 
 void Jugador::asignar_objetivos_jugador(Objetivo * objetivo){
     objetivos.alta(objetivo);
+}
+
+//TODO: FIJASE NOMBRE
+
+bool Jugador::tiene_edificio_por_coordenada(Coordenada coordenadas, string & edificio_a_demoler){
+    
+    bool estado = false;
+
+    for (int i = 1; i < edificios.mostrar_cantidad() + 1 && (estado == false); i++)
+    {
+        if (tiene_esa_coordenada(edificios[i], coordenadas)){
+            edificio_a_demoler = obtener_nombre(edificios[i]);
+            estado = true;
+        }
+
+    }
+
+    return estado;
+
 }
 
 //------------------------OPCIONES JUGADOR-------------------------------

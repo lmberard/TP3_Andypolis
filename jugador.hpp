@@ -44,6 +44,7 @@ public:
     void setear_posicion(Coordenada coord);
     void agregar_material_al_inventario(Material * material);    //materiales.txt
     void agregar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio); //ubicaciones.txt
+    bool eliminar_ubicacion_lista_edificios(string nombre, Coordenada coordenada_edificio);
 
     //------------------------MODIFICADORES----------------------------------
     void modificar_puntos_energia(int cantidad);
@@ -58,6 +59,7 @@ public:
     bool cantidad_suficiente_material(Edificio *edificio, bool construir);
     bool tiene_energia(int cantidad_necesaria);
     void asignar_objetivos_jugador(Objetivo * objetivo);
+    bool tiene_edificio_por_coordenada(Coordenada coordenadas, string & edificio_a_demoler);
 
     //------------------------OPCIONES JUGADOR-------------------------------
     void moverse_a_coordenada(int x, int y);

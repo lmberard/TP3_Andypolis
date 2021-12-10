@@ -9,6 +9,7 @@ Edificio::Edificio(int s, int w, int m, int p)
     cantidad_permitida = p;
 }
 
+
 Edificio::Edificio(Edificio *edificio)
 {
     nombre = edificio->obtener_nombre();
