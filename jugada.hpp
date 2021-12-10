@@ -14,6 +14,7 @@ class Jugada{
         virtual void jugar(Constructor &, Mapa &, int &, Jugador *, int &) = 0;
         
         Coordenada pedir_coordenadas();
+        string pedir_edificio();
 
         int pedir_id_jugador();
 

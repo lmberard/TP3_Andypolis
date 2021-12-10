@@ -24,6 +24,20 @@ Coordenada Jugada::pedir_coordenadas()
     return crear_coordenada(x, y);
 }
 
+string Jugada::pedir_edificio(){
+    string edificio;
+
+    msjeInstruccion("Ingrese el edificio:");
+    getline(cin, edificio);
+
+    return edificio;
+}
+
+
+
+
+
+
 int Jugada::pedir_id_jugador()
 {
     msjeInstruccion("Seleccione un jugador (ingrese el numero):");
