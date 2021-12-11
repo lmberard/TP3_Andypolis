@@ -103,6 +103,7 @@ andypolis: atacar.cpp
 andypolis: comprar.cpp
 andypolis: consultarcoordenada.cpp
 andypolis: mostrarinventario.cpp
+andypolis: mostrarobjetivos.cpp
 andypolis: recolectar.cpp
 andypolis: finalizarturno.cpp
 
