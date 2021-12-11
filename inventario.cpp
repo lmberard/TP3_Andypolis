@@ -4,7 +4,7 @@
 Inventario::Inventario()
 {
     andycoins_contador = 0;
-    bombas_contador = 0;
+    bombas_contador = 50;
     bombas_usadas = 0;
 }
 
@@ -135,9 +135,19 @@ int Inventario::obtener_bombas_contador()
     return bombas_contador;
 }
 
+void Inventario::decrementar_bombas_contador()
+{
+    bombas_contador--;
+}
+
 int Inventario::obtener_bombas_usadas()
 {
     return bombas_usadas;
+}
+
+void Inventario::aumentar_bombas_usadas()
+{
+    bombas_usadas++;
 }
 
 //Función de uso interna. Un PRE tendría que ser que el material_recibido esté en la lista.
