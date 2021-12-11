@@ -5,7 +5,8 @@ Jugada::~Jugada(){}
         
 Coordenada Jugada::pedir_coordenadas()
 {
-    int x, y;
+    int x = -1; 
+    int y = -1;
     string aux;
     msjeInstruccion("Ingrese las coordenadas:");
 
