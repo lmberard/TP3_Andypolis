@@ -7,6 +7,8 @@ CasilleroInaccesible ::~CasilleroInaccesible(){}
 void CasilleroInaccesible ::info()
 {
     cout << "Es un " << casillero_nombre << ", es un casillero inaccesible" << endl;
+    if (jugador)
+        cout << "Se encuentra el jugador " << jugador->obtener_codigo() << " acá" << endl;
 }
 
 void CasilleroInaccesible ::mostrar_por_pantalla()

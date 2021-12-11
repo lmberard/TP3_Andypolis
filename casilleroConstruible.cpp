@@ -37,7 +37,9 @@ void CasilleroConstruible ::info()
     cout << "Es un " << casillero_nombre <<  ", es un casillero construible" << endl;
     if (edificio)
         cout << "Hay un edificio del tipo '" << edificio->obtener_nombre() << "' construido en esta coordenada" << endl;
-    else
+    if (jugador)
+        cout << "Se encuentra el jugador " << jugador->obtener_codigo() << " acá" << endl;
+    if(!edificio && !jugador)
         cout << "Tengo lugar para construir un edificio" << endl;
 }
 

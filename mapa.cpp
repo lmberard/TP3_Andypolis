@@ -225,6 +225,7 @@ void Mapa::liberar_edificios(Lista<Ubicaciones> & lista)
     }
 }
 
+
 int  Mapa::cant_coord_transitables()
 {
     return coordenadas_transitables.mostrar_cantidad();
