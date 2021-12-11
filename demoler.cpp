@@ -16,16 +16,17 @@ void Demoler::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
                         
                 ptredificio = mapa.obtener_edificio(coordenadas);
                 if(jugador[id_jugador_actual - 1].eliminar_ubicacion_lista_edificios(edificio_a_demoler, coordenadas) == false){
-                    cout << ERR_AL_DEMOLER_EDIFICIO << endl;
+                    msjeError(ERR_AL_DEMOLER_EDIFICIO);
                 }
                 jugador[id_jugador_actual - 1].inv().llenar_stock(ptredificio);
                 mapa.demoler_contenido(coordenadas);
+                jugador[id_jugador_actual - 1].decrementar_puntos_energia(ENERGIA_NECESARIA_PARA_DEMOLER);
 
-            } else {cerr << ERR_DEMOLER_EDIFICIO_PROPIO << endl;}
+            } else {msjeError(ERR_DEMOLER_EDIFICIO_PROPIO);}
                         
-        } else {cerr << ERR_ENERGIA_INSUFICIENTE << endl;}
+        } else {msjeError(ERR_ENERGIA_INSUFICIENTE);}
                     
-    } else {cerr << ERR_NO_SE_PUEDE_DEMOLER << endl;}
+    } else {msjeError(ERR_NO_SE_PUEDE_DEMOLER);}
 
     bool fin_turno = false;
     jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);

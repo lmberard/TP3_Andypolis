@@ -58,6 +58,7 @@ public:
 
     //------------------------MODIFICADORES----------------------------------
     void modificar_puntos_energia(int cantidad);
+    void decrementar_puntos_energia(int cantidad);
 
     void modificar_cant_material(string nombre_material, int cantidad);
     bool eliminar_ubicacion_edificio(string nombre, Coordenada coordenada);
