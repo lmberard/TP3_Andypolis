@@ -6,6 +6,7 @@
 #include "materialMadera.hpp"
 #include "materialMetal.hpp"
 #include "materialPiedra.hpp"
+#include "materialBomba.hpp"
 #include "andycoins.hpp"
 
 class Recurso

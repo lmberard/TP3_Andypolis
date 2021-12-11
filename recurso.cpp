@@ -12,6 +12,9 @@ Material * Recurso::dar_material(const string & material, int cantidad){
         elemento = new  Metal(cantidad);
     if(material == "andycoins")
         elemento = new  Andycoins(cantidad);
+    if(material == "bomba")
+        elemento = new  Bomba(cantidad);
+
     return elemento;
 }
 
@@ -26,6 +29,8 @@ Material * Recurso::dar_material(const string & material){
         elemento = new  Metal;
     if(material == "andycoins")
         elemento = new  Andycoins;
+    if(material == "bomba")
+        elemento = new  Bomba;
 
     return elemento;
 }

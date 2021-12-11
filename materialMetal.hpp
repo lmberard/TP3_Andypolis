@@ -22,4 +22,4 @@ public:
     ~Metal();
 };
 
-#endif // MATERIAL_HPP
+#endif // MATERIALBOMBA_HPP

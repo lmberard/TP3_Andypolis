@@ -13,7 +13,6 @@ class Inventario
 private:
     Lista<Material *> materiales1;
     int andycoins_contador;
-    int bombas_contador; //se puede reemplazar ya que Bombas inventario + Bombas usadas = bombas compradas en total
     int bombas_usadas;
 
 

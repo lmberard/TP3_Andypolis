@@ -4,7 +4,6 @@
 Inventario::Inventario()
 {
     andycoins_contador = 0;
-    bombas_contador = 50;
     bombas_usadas = 0;
 }
 
@@ -132,12 +131,15 @@ int Inventario::obtener_andycoins_contador()
 
 int Inventario::obtener_bombas_contador()
 {
-    return bombas_contador;
+    return obtener_material("bomba")->obtener_cantidad();
 }
 
 void Inventario::decrementar_bombas_contador()
 {
-    bombas_contador--;
+    Material * bomba = obtener_material("bomba");
+    int cantidad = bomba->obtener_cantidad();
+    cantidad--;
+    bomba->modificar_cantidad(cantidad);
 }
 
 int Inventario::obtener_bombas_usadas()
@@ -165,8 +167,6 @@ Material * Inventario::obtener_material(string material_recibido){
 Lista<Material *> & Inventario::obtener_lista_de_materiales(){
     return materiales1;
 }
-
-
 
 int Inventario::obtener_cantidad()
 {
