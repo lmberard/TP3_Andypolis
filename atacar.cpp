@@ -14,7 +14,7 @@ void Atacar::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugado
             if(jugador[id_jugador_actual - 1].tiene_edificio_por_coordenada(coordenadas, aux) == false){
                 edificio_a_atacar = mapa.obtener_edificio(coordenadas)->obtener_nombre();
                 ptredificio = mapa.obtener_edificio(coordenadas);
-                if(jugador->inv().obtener_bombas_contador() > 1){
+                if(jugador->inv().obtener_material("bomba")->obtener_cantidad() > 1){
                     if(ptredificio->obtener_vida() == 1){
                         
                         for (int i = 0; i < 2; i++){

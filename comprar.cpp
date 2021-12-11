@@ -18,7 +18,7 @@ void Comprar::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
             jugador[id_jugador_actual -1].inv().aniadir_cant_material("andycoins", -cant*100);
             cout << "quedan ahora " << jugador[id_jugador_actual -1].inv().obtener_andycoins() << "andycoins" << endl;
             
-            jugador[id_jugador_actual-1].modificar_puntos_energia(-5);
+            jugador[id_jugador_actual-1].decrementar_puntos_energia(5);
         }
         else
             cout << "no hay suficiente platita" << endl;

@@ -131,7 +131,7 @@ int Inventario::obtener_andycoins_contador()
 }
 
 //obtener bombas compradas:
-int Inventario::obtener_bombas_contador()
+int Inventario::obtener_bombas_compradas()
 {
     return bombas_compradas;
 }
