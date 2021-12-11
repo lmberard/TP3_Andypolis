@@ -10,7 +10,7 @@ class Construir : public Jugada{
         bool chequear_requerimientos_edificio(Edificio * edif_ptr, Jugador & jugador);
         bool chequear_edificios_disponibles(Edificio * edif_ptr, Jugador & jugador);
         bool descontar_materiales(Edificio * edif_ptr, Jugador & jugador);
-
+        void imprimir_edificio_construido(Edificio * edif_ptr);
 };
 
 #endif //CONSTRUIR_HPP

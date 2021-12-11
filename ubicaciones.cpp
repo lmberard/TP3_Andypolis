@@ -100,7 +100,7 @@ bool es_coordenada(string cadena){
     return estado;
 }
 
-bool es_numero(string cadena){
+bool es_numero_y_positivo(string cadena){
     bool estado = true;
 
     if (cadena.length() == 0)

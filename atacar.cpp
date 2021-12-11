@@ -16,30 +16,33 @@ void Atacar::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugado
                 ptredificio = mapa.obtener_edificio(coordenadas);
                 if(jugador->inv().obtener_bombas_contador() > 1){
                     if(ptredificio->obtener_vida() == 1){
-                        //TODO:cambiar logica if
+                        
                         for (int i = 0; i < 2; i++){
                             if ((id_jugador_actual - 1) != i){
                                 if(jugador[i].eliminar_ubicacion_lista_edificios(edificio_a_atacar, coordenadas) == false){
-                                    cout << ERR_AL_DESTRUIR_EDIFICIO << endl;
+                                    msjeError(ERR_AL_DESTRUIR_EDIFICIO);
                                 }
                             }
                         }
+
                         mapa.demoler_contenido(coordenadas);
                         jugador[id_jugador_actual - 1].inv().decrementar_bombas_contador();
                         jugador[id_jugador_actual - 1].inv().aumentar_bombas_usadas();
+                        jugador[id_jugador_actual - 1].decrementar_puntos_energia(ENERGIA_NECESARIA_PARA_ATACAR);
                     }else {
                         ptredificio->bajar_vida();
                         jugador[id_jugador_actual - 1].inv().decrementar_bombas_contador();
                         jugador[id_jugador_actual - 1].inv().aumentar_bombas_usadas();
+                        jugador[id_jugador_actual - 1].decrementar_puntos_energia(ENERGIA_NECESARIA_PARA_ATACAR);
                     }
 
-                } else {cout << "No tiene suficientes bombas para atacar al oponente" << endl;}
+                } else {msjeError(ERR_BOMBAS_INSUFICIENTE_ATACAR);}
 
-            } else {cerr << ERR_ATACAR_EDIFICIO_PROPIO << endl;}
+            } else {msjeError(ERR_ATACAR_EDIFICIO_PROPIO);}
                         
-        } else {cerr << ERR_ENERGIA_INSUFICIENTE_ATACAR << endl;}
+        } else {msjeError(ERR_ENERGIA_INSUFICIENTE_ATACAR);}
                     
-    } else {cerr << ERR_NO_SE_PUEDE_ATACAR << endl;}
+    } else {msjeError(ERR_NO_SE_PUEDE_ATACAR);}
 
     bool fin_turno = false;
     jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);

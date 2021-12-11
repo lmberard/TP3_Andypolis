@@ -97,6 +97,11 @@ void Jugador::modificar_puntos_energia(int cantidad)
     puntos_energia += cantidad;
 }
 
+void Jugador::decrementar_puntos_energia(int cantidad)
+{
+    puntos_energia -= cantidad;
+}
+
 void Jugador::modificar_cant_material(string nombre_material, int cantidad)
 {
     inventario.modificar_cant_material(nombre_material, cantidad);

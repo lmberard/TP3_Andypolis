@@ -33,8 +33,24 @@ string Jugada::pedir_edificio(){
     return edificio;
 }
 
+int Jugada::pedir_confirmacion(){
+    string aux;
+    int opcion_seleccionada;
 
-
+    msjeInstruccion("¿Esta seguro que desea realizar esta accion?");
+    msjeInstruccion("Ingrese el numero correspondiente a la accion que desea realizar");
+    msjeInstruccion("1. Si");
+    msjeInstruccion("2. No");
+    
+    getline(cin, aux);
+    if (es_numero_y_positivo(aux) == true)
+        opcion_seleccionada = stoi(aux);
+    else{
+        msjeError("La opcion ingresada es incorrecta.");
+        opcion_seleccionada = -1;
+    }
+    return opcion_seleccionada;
+}
 
 
 
