@@ -15,13 +15,13 @@ class Atacar : public Jugada{
             
             Coordenada coordenadas;
             Edificio* ptredificio;
-            string edificio_a_atacar;
+            string edificio_a_atacar, aux;
 
             coordenadas = pedir_coordenadas();
 
             if(mapa.obtener_edificio(coordenadas) != NULL){
                 if(jugador[id_jugador_actual - 1].obtener_energia() >= ENERGIA_NECESARIA_PARA_ATACAR){
-                    if(jugador[id_jugador_actual - 1].tiene_edificio_por_coordenada(coordenadas, edificio_a_atacar) == false){
+                    if(jugador[id_jugador_actual - 1].tiene_edificio_por_coordenada(coordenadas, aux) == false){
                         edificio_a_atacar = mapa.obtener_edificio(coordenadas)->obtener_nombre();
                         ptredificio = mapa.obtener_edificio(coordenadas);
                         if(jugador->inv().obtener_bombas_contador() > 1){
