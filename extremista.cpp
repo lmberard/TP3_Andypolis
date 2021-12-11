@@ -24,8 +24,13 @@ bool Extremista::chequear_estado(Inventario & inventario, int puntos_energia, Li
     return aux;
 }
 
-string Extremista::obtener_objetivo(){
-    return "Extremista";
+void Extremista::obtener_objetivo(){
+    cout << "Extremista: haber comprado 500 bombas en una partida." << endl;
+    //cout << '\t' << "compraste " << inventario.obtener_material("bomba")->obtener_cantidad() << " bombas" << endl;
+    if(objetivo_cumplido)
+        cout << "el objetivo está cumplido" << endl;
+    else
+        cout << "el objetivo no está cumplido" << endl;
 }
 
 bool Extremista::es_principal(){

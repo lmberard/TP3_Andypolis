@@ -180,7 +180,7 @@ void Jugador::moverse_a_coordenada(int x, int y)
 void Jugador::mostrar_objetivos_y_progreso()
 {
     for(int i = 1; i < objetivos.mostrar_cantidad()+1;i++){
-        cout << objetivos[i]->obtener_objetivo() << endl;
+        objetivos[i]->obtener_objetivo();
     }
 }
 

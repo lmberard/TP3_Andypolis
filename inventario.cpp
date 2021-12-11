@@ -5,6 +5,7 @@ Inventario::Inventario()
 {
     andycoins_contador = 0;
     bombas_usadas = 0;
+    bombas_compradas = 0;
 }
 
 void Inventario::agregar_material(Material * material)
@@ -129,9 +130,15 @@ int Inventario::obtener_andycoins_contador()
     return andycoins_contador;
 }
 
+//obtener bombas compradas:
 int Inventario::obtener_bombas_contador()
 {
-    return obtener_material("bomba")->obtener_cantidad();
+    return bombas_compradas;
+}
+
+void Inventario::agregar_bombas_compradas(int cantidad)
+{
+    bombas_compradas += cantidad;
 }
 
 int Inventario::obtener_andycoins()

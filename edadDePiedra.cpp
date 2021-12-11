@@ -24,8 +24,13 @@ bool EdadDePiedra::chequear_estado(Inventario & inventario, int puntos_energia, 
     return aux;
 }
 
-string EdadDePiedra::obtener_objetivo(){
-    return "Edad de Piedra";
+void EdadDePiedra::obtener_objetivo(){
+    cout << "Edad de Piedra: tener en el inventario 50000 piedras" << endl;
+    //cout << '\t' << "tenes " << inventario.obtener_material("piedra")->obtener_cantidad() << " piedras" << endl;
+    if(objetivo_cumplido)
+        cout << "el objetivo está cumplido" << endl;
+    else
+        cout << "el objetivo no está cumplido" << endl;
 }
 
 bool EdadDePiedra::es_principal(){

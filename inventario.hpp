@@ -14,6 +14,7 @@ private:
     Lista<Material *> materiales1;
     int andycoins_contador;
     int bombas_usadas;
+    int bombas_compradas;
 
 
 public:
@@ -45,6 +46,7 @@ public:
     // POS:
     void recolectar(Edificio *edificio);
 
+    void agregar_bombas_compradas(int cantidad);
 
     /////////////////////////GETTERS////////////////////////////
     int obtener_andycoins_contador();

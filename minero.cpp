@@ -26,14 +26,23 @@ bool Minero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<
             mina_oro_chequeado = true;
     }
 
-    if(mina_chequeado && mina_oro_chequeado)
+    if(mina_chequeado && mina_oro_chequeado){
+        objetivo_cumplido = true;
         aux = true;
+    }
+        
     
     return aux;
 }
 
-string Minero::obtener_objetivo(){
-    return "Minero";
+void Minero::obtener_objetivo(){
+   cout << "Minero: haber construido una mina de cada tipo. " << endl;
+   cout << "Por ahora construistes: " << endl;
+   /*PONER LISTA*/  
+   if(objetivo_cumplido)
+        cout << "el objetivo está cumplido" << endl;
+    else
+        cout << "el objetivo no está cumplido" << endl;
 }
 
 bool Minero::es_principal(){

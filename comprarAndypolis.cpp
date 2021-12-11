@@ -24,8 +24,13 @@ bool ComprarAndypolis::chequear_estado(Inventario & inventario, int puntos_energ
     return aux;
 }
 
-string ComprarAndypolis::obtener_objetivo(){
-    return "Comprar Andypolis";
+void ComprarAndypolis::obtener_objetivo(){
+    cout << "Comprar andypolis: haber juntado 100.000 andycoins a lo largo de la partida" << endl;
+    //cout << "juntestes ..." << endl;
+    if(objetivo_cumplido)
+        cout << "el objetivo está cumplido" << endl;
+    else
+        cout << "el objetivo no está cumplido" << endl;
 }
 
 bool ComprarAndypolis::es_principal(){
