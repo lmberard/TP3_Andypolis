@@ -25,12 +25,13 @@ Coordenada Jugador::obtener_posicion_jugador()
 */
 int Jugador::obtener_cant_edificios_construidos(string nombre)
 {
+    int cantidad = 0;
     for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
     {
         if (edificios[i].nombre == nombre)
-            return obtener_cantidad(edificios[i]);
+            cantidad = obtener_cantidad(edificios[i]);
     }
-    return 0;
+    return cantidad;
 }
 
 Lista<Ubicaciones> & Jugador::lista_edificios()

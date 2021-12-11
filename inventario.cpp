@@ -40,7 +40,8 @@ bool Inventario::chequear_stock(Edificio *edificio, bool construir)
             cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_piedra();
             if (cuenta < 0)
             {
-                cout << "falta " << materiales1[j]->obtener_nombre() << endl;
+                msjeError("No se puede construir el edificio. No hay piedra suficiente.");
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
                 flag = 0;
             }
             if (construir)
@@ -51,7 +52,8 @@ bool Inventario::chequear_stock(Edificio *edificio, bool construir)
             cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_madera();
             if (cuenta < 0)
             {
-                cout << "falta " << materiales1[j]->obtener_nombre() << endl;
+                msjeError("No se puede construir el edificio. No hay madera suficiente.");
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
                 flag = 0;
             }
             if (construir)
@@ -62,7 +64,8 @@ bool Inventario::chequear_stock(Edificio *edificio, bool construir)
             cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_metal();
             if (cuenta < 0)
             {
-                cout << "falta " << materiales1[j]->obtener_nombre() << endl;
+                msjeError("No se puede construir el edificio. No hay metal suficiente.");
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
                 flag = 0;
             }
             if (construir)

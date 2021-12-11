@@ -12,6 +12,7 @@ bool CasilleroConstruible ::agregar(Edificio *edificio)
     if (this->edificio || jugador)
     {
         msjeError("Ya hay un edificio en esta posicion. No se puede agregar otro");
+        delete edificio;
         return false;
     }
 

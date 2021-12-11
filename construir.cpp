@@ -5,76 +5,62 @@ void Construir::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jug
     Edificio * edif_ptr;
     string edificio;
 
-    if(jugadores[id_jugador_actual].obtener_energia() >= 15){
-
+    if(jugadores[id_jugador_actual - 1].obtener_energia() >= 15){
         edificio = pedir_edificio();
-        //TE PUSE ESTA COSITA PORQUE SI METES UNA CLAVE EN "MOSTRAR_EDIFICIO(string) que no existe, se caga"
-        if(!bob.existe(edificio)){
-            cout << "pipo, esta funcion sirve para validar si existe o no el edificio" << endl;
-            return;
+        if(chequear_existencia_de_edificio(bob, edificio)){
+            edif_ptr = bob.mostrar_edificio(edificio);
+            if(chequear_edificios_disponibles(edif_ptr, jugadores[id_jugador_actual - 1])){
+                if(chequear_requerimientos_edificio(edif_ptr, jugadores[id_jugador_actual - 1])){
+                    coordenadas = pedir_coordenadas();
+                    if(mapa.coordenadas_validas(coordenadas)){
+                        mapa.agregar_contenido(coordenadas, bob.construye(edif_ptr->obtener_nombre()));
+                        descontar_materiales(edif_ptr,jugadores[id_jugador_actual - 1]);
+                        jugadores[id_jugador_actual - 1].agregar_ubicacion_lista_edificios(edif_ptr->obtener_nombre(), coordenadas);
+                    }
+                }
+            }   
         }
+    }
+    
+    bool fin_turno = false;
+    jugadores[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);     
+}
 
-        edif_ptr = bob.mostrar_edificio(edificio);
+bool Construir::chequear_existencia_de_edificio(Constructor & bob, string edificio){
+    bool estado = true;
 
-        if(edif_ptr){
+    if(!bob.existe(edificio)){
+        msjeError("No se puede construir el edificio. El edificio que desea construir no existe en Andypolis.");
+        estado = false;
+    }
+    return estado;
+}
 
-            //chequear si tiene plata
-            //chequear si tiene edificios disponibles por construir
-            if(chequear_requerimientos_edificio(edif_ptr, jugadores[id_jugador_actual - 1])){
 
-                coordenadas = pedir_coordenadas();
-                if(mapa.coordenadas_validas(coordenadas));
-            
-            }
+bool Construir::chequear_edificios_disponibles(Edificio * edif_ptr, Jugador & jugador){
+    bool estado = true;
+    int cantidad_construidos;
 
-        }
-        
-
-            
+    cantidad_construidos = jugador.obtener_cant_edificios_construidos(edif_ptr->obtener_nombre());
+    if(cantidad_construidos >= edif_ptr->obtener_cant_max()){
+        msjeError("No se puede construir el edificio. No quedan edificios disponibles por construir.");
+        estado = false;
     }
 
-    bool fin_turno = false;
-    jugadores[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);
-        
+    return estado;
 }
+
+
 
 
 bool Construir::chequear_requerimientos_edificio(Edificio * edif_ptr, Jugador & jugador){
-    Lista<Material *> lista_materiales = jugador.inv().obtener_lista_de_materiales();       
-    int i = 1;
-    bool piedra_chequeada = false, madera_chequeada = false, metal_chequeado, estado = false;
-
-    while(i < lista_materiales.mostrar_cantidad() && (!piedra_chequeada || !madera_chequeada || !metal_chequeado) && estado != false){
-
-        if(lista_materiales[i]->obtener_nombre() == "piedra"){
-            if(lista_materiales[i]->obtener_cantidad() <= edif_ptr->obtener_piedra()){
-                msjeError("No se puede construir el edificio. No hay piedra suficiente");
-                estado = false;
-            }
-            piedra_chequeada = true;
-        }
-
-        if(lista_materiales[i]->obtener_nombre() == "madera"){
-            if(lista_materiales[i]->obtener_cantidad() <= edif_ptr->obtener_madera()){
-                msjeError("No se puede construir el edificio. No hay madera suficiente");
-                estado = false;
-            }
-            madera_chequeada = true;
-        }
-
-        if(lista_materiales[i]->obtener_nombre() == "metal"){
-            if(lista_materiales[i]->obtener_cantidad() <= edif_ptr->obtener_metal()){
-                msjeError("No se puede construir el edificio. No hay metal suficiente");
-                estado = false;
-            }
-            metal_chequeado = true;
-        }
-
-        i++;
-    }
-    return estado;
-            
+    return jugador.inv().chequear_stock(edif_ptr, false);
 }
+
+bool Construir::descontar_materiales(Edificio * edif_ptr, Jugador & jugador){
+    return jugador.inv().chequear_stock(edif_ptr, true);
+}
+
 
 /*
 void buildBuildingByName(List<Materials> &materialsChain, List<BuildingInfo> &buildingsInfoChain, Map &andyMap){
