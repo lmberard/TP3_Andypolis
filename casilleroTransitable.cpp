@@ -12,7 +12,9 @@ void CasilleroTransitable::info()
     cout << "Es un " << casillero_nombre << ", es un casillero transitable" << endl;
     if (material)
         cout << "Hay un material del tipo '" << material->obtener_nombre() << "'. No te olvides de recolectarlo!" << endl;
-    else
+    if (jugador)
+        cout << "Se encuentra el jugador " << jugador->obtener_codigo() << " acá" << endl;
+    if(!material && !jugador)
         cout << "No hay ningun material en esta parte del camino :)" << endl;
 }
 

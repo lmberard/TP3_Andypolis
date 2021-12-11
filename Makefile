@@ -89,15 +89,22 @@ andypolis: superficie.cpp
 
 #jugadas:
 andypolis: jugada.cpp
-andypolis: construir.cpp
-andypolis: comprar.cpp
 
-andypolis: comenzarpartida.cpp
-andypolis: finalizarturno.cpp
+#jugadas del primer meno:
 andypolis: listaredificios.cpp
-andypolis: mostrarinventario.cpp
 andypolis: mostrarmapa.cpp
+andypolis: comenzarpartida.cpp
 
+#jugadas del segundo menu:
+andypolis: construir.cpp
+andypolis: listarconstruidos.cpp
+andypolis: demoler.cpp
+andypolis: atacar.cpp
+andypolis: comprar.cpp
+andypolis: consultarcoordenada.cpp
+andypolis: mostrarinventario.cpp
+andypolis: recolectar.cpp
+andypolis: finalizarturno.cpp
 
 #libreria para los colores: 
 andypolis: colors.cpp 

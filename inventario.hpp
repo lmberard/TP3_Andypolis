@@ -70,6 +70,8 @@ public:
     int obtener_cant_material(int posicion);
 
     void modificar_cant_material(string nombre, int cantidad);
+
+    void aniadir_cant_material(string nombre, int cantidad);
 };
 
 #endif
