@@ -100,6 +100,20 @@ bool es_coordenada(string cadena){
     return estado;
 }
 
+bool es_numero(string cadena){
+    bool estado = true;
+
+    if (cadena.length() == 0)
+        estado = false;
+
+    for (unsigned int i = 0; i < cadena.length(); i++){
+        if (!isdigit(cadena[i]))
+            estado = false;
+    }
+
+    return estado;
+}
+
 bool esta_lista_vacia(Ubicaciones& info){
     return obtener_cantidad(info) == 0;
 }
