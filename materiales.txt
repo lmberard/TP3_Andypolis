@@ -1,5 +1,5 @@
-metal 4990 4970
-piedra 5080 4970
-madera 4990 4970
+metal 4990 4966
+piedra 5110 4770
+madera 4990 4770
 andycoins 500 400
-bomba 18 20
+bomba 17 20

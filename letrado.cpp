@@ -27,7 +27,7 @@ void Letrado::chequear_estado(Inventario & inventario, int puntos_energia, Lista
 
 }
 
-void Letrado::obtener_objetivo(){
+void Letrado::mostrar_objetivo(){
     cout << "Letrado: haber construido el máximo posible de escuelas." << endl;
     cout << "Por ahora construistes " << progreso << " escuelas" << endl;
     if(objetivo_cumplido)

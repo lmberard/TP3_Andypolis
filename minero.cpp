@@ -8,6 +8,8 @@ using namespace std;
 
 Minero::Minero() : Objetivo()
 {
+    mina_chequeado = false;
+    mina_oro_chequeado = false;
 }
 
 Minero::~Minero()
@@ -16,8 +18,7 @@ Minero::~Minero()
 
 void Minero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
 {
-    bool mina_chequeado = false;
-    bool mina_oro_chequeado = false;
+
 
     for(int i = 1; i < edificios.mostrar_cantidad() + 1; i++){
         if( obtener_nombre(edificios[i]) == "mina")
@@ -30,9 +31,13 @@ void Minero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<
         objetivo_cumplido = true;
 }
 
-void Minero::obtener_objetivo(){
-   cout << "Minero: haber construido una mina de cada tipo. " << endl;
-   cout << "Por ahora construistes: " << endl;
+void Minero::mostrar_objetivo(){
+    cout << "Minero: haber construido una mina de cada tipo. " << endl;
+    cout << "Por ahora construistes por lo menos: ";
+    if(mina_chequeado)
+        cout << "Una mina" << endl;
+    if(mina_oro_chequeado)
+        cout << "Una mina Oro" << endl;
    /*PONER LISTA*/  
    if(objetivo_cumplido)
         cout << "el objetivo está cumplido" << endl;

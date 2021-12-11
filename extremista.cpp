@@ -22,7 +22,7 @@ void Extremista::chequear_estado(Inventario & inventario, int puntos_energia, Li
 
 }
 
-void Extremista::obtener_objetivo(){
+void Extremista::mostrar_objetivo(){
     cout << "Extremista: haber comprado 500 bombas en una partida." << endl;
     cout << '\t' << "compraste " << progreso << " bombas" << endl;
     if(objetivo_cumplido)

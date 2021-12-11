@@ -7,7 +7,12 @@ using namespace std;
 
 ConstructorO::ConstructorO() : Objetivo()
 {
-    progreso = 0;
+    mina_chequeado = false;
+    aserradero_chequeado = false;
+    fabrica_chequeado = false;
+    escuela_chequeado = false;
+    planta_electrica_chequeado = false;
+    mina_oro_chequeado = false;
 }
 
 ConstructorO::~ConstructorO()
@@ -16,13 +21,6 @@ ConstructorO::~ConstructorO()
 
 void ConstructorO::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
 {
-    bool mina_chequeado = false;
-    bool aserradero_chequeado = false;
-    bool fabrica_chequeado = false;
-    bool escuela_chequeado = false;
-    bool planta_electrica_chequeado = false;
-    bool mina_oro_chequeado = false;
-
     for(int i = 1; i < edificios.mostrar_cantidad() + 1; i++){
         if( obtener_nombre(edificios[i]) == "mina")
             mina_chequeado = true;
@@ -44,10 +42,22 @@ void ConstructorO::chequear_estado(Inventario & inventario, int puntos_energia, 
 
 }
 
-void ConstructorO::obtener_objetivo(){
+void ConstructorO::mostrar_objetivo(){
    cout << "Constructor: construir un edificio de cada tipo." << endl;
    cout << "Por ahora construistes: " << endl;
-   /*PONER LISTA*/  
+    if(mina_chequeado)
+        cout << "una mina" << endl; 
+    if(aserradero_chequeado)
+        cout << "un aserradero" << endl; 
+    if(fabrica_chequeado)
+        cout << "una fabrica" << endl;
+    if(escuela_chequeado)
+        cout << "una escuela" << endl;
+    if(planta_electrica_chequeado)
+        cout << "una planta electrica" << endl;
+    if(mina_oro_chequeado)
+        cout << "una mina oro" << endl;   
+
    if(objetivo_cumplido)
         cout << "el objetivo está cumplido" << endl;
     else

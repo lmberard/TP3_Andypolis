@@ -23,7 +23,7 @@ void Armado::chequear_estado(Inventario & inventario, int puntos_energia, Lista<
         objetivo_cumplido = false;
 }
 
-void Armado::obtener_objetivo(){
+void Armado::mostrar_objetivo(){
     cout << "Armado:  tener 10 bombas en el inventario." << endl;
     cout << '\t' << "tenes " << progreso << " bombas" << endl;
     if(objetivo_cumplido)

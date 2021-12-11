@@ -21,7 +21,7 @@ void Bombardero::chequear_estado(Inventario & inventario, int puntos_energia, Li
         objetivo_cumplido = true;
 }
 
-void Bombardero::obtener_objetivo(){
+void Bombardero::mostrar_objetivo(){
     cout << "Bombardero: haber usado 5 bombas" << endl;
     cout << '\t' << "usastes " << progreso << " bombas" << endl;
     if(objetivo_cumplido)

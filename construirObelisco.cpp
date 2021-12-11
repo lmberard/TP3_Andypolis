@@ -13,7 +13,7 @@ ConstruirObelisco::~ConstruirObelisco()
 {
 }
 
-void ConstruirObelisco::obtener_objetivo(){
+void ConstruirObelisco::mostrar_objetivo(){
     cout << "Más alto que las nubes: construir el obelisco." << endl;
     cout << '\t' << "Cumpliendo este objetivo se gana la partida" << endl;
 }

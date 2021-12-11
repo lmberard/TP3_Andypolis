@@ -21,7 +21,7 @@ void EdadDePiedra::chequear_estado(Inventario & inventario, int puntos_energia, 
         objetivo_cumplido = true;
 }
 
-void EdadDePiedra::obtener_objetivo(){
+void EdadDePiedra::mostrar_objetivo(){
     cout << "Edad de Piedra: tener en el inventario 50000 piedras" << endl;
     cout << '\t' << "tenes " << progreso << " piedras en el inventario" << endl;
     if(objetivo_cumplido)

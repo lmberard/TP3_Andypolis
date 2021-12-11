@@ -22,7 +22,7 @@ void Energetico::chequear_estado(Inventario & inventario, int puntos_energia, Li
             objetivo_cumplido = true;
 }
 
-void Energetico::obtener_objetivo(){
+void Energetico::mostrar_objetivo(){
     cout << "Energetico: haber terminado un turno con 100 puntos de energía." << endl;
     cout << '\t' << "en este turno tenes " << progreso << " puntos de energia" << endl;
     if(objetivo_cumplido)
