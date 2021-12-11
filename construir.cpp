@@ -13,9 +13,11 @@ void Construir::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jug
                 if(chequear_requerimientos_edificio(edif_ptr, jugadores[id_jugador_actual - 1])){
                     coordenadas = pedir_coordenadas();
                     if(mapa.coordenadas_validas(coordenadas)){
-                        mapa.agregar_contenido(coordenadas, bob.construye(edif_ptr->obtener_nombre()));
-                        descontar_materiales(edif_ptr,jugadores[id_jugador_actual - 1]);
-                        jugadores[id_jugador_actual - 1].agregar_ubicacion_lista_edificios(edif_ptr->obtener_nombre(), coordenadas);
+                        if(pedir_confirmacion() == OPCION_DE_CONFIRMACION){
+                            mapa.agregar_contenido(coordenadas, bob.construye(edif_ptr->obtener_nombre()));
+                            descontar_materiales(edif_ptr,jugadores[id_jugador_actual - 1]);
+                            jugadores[id_jugador_actual - 1].agregar_ubicacion_lista_edificios(edif_ptr->obtener_nombre(), coordenadas);
+                        }
                     }
                 }
             }   

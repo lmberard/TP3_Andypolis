@@ -7,6 +7,8 @@
 #include "jugador.hpp"
 #include "ubicaciones.hpp"
 
+static const int OPCION_DE_CONFIRMACION = 1;
+
 class Jugada{
     public:
         Jugada(); 
@@ -15,6 +17,7 @@ class Jugada{
         
         Coordenada pedir_coordenadas();
         string pedir_edificio();
+        int pedir_confirmacion();
 
         int pedir_id_jugador();
 
