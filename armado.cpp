@@ -24,12 +24,12 @@ void Armado::chequear_estado(Inventario & inventario, int puntos_energia, Lista<
 }
 
 void Armado::mostrar_objetivo(){
-    cout << "Armado:  tener 10 bombas en el inventario." << endl;
-    cout << '\t' << "tenes " << progreso << " bombas" << endl;
+    msjeInstruccion("Armado: tener 10 bombas en el inventario.");
+    cout << TXT_LIGHT_BLUE_6 << '\t' << "Posee " << progreso << " bombas." << END_COLOR << endl;
     if(objetivo_cumplido)
-        cout << "el objetivo está cumplido" << endl;
+        msjeInstruccion("El objetivo esta cumplido.");
     else
-        cout << "el objetivo no está cumplido" << endl;
+        msjeInstruccion("El objetivo no esta cumplido.");
 }
 
 bool Armado::es_principal(){

@@ -23,13 +23,13 @@ void Cansado::chequear_estado(Inventario & inventario, int puntos_energia, Lista
 }
 
 void Cansado::mostrar_objetivo(){
-    cout << "Cansado: terminar un turno con 0 de energía" << endl;
-    cout << '\t' << "en este turno todavía tenes " << progreso << " puntos de energia" << endl;
-    cout << '\t' << "gastalos en algo y listo" << endl;
+    msjeInstruccion("Cansado: terminar un turno con 0 de energía.");
+    cout << TXT_LIGHT_BLUE_6 << "En este turno todavia posee " << progreso << " puntos de energia." << END_COLOR << endl;
+
     if(objetivo_cumplido)
-        cout << "el objetivo está cumplido" << endl;
+        msjeInstruccion("El objetivo esta cumplido.");
     else
-        cout << "el objetivo no está cumplido" << endl;
+        msjeInstruccion("El objetivo no esta cumplido.");
 }
 
 bool Cansado::es_principal(){
