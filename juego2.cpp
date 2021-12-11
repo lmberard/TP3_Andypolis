@@ -122,8 +122,8 @@ void Juego::comenzar_partida()
     Jugada * jugada;
     int turno = 0;
     bool ganador = false;
-    id_jugador_actual = 1;
-
+    id_jugador_actual = rand()%(2) + 1;
+    
     asignar_objetivos();
     lluvia_recursos();
     
@@ -143,7 +143,7 @@ void Juego::comenzar_partida()
         }
         menu.volver();
         delete jugada;
-    } while(jugada && !ganador);
+    }while(jugada && !ganador);
 
     if(ganador)
         celebrar();

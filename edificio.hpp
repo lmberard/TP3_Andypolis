@@ -17,6 +17,7 @@ protected:
 
     string produccion;
     int cant_produccion;
+    int deposito;
 
     int vida;
 
@@ -85,6 +86,9 @@ public:
     // POS: -
     void setear_metal(int metal);
 
+    void producir();
+
+    int recolectar();
 
 };
 

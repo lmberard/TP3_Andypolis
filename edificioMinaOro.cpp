@@ -9,6 +9,8 @@ MinaOro::MinaOro(int s, int w, int m, int p) : Edificio(s, w, m, p)
 
     produccion = "andycoins";
     cant_produccion = 50;
+
+    deposito = 0;
 }
 
 MinaOro::MinaOro(Edificio *edificio) : Edificio(edificio) {}

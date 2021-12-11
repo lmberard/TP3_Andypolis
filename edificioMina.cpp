@@ -9,6 +9,8 @@ Mina::Mina(int s, int w, int m, int p) : Edificio(s, w, m, p)
 
     produccion = "piedra";
     cant_produccion = 15;
+
+    deposito = 0;
 }
 
 Mina::Mina(Edificio *edificio) : Edificio(edificio) {}

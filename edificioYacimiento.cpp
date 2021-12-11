@@ -9,6 +9,8 @@ Yacimiento::Yacimiento(int s, int w, int m, int p) : Edificio(s, w, m, p)
 
     produccion = "no produce";
     cant_produccion = 0;
+
+    deposito = 0;
 }
 
 Yacimiento::Yacimiento(Edificio *edificio) : Edificio(edificio) {}

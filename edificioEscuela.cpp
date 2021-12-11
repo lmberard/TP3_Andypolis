@@ -9,6 +9,8 @@ Escuela::Escuela(int s, int w, int m, int p) : Edificio(s, w, m, p)
     
     produccion = "andycoins";
     cant_produccion = 25;
+
+    deposito = 0;
 }
 
 Escuela::Escuela(Edificio *edificio): Edificio(edificio){}

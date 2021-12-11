@@ -23,6 +23,7 @@ Edificio::Edificio(Edificio *edificio)
     
     produccion = edificio->obtener_tipo_produccion();
     cant_produccion = edificio->obtener_cant_produccion();
+    deposito = 0;
 
     vida = edificio->obtener_vida();
 }
@@ -92,4 +93,14 @@ void Edificio::setear_piedra(int piedra){
 
 void Edificio::setear_metal(int metal){
     this->metal = metal;
+}
+
+void Edificio::producir(){
+    deposito += cant_produccion;
+}
+
+int Edificio::recolectar(){
+    int aux = deposito;
+    deposito = 0;
+    return aux;
 }

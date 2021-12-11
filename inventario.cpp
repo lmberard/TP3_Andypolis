@@ -134,12 +134,25 @@ int Inventario::obtener_bombas_contador()
     return obtener_material("bomba")->obtener_cantidad();
 }
 
+int Inventario::obtener_andycoins()
+{
+    return obtener_material("andycoins")->obtener_cantidad();
+}
+
 void Inventario::decrementar_bombas_contador()
 {
     Material * bomba = obtener_material("bomba");
     int cantidad = bomba->obtener_cantidad();
     cantidad--;
     bomba->modificar_cantidad(cantidad);
+}
+
+void Inventario::comprar_bombas(int cantidad)
+{
+    Material * bomba = obtener_material("bomba");
+    int aux = bomba->obtener_cantidad();
+    cantidad += aux;
+    obtener_material("bomba")->modificar_cantidad(cantidad);
 }
 
 int Inventario::obtener_bombas_usadas()

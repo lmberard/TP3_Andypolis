@@ -48,6 +48,8 @@ public:
 
     /////////////////////////GETTERS////////////////////////////
     int obtener_andycoins_contador();
+    int obtener_andycoins();
+    void comprar_bombas(int cantidad);
     int obtener_bombas_contador();
     void decrementar_bombas_contador();
     int obtener_bombas_usadas();

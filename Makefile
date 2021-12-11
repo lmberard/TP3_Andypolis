@@ -90,6 +90,7 @@ andypolis: superficie.cpp
 #jugadas:
 andypolis: jugada.cpp
 andypolis: construir.cpp
+andypolis: comprar.cpp
 
 andypolis: comenzarpartida.cpp
 andypolis: finalizarturno.cpp
