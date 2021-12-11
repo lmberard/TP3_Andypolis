@@ -15,6 +15,7 @@ void Construir::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jug
                     if(mapa.coordenadas_validas(coordenadas)){
                         if(pedir_confirmacion() == OPCION_DE_CONFIRMACION){
                             mapa.agregar_contenido(coordenadas, bob.construye(edif_ptr->obtener_nombre()));
+                            imprimir_edificio_construido(edif_ptr);
                             descontar_materiales(edif_ptr,jugadores[id_jugador_actual - 1]);
                             jugadores[id_jugador_actual - 1].agregar_ubicacion_lista_edificios(edif_ptr->obtener_nombre(), coordenadas);
                         }
@@ -61,3 +62,7 @@ bool Construir::descontar_materiales(Edificio * edif_ptr, Jugador & jugador){
     return jugador.inv().chequear_stock(edif_ptr, true);
 }
 
+void Construir::imprimir_edificio_construido(Edificio * edif_ptr){
+    cout << TXT_LIGHT_GREEN_46 << "Se ha construido satisfactoriamente una unidad del edificio: " 
+    << edif_ptr->obtener_nombre() << END_COLOR << endl;
+}
