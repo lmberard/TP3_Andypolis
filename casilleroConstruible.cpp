@@ -34,13 +34,13 @@ bool CasilleroConstruible ::agregar(Jugador *jugador)
 
 void CasilleroConstruible ::info()
 {
-    cout << "Es un " << casillero_nombre <<  ", es un casillero construible" << endl;
+    cout << TXT_LIGHT_BLUE_6 << "Es un " << casillero_nombre <<  ", es un casillero construible." << END_COLOR << endl;
     if (edificio)
-        cout << "Hay un edificio del tipo '" << edificio->obtener_nombre() << "' construido en esta coordenada" << endl;
+        cout << TXT_LIGHT_BLUE_6 << "Hay un edificio del tipo '" << edificio->obtener_nombre() << "' construido en esta coordenada." << END_COLOR << endl;
     if (jugador)
-        cout << "Se encuentra el jugador " << jugador->obtener_codigo() << " acá" << endl;
+        cout << TXT_LIGHT_BLUE_6 << "En este casillero se encuentra el jugador " << jugador->obtener_codigo() << END_COLOR << endl;
     if(!edificio && !jugador)
-        cout << "Tengo lugar para construir un edificio" << endl;
+        cout << TXT_LIGHT_BLUE_6 << "El casillero no contiene un edificio construido" << END_COLOR << endl;
 }
 
 void CasilleroConstruible ::mostrar_por_pantalla()

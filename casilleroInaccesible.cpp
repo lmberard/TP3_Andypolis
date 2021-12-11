@@ -6,9 +6,9 @@ CasilleroInaccesible ::~CasilleroInaccesible(){}
 
 void CasilleroInaccesible ::info()
 {
-    cout << "Es un " << casillero_nombre << ", es un casillero inaccesible" << endl;
+    cout << TXT_LIGHT_BLUE_6 << "Es un " << casillero_nombre << ", es un casillero inaccesible" << END_COLOR << endl;
     if (jugador)
-        cout << "Se encuentra el jugador " << jugador->obtener_codigo() << " acá" << endl;
+        cout << TXT_LIGHT_BLUE_6 << "En este casillero se encuentra el jugador " << jugador->obtener_codigo() << END_COLOR << endl;
 }
 
 void CasilleroInaccesible ::mostrar_por_pantalla()

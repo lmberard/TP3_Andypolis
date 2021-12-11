@@ -8,7 +8,7 @@ Casillero::~Casillero(){}
 
 bool Casillero::agregar(Edificio * edif_ptr)
 {
-    cout << "No puedes construir en este casillero" << endl;
+    msjeError("No puede construir en este casillero");
     delete edif_ptr;
     return false;
 }
