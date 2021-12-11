@@ -18,7 +18,7 @@ void Recolectar::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * ju
                     jugador[id_jugador_actual -1].inv().aniadir_cant_material(edificio->obtener_tipo_produccion(), edificio->recolectar());
             }
         }
-        jugador[id_jugador_actual-1].modificar_puntos_energia(-20);
+        jugador[id_jugador_actual-1].decrementar_puntos_energia(20);
         
         bool fin_turno = false;
         jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);

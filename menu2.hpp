@@ -89,7 +89,7 @@ public:
     // post: devuelve true si la opcion recibida esta en el rango valido y sino devuelve false.
     bool es_opcion_valida(int elegida, const int opcion_minima, const int opcion_maxima);
 
-    void validar_opcion_juego(int opcion_elegida, int id_jugador_actual);
+    void validar_opcion_juego(int & opcion_elegida, int id_jugador_actual);
 
     void validar_opcion_partida_nueva(int & opcion_elegida4);
 

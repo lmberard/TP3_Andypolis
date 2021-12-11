@@ -7,26 +7,23 @@ using namespace std;
 
 Bombardero::Bombardero() : Objetivo()
 {
+    progreso = 0;
 }
 
 Bombardero::~Bombardero()
 {
 }
 
-bool Bombardero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno){
-    bool aux = false;
-
-    if(inventario.obtener_bombas_usadas() >= CANTIDAD_BOMBAS_USADAS_OBJETIVO){
-        aux = true;
+void Bombardero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+{
+    progreso = inventario.obtener_bombas_usadas();
+    if(progreso >= CANTIDAD_BOMBAS_USADAS_OBJETIVO)
         objetivo_cumplido = true;
-    }
-
-    return aux;
 }
 
-void Bombardero::obtener_objetivo(){
+void Bombardero::mostrar_objetivo(){
     cout << "Bombardero: haber usado 5 bombas" << endl;
-    //cout << '\t' << "usastes " << inventario.obtener_bombas_usadas() << " bombas" << endl;
+    cout << '\t' << "usastes " << progreso << " bombas" << endl;
     if(objetivo_cumplido)
         cout << "el objetivo está cumplido" << endl;
     else

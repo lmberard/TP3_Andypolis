@@ -5,10 +5,7 @@
 
 class MostrarObjetivos : public Jugada{
     public: 
-        void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual){
-            cout << "muestra los objetivos del jugador" << endl;
-            jugador[id_jugador_actual-1].mostrar_objetivos_y_progreso();
-        }
+        void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual);
 };
 
 #endif //MOSTRAROBJETIVOS_HPP

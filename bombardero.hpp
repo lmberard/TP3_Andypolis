@@ -20,13 +20,14 @@ class Bombardero : public Objetivo
 {
 private:
 
+    int progreso;
 
 public:
     Bombardero();
     ~Bombardero();
 
-    bool chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno);
-    void obtener_objetivo();
+    void chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno);
+    void mostrar_objetivo();
     bool es_principal();
 };
 

@@ -7,27 +7,24 @@ using namespace std;
 
 Energetico::Energetico() : Objetivo()
 {
+    progreso = 0;
 }
 
 Energetico::~Energetico()
 {
 }
 
-bool Energetico::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno){
-    bool aux = false;
-
+void Energetico::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+{
+    progreso = puntos_energia;
     if(fin_turno)
-        if(puntos_energia == CANTIDAD_MAX_ENERGIA){
-            aux = true;
+        if(puntos_energia == CANTIDAD_MAX_ENERGIA)
             objetivo_cumplido = true;
-        }
-
-    return aux;
 }
 
-void Energetico::obtener_objetivo(){
+void Energetico::mostrar_objetivo(){
     cout << "Energetico: haber terminado un turno con 100 puntos de energía." << endl;
-    //cout << '\t' << "en este turno tenes " << puntos_energia << " puntos de energia" << endl;
+    cout << '\t' << "en este turno tenes " << progreso << " puntos de energia" << endl;
     if(objetivo_cumplido)
         cout << "el objetivo está cumplido" << endl;
     else

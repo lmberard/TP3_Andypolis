@@ -7,26 +7,23 @@ using namespace std;
 
 ComprarAndypolis::ComprarAndypolis() : Objetivo()
 {
+    progreso = 0;
 }
 
 ComprarAndypolis::~ComprarAndypolis()
 {
 }
 
-bool ComprarAndypolis::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno){
-    bool aux = false;
-
-    if(inventario.obtener_andycoins_contador() >= CANTIDAD_ANDYCOINS_OBJETIVO){
-        aux = true;
+void ComprarAndypolis::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+{
+    progreso = inventario.obtener_andycoins_gastadas() + inventario.obtener_material("andycoins")->obtener_cantidad();
+    if(progreso >= CANTIDAD_ANDYCOINS_OBJETIVO)
         objetivo_cumplido = true;
-    }
-
-    return aux;
 }
 
-void ComprarAndypolis::obtener_objetivo(){
+void ComprarAndypolis::mostrar_objetivo(){
     cout << "Comprar andypolis: haber juntado 100.000 andycoins a lo largo de la partida" << endl;
-    //cout << "juntestes ..." << endl;
+    cout << "juntastes a lo largo de la partida " << progreso << " andycoins" << endl;
     if(objetivo_cumplido)
         cout << "el objetivo está cumplido" << endl;
     else

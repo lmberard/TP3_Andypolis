@@ -7,28 +7,24 @@ using namespace std;
 
 Cansado::Cansado() : Objetivo()
 {
+    progreso = 0;
 }
 
 Cansado::~Cansado()
 {
 }
 
-bool Cansado::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno){
-    
-    bool aux = false;
-    
+void Cansado::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+{  
+    progreso = puntos_energia;
     if(fin_turno)
-        if(puntos_energia == CANTIDAD_MIN_ENERGIA){
-            aux = true;
+        if(progreso == CANTIDAD_MIN_ENERGIA)
             objetivo_cumplido = true;
-        }
-
-    return aux;
 }
 
-void Cansado::obtener_objetivo(){
+void Cansado::mostrar_objetivo(){
     cout << "Cansado: terminar un turno con 0 de energía" << endl;
-    //cout << '\t' << "en este turno todavía tenes " << puntos_energia << " puntos de energia" << endl;
+    cout << '\t' << "en este turno todavía tenes " << progreso << " puntos de energia" << endl;
     cout << '\t' << "gastalos en algo y listo" << endl;
     if(objetivo_cumplido)
         cout << "el objetivo está cumplido" << endl;

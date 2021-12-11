@@ -22,9 +22,9 @@ private:
 public:
     ConstruirObelisco();
     ~ConstruirObelisco();
-    bool chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno);
+    void chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno);
 
-    void obtener_objetivo();
+    void mostrar_objetivo();
     bool es_principal();
 };
 

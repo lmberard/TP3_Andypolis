@@ -6,27 +6,28 @@ void Demoler::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
     Edificio* ptredificio;
     string edificio_a_demoler;
 
-    coordenadas = pedir_coordenadas();
 
-    //TODO: PONER MENSAJES DE ERROR
+    coordenadas = pedir_coordenadas();    
 
-    if(mapa.obtener_edificio(coordenadas) != NULL){
-        if(jugador[id_jugador_actual - 1].obtener_energia() >= ENERGIA_NECESARIA_PARA_DEMOLER){
-            if(jugador[id_jugador_actual - 1].tiene_edificio_por_coordenada(coordenadas, edificio_a_demoler) == true){
+    if(mapa.coordenadas_validas(coordenadas) == true){
+        if(mapa.obtener_edificio(coordenadas) != NULL){
+            if(jugador[id_jugador_actual - 1].obtener_energia() >= ENERGIA_NECESARIA_PARA_DEMOLER){
+                if(jugador[id_jugador_actual - 1].tiene_edificio_por_coordenada(coordenadas, edificio_a_demoler) == true){
+                            
+                    ptredificio = mapa.obtener_edificio(coordenadas);
+                    if(jugador[id_jugador_actual - 1].eliminar_ubicacion_lista_edificios(edificio_a_demoler, coordenadas) == false){
+                        msjeError(ERR_AL_DEMOLER_EDIFICIO);
+                    }
+                    jugador[id_jugador_actual - 1].inv().llenar_stock(ptredificio);
+                    mapa.demoler_contenido(coordenadas);
+                    jugador[id_jugador_actual - 1].decrementar_puntos_energia(ENERGIA_NECESARIA_PARA_DEMOLER);
+
+                } else {msjeError(ERR_DEMOLER_EDIFICIO_PROPIO);}
+                            
+            } else {msjeError(ERR_ENERGIA_INSUFICIENTE);}
                         
-                ptredificio = mapa.obtener_edificio(coordenadas);
-                if(jugador[id_jugador_actual - 1].eliminar_ubicacion_lista_edificios(edificio_a_demoler, coordenadas) == false){
-                    msjeError(ERR_AL_DEMOLER_EDIFICIO);
-                }
-                jugador[id_jugador_actual - 1].inv().llenar_stock(ptredificio);
-                mapa.demoler_contenido(coordenadas);
-                jugador[id_jugador_actual - 1].decrementar_puntos_energia(ENERGIA_NECESARIA_PARA_DEMOLER);
-
-            } else {msjeError(ERR_DEMOLER_EDIFICIO_PROPIO);}
-                        
-        } else {msjeError(ERR_ENERGIA_INSUFICIENTE);}
-                    
-    } else {msjeError(ERR_NO_SE_PUEDE_DEMOLER);}
+        } else {msjeError(ERR_NO_SE_PUEDE_DEMOLER);}
+    }
 
     bool fin_turno = false;
     jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);

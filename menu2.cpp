@@ -6,14 +6,16 @@ using namespace std;
 
 int Menu::obtener_opcion_usuario()
 {
-    int opcion_elegida;
-    //cin >> opcion_elegida;
+    int opcion_elegida = -1;
     string aux;
     getline(cin, aux);
-    opcion_elegida = stoi(aux);
+    if(es_numero_y_positivo(aux))
+        opcion_elegida = stoi(aux);
     return opcion_elegida;
 }
+
 ////////////////////////////////////////////////////////////////
+
 void Menu::mostrar_menu_juego(int id_jugador)
 {
     cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis, Jugador " << id_jugador << "!! ¿Que desea hacer?" << END_COLOR << " " << endl;
@@ -71,23 +73,13 @@ Jugada * Menu::inicial()
 }
 
 ////////////////////////////////////////////////////////////////
-void Menu::validar_opcion_juego(int opcion_elegida, int id_jugador_actual)
+void Menu::validar_opcion_juego(int & opcion_elegida, int id_jugador_actual)
 {
     while (!es_opcion_valida(opcion_elegida, OPCION_MINIMA, OPCION_MAXIMA_JUEGO))
     {
-        if (!cin.good())
-        {
-            cin.clear();
-            cin.ignore(100, '\n');
-            msjeError("Se tiene que ingresar un numero entero del " + to_string(OPCION_MINIMA) + "al " + to_string(OPCION_MAXIMA_JUEGO) + "\nIntentemos de nuevo:");
-            mostrar_menu_juego(id_jugador_actual);
-            cin >> opcion_elegida;
-        }
-        cin.clear();
-        cin.ignore(100, '\n');
         msjeError("Ese numero de opcion no es valido, intentemos otra vez:");
         mostrar_menu_juego(id_jugador_actual);
-        cin >> opcion_elegida;
+        opcion_elegida = obtener_opcion_usuario();
     }
 }
 
@@ -95,16 +87,6 @@ void Menu::validar_opcion_partida_nueva(int & opcion_elegida)
 {
     while (!es_opcion_valida(opcion_elegida, OPCION_MINIMA, OPCION_MAXIMA_NUEVA_PARTIDA))
     {
-        if (!cin.good())
-        {
-            cin.clear();
-            cin.ignore(100, '\n');
-            msjeError("Se tiene que ingresar un numero entero del " + to_string(OPCION_MINIMA) + "al " + to_string(OPCION_MAXIMA_NUEVA_PARTIDA) + "\nIntentemos de nuevo:");
-            partida_nueva_mostrar();
-            opcion_elegida = obtener_opcion_usuario();
-        }
-        cin.clear();
-        cin.ignore(100, '\n');
         msjeError("Ese numero de opcion no es valido, intentemos otra vez:");
         partida_nueva_mostrar();
         opcion_elegida = obtener_opcion_usuario();

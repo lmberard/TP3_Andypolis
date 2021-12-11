@@ -29,9 +29,9 @@ public:
     Objetivo();
     virtual ~Objetivo();
 
-    virtual void obtener_objetivo() = 0; 
+    virtual void mostrar_objetivo() = 0; 
     virtual bool es_principal() = 0;             
-    virtual bool chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno) = 0;
+    virtual void chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno) = 0;
     //virtual bool chequear_estado(int puntos_energia);
     //virtual bool chequear_estado(Diccionario & diccionario, Lista<Ubicaciones> edificios); /*esto para objetivo Letrado*/
     //virtual bool chequear_estado(Lista<Ubicaciones> & edificios);

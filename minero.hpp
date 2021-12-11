@@ -18,16 +18,16 @@ class Minero : public Objetivo
 {
 private:
 
+    bool mina_chequeado;
+    bool mina_oro_chequeado;
 
 public:
     Minero();
     ~Minero();
 
-    bool chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno);
-    void obtener_objetivo();
+    void chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno);
+    void mostrar_objetivo();
     bool es_principal();
 };
-
-
 
 #endif 
