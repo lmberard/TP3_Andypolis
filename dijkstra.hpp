@@ -16,7 +16,7 @@ private:
     void inicializarVisitados(int origen);
 
     // post: pone las distancias exastamente igual que la distanciaorigen
-    void inicializarDistancia(const int *distancia0rigen);
+    void inicializarDistancia(const int *distanciaOrigen);
 
     // post : llena el vector de recorrido con el origen
     void inicializarRecorrido(int origen);
