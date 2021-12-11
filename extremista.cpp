@@ -7,26 +7,24 @@ using namespace std;
 
 Extremista::Extremista() : Objetivo()
 {
+    progreso = 0;
 }
 
 Extremista::~Extremista()
 {
 }
 
-bool Extremista::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno){
-    bool aux = false;
-
-    if(inventario.obtener_bombas_compradas() >= CANTIDAD_BOMBAS_COMPRADAS_OBJETIVO){
-        aux = true;
+void Extremista::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+{
+    progreso = inventario.obtener_bombas_compradas();
+    if( progreso >= CANTIDAD_BOMBAS_COMPRADAS_OBJETIVO)
         objetivo_cumplido = true;
-    }
 
-    return aux;
 }
 
 void Extremista::obtener_objetivo(){
     cout << "Extremista: haber comprado 500 bombas en una partida." << endl;
-    //cout << '\t' << "compraste " << inventario.obtener_material("bomba")->obtener_cantidad() << " bombas" << endl;
+    cout << '\t' << "compraste " << progreso << " bombas" << endl;
     if(objetivo_cumplido)
         cout << "el objetivo está cumplido" << endl;
     else

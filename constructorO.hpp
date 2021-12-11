@@ -18,12 +18,13 @@ class ConstructorO : public Objetivo
 {
 private:
 
-
+    int progreso;
+    
 public:
     ConstructorO();
     ~ConstructorO();
 
-    bool chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno);
+    void chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno);
     void obtener_objetivo();
     bool es_principal();
 };

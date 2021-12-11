@@ -14,8 +14,8 @@ Minero::~Minero()
 {
 }
 
-bool Minero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno){
-    bool aux = false;
+void Minero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+{
     bool mina_chequeado = false;
     bool mina_oro_chequeado = false;
 
@@ -26,13 +26,8 @@ bool Minero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<
             mina_oro_chequeado = true;
     }
 
-    if(mina_chequeado && mina_oro_chequeado){
+    if(mina_chequeado && mina_oro_chequeado)
         objetivo_cumplido = true;
-        aux = true;
-    }
-        
-    
-    return aux;
 }
 
 void Minero::obtener_objetivo(){

@@ -7,15 +7,15 @@ using namespace std;
 
 ConstructorO::ConstructorO() : Objetivo()
 {
+    progreso = 0;
 }
 
 ConstructorO::~ConstructorO()
 {
 }
 
-bool ConstructorO::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno){
-    bool aux = false;
-    
+void ConstructorO::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+{
     bool mina_chequeado = false;
     bool aserradero_chequeado = false;
     bool fabrica_chequeado = false;
@@ -38,14 +38,10 @@ bool ConstructorO::chequear_estado(Inventario & inventario, int puntos_energia, 
             mina_oro_chequeado = true;            
     }
 
-    if( mina_chequeado && aserradero_chequeado && fabrica_chequeado &&
-        escuela_chequeado && planta_electrica_chequeado && mina_oro_chequeado){
+    if(mina_chequeado && aserradero_chequeado && fabrica_chequeado &&
+        escuela_chequeado && planta_electrica_chequeado && mina_oro_chequeado)
             objetivo_cumplido = true;
-            aux = true;
-        }
-            
-    
-    return aux;
+
 }
 
 void ConstructorO::obtener_objetivo(){

@@ -12,7 +12,7 @@ class Inventario
 
 private:
     Lista<Material *> materiales1;
-    int andycoins_contador;
+    int andycoins_gastadas;
     int bombas_usadas;
     int bombas_compradas;
 
@@ -49,7 +49,8 @@ public:
     void agregar_bombas_compradas(int cantidad);
 
     /////////////////////////GETTERS////////////////////////////
-    int obtener_andycoins_contador();
+    int obtener_andycoins_gastadas();
+    void aniadir_andycoins_gastadas(int cantidad);
     int obtener_andycoins();
     void comprar_bombas(int cantidad);
     int obtener_bombas_compradas();

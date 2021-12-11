@@ -9,22 +9,27 @@ void Comprar::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
 
         cout << "ingrese la cantidad de bombas que desea comprar: " << endl;
         getline(cin,aux);
-        cant = stoi(aux);
+        if(es_numero_y_positivo(aux)){
+            cant = stoi(aux);
         
-        if(cant*100 <= jugador[id_jugador_actual -1].inv().obtener_andycoins()){
+            if(cant*100 <= jugador[id_jugador_actual -1].inv().obtener_andycoins()){
             
-            jugador[id_jugador_actual -1].inv().modificar_cant_material("bombas",cant);
-            jugador[id_jugador_actual -1].inv().agregar_bombas_compradas(cant);
-            jugador[id_jugador_actual -1].inv().aniadir_cant_material("andycoins", -cant*100);
-            cout << "quedan ahora " << jugador[id_jugador_actual -1].inv().obtener_andycoins() << "andycoins" << endl;
+                jugador[id_jugador_actual -1].inv().modificar_cant_material("bombas",cant);
+                jugador[id_jugador_actual -1].inv().agregar_bombas_compradas(cant);
+                jugador[id_jugador_actual -1].inv().aniadir_cant_material("andycoins", -cant*100);
+                jugador[id_jugador_actual -1].inv().aniadir_andycoins_gastadas(cant*100);
+                cout << "quedan ahora " << jugador[id_jugador_actual -1].inv().obtener_andycoins() << "andycoins" << endl;
             
-            jugador[id_jugador_actual-1].decrementar_puntos_energia(5);
+                jugador[id_jugador_actual-1].decrementar_puntos_energia(5);
+
+                bool fin_turno = false;
+                jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);
+            }
+            else
+                cout << "no hay suficiente platita" << endl;  
         }
         else
-            cout << "no hay suficiente platita" << endl;
-            
-        bool fin_turno = false;
-        jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);
+            cout << "no es válido lo que ingresaste" << endl;
     }
     else
         cout << "no tenes energía suficiente " << endl;
