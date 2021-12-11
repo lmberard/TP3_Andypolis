@@ -43,7 +43,7 @@ bool CasilleroTransitable::agregar(Jugador *jugador)
 {
     if (material || this->jugador)
     {
-        msjeError("Ya hay un edificio en esta posicion. No se puede agregar otro");
+        msjeError("Este casillero ya esta ocupado");
         return false;
     }
 
