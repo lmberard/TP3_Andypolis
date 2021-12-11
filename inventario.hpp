@@ -35,6 +35,10 @@ public:
     bool chequear_stock(Edificio *edificio, bool construir);
 
     // PRE:
+    // POS: Verifica si hay materiales suficientes para la reparacion de un edificio. Devuelve true si tiene y false si no.
+    bool chequear_stock_reparaciones(Edificio *edificio, bool reparar);
+
+    // PRE:
     // POS: Devuelve la cantidad de materiales reciclados a la lista de materiales. (Se devuelve la mitad de la cantidad necesaria para construir ese tipo de edificio)
     void llenar_stock(Edificio *edificio);
 

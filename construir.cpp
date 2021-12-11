@@ -5,7 +5,7 @@ void Construir::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jug
     Edificio * edif_ptr;
     string edificio;
 
-    if(jugadores[id_jugador_actual - 1].obtener_energia() >= 15){
+    if(jugadores[id_jugador_actual - 1].obtener_energia() >= ENERGIA_NECESARIA_PARA_CONSTRUIR){
         edificio = pedir_edificio();
         if(chequear_existencia_de_edificio(bob, edificio)){
             edif_ptr = bob.mostrar_edificio(edificio);
@@ -18,7 +18,7 @@ void Construir::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jug
                             imprimir_edificio_construido(edif_ptr);
                             descontar_materiales(edif_ptr,jugadores[id_jugador_actual - 1]);
                             jugadores[id_jugador_actual - 1].agregar_ubicacion_lista_edificios(edif_ptr->obtener_nombre(), coordenadas);
-                            jugadores[id_jugador_actual-1].decrementar_puntos_energia(15);
+                            jugadores[id_jugador_actual-1].decrementar_puntos_energia(ENERGIA_NECESARIA_PARA_CONSTRUIR);
                         }
                     }
                 }

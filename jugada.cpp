@@ -10,13 +10,11 @@ Coordenada Jugada::pedir_coordenadas()
     msjeInstruccion("Ingrese las coordenadas:");
 
     msjeInstruccion("Coordenada X:");
-    //cin >> aux;
     getline(cin, aux);
     if (es_coordenada(aux) == true)
         x = stoi(aux);
 
     msjeInstruccion("Coordenada Y:");
-    //cin >> aux;
     getline(cin,aux);
     if (es_coordenada(aux) == true)
         y = stoi(aux);

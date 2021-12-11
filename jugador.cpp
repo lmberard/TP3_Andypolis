@@ -166,7 +166,7 @@ bool Jugador::tiene_edificio_por_coordenada(Coordenada coordenadas, string & edi
         if (tiene_esa_coordenada(edificios[i], coordenadas)){
             edificio_a_demoler = obtener_nombre(edificios[i]);
             estado = true;
-        }
+        } 
 
     }
 

@@ -105,6 +105,7 @@ andypolis: consultarcoordenada.cpp
 andypolis: mostrarinventario.cpp
 andypolis: recolectar.cpp
 andypolis: finalizarturno.cpp
+andypolis: reparar.cpp
 
 #libreria para los colores: 
 andypolis: colors.cpp 

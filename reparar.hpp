@@ -3,16 +3,14 @@
 
 #include "jugada.hpp"
 
+static const int ENERGIA_NECESARIA_PARA_REPARAR = 25;
+
 class Reparar : public Jugada{
     public: 
-        void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual){
-            cout << "tengo que reparar edificios" << endl;
-
-            //esto chequea los objetivos luego de ejecutar la accion. fin de turno = false hace que los 
-            //objetivos que se tengan que chequear al final del turno se chequeen solo cuando cambia el turno
-            bool fin_turno = false;
-            jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);
-        }
+        void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugadores, int & id_jugador_actual);
+        bool chequear_si_requiere_reparacion(Edificio * edif_ptr);
+        bool chequear_materiales_reparacion(Edificio * edif_ptr, Jugador & jugador);
+        void imprimir_edificio_reparado(Edificio * edif_ptr);
+        bool descontar_materiales(Edificio * edif_ptr, Jugador & jugador);
 };
-
 #endif //REPARAR_HPP

@@ -76,6 +76,69 @@ bool Inventario::chequear_stock(Edificio *edificio, bool construir)
     return flag;
 }
 
+bool Inventario::chequear_stock_reparaciones(Edificio *edificio, bool reparar)
+{
+    int cuenta = 0;
+    bool flag = 1;
+
+    for (int j = 1; j < materiales1.mostrar_cantidad() + 1; j++)
+    {
+        if (materiales1[j]->obtener_nombre() == "piedra")
+        {
+            cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_piedra()/4;
+            if (cuenta < 0)
+            {
+                msjeError("No se puede reparar el edificio. No hay piedra suficiente.");
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
+                flag = 0;
+            }
+            if (reparar)
+                materiales1[j]->modificar_cantidad(cuenta);
+        }
+        if (materiales1[j]->obtener_nombre() == "madera")
+        {
+            cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_madera()/4;
+            if (cuenta < 0)
+            {
+                msjeError("No se puede reparar el edificio. No hay madera suficiente.");
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
+                flag = 0;
+            }
+            if (reparar)
+                materiales1[j]->modificar_cantidad(cuenta);
+        }
+        if (materiales1[j]->obtener_nombre() == "metal")
+        {
+            cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_metal()/4;
+            if (cuenta < 0)
+            {
+                msjeError("No se puede reparar el edificio. No hay metal suficiente.");
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
+                flag = 0;
+            }
+            if (reparar)
+                materiales1[j]->modificar_cantidad(cuenta);
+        }
+    }
+
+    return flag;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Inventario::llenar_stock(Edificio *edificio)
 {
     int cuenta = 0;

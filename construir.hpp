@@ -3,6 +3,8 @@
 
 #include "jugada.hpp"
 
+static const int ENERGIA_NECESARIA_PARA_CONSTRUIR = 15;
+
 class Construir : public Jugada{
     public: 
         void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugadores, int & id_jugador_actual);
