@@ -7,7 +7,7 @@ void Comprar::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
     
     if(jugador[id_jugador_actual -1].obtener_energia() >= 5){
 
-        cout << "ingrese la cantidad de bombas que desea comprar: " << endl;
+        msjeInstruccion("Ingrese la cantidad de bombas que desea comprar: ");
         getline(cin,aux);
         if(es_numero_y_positivo(aux)){
             cant = stoi(aux);
@@ -18,7 +18,7 @@ void Comprar::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
                 jugador[id_jugador_actual -1].inv().agregar_bombas_compradas(cant);
                 jugador[id_jugador_actual -1].inv().aniadir_cant_material("andycoins", -cant*100);
                 jugador[id_jugador_actual -1].inv().aniadir_andycoins_gastadas(cant*100);
-                cout << "quedan ahora " << jugador[id_jugador_actual -1].inv().obtener_andycoins() << "andycoins" << endl;
+                cout << TXT_LIGHT_BLUE_6 << "Ahora posee " << jugador[id_jugador_actual -1].inv().obtener_andycoins() << "andycoins." << END_COLOR << endl;
             
                 jugador[id_jugador_actual-1].decrementar_puntos_energia(5);
 
@@ -26,11 +26,11 @@ void Comprar::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
                 jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);
             }
             else
-                cout << "no hay suficiente platita" << endl;  
+                msjeError("No hay suficiente dinero.");
         }
         else
-            cout << "no es válido lo que ingresaste" << endl;
+            msjeError("No es valido lo que ingresaste.");
     }
     else
-        cout << "no tenes energía suficiente " << endl;
+        msjeError("No posee energia suficiente.");
 }

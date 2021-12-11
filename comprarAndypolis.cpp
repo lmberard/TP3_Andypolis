@@ -22,12 +22,12 @@ void ComprarAndypolis::chequear_estado(Inventario & inventario, int puntos_energ
 }
 
 void ComprarAndypolis::mostrar_objetivo(){
-    cout << "Comprar andypolis: haber juntado 100.000 andycoins a lo largo de la partida" << endl;
-    cout << "juntastes a lo largo de la partida " << progreso << " andycoins" << endl;
+    cout << TXT_LIGHT_BLUE_6 << "Comprar andypolis: haber juntado 100.000 andycoins a lo largo de la partida." << END_COLOR << endl;
+    cout << TXT_LIGHT_BLUE_6 << "A lo largo de la partida recolecto " << progreso << " andycoins" << END_COLOR << endl;
     if(objetivo_cumplido)
-        cout << "el objetivo está cumplido" << endl;
+        msjeInstruccion("El objetivo esta cumplido");
     else
-        cout << "el objetivo no está cumplido" << endl;
+        msjeInstruccion("El objetivo no esta cumplido");
 }
 
 bool ComprarAndypolis::es_principal(){

@@ -9,13 +9,13 @@ CasilleroTransitable ::~CasilleroTransitable(){}
 
 void CasilleroTransitable::info()
 {
-    cout << "Es un " << casillero_nombre << ", es un casillero transitable" << endl;
+    cout << TXT_LIGHT_BLUE_6 << "Es un " << casillero_nombre << ", es un casillero transitable" << END_COLOR << endl;
     if (material)
-        cout << "Hay un material del tipo '" << material->obtener_nombre() << "'. No te olvides de recolectarlo!" << endl;
+        cout << TXT_LIGHT_BLUE_6 << "Hay un material del tipo '" << material->obtener_nombre() << "'. No se olvide de recolectarlo!" << END_COLOR << endl;
     if (jugador)
-        cout << "Se encuentra el jugador " << jugador->obtener_codigo() << " acá" << endl;
+        cout << TXT_LIGHT_BLUE_6 << "En este casillero se encuentra el jugador " << jugador->obtener_codigo() << END_COLOR << endl;
     if(!material && !jugador)
-        cout << "No hay ningun material en esta parte del camino :)" << endl;
+        cout << TXT_LIGHT_BLUE_6 << "No hay ningun material en esta parte del camino." << END_COLOR << endl;
 }
 
 void CasilleroTransitable::mostrar_por_pantalla()
