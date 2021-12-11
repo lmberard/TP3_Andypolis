@@ -43,6 +43,8 @@ Coordenada crear_coordenada(int x, int y);
 
 bool es_coordenada(string cadena);
 
+bool es_numero(string cadena);
+
 bool esta_lista_vacia(Ubicaciones& info);
 
 #endif // UBICACIONES_HPP
