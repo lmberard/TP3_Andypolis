@@ -22,16 +22,16 @@ class ModificarEdificio : public Jugada{
                 msjeInstruccion("Ingrese la cantidad de madera que desea: ");
                 getline(cin, cantidad_madera);
 
-                if(es_numero(cantidad_madera) == true){                  
+                if(es_numero_y_positivo(cantidad_madera) == true && stoi(cantidad_madera) < 50000){                  
 
                     msjeInstruccion("Ingrese la cantidad de piedra que desea: ");
                     getline(cin, cantidad_piedra);
-                    if(es_numero(cantidad_piedra) == true){
+                    if(es_numero_y_positivo(cantidad_piedra) == true && stoi(cantidad_piedra) < 50000){
                         
                         msjeInstruccion("Ingrese la cantidad de metal que desea: ");
                         getline(cin, cantidad_metal);
 
-                        if(es_numero(cantidad_metal) == true){
+                        if(es_numero_y_positivo(cantidad_metal) == true && stoi(cantidad_metal) < 50000){
                             edificio->setear_madera(stoi(cantidad_madera));
                             edificio->setear_piedra(stoi(cantidad_piedra));
                             edificio->setear_metal(stoi(cantidad_metal));
