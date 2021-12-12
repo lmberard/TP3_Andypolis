@@ -181,10 +181,10 @@ void Juego::lluvia_recursos()
         colocar_material_random(cantidad, "andycoins", CANT_ANDYCOINS_BLOQUE);   
     }
     else
-        cout << "Estan todos los casilleros ocupados" << endl;    
+        msjeInstruccion("Todos los casilleros se encuentran ocupados.");   
 }
 
 void Juego::celebrar()
 {
-    cout << "Felicidades jugador  " << id_jugador_actual << ", ganaste :)" << endl; 
+    cout << TXT_LIGHT_GREEN_46 << "Felicidades jugador  " << id_jugador_actual << ", ganaste :)" << END_COLOR << endl;
 }

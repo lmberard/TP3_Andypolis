@@ -23,12 +23,12 @@ void Extremista::chequear_estado(Inventario & inventario, int puntos_energia, Li
 }
 
 void Extremista::mostrar_objetivo(){
-    cout << "Extremista: haber comprado 500 bombas en una partida." << endl;
-    cout << '\t' << "compraste " << progreso << " bombas" << endl;
+    msjeInstruccion("Extremista: haber comprado 500 bombas en una partida.");
+    cout << TXT_LIGHT_BLUE_6 << '\t' << "Hasta el momento compro " << progreso << " bombas" << END_COLOR << endl;
     if(objetivo_cumplido)
-        cout << "el objetivo está cumplido" << endl;
+        msjeInstruccion("El objetivo esta cumplido");
     else
-        cout << "el objetivo no está cumplido" << endl;
+        msjeInstruccion("El objetivo no esta cumplido");
 }
 
 bool Extremista::es_principal(){
