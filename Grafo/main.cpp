@@ -17,6 +17,16 @@ int main()
     coordenada F; F.coord_x = 1; F.coord_y = 2;
     coordenada G; G.coord_x = 3; G.coord_y = 0;
     
+    Coordenada coordenadas;
+
+    for(size_t i = 0; i < mapa.obtener_filas(); i++){
+        for (size_t j = 0; i < mapa.obtener_columnas(); i++)
+        {
+            
+        }
+        
+    }
+
     Grafo grafo;
 
     grafo.agregarVertice(A);
