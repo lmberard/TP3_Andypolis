@@ -34,6 +34,8 @@ public:
     virtual Edificio *info_edificio();
     virtual void quitar_elemento();
 
+    virtual int obtener_peso(int jugador_id) = 0;
+
     //DUDA CON ESTO :/ 
     virtual bool estransitable();
 };

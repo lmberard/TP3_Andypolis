@@ -30,3 +30,14 @@ bool CasilleroInaccesible::agregar(Jugador *jugador)
     this->jugador = jugador;
     return true;
 }
+
+int CasilleroInaccesible::obtener_peso(int jugador_id){
+    int peso;
+
+    if(jugador_id == 1)
+        peso = 2;
+    else if(jugador_id == 2)
+        peso = 5;
+    
+    return peso;
+}
