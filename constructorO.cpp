@@ -43,25 +43,25 @@ void ConstructorO::chequear_estado(Inventario & inventario, int puntos_energia, 
 }
 
 void ConstructorO::mostrar_objetivo(){
-   cout << "Constructor: construir un edificio de cada tipo." << endl;
-   cout << "Por ahora construistes: " << endl;
+    msjeInstruccion("Constructor: construir un edificio de cada tipo.");
+    msjeInstruccion("Hasta ahora hay construidos: ");
     if(mina_chequeado)
-        cout << "una mina" << endl; 
+        msjeInstruccion("- Mina"); 
     if(aserradero_chequeado)
-        cout << "un aserradero" << endl; 
+        msjeInstruccion("- Aserradero"); 
     if(fabrica_chequeado)
-        cout << "una fabrica" << endl;
+        msjeInstruccion("- Fabrica");
     if(escuela_chequeado)
-        cout << "una escuela" << endl;
+        msjeInstruccion("- Escuela");
     if(planta_electrica_chequeado)
-        cout << "una planta electrica" << endl;
+        msjeInstruccion("- Planta electrica");
     if(mina_oro_chequeado)
-        cout << "una mina oro" << endl;   
+        msjeInstruccion("- Mina oro");   
 
    if(objetivo_cumplido)
-        cout << "el objetivo está cumplido" << endl;
+        msjeInstruccion("El objetivo esta cumplido");
     else
-        cout << "el objetivo no está cumplido" << endl;
+        msjeInstruccion("El objetivo no esta cumplido");
 }
 
 bool ConstructorO::es_principal(){

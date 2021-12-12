@@ -14,8 +14,8 @@ ConstruirObelisco::~ConstruirObelisco()
 }
 
 void ConstruirObelisco::mostrar_objetivo(){
-    cout << "Más alto que las nubes: construir el obelisco." << endl;
-    cout << '\t' << "Cumpliendo este objetivo se gana la partida" << endl;
+    msjeInstruccion("Mas alto que las nubes: construir el obelisco.");
+    cout << TXT_LIGHT_BLUE_6 << '\t' << "Cumpliendo este objetivo se gana la partida." << END_COLOR << endl;
 }
 
 void ConstruirObelisco::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
