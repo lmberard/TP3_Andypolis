@@ -17,7 +17,12 @@ int main()
     coordenada D; D.coord_x = 1; D.coord_y = 0;
     coordenada E; E.coord_x = 1; E.coord_y = 1;
     coordenada F; F.coord_x = 1; F.coord_y = 2;
+<<<<<<< HEAD
     
+=======
+    coordenada G; G.coord_x = 3; G.coord_y = 0;
+
+>>>>>>> 491ab38db46b6a526ed73a283f059ec69dd0ccf9
     Grafo grafo;
     
     ListaNG<coordenada> coordenadas;

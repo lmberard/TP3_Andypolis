@@ -23,6 +23,8 @@ public:
 
     bool agregar(Jugador *jugador);
 
+    int obtener_peso(int jugador_id);
+
 };
 
 #endif // CASILLEROINACCESIBLE_HPP

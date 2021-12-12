@@ -61,3 +61,24 @@ bool CasilleroTransitable::estransitable()
 {
     return true;
 }
+
+int CasilleroTransitable::obtener_peso(int jugador_id){
+    int peso;
+
+    if(casillero_nombre == "camino"){
+        if(jugador_id == 1 || jugador_id == 2) // para ambos jugadores el peso de un camino es el mismo
+            peso = 4;
+    }
+    else if(casillero_nombre == "betun"){
+        if(jugador_id == 1 || jugador_id == 2) // para ambos jugadores el peso de un camino es el mismo
+            peso = 0;
+    }
+    else if(casillero_nombre == "muelle"){
+        if(jugador_id == 1)
+            peso = 5;
+        else if(jugador_id == 2)
+            peso = 2;
+    }
+
+    return peso;
+}
