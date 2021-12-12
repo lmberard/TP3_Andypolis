@@ -55,6 +55,11 @@ Lista<Ubicaciones> & Mapa::lista_materiales()
     return materiales;
 }
 
+int Mapa::obtener_peso_del_mapa(int jugador_id, Coordenada coordenadas)
+{
+    return mapa[coordenadas.coord_x][coordenadas.coord_y]->obtener_peso(jugador_id);
+}
+
 //------------------------SETTERS---------------------------------
 void Mapa::agregar_coordenada_transitable(Coordenada coord)
 {

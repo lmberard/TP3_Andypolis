@@ -41,6 +41,7 @@ public:
     string obtener_nombre_material(int i);
     Coordenada obtener_coordenada(int i, int j);
     Lista<Ubicaciones> & lista_materiales();
+    int obtener_peso_del_mapa(int jugador_id, Coordenada coordenadas);
 
     //------------------------SETTERS---------------------------------
     void agregar_coordenada_transitable(Coordenada coord);
