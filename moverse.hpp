@@ -12,11 +12,13 @@ class Moverse : public Jugada{
             Coordenada coord_aux;
             Lista<Coordenada> camino_realizado;
             int costo;
-            //Grafo grafo;
+            Grafo grafo;
 
-            for(int i = 0; i < mapa.obtener_filas(); i++){
-                for (int j = 0; j < mapa.obtener_columnas(); j++)
+           for(int i = 0; i < mapa.obtener_filas(); i++){
+                for (int j = 0; j < mapa.obtener_columnas(); j++){
+                    coordenadas = crear_coordenada(i, j);
                     grafo.agregarVertice(coordenadas);
+                }
             }
 
             for(int i = 0; i < mapa.obtener_filas(); i++){
