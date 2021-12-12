@@ -164,7 +164,7 @@ bool Parser::existe_archivo(const string & PATH)
 
 void Parser::crear_archivo_vacio(const string &PATH, fstream &archivo)
 {
-    cout << "No se encontro un archivo con nombre \"" << PATH << "\", se va a crear el archivo" << endl;
+    cout << TXT_LIGHT_BLUE_6 << "No se encontro un archivo con nombre \"" << PATH << "\", se va a crear el archivo" << END_COLOR << endl;
     archivo.open(PATH, ios::out);
     archivo.close();
     archivo.open(PATH, ios::in);

@@ -24,5 +24,5 @@ void Recolectar::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * ju
         jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);
     }
     else
-        cout << "no tenes energía suficiente" << endl;
+        msjeError("No posee energia suficiente.");
 }
