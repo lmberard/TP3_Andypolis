@@ -44,9 +44,7 @@ void Grafo::agregarCamino(Coordenada origen, Coordenada destino, int peso)
 
 void Grafo::caminoMinimo(Coordenada origen, Coordenada destino, int & energia, Lista<Coordenada> & lista )
 {
-    cout << " antes de obtener posicion origen" << endl;
     int posicionOrigen = vertices->obtenerPosicion(origen);
-    cout << " antes de obtener posicion destino" << endl;
     int posicionDestino = vertices->obtenerPosicion(destino);
 
     if (posicionOrigen == POSICION_NO_ENCONTRADA)
@@ -57,7 +55,7 @@ void Grafo::caminoMinimo(Coordenada origen, Coordenada destino, int & energia, L
     {
         cout << "El vertice (" << destino.coord_x << "," << destino.coord_y << ") no existe en el grafo" << endl;
     }
-    cout << " antes de camino minimo (dentro de caminominimo)" << endl;
+
     caminoMinimo(posicionOrigen, posicionDestino, energia, lista);
 }
 

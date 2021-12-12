@@ -2,7 +2,7 @@
 
 void Moverse::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual){
     Coordenada coordenadas;
-    Lista<Coordenada> camino_realizado;
+    Lista<Coordenada> camino_recorrido;
     int costo;
     Grafo grafo;
 
@@ -11,10 +11,10 @@ void Moverse::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
 
     coordenadas = pedir_coordenadas_destino();
     if(mapa.coordenadas_validas(coordenadas) == true){
-        // pedir a usuario a donde se quiere mover (identificar donde estamos)
-        // costo = grafo.obtener_camino_minimo(desde, hasta, lista<Ubicaciones>)
-        // agarrar materiales del camino
-        
+        cout << "antes de camino minimo" << endl;
+        grafo.caminoMinimo(mapa.obtener_posicion_jugador(id_jugador_actual), coordenadas, costo, camino_recorrido);
+        cout << "despues de camino minimo" << endl;
+        //recolectar_materiales_del_camino(mapa, camino_recorrido);
     }
 
     bool fin_turno = false;
@@ -44,22 +44,22 @@ void Moverse::agregar_caminos(Grafo & grafo, Mapa & mapa, int id_jugador_actual)
             if(j + 1 < mapa.obtener_columnas()){
                 coord_aux.coord_x = i;
                 coord_aux.coord_y = j + 1;
-                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux))
+                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux));
             }
             if(j - 1 > 0){
                 coord_aux.coord_x = i;
                 coord_aux.coord_y = j - 1;
-                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux))
+                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux));
             }
             if(i + 1 < mapa.obtener_filas()){
                 coord_aux.coord_x = i + 1;
                 coord_aux.coord_y = j;
-                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux))
+                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux));
             }
             if(i - 1 > 0){
                 coord_aux.coord_x = i - 1;
                 coord_aux.coord_y = j;
-                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux))
+                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux));
             }                    
         }        
     }
@@ -71,3 +71,10 @@ Coordenada Moverse::pedir_coordenadas_destino(){
     return pedir_coordenadas();
 }
 
+void Moverse::recolectar_materiales_del_camino(Mapa & mapa, Lista<Coordenada> & camino_recorrido){
+
+    for(int i = 1; i < camino_recorrido.mostrar_cantidad() - 1; i++){
+        mapa.recolectar_materiales_del_mapa(camino_recorrido[i]);
+    }
+
+}

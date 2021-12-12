@@ -58,6 +58,7 @@ andypolis: energetico.cpp
 andypolis: extremista.cpp
 andypolis: letrado.cpp
 andypolis: minero.cpp
+andypolis: moverse.cpp
 
 #edificio abstracto:
 andypolis: edificio.cpp
@@ -107,6 +108,12 @@ andypolis: mostrarobjetivos.cpp
 andypolis: recolectar.cpp
 andypolis: finalizarturno.cpp
 andypolis: reparar.cpp
+
+#grafo:
+andypolis: caminoMinimo.cpp
+andypolis: dijkstra.cpp 
+andypolis: grafo.cpp
+andypolis: vertice.cpp
 
 #libreria para los colores: 
 andypolis: colors.cpp 

@@ -181,6 +181,12 @@ void Mapa::demoler_contenido(Coordenada coord)
     mapa[coord.coord_x][coord.coord_y]->quitar_elemento();
 }
 
+void Mapa::recolectar_materiales_del_mapa(Coordenada & coordenadas){
+    //mapa[coordenadas.coord_x][coordenadas.coord_y]->recolectar_material()
+}
+
+
+
 //--------------------FUNCIONES UTILES-----------------------------
 bool Mapa::coordenadas_validas(Coordenada coord)
 {

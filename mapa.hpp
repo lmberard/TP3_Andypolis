@@ -64,6 +64,7 @@ public:
     void mostrar();
     void consultar_coordenada(Coordenada coord);
     void demoler_contenido(Coordenada coord);
+    void recolectar_materiales_del_mapa(Coordenada & coordenadas);
 
     //--------------------FUNCIONES UTILES-----------------------------
     bool coordenadas_validas(Coordenada coord);

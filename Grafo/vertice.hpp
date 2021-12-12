@@ -3,25 +3,25 @@
 
 #include <string>
 #include <iostream>
-#include "coordenada.hpp"
+#include "ubicaciones.hpp"
 
 using namespace std;
 
 class Vertice {
 /*ATRIBUTOS*/
 private:
-    coordenada nombre;
+    Coordenada nombre;
 
 /*MÉTODOS*/
 public:
-    Vertice(coordenada nombre);
+    Vertice(Coordenada nombre);
 
     //post: obtiene el nombre del vertice
     void obtenerNombre();
 
     ~Vertice();
 
-    coordenada obtenerCoordenada();
+    Coordenada obtenerCoordenada();
 };
 
 
