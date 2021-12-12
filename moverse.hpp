@@ -6,10 +6,19 @@
 class Moverse : public Jugada{
     public: 
         void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual){
-            cout << "me tengo que mover con grafos! La ultima gran cosa del tp " << endl;
+            
+            Coordenada coordenadas;
+            //Grafo grafo;
 
-            //esto chequea los objetivos luego de ejecutar la accion. fin de turno = false hace que los 
-            //objetivos que se tengan que chequear al final del turno se chequeen solo cuando cambia el turno
+            for(int i = 0; i < mapa.obtener_filas(); i++){
+                for (int j = 0; j < mapa.obtener_columnas(); j++)
+                {
+                    coordenadas = crear_coordenada(i, j);
+                    cout << "(" << coordenadas.coord_x << "," << coordenadas.coord_y << ")" << endl;
+                    //grafo.agregarVertice(coordenadas);
+                }        
+            }
+
             bool fin_turno = false;
             jugador[id_jugador_actual-1].chequear_objetivos(fin_turno,bob);
         }
