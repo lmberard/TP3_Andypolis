@@ -100,12 +100,13 @@ void Dijkstra::mostrarRecorrido(int origen, int destino, int & energia, ListaNG<
         cout << "El camino minimo que une (" << vertices->obtenerNombre(origen + 1).coord_x << "," << vertices->obtenerNombre(origen + 1).coord_y << ") con (" << vertices->obtenerNombre(destino + 1).coord_x << "," <<  vertices->obtenerNombre(destino + 1).coord_y << ")";
         cout << " tiene un costo de: " << distancia[destino] << " y es el siguiente: ";
         energia = distancia[destino];
-        lista.alta(vertices->obtenerNombre(origen + 1));
         cout << "(" << vertices->obtenerNombre(destino + 1).coord_x << "," << vertices->obtenerNombre(destino + 1).coord_y << ")" ;
+        lista.alta(vertices->obtenerNombre(destino + 1));
         do
         {
             destino = recorrido[destino];
             cout << " <- (" << vertices->obtenerNombre(destino + 1).coord_x << "," << vertices->obtenerNombre(destino + 1).coord_y << ")" ;
+            lista.alta(vertices->obtenerNombre(destino + 1));
         } while (origen != destino);
     }
     cout << endl;

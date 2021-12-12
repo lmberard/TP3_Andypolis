@@ -48,6 +48,7 @@ int main()
     
     // 4) agarrar los materiales del camino restarle la energía al jugador
     cout << " a ver la energía " << energia << endl;
+    cout << coordenadas.mostrar_cantidad() << endl;
     for(int i = 1; i < coordenadas.mostrar_cantidad() + 1; i++)
         cout << "(" << coordenadas[i].coord_x << " " << coordenadas[i].coord_y << ")" << endl;
 
