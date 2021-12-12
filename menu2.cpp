@@ -42,7 +42,7 @@ void Menu::mostrar_menu_juego(int id_jugador)
 
 void Menu::partida_nueva_mostrar()
 {
-    cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis!! ¿Que desea hacer hoy?" << END_COLOR << " " << endl;
+    cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis!! ¿Que desea hacer?" << END_COLOR << " " << endl;
     cout << endl;
     cout << "\t" << TXT_LIGHT_PURPLE_141 << "╔══════════════════════════════════════════════╗" << END_COLOR << " " << endl;
     cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 1.  Modificar edificio por nombre.           ║" << END_COLOR << " " << endl;
@@ -53,7 +53,7 @@ void Menu::partida_nueva_mostrar()
     cout << "\t" << TXT_LIGHT_PURPLE_141 << "╚══════════════════════════════════════════════╝" << endl;
     cout << END_COLOR;
     cout << endl;
-    msjeInstruccion("Ingrese la opcion con un NUMERO del 1 al 5:");
+    msjeInstruccion("Ingrese la opcion con un NUMERO del 1 al 5: ");
 }
 
 Jugada* Menu::menu_juego(int id_jugador_actual)
@@ -77,7 +77,7 @@ void Menu::validar_opcion_juego(int & opcion_elegida, int id_jugador_actual)
 {
     while (!es_opcion_valida(opcion_elegida, OPCION_MINIMA, OPCION_MAXIMA_JUEGO))
     {
-        msjeError("Ese numero de opcion no es valido, intentemos otra vez:");
+        msjeError("Ese numero de opcion no es valido, intente nuevamente: ");
         mostrar_menu_juego(id_jugador_actual);
         opcion_elegida = obtener_opcion_usuario();
     }
@@ -87,7 +87,7 @@ void Menu::validar_opcion_partida_nueva(int & opcion_elegida)
 {
     while (!es_opcion_valida(opcion_elegida, OPCION_MINIMA, OPCION_MAXIMA_NUEVA_PARTIDA))
     {
-        msjeError("Ese numero de opcion no es valido, intentemos otra vez:");
+        msjeError("Ese numero de opcion no es valido, intente nuevamente: ");
         partida_nueva_mostrar();
         opcion_elegida = obtener_opcion_usuario();
     }
@@ -101,7 +101,7 @@ bool Menu::es_opcion_valida(int elegida, const int opcion_minima, const int opci
 ////////////////////////////////////////////////////////////////
 void Menu::volver()
 {
-    msjeInstruccion("\nPresiona ENTER para volver al menu..");
+    msjeInstruccion("\nPresione ENTER para volver al menu.");
     cin.get();
 
     //cin.get();
@@ -139,7 +139,7 @@ Jugada * Menu::procesar_opcion_partida_nueva(int opcion_elegida)
         despedir();
         break;
     default:
-        msjeError("Error: opcion invalida");
+        msjeError("Opcion invalida");
     }
     return jugada;
 }
@@ -189,7 +189,7 @@ Jugada* Menu::procesar_opcion_juego(int opcion_elegida)
         despedir();
         break;
     default:
-        msjeError("Error: opcion invalida");
+        msjeError("Opcion invalida");
     }
 
     return jugada;

@@ -32,17 +32,17 @@ void Minero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<
 }
 
 void Minero::mostrar_objetivo(){
-    cout << "Minero: haber construido una mina de cada tipo. " << endl;
-    cout << "Por ahora construistes por lo menos: ";
+    msjeInstruccion("Minero: haber construido una mina de cada tipo. ");
+    cout << TXT_LIGHT_BLUE_6 << "Hasta el momento construyo al menos: " << END_COLOR;
     if(mina_chequeado)
-        cout << "Una mina" << endl;
+        cout << TXT_LIGHT_BLUE_6 << "Una mina" << END_COLOR << endl;
     if(mina_oro_chequeado)
-        cout << "Una mina Oro" << endl;
+        cout << TXT_LIGHT_BLUE_6 << "Una mina Oro" << END_COLOR << endl;
    /*PONER LISTA*/  
-   if(objetivo_cumplido)
-        cout << "el objetivo está cumplido" << endl;
+    if(objetivo_cumplido)
+        msjeInstruccion("El objetivo esta cumplido.");
     else
-        cout << "el objetivo no está cumplido" << endl;
+        msjeInstruccion("El objetivo no esta cumplido.");
 }
 
 bool Minero::es_principal(){

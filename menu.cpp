@@ -76,7 +76,7 @@ void Menu::mostrar_menu_juego(int id_jugador)
 
 void Menu::mostrar_menu_partida_nueva()
 {
-    cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis!! ¿Que desea hacer hoy?" << END_COLOR << " " << endl;
+    cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis!! ¿Que desea hacer?" << END_COLOR << " " << endl;
     cout << endl;
     cout << "\t" << TXT_LIGHT_PURPLE_141 << "╔══════════════════════════════════════════════╗" << END_COLOR << " " << endl;
     cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 1.  Modificar edificio por nombre.           ║" << END_COLOR << " " << endl;
@@ -87,7 +87,7 @@ void Menu::mostrar_menu_partida_nueva()
     cout << "\t" << TXT_LIGHT_PURPLE_141 << "╚══════════════════════════════════════════════╝" << endl;
     cout << END_COLOR;
     cout << endl;
-    msjeInstruccion("Ingrese la opcion con un NUMERO del 1 al 5:");
+    msjeInstruccion("Ingrese la opcion con un NUMERO del 1 al 5: ");
 }
 
 void Menu::menu_juego(Juego &andypolis, int opcion_elegida)
@@ -124,13 +124,13 @@ void Menu::validar_opcion_juego(int opcion_elegida, Juego &andypolis)
         {
             cin.clear();
             cin.ignore(100, '\n');
-            msjeError("Se tiene que ingresar un numero entero del " + to_string(OPCION_MINIMA) + "al " + to_string(OPCION_MAXIMA_JUEGO) + "\nIntentemos de nuevo:");
+            msjeError("Debe ingresar un numero entero del " + to_string(OPCION_MINIMA) + "al " + to_string(OPCION_MAXIMA_JUEGO) + "\nIntente nuevamente:");
             mostrar_menu_juego(andypolis.obtener_id_jugador_actual());
             cin >> opcion_elegida;
         }
         cin.clear();
         cin.ignore(100, '\n');
-        msjeError("Ese numero de opcion no es valido, intentemos otra vez:");
+        msjeError("Ese numero de opcion no es valido, intente nuevamente:");
         mostrar_menu_juego(andypolis.obtener_id_jugador_actual());
         cin >> opcion_elegida;
     }
@@ -144,13 +144,13 @@ void Menu::validar_opcion_partida_nueva(int opcion_elegida)
         {
             cin.clear();
             cin.ignore(100, '\n');
-            msjeError("Se tiene que ingresar un numero entero del " + to_string(OPCION_MINIMA) + "al " + to_string(OPCION_MAXIMA_NUEVA_PARTIDA) + "\nIntentemos de nuevo:");
+            msjeError("Debe ingresar un numero entero del " + to_string(OPCION_MINIMA) + "al " + to_string(OPCION_MAXIMA_NUEVA_PARTIDA) + "\nIntente nuevamente:");
             mostrar_menu_partida_nueva();
             opcion_elegida = obtener_opcion_usuario();
         }
         cin.clear();
         cin.ignore(100, '\n');
-        msjeError("Ese numero de opcion no es valido, intentemos otra vez:");
+        msjeError("Ese numero de opcion no es valido, intente nuevamente:");
         mostrar_menu_partida_nueva();
         opcion_elegida = obtener_opcion_usuario();
     }
@@ -164,7 +164,7 @@ bool Menu::es_opcion_valida(int elegida, const int opcion_minima, const int opci
 ////////////////////////////////////////////////////////////////
 void Menu::volver()
 {
-    msjeInstruccion("\nPresiona ENTER para volver al menu..");
+    msjeInstruccion("\nPresione ENTER para volver al menu.");
     cin.get();
 
     cin.get();
@@ -173,7 +173,7 @@ void Menu::volver()
 
 void Menu::proxima_partida()
 {
-    msjeInstruccion("\nPresiona ENTER para terminar la partida y que empiece el otro jugador..");
+    msjeInstruccion("\nPresione ENTER para terminar la partida y que empiece el otro jugador.");
     cin.get();
 
     cin.get();
@@ -215,7 +215,7 @@ void Menu::procesar_opcion_partida_nueva(int opcion_elegida, Juego &andypolis)
         despedir();
         break;
     default:
-        msjeError("Error: opcion invalida");
+        msjeError("Opcion invalida");
     }
 }
 
@@ -279,7 +279,7 @@ void Menu::procesar_opcion_juego(int opcion_elegida, Juego &andypolis)
         break;
 
     default:
-        msjeError("Error: opcion invalida");
+        msjeError("Opcion invalida");
     }
 }
 
