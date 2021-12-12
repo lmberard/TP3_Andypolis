@@ -37,7 +37,7 @@ private:
     void mostrarIteracion(int iteracion);
 
 public:
-    Dijkstra(Lista<Vertice> *vertices, int **matrizAdyacencia);
+    Dijkstra(ListaG<Vertice> *vertices, int **matrizAdyacencia);
 
     // post: muestra por pantalla el camino mínimo entre el origen y el destino, detallando su recorrido y peso
     void caminoMinimo(int origen, int destino, int & energia, ListaNG<coordenada> & lista) override;

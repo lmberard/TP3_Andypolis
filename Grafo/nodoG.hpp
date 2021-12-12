@@ -6,51 +6,51 @@
 using namespace std;
 
 template < typename Tipo >
-class Nodo {
+class NodoG {
 /*ATRIBUTOS*/
 private:
     Tipo* elemento;
-    Nodo<Tipo>* siguiente;
+    NodoG<Tipo>* siguiente;
 
 /*MÉTODOS*/
 public:
-    Nodo(coordenada nombre);
+    NodoG(coordenada nombre);
 
     //post: devuelve el nodo siguiente.
-    Nodo<Tipo>* obtenerSiguiente();
+    NodoG<Tipo>* obtenerSiguiente();
 
     //post: devuelve el nombre del nodo
     coordenada obtenerNombre();
 
     //post: le asigna como siguiente el nodo recibido
-    void asignarSiguiente(Nodo<Tipo>* siguiente);
+    void asignarSiguiente(NodoG<Tipo>* siguiente);
 
-    ~Nodo();
+    ~NodoG();
 };
 
 template<typename Tipo>
-Nodo<Tipo>::Nodo(coordenada nombre) {
+NodoG<Tipo>::NodoG(coordenada nombre) {
     elemento = new Tipo(nombre);
     siguiente = nullptr;
 }
 
 template<typename Tipo>
-Nodo<Tipo> *Nodo<Tipo>::obtenerSiguiente() {
+NodoG<Tipo> *NodoG<Tipo>::obtenerSiguiente() {
     return siguiente;
 }
 
 template<typename Tipo>
-coordenada Nodo<Tipo>::obtenerNombre() {
+coordenada NodoG<Tipo>::obtenerNombre() {
     return elemento->obtenerCoordenada();
 }
 
 template<typename Tipo>
-void Nodo<Tipo>::asignarSiguiente(Nodo<Tipo> *siguiente) {
+void NodoG<Tipo>::asignarSiguiente(NodoG<Tipo> *siguiente) {
     this -> siguiente = siguiente;
 }
 
 template<typename Tipo>
-Nodo<Tipo>::~Nodo() {
+NodoG<Tipo>::~NodoG() {
     delete elemento;
 }
 

@@ -1,7 +1,7 @@
 #ifndef GRAFOS_LISTA_H
 #define GRAFOS_LISTA_H
 #include <string>
-#include "nodo.hpp"
+#include "nodoG.hpp"
 #include "coordenada.hpp"
 #include <iostream>
 
@@ -11,17 +11,17 @@ const int POSICION_NO_ENCONTRADA = -1;
 const string NOMBRE_NO_ENCONTRADO = "";
 
 template <typename Tipo>
-class Lista
+class ListaG
 {
     /*ATRIBUTOS*/
 private:
     int cantidadDeElementos;
-    Nodo<Tipo> *primero;
-    Nodo<Tipo> *ultimo;
+    NodoG<Tipo> *primero;
+    NodoG<Tipo> *ultimo;
 
     /*MÉTODOS*/
 public:
-    Lista();
+    ListaG();
 
     // post: devuelve la cantidad de elementos que tiene la lista
     int obtenerCantidadDeElementos();
@@ -35,11 +35,11 @@ public:
     // post: agrega un nuevo elemento a la lista
     void agregar(coordenada nuevoElemento);
 
-    ~Lista();
+    ~ListaG();
 };
 
 template <typename Tipo>
-Lista<Tipo>::Lista()
+ListaG<Tipo>::ListaG()
 {
     cantidadDeElementos = 0;
     ultimo = nullptr;
@@ -47,17 +47,17 @@ Lista<Tipo>::Lista()
 }
 
 template <typename Tipo>
-int Lista<Tipo>::obtenerCantidadDeElementos()
+int ListaG<Tipo>::obtenerCantidadDeElementos()
 {
     return cantidadDeElementos;
 }
 
 template <typename Tipo>
-int Lista<Tipo>::obtenerPosicion(coordenada nombre)
+int ListaG<Tipo>::obtenerPosicion(coordenada nombre)
 {
     bool elementoEncontrado = false;
     int i = 0;
-    Nodo<Tipo> *auxiliar = primero;
+    NodoG<Tipo> *auxiliar = primero;
 
     while (!elementoEncontrado && i < cantidadDeElementos)
     {
@@ -78,9 +78,9 @@ int Lista<Tipo>::obtenerPosicion(coordenada nombre)
 }
 
 template <typename Tipo>
-void Lista<Tipo>::agregar(coordenada nuevoElemento)
+void ListaG<Tipo>::agregar(coordenada nuevoElemento)
 {
-    Nodo<Tipo> *nuevoNodo = new Nodo<Tipo>(nuevoElemento);
+    NodoG<Tipo> *nuevoNodo = new NodoG<Tipo>(nuevoElemento);
     if (primero == nullptr)
     {
         primero = nuevoNodo;
@@ -95,9 +95,9 @@ void Lista<Tipo>::agregar(coordenada nuevoElemento)
 }
 
 template <typename Tipo>
-Lista<Tipo>::~Lista()
+ListaG<Tipo>::~ListaG()
 {
-    Nodo<Tipo> *siguiente;
+    NodoG<Tipo> *siguiente;
     while (primero != nullptr)
     {
         siguiente = primero->obtenerSiguiente();
@@ -107,10 +107,10 @@ Lista<Tipo>::~Lista()
 }
 
 template <typename Tipo>
-coordenada Lista<Tipo>::obtenerNombre(int posicion)
+coordenada ListaG<Tipo>::obtenerNombre(int posicion)
 {
     int i = 0;
-    Nodo<Tipo> *auxiliar = primero;
+    NodoG<Tipo> *auxiliar = primero;
 
     if (posicion > cantidadDeElementos)
     {

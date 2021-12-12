@@ -1,7 +1,7 @@
 #ifndef GRAFOS_GRAFO_H
 #define GRAFOS_GRAFO_H
 #include <string>
-#include "lista.hpp"
+#include "listaG.hpp"
 #include "vertice.hpp"
 //#include "floyd.hpp"
 #include "caminoMinimo.hpp"
@@ -15,7 +15,7 @@ class Grafo
     /*ATRIBUTOS*/
 private:
     int **matrizDeAdyacencia;
-    Lista<Vertice> *vertices;
+    ListaG<Vertice> *vertices;
     CaminoMinimo *algoritmoCaminoMinimo;
 
     /*MÉTODOS*/

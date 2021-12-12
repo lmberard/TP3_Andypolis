@@ -1,6 +1,6 @@
 #include "dijkstra.hpp"
 
-Dijkstra::Dijkstra(Lista<Vertice> *vertices, int **matrizAdyacencia) : CaminoMinimo(vertices, matrizAdyacencia)
+Dijkstra::Dijkstra(ListaG<Vertice> *vertices, int **matrizAdyacencia) : CaminoMinimo(vertices, matrizAdyacencia)
 {
     verticesVisitados = new bool[cantidadVertices];
     distancia = new int[cantidadVertices];

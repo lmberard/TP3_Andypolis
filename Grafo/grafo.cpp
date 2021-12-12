@@ -5,7 +5,7 @@
 Grafo::Grafo()
 {
     matrizDeAdyacencia = nullptr;
-    vertices = new Lista<Vertice>();
+    vertices = new ListaG<Vertice>();
     algoritmoCaminoMinimo = nullptr;
 }
 
