@@ -3,7 +3,9 @@
 #include <string>
 #include "lista.hpp"
 #include "vertice.hpp"
-#include "floyd.hpp"
+//#include "floyd.hpp"
+#include "caminoMinimo.hpp"
+#include "coordenada.hpp"
 
 using namespace std;
 
@@ -34,8 +36,6 @@ private:
     // post libera la memoria de la matriz de adyacencia
     void liberarMatrizAdyacencia();
 
-    // post: imprime por pantalla los vertices del grafo
-    void mostrarVertices();
 
     // post: imprime por pantalla la matriz de adyacencia
     void mostrarMatrizAdyacencia();
@@ -44,15 +44,15 @@ public:
     Grafo();
     // pre: No hay vertices repetidos en nombre
     // post: agrega un nuevo vertice al grafo
-    void agregarVertice(string nuevoVertice);
+    void agregarVertice(coordenada nuevoVertice);
 
     // pre: se debe tener un algortimo para calcular el camino mínimo previamente elegido
     // post: muestra por terminal el camino mínimo desde un origen a un destino
-    void caminoMinimo(string origen, string destino);
+    void caminoMinimo(coordenada origen, coordenada destino);
 
     // pre: el peso es un valor positivo
     // post: Ajusta la matriz de adyacencia con el peso ingresado
-    void agregarCamino(string origen, string destino, int peso);
+    void agregarCamino(coordenada origen, coordenada destino, int peso);
 
     // post: imprime por pantalla el grafo
     void mostrarGrafo();
@@ -62,6 +62,9 @@ public:
 
     // post: selecciona el algortimo de Dijkstra para calcular el camino mínimo
     void usarDijkstra();
+
+    // post: imprime por pantalla los vertices del grafo
+    void mostrarVertices();
 
     ~Grafo();
 };

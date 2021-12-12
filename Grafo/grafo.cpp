@@ -9,7 +9,7 @@ Grafo::Grafo()
     algoritmoCaminoMinimo = nullptr;
 }
 
-void Grafo::agregarVertice(string nuevoVertice)
+void Grafo::agregarVertice(coordenada nuevoVertice)
 {
     agrandarMatrizDeAdyacencia();
     vertices->agregar(nuevoVertice);
@@ -21,18 +21,18 @@ void Grafo::mostrarGrafo()
     mostrarMatrizAdyacencia();
 }
 
-void Grafo::agregarCamino(string origen, string destino, int peso)
+void Grafo::agregarCamino(coordenada origen, coordenada destino, int peso)
 {
     int posicionOrigen = vertices->obtenerPosicion(origen);
     int posicionDestino = vertices->obtenerPosicion(destino);
 
     if (posicionOrigen == POSICION_NO_ENCONTRADA)
     {
-        cout << "El vertice " << origen << " no existe en el grafo" << endl;
+        cout << "El vertice (" << origen.coord_x << "," << origen.coord_y  << ") no existe en el grafo" << endl;
     }
     if (posicionDestino == POSICION_NO_ENCONTRADA)
     {
-        cout << "El vertice " << destino << " no existe en el grafo" << endl;
+        cout << "El vertice (" << destino.coord_x << "," << destino.coord_y << ") no existe en el grafo" << endl;
     }
 
     if (!(posicionDestino == POSICION_NO_ENCONTRADA || posicionOrigen == POSICION_NO_ENCONTRADA))
@@ -42,18 +42,18 @@ void Grafo::agregarCamino(string origen, string destino, int peso)
     }
 }
 
-void Grafo::caminoMinimo(string origen, string destino)
+void Grafo::caminoMinimo(coordenada origen, coordenada destino)
 {
     int posicionOrigen = vertices->obtenerPosicion(origen);
     int posicionDestino = vertices->obtenerPosicion(destino);
 
     if (posicionOrigen == POSICION_NO_ENCONTRADA)
     {
-        cout << "El vertice " << origen << " no existe en el grafo" << endl;
+        cout << "El vertice (" << origen.coord_x << "," << origen.coord_y << ") no existe en el grafo" << endl;
     }
     if (posicionDestino == POSICION_NO_ENCONTRADA)
     {
-        cout << "El vertice " << destino << " no existe en el grafo" << endl;
+        cout << "El vertice (" << destino.coord_x << "," << destino.coord_y << ") no existe en el grafo" << endl;
     }
 
     caminoMinimo(posicionOrigen, posicionDestino);
@@ -119,10 +119,11 @@ void Grafo::mostrarVertices()
     cout << "Lista de vértices: [";
     for (int i = 0; i < vertices->obtenerCantidadDeElementos(); i++)
     {
-        cout << vertices->obtenerNombre(i + 1);
+        //cout << vertices->obtenerNombre(i + 1);
+        cout << vertices->obtenerNombre(i + 1).coord_x << "," << vertices->obtenerNombre(i + 1).coord_y;
         if (i + 1 != vertices->obtenerCantidadDeElementos())
         {
-            cout << ", ";
+            cout << "; ";
         }
     }
     cout << "]" << endl;
@@ -163,12 +164,12 @@ void Grafo::caminoMinimo(int origen, int destino)
 {
     algoritmoCaminoMinimo->caminoMinimo(origen, destino);
 }
-
+/*
 void Grafo::usarFloyd()
 {
     delete algoritmoCaminoMinimo;
     algoritmoCaminoMinimo = new Floyd(vertices, matrizDeAdyacencia);
-}
+}*/
 
 void Grafo::usarDijkstra()
 {
