@@ -114,7 +114,7 @@ bool Jugador::eliminar_ubicacion_edificio(string nombre, Coordenada coordenada)
         if (edificios[i].nombre == nombre)
             return eliminar_coordenada(edificios[i], coordenada);
     }
-    msjeError("Error: El jugador no tiene edificios construidos de ese estilo");
+    msjeError("Error: El jugador no tiene edificios construidos de ese estilo.");
     return false;
 }
 
@@ -142,7 +142,7 @@ bool Jugador::es_su_edificio(string nombre, Coordenada coordenada)
         if (edificios[i].nombre == nombre)
             return tiene_esa_coordenada(edificios[i], coordenada);
     }
-    msjeError("El jugador no tiene un edificio construido con ese nombre en esa coordenada");
+    msjeError("El jugador no tiene un edificio construido con ese nombre en esa coordenada.");
     return false;
 }
 

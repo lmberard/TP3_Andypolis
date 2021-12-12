@@ -28,12 +28,12 @@ void Letrado::chequear_estado(Inventario & inventario, int puntos_energia, Lista
 }
 
 void Letrado::mostrar_objetivo(){
-    cout << "Letrado: haber construido el máximo posible de escuelas." << endl;
-    cout << "Por ahora construistes " << progreso << " escuelas" << endl;
+    msjeInstruccion("Letrado: haber construido el máximo posible de escuelas.");
+    cout << TXT_LIGHT_BLUE_6 << "Hasta el momento hay " << progreso << " escuelas construidas." << END_COLOR << endl;
     if(objetivo_cumplido)
-        cout << "el objetivo está cumplido" << endl;
+        msjeInstruccion("El objetivo esta cumplido.");
     else
-        cout << "el objetivo no está cumplido" << endl;
+        msjeInstruccion("El objetivo no esta cumplido.");
 }
 
 bool Letrado::es_principal(){

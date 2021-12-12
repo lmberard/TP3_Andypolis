@@ -37,7 +37,7 @@ int Jugada::pedir_confirmacion(){
     int opcion_seleccionada;
 
     msjeInstruccion("¿Esta seguro que desea realizar esta accion?");
-    msjeInstruccion("Ingrese el numero correspondiente a la accion que desea realizar");
+    msjeInstruccion("Ingrese el numero correspondiente a la accion que desea realizar.");
     msjeInstruccion("1. Si");
     msjeInstruccion("2. No");
     
@@ -72,7 +72,7 @@ int Jugada::pedir_id_jugador()
 bool Jugada::id_jugador_es_valido(int id_jugador)
 {
     if (id_jugador < 1 || id_jugador > 2){
-        msjeError("No existe ese numero de jugador");
+        msjeError("No existe ese numero de jugador.");
         return false;
     }
     else
