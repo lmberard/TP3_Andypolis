@@ -3,6 +3,7 @@
 
 #include "jugada.hpp"
 
+
 class Moverse : public Jugada{
     public: 
         void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual){
@@ -26,22 +27,22 @@ class Moverse : public Jugada{
                     if(j + 1 < mapa.obtener_columnas()){
                         coord_aux.coord_x = i;
                         coord_aux.coord_y = j + 1;
-                        grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(jugador_id, coord_aux))
+                        grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux))
                     }
                     if(j - 1 > 0){
                         coord_aux.coord_x = i;
                         coord_aux.coord_y = j - 1;
-                        grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(jugador_id, coord_aux))
+                        grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux))
                     }
                     if(i + 1 < mapa.obtener_filas()){
                         coord_aux.coord_x = i + 1;
                         coord_aux.coord_y = j;
-                        grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(jugador_id, coord_aux))
+                        grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux))
                     }
                     if(i - 1 > 0){
                         coord_aux.coord_x = i - 1;
                         coord_aux.coord_y = j;
-                        grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(jugador_id, coord_aux))
+                        grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux))
                     }                    
                 }        
             }
