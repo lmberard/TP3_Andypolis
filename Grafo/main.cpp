@@ -2,7 +2,7 @@
 
 #include "coordenada.hpp"
 
-#include "listaNG.hpp"
+#include "lista.hpp"
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
 
     Grafo grafo;
     
-    ListaNG<coordenada> coordenadas;
+    Lista<coordenada> coordenadas;
     int energia;
 
     grafo.agregarVertice(A);

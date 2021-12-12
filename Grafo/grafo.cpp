@@ -42,7 +42,7 @@ void Grafo::agregarCamino(coordenada origen, coordenada destino, int peso)
     }
 }
 
-void Grafo::caminoMinimo(coordenada origen, coordenada destino, int & energia, ListaNG<coordenada> & lista )
+void Grafo::caminoMinimo(coordenada origen, coordenada destino, int & energia, Lista<coordenada> & lista )
 {
     int posicionOrigen = vertices->obtenerPosicion(origen);
     int posicionDestino = vertices->obtenerPosicion(destino);
@@ -160,7 +160,7 @@ void Grafo::mostrarMatrizAdyacencia()
     cout << endl;
 }
 
-void Grafo::caminoMinimo(int origen, int destino, int &energia, ListaNG<coordenada> & lista)
+void Grafo::caminoMinimo(int origen, int destino, int &energia, Lista<coordenada> & lista)
 {
     algoritmoCaminoMinimo->caminoMinimo(origen, destino, energia, lista);
 }

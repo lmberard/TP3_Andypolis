@@ -7,7 +7,7 @@ Dijkstra::Dijkstra(ListaG<Vertice> *vertices, int **matrizAdyacencia) : CaminoMi
     recorrido = new int[cantidadVertices];
 }
 
-void Dijkstra::caminoMinimo(int origen, int destino, int & energia, ListaNG<coordenada> & lista)
+void Dijkstra::caminoMinimo(int origen, int destino, int & energia, Lista<coordenada> & lista)
 {
     inicializarVisitados(origen);
     inicializarDistancia(matrizAdyacencia[origen]);
@@ -89,7 +89,7 @@ void Dijkstra::actualizarDistancia(int vertice)
     }
 }
 
-void Dijkstra::mostrarRecorrido(int origen, int destino, int & energia, ListaNG<coordenada> & lista)
+void Dijkstra::mostrarRecorrido(int origen, int destino, int & energia, Lista<coordenada> & lista)
 {
     if (distancia[destino] == INFINITO)
     {

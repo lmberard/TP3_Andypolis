@@ -6,7 +6,7 @@
 //#include "floyd.hpp"
 #include "caminoMinimo.hpp"
 #include "coordenada.hpp"
-#include "listaNG.hpp"
+#include "lista.hpp"
 
 using namespace std;
 
@@ -22,7 +22,7 @@ private:
 
     // pre: tienen que existir tanto el origen como el destino. Ademas se deben haber calculado las matrices de Floyd
     // post: muestra el camino minimo entre el origen y el destino
-    void caminoMinimo(int origen, int destino, int & energia, ListaNG<coordenada> & lista);
+    void caminoMinimo(int origen, int destino, int & energia, Lista<coordenada> & lista);
 
     // post: agranda dinamicamente la matriz de adyacencia
     void agrandarMatrizDeAdyacencia();
@@ -49,7 +49,7 @@ public:
 
     // pre: se debe tener un algortimo para calcular el camino mínimo previamente elegido
     // post: muestra por terminal el camino mínimo desde un origen a un destino
-    void caminoMinimo(coordenada origen, coordenada destino, int & energia, ListaNG<coordenada> & lista);
+    void caminoMinimo(coordenada origen, coordenada destino, int & energia, Lista<coordenada> & lista);
 
     // pre: el peso es un valor positivo
     // post: Ajusta la matriz de adyacencia con el peso ingresado
