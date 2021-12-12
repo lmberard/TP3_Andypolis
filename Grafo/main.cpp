@@ -1,6 +1,8 @@
 #include "grafo.hpp"
 
 #include "coordenada.hpp"
+#include "lista.hpp"
+#include "listaNG.hpp"
 
 int main()
 {
@@ -15,9 +17,11 @@ int main()
     coordenada D; D.coord_x = 1; D.coord_y = 0;
     coordenada E; E.coord_x = 1; E.coord_y = 1;
     coordenada F; F.coord_x = 1; F.coord_y = 2;
-    coordenada G; G.coord_x = 3; G.coord_y = 0;
 
     Grafo grafo;
+    
+    ListaNG<coordenada> coordenadas;
+    int energia;
 
     grafo.agregarVertice(A);
     grafo.agregarVertice(B);
@@ -40,9 +44,13 @@ int main()
 
     // 3) pedirle al usuario a donde se quiere mover: 
     grafo.usarDijkstra();
-    grafo.caminoMinimo(A, F);
-
-    // 4) agarrar los materiales del camino restarle la energía al jugador
+    grafo.caminoMinimo(D, C, energia, coordenadas);
     
+    // 4) agarrar los materiales del camino restarle la energía al jugador
+    cout << " a ver la energía " << energia << endl;
+    cout << coordenadas.mostrar_cantidad() << endl;
+    for(int i = 1; i < coordenadas.mostrar_cantidad() + 1; i++)
+        cout << "(" << coordenadas[i].coord_x << " " << coordenadas[i].coord_y << ")" << endl;
+
     return 0;
 }

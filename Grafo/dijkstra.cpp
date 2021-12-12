@@ -7,7 +7,7 @@ Dijkstra::Dijkstra(Lista<Vertice> *vertices, int **matrizAdyacencia) : CaminoMin
     recorrido = new int[cantidadVertices];
 }
 
-void Dijkstra::caminoMinimo(int origen, int destino)
+void Dijkstra::caminoMinimo(int origen, int destino, int & energia, ListaNG<coordenada> & lista)
 {
     inicializarVisitados(origen);
     inicializarDistancia(matrizAdyacencia[origen]);
@@ -31,7 +31,7 @@ void Dijkstra::caminoMinimo(int origen, int destino)
         verticesRecorridos++;
     }
 
-    mostrarRecorrido(origen, destino);
+    mostrarRecorrido(origen, destino, energia, lista);
 }
 
 int Dijkstra::verticeMinimaDistancia()
@@ -89,7 +89,7 @@ void Dijkstra::actualizarDistancia(int vertice)
     }
 }
 
-void Dijkstra::mostrarRecorrido(int origen, int destino)
+void Dijkstra::mostrarRecorrido(int origen, int destino, int & energia, ListaNG<coordenada> & lista)
 {
     if (distancia[destino] == INFINITO)
     {
@@ -99,11 +99,14 @@ void Dijkstra::mostrarRecorrido(int origen, int destino)
     {
         cout << "El camino minimo que une (" << vertices->obtenerNombre(origen + 1).coord_x << "," << vertices->obtenerNombre(origen + 1).coord_y << ") con (" << vertices->obtenerNombre(destino + 1).coord_x << "," <<  vertices->obtenerNombre(destino + 1).coord_y << ")";
         cout << " tiene un costo de: " << distancia[destino] << " y es el siguiente: ";
+        energia = distancia[destino];
         cout << "(" << vertices->obtenerNombre(destino + 1).coord_x << "," << vertices->obtenerNombre(destino + 1).coord_y << ")" ;
+        lista.alta(vertices->obtenerNombre(destino + 1));
         do
         {
             destino = recorrido[destino];
             cout << " <- (" << vertices->obtenerNombre(destino + 1).coord_x << "," << vertices->obtenerNombre(destino + 1).coord_y << ")" ;
+            lista.alta(vertices->obtenerNombre(destino + 1));
         } while (origen != destino);
     }
     cout << endl;

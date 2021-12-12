@@ -2,6 +2,8 @@
 #define GRAFOS_DIJKSTRA_H
 
 #include "caminoMinimo.hpp"
+#include "listaNG.hpp"
+#include "coordenada.hpp"
 
 class Dijkstra : public CaminoMinimo
 {
@@ -29,7 +31,7 @@ private:
 
     // pre: para que tenga sentido, debe ejecutarse un recorrido previamente
     // post: muestra por pantalla el resultado del recorrido.
-    void mostrarRecorrido(int origen, int destino);
+    void mostrarRecorrido(int origen, int destino, int & energia, ListaNG<coordenada> & lista);
 
     // post: muestra el estado instantaneo del vector de recorrido, distancia y visitados.
     void mostrarIteracion(int iteracion);
@@ -38,7 +40,7 @@ public:
     Dijkstra(Lista<Vertice> *vertices, int **matrizAdyacencia);
 
     // post: muestra por pantalla el camino mínimo entre el origen y el destino, detallando su recorrido y peso
-    void caminoMinimo(int origen, int destino) override;
+    void caminoMinimo(int origen, int destino, int & energia, ListaNG<coordenada> & lista) override;
 
     ~Dijkstra() override;
 };
