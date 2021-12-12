@@ -1,6 +1,7 @@
 #ifndef GRAFOS_NODO_H
 #define GRAFOS_NODO_H
 #include <string>
+#include "coordenada.hpp"
 
 using namespace std;
 
@@ -13,13 +14,13 @@ private:
 
 /*MÉTODOS*/
 public:
-    Nodo(string nombre);
+    Nodo(coordenada nombre);
 
     //post: devuelve el nodo siguiente.
     Nodo<Tipo>* obtenerSiguiente();
 
     //post: devuelve el nombre del nodo
-    string obtenerNombre();
+    coordenada obtenerNombre();
 
     //post: le asigna como siguiente el nodo recibido
     void asignarSiguiente(Nodo<Tipo>* siguiente);
@@ -28,7 +29,7 @@ public:
 };
 
 template<typename Tipo>
-Nodo<Tipo>::Nodo(string nombre) {
+Nodo<Tipo>::Nodo(coordenada nombre) {
     elemento = new Tipo(nombre);
     siguiente = nullptr;
 }
@@ -39,8 +40,8 @@ Nodo<Tipo> *Nodo<Tipo>::obtenerSiguiente() {
 }
 
 template<typename Tipo>
-string Nodo<Tipo>::obtenerNombre() {
-    return elemento -> obtenerNombre();
+coordenada Nodo<Tipo>::obtenerNombre() {
+    return elemento->obtenerCoordenada();
 }
 
 template<typename Tipo>

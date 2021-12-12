@@ -1,11 +1,17 @@
 #include "vertice.hpp"
 
-Vertice::Vertice(string nombre)
+
+Vertice::Vertice(coordenada nombre)
 {
     this->nombre = nombre;
 }
 
-string Vertice::obtenerNombre()
+void Vertice::obtenerNombre()
+{
+    cout << "(" << nombre.coord_x << "," << nombre.coord_y << ")";
+}
+
+coordenada Vertice::obtenerCoordenada()
 {
     return nombre;
 }

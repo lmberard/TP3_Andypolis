@@ -19,7 +19,7 @@ void Dijkstra::caminoMinimo(int origen, int destino)
     int verticesRecorridos = 1;
     while (!destinoArribado)
     {
-        mostrarIteracion(verticesRecorridos - 1);
+        //mostrarIteracion(verticesRecorridos - 1);
         minimoVertice = verticeMinimaDistancia();
         destinoArribado = minimoVertice == destino;
 
@@ -93,17 +93,17 @@ void Dijkstra::mostrarRecorrido(int origen, int destino)
 {
     if (distancia[destino] == INFINITO)
     {
-        cout << "No hay un camino que conecte " << vertices->obtenerNombre(origen + 1) << " con " << vertices->obtenerNombre(destino + 1);
+        cout << "No hay un camino que conecte (" << vertices->obtenerNombre(origen + 1).coord_x << "," << vertices->obtenerNombre(origen + 1).coord_y << ") con (" << vertices->obtenerNombre(destino + 1).coord_x << "," <<  vertices->obtenerNombre(destino + 1).coord_y << ")";
     }
     else
     {
-        cout << "El camino minimo que une " << vertices->obtenerNombre(origen + 1) << " con " << vertices->obtenerNombre(destino + 1);
+        cout << "El camino minimo que une (" << vertices->obtenerNombre(origen + 1).coord_x << "," << vertices->obtenerNombre(origen + 1).coord_y << ") con (" << vertices->obtenerNombre(destino + 1).coord_x << "," <<  vertices->obtenerNombre(destino + 1).coord_y << ")";
         cout << " tiene un costo de: " << distancia[destino] << " y es el siguiente: ";
-        cout << vertices->obtenerNombre(destino + 1);
+        cout << "(" << vertices->obtenerNombre(destino + 1).coord_x << "," << vertices->obtenerNombre(destino + 1).coord_y << ")" ;
         do
         {
             destino = recorrido[destino];
-            cout << " <- " << vertices->obtenerNombre(destino + 1);
+            cout << " <- (" << vertices->obtenerNombre(destino + 1).coord_x << "," << vertices->obtenerNombre(destino + 1).coord_y << ")" ;
         } while (origen != destino);
     }
     cout << endl;
@@ -146,7 +146,7 @@ void Dijkstra::mostrarIteracion(int iteracion)
     cout << "Recorrido: [";
     for (int i = 0; i < cantidadVertices; i++)
     {
-        cout << vertices->obtenerNombre(recorrido[i] + 1);
+        cout << "(" << vertices->obtenerNombre(recorrido[i] + 1).coord_x << "," << vertices->obtenerNombre(recorrido[i] + 1).coord_y << ")";
         if (i + 1 != cantidadVertices)
         {
             cout << ", ";

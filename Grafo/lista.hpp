@@ -2,6 +2,8 @@
 #define GRAFOS_LISTA_H
 #include <string>
 #include "nodo.hpp"
+#include "coordenada.hpp"
+#include <iostream>
 
 using namespace std;
 
@@ -25,13 +27,13 @@ public:
     int obtenerCantidadDeElementos();
 
     // post: devuelve la posicion en la que se encuentra el nombre que recibe o -1 si no lo encuentra
-    int obtenerPosicion(string nombre);
+    int obtenerPosicion(coordenada nombre);
 
     // post: devuelve el  nombre que se encuentra en la posicion recibida o NOMBRE_NO_ENCONTRADO si no lo encuentra
-    string obtenerNombre(int posicion);
+    coordenada obtenerNombre(int posicion);
 
     // post: agrega un nuevo elemento a la lista
-    void agregar(string nuevoElemento);
+    void agregar(coordenada nuevoElemento);
 
     ~Lista();
 };
@@ -51,7 +53,7 @@ int Lista<Tipo>::obtenerCantidadDeElementos()
 }
 
 template <typename Tipo>
-int Lista<Tipo>::obtenerPosicion(string nombre)
+int Lista<Tipo>::obtenerPosicion(coordenada nombre)
 {
     bool elementoEncontrado = false;
     int i = 0;
@@ -59,12 +61,13 @@ int Lista<Tipo>::obtenerPosicion(string nombre)
 
     while (!elementoEncontrado && i < cantidadDeElementos)
     {
-        if (auxiliar->obtenerNombre() == nombre)
+        if ((auxiliar->obtenerNombre().coord_x == nombre.coord_x) && (auxiliar->obtenerNombre().coord_y == nombre.coord_y) )
         {
             elementoEncontrado = true;
         }
         i++;
         auxiliar = auxiliar->obtenerSiguiente();
+        
     }
 
     if (!elementoEncontrado)
@@ -75,7 +78,7 @@ int Lista<Tipo>::obtenerPosicion(string nombre)
 }
 
 template <typename Tipo>
-void Lista<Tipo>::agregar(string nuevoElemento)
+void Lista<Tipo>::agregar(coordenada nuevoElemento)
 {
     Nodo<Tipo> *nuevoNodo = new Nodo<Tipo>(nuevoElemento);
     if (primero == nullptr)
@@ -104,14 +107,14 @@ Lista<Tipo>::~Lista()
 }
 
 template <typename Tipo>
-string Lista<Tipo>::obtenerNombre(int posicion)
+coordenada Lista<Tipo>::obtenerNombre(int posicion)
 {
     int i = 0;
     Nodo<Tipo> *auxiliar = primero;
 
     if (posicion > cantidadDeElementos)
     {
-        return NOMBRE_NO_ENCONTRADO;
+        //return NOMBRE_NO_ENCONTRADO;
     }
 
     while (i != posicion - 1)

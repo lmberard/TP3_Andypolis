@@ -2,22 +2,26 @@
 #define GRAFOS_VERTICE_H
 
 #include <string>
+#include <iostream>
+#include "coordenada.hpp"
 
 using namespace std;
 
 class Vertice {
 /*ATRIBUTOS*/
 private:
-    string nombre;
+    coordenada nombre;
 
 /*MÉTODOS*/
 public:
-    Vertice(string nombre);
+    Vertice(coordenada nombre);
 
     //post: obtiene el nombre del vertice
-    string obtenerNombre();
+    void obtenerNombre();
 
     ~Vertice();
+
+    coordenada obtenerCoordenada();
 };
 
 
