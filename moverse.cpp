@@ -11,9 +11,8 @@ void Moverse::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
 
     coordenadas = pedir_coordenadas_destino();
     if(mapa.coordenadas_validas(coordenadas) == true){
-        cout << "antes de camino minimo" << endl;
+        grafo.usarDijkstra();
         grafo.caminoMinimo(mapa.obtener_posicion_jugador(id_jugador_actual), coordenadas, costo, camino_recorrido);
-        cout << "despues de camino minimo" << endl;
         //recolectar_materiales_del_camino(mapa, camino_recorrido);
     }
 
