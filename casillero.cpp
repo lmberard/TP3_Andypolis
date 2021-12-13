@@ -29,3 +29,7 @@ bool Casillero::estransitable()
 {
     return false;
 }
+
+void Casillero::borrar_jugador(){
+    jugador = NULL;
+}

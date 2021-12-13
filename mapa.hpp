@@ -49,6 +49,8 @@ public:
     void agregar_edificio(Coordenada coord, Edificio* edificio);
     void agregar_casillero(Coordenada coord, Casillero* casillero);
     void agregar_jugador(Coordenada coord, Jugador *jugador, int i);
+    bool mover_jugador(Coordenada coord, Jugador* jugador, int i);
+    void borrar_jugador_de_coordenada(Coordenada coord);
     //TODO: Revisar nombre y metodo
     void agregar_ubicacion_material_lista(string nombre, Coordenada coord); //YO
     bool agregar_contenido(Coordenada coord, Edificio *edificio);

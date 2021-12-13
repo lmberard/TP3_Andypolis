@@ -35,6 +35,7 @@ public:
     virtual void quitar_elemento();
 
     virtual int obtener_peso(int jugador_id) = 0;
+    void borrar_jugador();
 
     //DUDA CON ESTO :/ 
     virtual bool estransitable();

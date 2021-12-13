@@ -103,6 +103,26 @@ void Mapa::agregar_jugador(Coordenada coord, Jugador* jugador, int i)
     quitar_coord_transitable(coord);
 }
 
+bool Mapa::mover_jugador(Coordenada coord, Jugador* jugador, int i)
+{
+    bool flag;
+
+    flag = (mapa[coord.coord_x][coord.coord_y]->agregar(jugador));
+    if(flag){
+        if(i == 1)
+            jugador1 = coord;
+        if(i == 2)
+            jugador2 = coord;
+        quitar_coord_transitable(coord);
+    }
+    return flag;
+}
+
+void Mapa::borrar_jugador_de_coordenada(Coordenada coord){
+    mapa[coord.coord_x][coord.coord_y]->borrar_jugador();
+    agregar_coordenada_transitable(coord);
+}
+
 void Mapa::actualizar_tam_mapa(int _filas, int _columnas)
 {
     filas = _filas;

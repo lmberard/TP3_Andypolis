@@ -13,7 +13,16 @@ void Moverse::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
     if(mapa.coordenadas_validas(coordenadas) == true){
         grafo.usarDijkstra();
         grafo.caminoMinimo(mapa.obtener_posicion_jugador(id_jugador_actual), coordenadas, costo, camino_recorrido);
-        //recolectar_materiales_del_camino(mapa, camino_recorrido);
+        if(costo < jugador[id_jugador_actual - 1].obtener_energia()){
+            if(mapa.mover_jugador(coordenadas, &jugador[id_jugador_actual - 1], id_jugador_actual)){
+                mapa.borrar_jugador_de_coordenada(mapa.obtener_posicion_jugador(id_jugador_actual));
+                jugador[id_jugador_actual - 1].decrementar_puntos_energia(costo);
+                //recolectar_materiales_del_camino(mapa, camino_recorrido);
+            }
+        } else{
+            msjeError("No cuenta con energia suficiente para trasladarse a esa coordenada.");
+        }
+        
     }
 
     bool fin_turno = false;
@@ -35,7 +44,7 @@ void Moverse::agregar_vertices(Grafo & grafo, Mapa & mapa){
 
 void Moverse::agregar_caminos(Grafo & grafo, Mapa & mapa, int id_jugador_actual){
     Coordenada coordenadas, coord_aux;
-    int aux;
+    int aux = 0;
 
     for(int i = 0; i < mapa.obtener_filas(); i++){
         for (int j = 0; j < mapa.obtener_columnas(); j++){
