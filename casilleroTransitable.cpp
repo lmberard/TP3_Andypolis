@@ -50,6 +50,10 @@ bool CasilleroTransitable::agregar(Jugador *jugador)
     if (material)
     {
         jugador->inv().aniadir_cant_material(material->obtener_nombre(), material->obtener_cantidad());
+        if (material->obtener_cantidad() == 1)
+            msjeOK(to_string(material->obtener_cantidad()) + " unidad de '" + material->obtener_nombre() + "' estaba en el camino. Se agrego al inventario :)");
+        else
+            msjeOK(to_string(material->obtener_cantidad()) + " unidades de '" + material->obtener_nombre() + "' estaban en el camino. Se agregaron al inventario :)");
         delete material;
         material = NULL;
     }

@@ -1,5 +1,6 @@
 #ifndef JUEGO_HPP
 #define JUEGO_HPP
+#include <cstdlib>
 
 #include "lista.hpp"
 #include "ubicaciones.hpp"

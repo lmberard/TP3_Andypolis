@@ -188,7 +188,6 @@ void Mapa::crear_memoria_columna_mapa(int posicion_fila, int _columnas)
 //----------------------PARA EL JUEGO-----------------------------
 void Mapa::mostrar()
 {
-    msjeInstruccion("MAPA DE ANDYPOLIS:");
     for (int i = 0; i < filas; i++)
     {
         for (int j = 0; j < columnas; j++)

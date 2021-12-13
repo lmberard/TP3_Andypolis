@@ -25,6 +25,7 @@ void Demoler::jugar(Constructor &bob, Mapa &mapa, int &turno, Jugador *jugador, 
                     jugador[id_jugador_actual - 1].inv().llenar_stock(ptredificio);
                     mapa.demoler_contenido(coordenadas);
                     jugador[id_jugador_actual - 1].decrementar_puntos_energia(ENERGIA_NECESARIA_PARA_DEMOLER);
+                    msjeOK("Se demolio el edificio del tipo '" + ptredificio->obtener_nombre() + "'");
                 }
                 else
                 {

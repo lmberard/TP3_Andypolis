@@ -14,4 +14,3 @@ Yacimiento::Yacimiento(int s, int w, int m, int p) : Edificio(s, w, m, p)
 }
 
 Yacimiento::Yacimiento(Edificio *edificio) : Edificio(edificio) {}
-

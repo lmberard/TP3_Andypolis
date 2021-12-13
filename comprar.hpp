@@ -3,6 +3,8 @@
 
 #include "jugada.hpp"
 
+const int PRECIO_BOMBA = 100;
+
 class Comprar : public Jugada
 {
 public:

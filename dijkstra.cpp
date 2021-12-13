@@ -1,6 +1,6 @@
 #include "dijkstra.hpp"
 
-void Dijkstra::construir(Lista<Coordenada> & vertices, int **matrizAdyacencia)
+void Dijkstra::construir(Lista<Coordenada> &vertices, int **matrizAdyacencia)
 {
     this->vertices = vertices;
     this->matrizAdyacencia = matrizAdyacencia;
@@ -11,7 +11,7 @@ void Dijkstra::construir(Lista<Coordenada> & vertices, int **matrizAdyacencia)
     recorrido = new int[cantidadVertices];
 }
 
-void Dijkstra::caminoMinimo(int origen, int destino, int & energia, Lista<Coordenada> & lista)
+void Dijkstra::caminoMinimo(int origen, int destino, int &energia, Lista<Coordenada> &lista)
 {
     inicializarVisitados(origen);
     inicializarDistancia(matrizAdyacencia[origen]);
@@ -92,26 +92,28 @@ void Dijkstra::actualizarDistancia(int vertice)
     }
 }
 
-//DEBERIA ESTAR ARAFUE PERO BUEN
-void Dijkstra::mostrarRecorrido(int origen, int destino, int & energia, Lista<Coordenada> & lista)
+// DEBERIA ESTAR ARAFUE PERO BUEN
+void Dijkstra::mostrarRecorrido(int origen, int destino, int &energia, Lista<Coordenada> &lista)
 {
     if (distancia[destino] == INFINITO)
     {
-        cout << "No hay un camino que conecte (" << vertices[origen + 1].coord_x << "," << vertices[origen + 1].coord_y << ") con (" << vertices[destino + 1].coord_x << "," <<  vertices[destino + 1].coord_y << ")";
+        cout << "\nNo hay un camino que conecte (" << vertices[origen + 1].coord_x << "," << vertices[origen + 1].coord_y << ") con (" << vertices[destino + 1].coord_x << "," << vertices[destino + 1].coord_y << ")";
     }
     else
     {
-        cout << "El camino minimo que une (" << vertices[origen + 1].coord_x << "," << vertices[origen + 1].coord_y << ") con (" << vertices[destino + 1].coord_x << "," <<  vertices[destino + 1].coord_y << ")";
-        cout << " tiene un costo de: " << distancia[destino] << " y es el siguiente: ";
+        cout << "\nEl camino minimo que une (" << vertices[origen + 1].coord_x << "," << vertices[origen + 1].coord_y << ") con (" << vertices[destino + 1].coord_x << "," << vertices[destino + 1].coord_y << ")";
+        cout << " tiene un costo de: " << distancia[destino] << endl;
+        cout << "Es el siguiente: " << endl;
         energia = distancia[destino];
-        cout << "(" << vertices[destino + 1].coord_x << "," << vertices[destino + 1].coord_y << ")" ;
+        cout << "(" << vertices[destino + 1].coord_x << "," << vertices[destino + 1].coord_y << ")";
         lista.alta(vertices[destino + 1]);
         do
         {
             destino = recorrido[destino];
-            cout << " <- (" << vertices[destino + 1].coord_x << "," << vertices[destino + 1].coord_y << ")" ;
+            cout << " <- (" << vertices[destino + 1].coord_x << "," << vertices[destino + 1].coord_y << ")";
             lista.alta(vertices[destino + 1]);
         } while (origen != destino);
     }
+    cout << endl;
     cout << endl;
 }

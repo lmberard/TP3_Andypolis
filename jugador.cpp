@@ -187,7 +187,10 @@ void Jugador::moverse_a_coordenada(int x, int y)
 /*-------------------------------------------------------------------------*/
 void Jugador::mostrar_objetivos_y_progreso()
 {
-    for (int i = 1; i < objetivos.mostrar_cantidad() + 1; i++)
+    msjeH1("OBJETIVO PRINCIPAL");
+    objetivos[objetivos.mostrar_cantidad()]->mostrar_objetivo();
+    msjeH1("OBJETIVOS SECUNDARIOS");
+    for (int i = 1; i < objetivos.mostrar_cantidad(); i++)
     {
         objetivos[i]->mostrar_objetivo();
     }
@@ -205,6 +208,7 @@ void Jugador::mostrar_edificios_construidos()
 
 void Jugador::mostrar_inventario()
 {
+    cout << endl;
     inventario.mostrar_inventario();
 }
 
@@ -242,11 +246,11 @@ void Jugador::setear_jugador(int id)
     if (id == 1)
     {
         odio_al_muelle = true;
-        codigo = "J";
+        codigo = "1";
     }
     if (id == 2)
     {
         fobia_al_agua = true;
-        codigo = "U";
+        codigo = "2";
     }
 }
