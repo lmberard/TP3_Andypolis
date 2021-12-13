@@ -13,6 +13,11 @@ bool Casillero::agregar(Edificio * edif_ptr)
     return false;
 }
 
+bool Casillero::mover_jugador(Jugador * jugador){
+    return false;
+}
+
+
 bool Casillero::agregar(Material *)
 {
     return false;
@@ -33,3 +38,8 @@ bool Casillero::estransitable()
 void Casillero::borrar_jugador(){
     jugador = NULL;
 }
+
+Material * Casillero::recolectar_material(){
+    return NULL;
+}
+

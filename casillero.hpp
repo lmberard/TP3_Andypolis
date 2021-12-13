@@ -39,6 +39,8 @@ public:
 
     //DUDA CON ESTO :/ 
     virtual bool estransitable();
+    virtual Material * recolectar_material();
+    virtual bool mover_jugador(Jugador * jugador);
 };
 
 #endif // CASILLERO_HPP

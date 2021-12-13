@@ -71,7 +71,7 @@ int CasilleroConstruible::obtener_peso(int jugador_id){
     int peso;
 
     if(edificio)
-        peso = 100; //peso máximo (equivalente a peso infinito, o sea, no puedo pasar si un hay edificio construido)
+        peso = 101; //peso máximo (equivalente a peso infinito, o sea, no puedo pasar si un hay edificio construido)
     else if(jugador_id == 1 || jugador_id == 2) //para ambos jugadores el peso de un casillero construible es el mismo
         peso = 25;
 

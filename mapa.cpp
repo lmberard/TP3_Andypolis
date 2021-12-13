@@ -20,6 +20,7 @@ Mapa::~Mapa()
 }
 
 //------------------------GETTERS---------------------------------
+
 int Mapa::obtener_filas()
 {
     return filas;
@@ -107,7 +108,7 @@ bool Mapa::mover_jugador(Coordenada coord, Jugador* jugador, int i)
 {
     bool flag;
 
-    flag = (mapa[coord.coord_x][coord.coord_y]->agregar(jugador));
+    flag = (mapa[coord.coord_x][coord.coord_y]->mover_jugador(jugador));
     if(flag){
         if(i == 1)
             jugador1 = coord;
@@ -201,11 +202,13 @@ void Mapa::demoler_contenido(Coordenada coord)
     mapa[coord.coord_x][coord.coord_y]->quitar_elemento();
 }
 
-void Mapa::recolectar_materiales_del_mapa(Coordenada & coordenadas){
-    //mapa[coordenadas.coord_x][coordenadas.coord_y]->recolectar_material()
+Material * Mapa::recolectar_material(Coordenada & coordenadas){
+    return mapa[coordenadas.coord_x][coordenadas.coord_y]->recolectar_material(); 
 }
 
-
+void Mapa::quitar_material(Coordenada coord){
+    mapa[coord.coord_x][coord.coord_y]->quitar_elemento();
+}
 
 //--------------------FUNCIONES UTILES-----------------------------
 bool Mapa::coordenadas_validas(Coordenada coord)

@@ -1,7 +1,7 @@
 #include "moverse.hpp"
 
 void Moverse::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual){
-    Coordenada coordenadas;
+    Coordenada coordenadas, coord_antes_de_moverse;
     Lista<Coordenada> camino_recorrido;
     int costo;
     Grafo grafo;
@@ -14,15 +14,14 @@ void Moverse::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugad
         grafo.usarDijkstra();
         grafo.caminoMinimo(mapa.obtener_posicion_jugador(id_jugador_actual), coordenadas, costo, camino_recorrido);
         if(costo < jugador[id_jugador_actual - 1].obtener_energia()){
+            coord_antes_de_moverse = mapa.obtener_posicion_jugador(id_jugador_actual);
             if(mapa.mover_jugador(coordenadas, &jugador[id_jugador_actual - 1], id_jugador_actual)){
-                mapa.borrar_jugador_de_coordenada(mapa.obtener_posicion_jugador(id_jugador_actual));
+                mapa.borrar_jugador_de_coordenada(coord_antes_de_moverse);
                 jugador[id_jugador_actual - 1].decrementar_puntos_energia(costo);
-                //recolectar_materiales_del_camino(mapa, camino_recorrido);
+                recolectar_materiales_del_camino(mapa, camino_recorrido, jugador[id_jugador_actual - 1]);
             }
-        } else{
+        } else
             msjeError("No cuenta con energia suficiente para trasladarse a esa coordenada.");
-        }
-        
     }
 
     bool fin_turno = false;
@@ -84,10 +83,16 @@ Coordenada Moverse::pedir_coordenadas_destino(){
     return pedir_coordenadas();
 }
 
-void Moverse::recolectar_materiales_del_camino(Mapa & mapa, Lista<Coordenada> & camino_recorrido){
+void Moverse::recolectar_materiales_del_camino(Mapa & mapa, Lista<Coordenada> & camino_recorrido, Jugador & jugador){
+    Material * material;
 
-    for(int i = 1; i < camino_recorrido.mostrar_cantidad() - 1; i++){
-        mapa.recolectar_materiales_del_mapa(camino_recorrido[i]);
+    for(int i = 1; i < camino_recorrido.mostrar_cantidad() + 1; i++){
+        material = mapa.recolectar_material(camino_recorrido[i]);
+        if(material){
+            jugador.inv().aniadir_cant_material(material->obtener_nombre(), material->obtener_cantidad());
+            mapa.agregar_coordenada_transitable(camino_recorrido[i]);
+            mapa.quitar_material(camino_recorrido[i]);
+        }
     }
 
 }

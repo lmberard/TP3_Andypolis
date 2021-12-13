@@ -6,12 +6,12 @@ using namespace std;
 Metal::Metal() : Material()
 {
     nombre = "metal";
-    codigo = "M";
+    codigo = "I";
 }
 
 Metal::Metal(int cantidad) : Material(cantidad){
     nombre = "metal";
-    codigo = "M";
+    codigo = "I";
 }
 
 Metal::~Metal()

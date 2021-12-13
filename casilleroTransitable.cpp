@@ -11,7 +11,8 @@ void CasilleroTransitable::info()
 {
     cout << TXT_LIGHT_BLUE_6 << "Es un " << casillero_nombre << ", es un casillero transitable" << END_COLOR << endl;
     if (material)
-        cout << TXT_LIGHT_BLUE_6 << "Hay un material del tipo '" << material->obtener_nombre() << "'. No se olvide de recolectarlo!" << END_COLOR << endl;
+        cout << TXT_LIGHT_BLUE_6 << "Hay un material del tipo '" << material->obtener_nombre() << "'. La cantidad es: " <<
+        material->obtener_cantidad() << ". No se olvide de recolectarlo!" << END_COLOR << endl;
     if (jugador)
         cout << TXT_LIGHT_BLUE_6 << "En este casillero se encuentra el jugador " << jugador->obtener_codigo() << END_COLOR << endl;
     if(!material && !jugador)
@@ -51,6 +52,19 @@ bool CasilleroTransitable::agregar(Jugador *jugador)
     return true;
 }
 
+bool CasilleroTransitable::mover_jugador(Jugador *jugador)
+{
+    if (this->jugador)
+    {
+        msjeError("Este casillero ya esta ocupado");
+        return false;
+    }
+
+    this->jugador = jugador;
+    return true;
+}
+
+
 void CasilleroTransitable::quitar_elemento()
 {
     delete material;
@@ -81,4 +95,8 @@ int CasilleroTransitable::obtener_peso(int jugador_id){
     }
 
     return peso;
+}
+
+Material * CasilleroTransitable::recolectar_material(){
+    return material;
 }
