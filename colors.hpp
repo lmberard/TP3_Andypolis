@@ -18,9 +18,23 @@ void msjeOK(string msje);
 // post: Se imprime un mensaje de instruccion con un color determinado
 void msjeInstruccion(string msje);
 
+void msjeInfo(string msje);
+
 // pre: "color" esta definido en colors.h
 // post: Se imprime un mensaje con un color a eleccion
 void msjeColor(string msje, string color);
+
+// pre:
+// post: Se imprime un mensaje como un titulo con un color determinado
+void msjeTitulo(string msje);
+
+// pre:
+// post: Se imprime un mensaje de confirmacion con un color determinado
+void msjeConfirmacion(string msje);
+
+// pre:
+// post: Se imprime un mensaje como un titulo con un color determinado
+void msjeH1(string msje);
 
 /* ╔═════════════════════════════════════════════════════════════════════════════════╗
    ║                                      USAGE                                      ║
