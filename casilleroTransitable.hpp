@@ -1,7 +1,7 @@
 #ifndef CASILLEROTRANSITABLE_HPP
 #define CASILLEROTRANSITABLE_HPP
 #include "casillero.hpp"
-
+#include <unistd.h>
 class CasilleroTransitable : public Casillero
 {
     Material *material;

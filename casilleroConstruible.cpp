@@ -46,9 +46,9 @@ void CasilleroConstruible ::info()
 void CasilleroConstruible ::mostrar_por_pantalla()
 {
     if (!edificio && !jugador)
-        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "   " << END_COLOR << " ";
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "    " << END_COLOR << " ";
     if (edificio)
-        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << edificio->obtener_codigo() << " " << END_COLOR << " ";
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "  " << edificio->obtener_codigo() << " " << END_COLOR << " ";
     if (jugador)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << jugador->obtener_codigo() << " " << END_COLOR << " ";
 }

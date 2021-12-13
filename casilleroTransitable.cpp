@@ -21,9 +21,9 @@ void CasilleroTransitable::info()
 void CasilleroTransitable::mostrar_por_pantalla()
 {
     if (!material && !jugador)
-        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "   " << END_COLOR << " ";
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "    " << END_COLOR << " ";
     if (material)
-        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << material->obtener_codigo() << " " << END_COLOR << " ";
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "  " << material->obtener_codigo() << " " << END_COLOR << " ";
     if (jugador)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << jugador->obtener_codigo() << " " << END_COLOR << " ";
 }
@@ -54,6 +54,7 @@ bool CasilleroTransitable::agregar(Jugador *jugador)
             msjeOK(to_string(material->obtener_cantidad()) + " unidad de '" + material->obtener_nombre() + "' estaba en el camino. Se agrego al inventario :)");
         else
             msjeOK(to_string(material->obtener_cantidad()) + " unidades de '" + material->obtener_nombre() + "' estaban en el camino. Se agregaron al inventario :)");
+        usleep(5000000);
         delete material;
         material = NULL;
     }
