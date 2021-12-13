@@ -21,11 +21,13 @@ void Construir::jugar(Constructor &bob, Mapa &mapa, int &turno, Jugador *jugador
                     {
                         if (pedir_confirmacion() == OPCION_DE_CONFIRMACION)
                         {
-                            mapa.agregar_contenido(coordenadas, bob.construye(edif_ptr->obtener_nombre()));
-                            imprimir_edificio_construido(edif_ptr);
-                            descontar_materiales(edif_ptr, jugadores[id_jugador_actual - 1]);
-                            jugadores[id_jugador_actual - 1].agregar_ubicacion_lista_edificios(edif_ptr->obtener_nombre(), coordenadas);
-                            jugadores[id_jugador_actual - 1].decrementar_puntos_energia(ENERGIA_NECESARIA_PARA_CONSTRUIR);
+                            if (mapa.agregar_contenido(coordenadas, bob.construye(edif_ptr->obtener_nombre())))
+                            {
+                                imprimir_edificio_construido(edif_ptr);
+                                descontar_materiales(edif_ptr, jugadores[id_jugador_actual - 1]);
+                                jugadores[id_jugador_actual - 1].agregar_ubicacion_lista_edificios(edif_ptr->obtener_nombre(), coordenadas);
+                                jugadores[id_jugador_actual - 1].decrementar_puntos_energia(ENERGIA_NECESARIA_PARA_CONSTRUIR);
+                            }
                         }
                     }
                 }
