@@ -26,8 +26,8 @@ void Moverse::jugar(Constructor &bob, Mapa &mapa, int &turno, Jugador *jugador, 
         if (costo < jugador[id_jugador_actual - 1].obtener_energia())
         {
             jugador[id_jugador_actual - 1].decrementar_puntos_energia(costo);
-            // moverse_en_vivo(mapa, camino_recorrido, jugador[id_jugador_actual - 1], id_jugador_actual);
-            recolectar_materiales_del_camino(mapa, camino_recorrido, jugador[id_jugador_actual - 1], id_jugador_actual);
+            moverse_en_vivo(mapa, camino_recorrido, jugador[id_jugador_actual - 1], id_jugador_actual);
+            // recolectar_materiales_del_camino(mapa, camino_recorrido, jugador[id_jugador_actual - 1], id_jugador_actual);
             msjeOK("Se descontaron " + to_string(costo) + " puntos de energia.");
             msjeInfo("Actualmente tiene " + to_string(jugador[id_jugador_actual - 1].obtener_energia()) + " puntos de energia disponibles.");
         }
@@ -140,14 +140,29 @@ void Moverse::moverse_en_vivo(Mapa &mapa, Lista<Coordenada> &camino_recorrido, J
     for (int i = 2; i < camino_recorrido.mostrar_cantidad() + 1; i++)
     {
         if (mapa.agregar_jugador(camino_recorrido[i], &jugador, id_jugador_actual))
+        {
+            mapa.recorrer(camino_recorrido[i]);
+            system("clear");
+            mapa.mostrar();
+            usleep(500000);
             mapa.borrar_jugador_de_coordenada(camino_recorrido[i]);
-        mapa.recorrer(camino_recorrido[i]);
+        }
+        else
+        {
+            mapa.recorrer(camino_recorrido[i]);
+            system("clear");
+            mapa.mostrar();
+            usleep(500000);
+        }
         if (i == camino_recorrido.mostrar_cantidad())
         {
             if (mapa.agregar_jugador(camino_recorrido[i], &jugador, id_jugador_actual))
                 mapa.recorrer(camino_recorrido[i]);
         }
     }
+    system("clear");
+    mapa.mostrar();
+    usleep(500000);
 
     for (int i = 1; i < camino_recorrido.mostrar_cantidad() + 1; i++)
     {

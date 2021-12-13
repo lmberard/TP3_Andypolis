@@ -18,8 +18,11 @@ class ModificarEdificio : public Jugada
 {
 public:
     void jugar(Constructor &bob, Mapa &mapa, int &turno, Jugador *jugador, int &id_jugador_actual);
+
     bool modificar_madera(int &numero_madera, bool &confirmacion);
+
     bool modificar_piedra(int &numero_piedra, bool &confirmacion);
+
     bool modificar_metal(int &numero_metal, bool &confirmacion);
 };
 

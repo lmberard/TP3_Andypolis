@@ -188,6 +188,8 @@ void Mapa::crear_memoria_columna_mapa(int posicion_fila, int _columnas)
 //----------------------PARA EL JUEGO-----------------------------
 void Mapa::mostrar()
 {
+
+    msjeInfo("\nMapa de Andypolis:");
     for (int i = 0; i < filas; i++)
     {
         for (int j = 0; j < columnas; j++)
@@ -196,6 +198,22 @@ void Mapa::mostrar()
         }
         cout << endl;
     }
+}
+
+void Mapa::mostrar_info()
+{
+    msjeInfo("Referencias del mapa:");
+    cout << TXT_BLACK_16 << BGND_GREEN_2
+         << "Terreno : Casillero construible  " << END_COLOR << endl;
+    cout << TXT_BLACK_16 << BGND_DARK_GRAY_59
+         << "Betun   : Casillero transitable  " << END_COLOR << endl;
+    cout << TXT_BLACK_16 << BGND_BROWN_94
+         << "Muelle  : Casillero transitable  " << END_COLOR << endl;
+    cout << TXT_BLACK_16 << BGND_LIGHT_GRAY_247
+         << "Camino  : Casillero transitable  " << END_COLOR << endl;
+    cout << TXT_BLACK_16 << BGND_BLUE_25
+         << "Lago    : Casillero innacessible " << END_COLOR << endl
+         << endl;
 }
 
 void Mapa::consultar_coordenada(Coordenada coord)

@@ -5,9 +5,6 @@ void ModificarEdificio::jugar(Constructor &bob, Mapa &mapa, int &turno, Jugador 
     string nombre_edificio;
     int numero_madera, numero_piedra, numero_metal;
     bool madera_ok, metal_ok, piedra_ok;
-    // bool entrada;
-
-    // TODO: FALTA PREGUNTAR SI ALGUN PARAMETRO DESEA NO MODIFICARLO Y TAMBIÉN QUE SEA ENTRE 0 Y 50000
 
     msjeInstruccion(INGRESE_EDIFICIO_A_MODIFICAR);
     getline(cin, nombre_edificio);
@@ -45,7 +42,10 @@ bool ModificarEdificio::modificar_madera(int &numero_madera, bool &confirmacion)
     bool entrada_correcta = true;
 
     msjeInstruccion(DESEA_CAMBIAR_MADERA);
-    if (pedir_confirmacion() == OPCION_DE_CONFIRMACION)
+
+    int pedir_conf = pedir_confirmacion();
+
+    if (pedir_conf == OPCION_DE_CONFIRMACION)
     {
         confirmacion = true;
         msjeInstruccion(INGRESE_VALOR_MADERA);
@@ -59,6 +59,10 @@ bool ModificarEdificio::modificar_madera(int &numero_madera, bool &confirmacion)
             entrada_correcta = false;
             msjeError(ERR_NUMERO_INVALIDO);
         }
+    }
+    else if (pedir_conf == -1)
+    {
+        entrada_correcta = false;
     }
     else
     {
@@ -74,7 +78,9 @@ bool ModificarEdificio::modificar_piedra(int &numero_piedra, bool &confirmacion)
     bool entrada_correcta = true;
 
     msjeInstruccion(DESEA_CAMBIAR_PIEDRA);
-    if (pedir_confirmacion() == OPCION_DE_CONFIRMACION)
+    int pedir_conf = pedir_confirmacion();
+
+    if (pedir_conf == OPCION_DE_CONFIRMACION)
     {
         confirmacion = true;
         msjeInstruccion(INGRESE_VALOR_PIEDRA);
@@ -88,6 +94,10 @@ bool ModificarEdificio::modificar_piedra(int &numero_piedra, bool &confirmacion)
             entrada_correcta = false;
             msjeError(ERR_NUMERO_INVALIDO);
         }
+    }
+    else if (pedir_conf == -1)
+    {
+        entrada_correcta = false;
     }
     else
     {
@@ -103,7 +113,8 @@ bool ModificarEdificio::modificar_metal(int &numero_metal, bool &confirmacion)
     bool entrada_correcta = true;
 
     msjeInstruccion(DESEA_CAMBIAR_METAL);
-    if (pedir_confirmacion() == OPCION_DE_CONFIRMACION)
+    int pedir_conf = pedir_confirmacion();
+    if (pedir_conf == OPCION_DE_CONFIRMACION)
     {
         confirmacion = true;
         msjeInstruccion(INGRESE_VALOR_METAL);
@@ -117,6 +128,10 @@ bool ModificarEdificio::modificar_metal(int &numero_metal, bool &confirmacion)
             entrada_correcta = false;
             msjeError(ERR_NUMERO_INVALIDO);
         }
+    }
+    else if (pedir_conf == -1)
+    {
+        entrada_correcta = false;
     }
     else
     {

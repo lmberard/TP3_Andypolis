@@ -14,23 +14,24 @@ EdadDePiedra::~EdadDePiedra()
 {
 }
 
-void EdadDePiedra::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+void EdadDePiedra::chequear_estado(Inventario &inventario, int puntos_energia, Lista<Ubicaciones> &edificios, Constructor &bob, bool fin_turno)
 {
     progreso = inventario.obtener_material("piedra")->obtener_cantidad();
-    if(progreso >= CANTIDAD_PIEDRA_OBJETIVO)
+    if (progreso >= CANTIDAD_PIEDRA_OBJETIVO)
         objetivo_cumplido = true;
 }
 
-void EdadDePiedra::mostrar_objetivo(){
-    msjeInstruccion("Edad de Piedra: tener en el inventario 50000 piedras");
-    cout << TXT_LIGHT_BLUE_6 << "Posee " << progreso << " piedras en el inventario" << END_COLOR << endl;
-    if(objetivo_cumplido)
-        msjeInstruccion("El objetivo esta cumplido");
+void EdadDePiedra::mostrar_objetivo()
+{
+    msjeTitulo("* Edad de Piedra: tener en el inventario 50000 piedras");
+    cout << TXT_LIGHT_BLUE_6 << "\tPosee " << progreso << " piedras en el inventario" << END_COLOR << endl;
+    if (objetivo_cumplido)
+        msjeOK("\tEl objetivo esta cumplido\n");
     else
-        msjeInstruccion("El objetivo no esta cumplido");
+        msjeError("\tEl objetivo no esta cumplido\n");
 }
 
-bool EdadDePiedra::es_principal(){
+bool EdadDePiedra::es_principal()
+{
     return false;
 }
-

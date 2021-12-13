@@ -9,7 +9,7 @@ int Menu::obtener_opcion_usuario()
     int opcion_elegida = -1;
     string aux;
     getline(cin, aux);
-    if(es_numero_y_positivo(aux))
+    if (es_numero_y_positivo(aux))
         opcion_elegida = stoi(aux);
     return opcion_elegida;
 }
@@ -18,7 +18,7 @@ int Menu::obtener_opcion_usuario()
 
 void Menu::mostrar_menu_juego(int id_jugador)
 {
-    cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis, Jugador " << id_jugador << "!! ¿Que desea hacer?" << END_COLOR << " " << endl;
+    cout << "\n " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis, Jugador " << id_jugador << "!! ¿Que desea hacer?" << END_COLOR << " " << endl;
     cout << endl;
     cout << "     " << TXT_LIGHT_PURPLE_141 << "╔══════════════════════════════════════════════╗" << END_COLOR << " " << endl;
     cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 1. Construir edificios por nombre.           ║" << END_COLOR << " " << endl;
@@ -42,7 +42,7 @@ void Menu::mostrar_menu_juego(int id_jugador)
 
 void Menu::partida_nueva_mostrar()
 {
-    cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis!! ¿Que desea hacer?" << END_COLOR << " " << endl;
+    cout << "\n " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis!! ¿Que desea hacer?" << END_COLOR << " " << endl;
     cout << endl;
     cout << "\t" << TXT_LIGHT_PURPLE_141 << "╔══════════════════════════════════════════════╗" << END_COLOR << " " << endl;
     cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 1.  Modificar edificio por nombre.           ║" << END_COLOR << " " << endl;
@@ -56,7 +56,7 @@ void Menu::partida_nueva_mostrar()
     msjeInstruccion("Ingrese la opcion con un NUMERO del 1 al 5: ");
 }
 
-Jugada* Menu::menu_juego(int id_jugador_actual)
+Jugada *Menu::menu_juego(int id_jugador_actual)
 {
     int opcion_elegida = obtener_opcion_usuario();
     limpiar_pantalla();
@@ -64,7 +64,7 @@ Jugada* Menu::menu_juego(int id_jugador_actual)
     return procesar_opcion_juego(opcion_elegida);
 }
 
-Jugada * Menu::inicial()
+Jugada *Menu::inicial()
 {
     int opcion_elegida = obtener_opcion_usuario();
     limpiar_pantalla();
@@ -73,7 +73,7 @@ Jugada * Menu::inicial()
 }
 
 ////////////////////////////////////////////////////////////////
-void Menu::validar_opcion_juego(int & opcion_elegida, int id_jugador_actual)
+void Menu::validar_opcion_juego(int &opcion_elegida, int id_jugador_actual)
 {
     while (!es_opcion_valida(opcion_elegida, OPCION_MINIMA, OPCION_MAXIMA_JUEGO))
     {
@@ -83,7 +83,7 @@ void Menu::validar_opcion_juego(int & opcion_elegida, int id_jugador_actual)
     }
 }
 
-void Menu::validar_opcion_partida_nueva(int & opcion_elegida)
+void Menu::validar_opcion_partida_nueva(int &opcion_elegida)
 {
     while (!es_opcion_valida(opcion_elegida, OPCION_MINIMA, OPCION_MAXIMA_NUEVA_PARTIDA))
     {
@@ -104,7 +104,7 @@ void Menu::volver()
     msjeInstruccion("\nPresione ENTER para volver al menu.");
     cin.get();
 
-    //cin.get();
+    // cin.get();
     system(CLR_SCREEN);
 }
 
@@ -118,9 +118,9 @@ void Menu::despedir()
     msjeInstruccion("Hasta luego! :)");
 }
 ////////////////////////////////////////////////////////////////
-Jugada * Menu::procesar_opcion_partida_nueva(int opcion_elegida)
+Jugada *Menu::procesar_opcion_partida_nueva(int opcion_elegida)
 {
-    Jugada * jugada = NULL;
+    Jugada *jugada = NULL;
     switch (opcion_elegida)
     {
     case MODIFICAR_EDIFICIO_POR_NOMBRE:
@@ -144,9 +144,9 @@ Jugada * Menu::procesar_opcion_partida_nueva(int opcion_elegida)
     return jugada;
 }
 
-Jugada* Menu::procesar_opcion_juego(int opcion_elegida)
-{   
-    Jugada * jugada = NULL;
+Jugada *Menu::procesar_opcion_juego(int opcion_elegida)
+{
+    Jugada *jugada = NULL;
     switch (opcion_elegida)
     {
     case CONSTRUIR_EDIFICIO:

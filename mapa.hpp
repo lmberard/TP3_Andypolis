@@ -64,6 +64,7 @@ public:
 
     //----------------------PARA EL JUEGO-----------------------------
     void mostrar();
+    void mostrar_info();
     void consultar_coordenada(Coordenada coord);
     void demoler_contenido(Coordenada coord);
     void recolectar_materiales_del_mapa(Coordenada &coordenadas);

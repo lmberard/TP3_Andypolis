@@ -137,6 +137,7 @@ void Juego::comenzar_partida()
     do
     {
         mapa.mostrar();
+        // mapa.mostrar_info();
         menu.mostrar_menu_juego(id_jugador_actual);
         jugada = menu.menu_juego(id_jugador_actual);
         if (jugada)

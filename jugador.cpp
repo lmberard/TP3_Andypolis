@@ -246,11 +246,11 @@ void Jugador::setear_jugador(int id)
     if (id == 1)
     {
         odio_al_muelle = true;
-        codigo = "1";
+        codigo = "🐢";
     }
     if (id == 2)
     {
         fobia_al_agua = true;
-        codigo = "2";
+        codigo = "🐌";
     }
 }
