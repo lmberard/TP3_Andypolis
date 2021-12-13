@@ -53,7 +53,7 @@ public:
 
     // pre: el peso es un valor positivo
     // post: Ajusta la matriz de adyacencia con el peso ingresado
-    void agregarCamino(Coordenada origen, Coordenada destino, int peso);
+    void agregarCamino(Coordenada origen, Coordenada destino, int & peso);
 
     // post: imprime por pantalla el grafo
     void mostrarGrafo();

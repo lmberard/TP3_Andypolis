@@ -35,6 +35,7 @@ void Moverse::agregar_vertices(Grafo & grafo, Mapa & mapa){
 
 void Moverse::agregar_caminos(Grafo & grafo, Mapa & mapa, int id_jugador_actual){
     Coordenada coordenadas, coord_aux;
+    int aux;
 
     for(int i = 0; i < mapa.obtener_filas(); i++){
         for (int j = 0; j < mapa.obtener_columnas(); j++){
@@ -43,22 +44,26 @@ void Moverse::agregar_caminos(Grafo & grafo, Mapa & mapa, int id_jugador_actual)
             if(j + 1 < mapa.obtener_columnas()){
                 coord_aux.coord_x = i;
                 coord_aux.coord_y = j + 1;
-                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux));
+                aux = mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux);
+                grafo.agregarCamino(coordenadas, coord_aux, aux);
             }
-            if(j - 1 > 0){
+            if(j - 1 >= 0){
                 coord_aux.coord_x = i;
                 coord_aux.coord_y = j - 1;
-                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux));
+                aux = mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux);
+                grafo.agregarCamino(coordenadas, coord_aux, aux);
             }
             if(i + 1 < mapa.obtener_filas()){
                 coord_aux.coord_x = i + 1;
                 coord_aux.coord_y = j;
-                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux));
+                aux = mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux);
+                grafo.agregarCamino(coordenadas, coord_aux, aux);
             }
-            if(i - 1 > 0){
+            if(i - 1 >= 0){
                 coord_aux.coord_x = i - 1;
                 coord_aux.coord_y = j;
-                grafo.agregarCamino(coordenadas, coord_aux, mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux));
+                aux = mapa.obtener_peso_del_mapa(id_jugador_actual, coord_aux);
+                grafo.agregarCamino(coordenadas, coord_aux, aux);
             }                    
         }        
     }

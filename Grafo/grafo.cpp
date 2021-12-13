@@ -38,7 +38,7 @@ void Grafo::agregarCamino(Coordenada origen, Coordenada destino, int peso)
     if (!(posicionDestino == POSICION_NO_ENCONTRADA || posicionOrigen == POSICION_NO_ENCONTRADA))
     {
         matrizDeAdyacencia[posicionOrigen][posicionDestino] = peso;
-        matrizDeAdyacencia[posicionDestino][posicionOrigen] = peso;
+        //matrizDeAdyacencia[posicionDestino][posicionOrigen] = peso;
     }
 }
 

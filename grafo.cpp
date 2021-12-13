@@ -21,7 +21,7 @@ void Grafo::mostrarGrafo()
     mostrarMatrizAdyacencia();
 }
 
-void Grafo::agregarCamino(Coordenada origen, Coordenada destino, int peso)
+void Grafo::agregarCamino(Coordenada origen, Coordenada destino, int & peso)
 {
     int posicionOrigen = vertices->obtenerPosicion(origen);
     int posicionDestino = vertices->obtenerPosicion(destino);
@@ -38,7 +38,6 @@ void Grafo::agregarCamino(Coordenada origen, Coordenada destino, int peso)
     if (!(posicionDestino == POSICION_NO_ENCONTRADA || posicionOrigen == POSICION_NO_ENCONTRADA))
     {
         matrizDeAdyacencia[posicionOrigen][posicionDestino] = peso;
-        matrizDeAdyacencia[posicionDestino][posicionOrigen] = peso;
     }
 }
 
