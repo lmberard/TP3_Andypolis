@@ -52,7 +52,10 @@ class ModificarEdificio : public Jugada{
             bool entrada_correcta = true;
 
             msjeInstruccion(DESEA_CAMBIAR_MADERA);
-            if(pedir_confirmacion() == OPCION_DE_CONFIRMACION){
+
+            int pedir_conf = pedir_confirmacion();
+
+            if(pedir_conf == OPCION_DE_CONFIRMACION){
                 confirmacion = true;
                 msjeInstruccion(INGRESE_VALOR_MADERA);
                 getline(cin, cantidad_madera);
@@ -62,7 +65,9 @@ class ModificarEdificio : public Jugada{
                         entrada_correcta = false;
                         msjeError(ERR_NUMERO_INVALIDO);
                     }
-            } else{confirmacion = false;}
+            }   else if(pedir_conf == -1){
+                    entrada_correcta = false;
+                }   else {confirmacion = false;}
 
             return entrada_correcta;
         }
