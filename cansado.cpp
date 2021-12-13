@@ -14,24 +14,26 @@ Cansado::~Cansado()
 {
 }
 
-void Cansado::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
-{  
+void Cansado::chequear_estado(Inventario &inventario, int puntos_energia, Lista<Ubicaciones> &edificios, Constructor &bob, bool fin_turno)
+{
     progreso = puntos_energia;
-    if(fin_turno)
-        if(progreso == CANTIDAD_MIN_ENERGIA)
+    if (fin_turno)
+        if (progreso == CANTIDAD_MIN_ENERGIA)
             objetivo_cumplido = true;
 }
 
-void Cansado::mostrar_objetivo(){
-    msjeInstruccion("Cansado: terminar un turno con 0 de energía.");
-    cout << TXT_LIGHT_BLUE_6 << "En este turno todavia posee " << progreso << " puntos de energia." << END_COLOR << endl;
+void Cansado::mostrar_objetivo()
+{
+    msjeTitulo("* Cansado: terminar un turno con 0 de energía.");
+    msjeInstruccion("En este turno todavia posee " + to_string(progreso) + " puntos de energia.");
 
-    if(objetivo_cumplido)
-        msjeInstruccion("El objetivo esta cumplido.");
+    if (objetivo_cumplido)
+        msjeOK("\tEl objetivo esta cumplido.\n");
     else
-        msjeInstruccion("El objetivo no esta cumplido.");
+        msjeError("\tEl objetivo no esta cumplido.\n");
 }
 
-bool Cansado::es_principal(){
+bool Cansado::es_principal()
+{
     return false;
 }

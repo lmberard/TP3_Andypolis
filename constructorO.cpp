@@ -19,52 +19,53 @@ ConstructorO::~ConstructorO()
 {
 }
 
-void ConstructorO::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+void ConstructorO::chequear_estado(Inventario &inventario, int puntos_energia, Lista<Ubicaciones> &edificios, Constructor &bob, bool fin_turno)
 {
-    for(int i = 1; i < edificios.mostrar_cantidad() + 1; i++){
-        if( obtener_nombre(edificios[i]) == "mina")
+    for (int i = 1; i < edificios.mostrar_cantidad() + 1; i++)
+    {
+        if (obtener_nombre(edificios[i]) == "mina")
             mina_chequeado = true;
-        if( obtener_nombre(edificios[i]) == "aserradero" )
+        if (obtener_nombre(edificios[i]) == "aserradero")
             aserradero_chequeado = true;
-        if( obtener_nombre(edificios[i]) == "fabrica")
+        if (obtener_nombre(edificios[i]) == "fabrica")
             fabrica_chequeado = true;
-        if( obtener_nombre(edificios[i]) == "escuela")
+        if (obtener_nombre(edificios[i]) == "escuela")
             escuela_chequeado = true;
-        if( obtener_nombre(edificios[i]) == "planta electrica")
+        if (obtener_nombre(edificios[i]) == "planta electrica")
             planta_electrica_chequeado = true;
-        if( obtener_nombre(edificios[i]) == "mina oro")
-            mina_oro_chequeado = true;            
+        if (obtener_nombre(edificios[i]) == "mina oro")
+            mina_oro_chequeado = true;
     }
 
-    if(mina_chequeado && aserradero_chequeado && fabrica_chequeado &&
+    if (mina_chequeado && aserradero_chequeado && fabrica_chequeado &&
         escuela_chequeado && planta_electrica_chequeado && mina_oro_chequeado)
-            objetivo_cumplido = true;
-
+        objetivo_cumplido = true;
 }
 
-void ConstructorO::mostrar_objetivo(){
-    msjeInstruccion("Constructor: construir un edificio de cada tipo.");
+void ConstructorO::mostrar_objetivo()
+{
+    msjeTitulo("* Constructor: construir un edificio de cada tipo.");
     msjeInstruccion("Hasta ahora hay construidos: ");
-    if(mina_chequeado)
-        msjeInstruccion("- Mina"); 
-    if(aserradero_chequeado)
-        msjeInstruccion("- Aserradero"); 
-    if(fabrica_chequeado)
-        msjeInstruccion("- Fabrica");
-    if(escuela_chequeado)
-        msjeInstruccion("- Escuela");
-    if(planta_electrica_chequeado)
-        msjeInstruccion("- Planta electrica");
-    if(mina_oro_chequeado)
-        msjeInstruccion("- Mina oro");   
+    if (mina_chequeado)
+        msjeInstruccion("\t- Mina");
+    if (aserradero_chequeado)
+        msjeInstruccion("\t- Aserradero");
+    if (fabrica_chequeado)
+        msjeInstruccion("\t- Fabrica");
+    if (escuela_chequeado)
+        msjeInstruccion("\t- Escuela");
+    if (planta_electrica_chequeado)
+        msjeInstruccion("\t- Planta electrica");
+    if (mina_oro_chequeado)
+        msjeInstruccion("\t- Mina oro");
 
-   if(objetivo_cumplido)
-        msjeInstruccion("El objetivo esta cumplido");
+    if (objetivo_cumplido)
+        msjeOK("\tEl objetivo esta cumplido\n");
     else
-        msjeInstruccion("El objetivo no esta cumplido");
+        msjeError("\tEl objetivo no esta cumplido\n");
 }
 
-bool ConstructorO::es_principal(){
+bool ConstructorO::es_principal()
+{
     return false;
 }
-

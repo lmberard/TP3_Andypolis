@@ -14,23 +14,25 @@ Energetico::~Energetico()
 {
 }
 
-void Energetico::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+void Energetico::chequear_estado(Inventario &inventario, int puntos_energia, Lista<Ubicaciones> &edificios, Constructor &bob, bool fin_turno)
 {
     progreso = puntos_energia;
-    if(fin_turno)
-        if(puntos_energia == CANTIDAD_MAX_ENERGIA)
+    if (fin_turno)
+        if (puntos_energia == CANTIDAD_MAX_ENERGIA)
             objetivo_cumplido = true;
 }
 
-void Energetico::mostrar_objetivo(){
-    msjeInstruccion("Energetico: haber terminado un turno con 100 puntos de energia.");
-    cout << TXT_LIGHT_BLUE_6 << '\t' << "En este turno posee " << progreso << " puntos de energia" << END_COLOR << endl;
-    if(objetivo_cumplido)
-        msjeInstruccion("El objetivo esta cumplido");
+void Energetico::mostrar_objetivo()
+{
+    msjeTitulo("* Energetico: haber terminado un turno con 100 puntos de energia.");
+    msjeInstruccion("\tEn este turno posee " + to_string(progreso) + " puntos de energia");
+    if (objetivo_cumplido)
+        msjeOK("\tEl objetivo esta cumplido\n");
     else
-        msjeInstruccion("El objetivo no esta cumplido");
+        msjeError("\tEl objetivo no esta cumplido\n");
 }
 
-bool Energetico::es_principal(){
+bool Energetico::es_principal()
+{
     return false;
 }

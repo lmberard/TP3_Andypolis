@@ -23,12 +23,12 @@ void Bombardero::chequear_estado(Inventario &inventario, int puntos_energia, Lis
 
 void Bombardero::mostrar_objetivo()
 {
-    msjeInstruccion("Bombardero: haber usado 5 bombas.");
-    cout << TXT_LIGHT_BLUE_6 << '\t' << "Usaste " << progreso << " bombas." << END_COLOR << endl;
+    msjeTitulo("* Bombardero: haber usado 5 bombas.");
+    msjeInstruccion("Usaste " + to_string(progreso) + " bombas.");
     if (objetivo_cumplido)
-        msjeOK("\tEl objetivo esta cumplido.");
+        msjeOK("\tEl objetivo esta cumplido.\n");
     else
-        msjeError("\tEl objetivo no esta cumplido.");
+        msjeError("\tEl objetivo no esta cumplido.\n");
 }
 
 bool Bombardero::es_principal()
