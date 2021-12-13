@@ -39,8 +39,10 @@ public:
 
     //DUDA CON ESTO :/ 
     virtual bool estransitable();
-    virtual Material * recolectar_material();
-    virtual bool mover_jugador(Jugador * jugador);
+
+    void recorrer();
+
+    virtual void desrecorrer() = 0;
 };
 
 #endif // CASILLERO_HPP

@@ -3,9 +3,10 @@
 
 #include "jugada.hpp"
 
-class ConsultarCoordenada : public Jugada{
-    public: 
-        void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual);
+class ConsultarCoordenada : public Jugada
+{
+public:
+    void jugar(Constructor &bob, Mapa &mapa, int &turno, Jugador *jugador, int &id_jugador_actual);
 };
 
-#endif //CONSULTARCOORDENADA_HPP
+#endif // CONSULTARCOORDENADA_HPP

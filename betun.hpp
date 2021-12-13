@@ -3,11 +3,13 @@
 
 #include "casilleroTransitable.hpp"
 
-class Betun : public CasilleroTransitable{
+class Betun : public CasilleroTransitable
+{
 
-    public: 
-        Betun();
-        void caracteristicas();
+public:
+    Betun();
+    void caracteristicas();
+    void desrecorrer();
 };
 
-#endif //BETUN_HPP
+#endif // BETUN_HPP

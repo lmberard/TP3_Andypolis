@@ -1,6 +1,6 @@
 PROGRAM= andypolis
 CC:= g++
-FLAGS:= -Wall -Werror -Wconversion -pedantic -g
+FLAGS:= -Wall -Werror -Wconversion -pedantic -g -std=c++11
 LDLFLAGS= -lm
 
 all: andypolis
@@ -13,10 +13,10 @@ andypolis: parser.cpp
 
 #menu: 
 #andypolis: menu.cpp 
-andypolis: menu2.cpp 
+andypolis: menu.cpp 
 #juego: 
 #andypolis: juego.cpp
-andypolis: juego2.cpp
+andypolis: juego.cpp
 #jugador:
 andypolis: jugador.cpp 
 
@@ -110,10 +110,8 @@ andypolis: finalizarturno.cpp
 andypolis: reparar.cpp
 
 #grafo:
-andypolis: caminoMinimo.cpp
 andypolis: dijkstra.cpp 
 andypolis: grafo.cpp
-andypolis: vertice.cpp
 
 #libreria para los colores: 
 andypolis: colors.cpp 

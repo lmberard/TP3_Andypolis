@@ -117,3 +117,12 @@ bool es_numero_y_positivo(string cadena){
 bool esta_lista_vacia(Ubicaciones& info){
     return obtener_cantidad(info) == 0;
 }
+
+bool operator==(const Coordenada& lhs, const Coordenada& rhs)
+{
+    if((lhs.coord_x == rhs.coord_x) && (lhs.coord_y == rhs.coord_y))
+        return true;
+    
+    return false;
+}
+

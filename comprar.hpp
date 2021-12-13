@@ -3,9 +3,10 @@
 
 #include "jugada.hpp"
 
-class Comprar : public Jugada{
-    public: 
-        void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual);
+class Comprar : public Jugada
+{
+public:
+    void jugar(Constructor &bob, Mapa &mapa, int &turno, Jugador *jugador, int &id_jugador_actual);
 };
 
-#endif //COMPRAR_HPP
+#endif // COMPRAR_HPP

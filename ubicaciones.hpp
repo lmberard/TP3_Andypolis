@@ -18,7 +18,6 @@ struct Ubicaciones
     Lista<Coordenada> coordenadas;
 };
 
-
 //---------------------STRUCT UBICACIONES--------------------------------
 int obtener_cantidad(Ubicaciones info);
 
@@ -26,16 +25,16 @@ string obtener_nombre(Ubicaciones info);
 
 void mostrar_coordenadas(Ubicaciones info);
 
-bool eliminar_coordenada(Ubicaciones& info, Coordenada coordenada);
+bool eliminar_coordenada(Ubicaciones &info, Coordenada coordenada);
 
-void agregar_coordenada(Ubicaciones& info, Coordenada coordenada);
+void agregar_coordenada(Ubicaciones &info, Coordenada coordenada);
 
-void setear_nombre(Ubicaciones& info, string nombre);
+void setear_nombre(Ubicaciones &info, string nombre);
 
 bool tiene_esa_coordenada(Ubicaciones info, Coordenada coordenada);
 
 //---------------------STRUCT COORDENADAS--------------------------------
-void modificar_coordenada(Coordenada& coordenada, int x, int y);
+void modificar_coordenada(Coordenada &coordenada, int x, int y);
 
 bool coordenadas_son_iguales(Coordenada coord1, Coordenada coord2);
 
@@ -45,6 +44,8 @@ bool es_coordenada(string cadena);
 
 bool es_numero_y_positivo(string cadena);
 
-bool esta_lista_vacia(Ubicaciones& info);
+bool esta_lista_vacia(Ubicaciones &info);
+
+bool operator==(const Coordenada &lhs, const Coordenada &rhs);
 
 #endif // UBICACIONES_HPP

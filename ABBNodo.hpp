@@ -1,24 +1,23 @@
 #ifndef NODO_ABB_H
 #define NODO_ABB_H
 
-
 template <typename T, typename C>
 class ABBNodo
 {
 private:
     // Atributos:
-    T* dato;
+    T *dato;
     C clave;
-    ABBNodo<T,C>* izquierda; // Hijo izquierda
-    ABBNodo<T,C>* derecha; // Hijo derecha
-    ABBNodo<T,C>* padre;
+    ABBNodo<T, C> *izquierda; // Hijo izquierda
+    ABBNodo<T, C> *derecha;   // Hijo derecha
+    ABBNodo<T, C> *padre;
 
 public:
-    // Metodos: 
+    // Metodos:
 
     // pre:
     // pos:
-    ABBNodo(T* dato, C clave);
+    ABBNodo(T *dato, C clave);
 
     // pre:
     // pos:
@@ -26,11 +25,11 @@ public:
 
     // pre:
     // pos:
-    T* obtener_dato();
+    T *obtener_dato();
 
     // pre:
     // pos:
-    T* obtener_dato_const() const;
+    T *obtener_dato_const() const;
 
     // pre:
     // pos:
@@ -38,7 +37,7 @@ public:
 
     // pre:
     // pos:
-    void colocar_dato(T* dato);
+    void colocar_dato(T *dato);
 
     // pre:
     // pos:
@@ -46,36 +45,36 @@ public:
 
     // pre:
     // pos:
-    void colocar_derecha(ABBNodo<T,C>* derecha, ABBNodo<T,C>* padre);
+    void colocar_derecha(ABBNodo<T, C> *derecha, ABBNodo<T, C> *padre);
 
     // pre:
     // pos:
-    void colocar_izquierda(ABBNodo<T,C>* izquierda, ABBNodo<T,C>* padre);
+    void colocar_izquierda(ABBNodo<T, C> *izquierda, ABBNodo<T, C> *padre);
 
     // pre:
     // pos:
-    void colocar_derecha(ABBNodo<T,C>* derecha);
+    void colocar_derecha(ABBNodo<T, C> *derecha);
 
     // pre:
     // pos:
-    void colocar_izquierda(ABBNodo<T,C>* izquierda);
+    void colocar_izquierda(ABBNodo<T, C> *izquierda);
 
     // pre:
     // pos:
-    void colocar_padre(ABBNodo<T,C>* padre);
+    void colocar_padre(ABBNodo<T, C> *padre);
 
     // pre:
     // pos:
-    ABBNodo<T,C>* obtener_derecha();
+    ABBNodo<T, C> *obtener_derecha();
 
     // pre:
     // pos:
-    ABBNodo<T,C>* obtener_izquierda();
+    ABBNodo<T, C> *obtener_izquierda();
 
     // pre:
     // pos:
-    ABBNodo<T,C>* obtener_padre();
-    
+    ABBNodo<T, C> *obtener_padre();
+
     // pre:
     // pos:
     bool es_hoja();
@@ -89,190 +88,172 @@ public:
     bool tiene_solo_hijo_izquierdo();
 };
 
-
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-ABBNodo<T,C>::ABBNodo(T* dato, C clave){
+ABBNodo<T, C>::ABBNodo(T *dato, C clave)
+{
 
-    this -> clave = clave;
-    this -> dato = dato;
-    this -> izquierda = NULL;
-    this -> derecha = NULL;
-    this -> padre = NULL;
+    this->clave = clave;
+    this->dato = dato;
+    this->izquierda = NULL;
+    this->derecha = NULL;
+    this->padre = NULL;
 }
 
-
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-ABBNodo<T,C>::~ABBNodo(){
+ABBNodo<T, C>::~ABBNodo()
+{
 
     delete dato;
 }
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-T* ABBNodo<T,C>::obtener_dato(){
+T *ABBNodo<T, C>::obtener_dato()
+{
 
-    return this -> dato;
+    return this->dato;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-T* ABBNodo<T,C>::obtener_dato_const() const{
+T *ABBNodo<T, C>::obtener_dato_const() const
+{
 
-    return this -> dato;
+    return this->dato;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-C ABBNodo<T,C>::obtener_clave(){
+C ABBNodo<T, C>::obtener_clave()
+{
 
-    return this -> clave;
+    return this->clave;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-void ABBNodo<T,C>::colocar_dato(T* dato){
+void ABBNodo<T, C>::colocar_dato(T *dato)
+{
 
-    this -> dato = dato;
+    this->dato = dato;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-void ABBNodo<T,C>::colocar_clave(C clave){
+void ABBNodo<T, C>::colocar_clave(C clave)
+{
 
-    this -> clave = clave;
+    this->clave = clave;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-void ABBNodo<T,C>::colocar_derecha(ABBNodo<T,C>* derecha, ABBNodo<T,C>* padre){
+void ABBNodo<T, C>::colocar_derecha(ABBNodo<T, C> *derecha, ABBNodo<T, C> *padre)
+{
 
-    this -> derecha = derecha;
-    this -> padre = padre;
+    this->derecha = derecha;
+    this->padre = padre;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-void ABBNodo<T,C>::colocar_derecha(ABBNodo<T,C>* derecha){
+void ABBNodo<T, C>::colocar_derecha(ABBNodo<T, C> *derecha)
+{
 
-    this -> derecha = derecha;
+    this->derecha = derecha;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-void ABBNodo<T,C>::colocar_izquierda(ABBNodo<T,C>* izquierda, ABBNodo<T,C>* padre){
+void ABBNodo<T, C>::colocar_izquierda(ABBNodo<T, C> *izquierda, ABBNodo<T, C> *padre)
+{
 
-    this -> izquierda = izquierda;
-    this -> padre = padre;
+    this->izquierda = izquierda;
+    this->padre = padre;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-void ABBNodo<T,C>::colocar_izquierda(ABBNodo<T,C>* izquierda){
+void ABBNodo<T, C>::colocar_izquierda(ABBNodo<T, C> *izquierda)
+{
 
-    this -> izquierda = izquierda;
+    this->izquierda = izquierda;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-void ABBNodo<T,C>::colocar_padre(ABBNodo<T,C>* padre){
+void ABBNodo<T, C>::colocar_padre(ABBNodo<T, C> *padre)
+{
 
-    this -> padre = padre;
+    this->padre = padre;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-ABBNodo<T,C>* ABBNodo<T,C>::obtener_derecha(){
+ABBNodo<T, C> *ABBNodo<T, C>::obtener_derecha()
+{
 
-    return this -> derecha;
+    return this->derecha;
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-ABBNodo<T,C>* ABBNodo<T,C>::obtener_izquierda(){
-    
-    return this -> izquierda;
-}
+ABBNodo<T, C> *ABBNodo<T, C>::obtener_izquierda()
+{
 
+    return this->izquierda;
+}
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-ABBNodo<T,C>* ABBNodo<T,C>::obtener_padre(){
-    
-    return this -> padre;
-}
+ABBNodo<T, C> *ABBNodo<T, C>::obtener_padre()
+{
 
+    return this->padre;
+}
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-bool ABBNodo<T,C>::es_hoja(){
+bool ABBNodo<T, C>::es_hoja()
+{
 
-    return (this -> obtener_izquierda() == NULL && this -> obtener_derecha() == NULL);
+    return (this->obtener_izquierda() == NULL && this->obtener_derecha() == NULL);
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-bool ABBNodo<T,C>::tiene_solo_hijo_derecho(){
+bool ABBNodo<T, C>::tiene_solo_hijo_derecho()
+{
 
-    return (this -> obtener_izquierda() == NULL && this -> obtener_derecha() != NULL);
+    return (this->obtener_izquierda() == NULL && this->obtener_derecha() != NULL);
 }
-
 
 // -----------------------------------------------------------------------------------------
 
-
 template <typename T, typename C>
-bool ABBNodo<T,C>::tiene_solo_hijo_izquierdo(){
+bool ABBNodo<T, C>::tiene_solo_hijo_izquierdo()
+{
 
-    return (this -> obtener_izquierda() != NULL && this -> obtener_derecha() == NULL);
+    return (this->obtener_izquierda() != NULL && this->obtener_derecha() == NULL);
 }
 
-
-#endif //NODO_ABB_H
+#endif // NODO_ABB_H

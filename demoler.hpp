@@ -9,11 +9,10 @@ static const string ERR_NO_SE_PUEDE_DEMOLER = "No hay ningun edificio para demol
 static const string ERR_AL_DEMOLER_EDIFICIO = "Error al demoler el edificio";
 static const int ENERGIA_NECESARIA_PARA_DEMOLER = 15;
 
-class Demoler : public Jugada{
-    public: 
-
-        void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual);
-
+class Demoler : public Jugada
+{
+public:
+    void jugar(Constructor &bob, Mapa &mapa, int &turno, Jugador *jugador, int &id_jugador_actual);
 };
 
-#endif //DEMOLER_HPP
+#endif // DEMOLER_HPP

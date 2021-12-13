@@ -1,22 +1,21 @@
 #ifndef GRAFOS_GRAFO_H
 #define GRAFOS_GRAFO_H
 #include <string>
-#include "listaG.hpp"
-#include "vertice.hpp"
-//#include "floyd.hpp"
-#include "caminoMinimo.hpp"
+
+#include "dijkstra.hpp"
 #include "ubicaciones.hpp"
 #include "lista.hpp"
+
+const int POSICION_NO_ENCONTRADA = -1;
 
 using namespace std;
 
 class Grafo
 {
-    /*ATRIBUTOS*/
 private:
     int **matrizDeAdyacencia;
-    ListaG<Vertice> *vertices;
-    CaminoMinimo *algoritmoCaminoMinimo;
+    Lista<Coordenada> vertices;
+    Dijkstra dijkstra;
 
     /*MÉTODOS*/
 
@@ -37,10 +36,6 @@ private:
     // post libera la memoria de la matriz de adyacencia
     void liberarMatrizAdyacencia();
 
-
-    // post: imprime por pantalla la matriz de adyacencia
-    void mostrarMatrizAdyacencia();
-
 public:
     Grafo();
     // pre: No hay vertices repetidos en nombre
@@ -54,18 +49,6 @@ public:
     // pre: el peso es un valor positivo
     // post: Ajusta la matriz de adyacencia con el peso ingresado
     void agregarCamino(Coordenada origen, Coordenada destino, int & peso);
-
-    // post: imprime por pantalla el grafo
-    void mostrarGrafo();
-
-    // post: selecciona el algortimo de Floyd para calcular el camino mínimo
-    void usarFloyd();
-
-    // post: selecciona el algortimo de Dijkstra para calcular el camino mínimo
-    void usarDijkstra();
-
-    // post: imprime por pantalla los vertices del grafo
-    void mostrarVertices();
 
     ~Grafo();
 };

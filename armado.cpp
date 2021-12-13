@@ -14,25 +14,26 @@ Armado::~Armado()
 {
 }
 
-void Armado::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+void Armado::chequear_estado(Inventario &inventario, int puntos_energia, Lista<Ubicaciones> &edificios, Constructor &bob, bool fin_turno)
 {
     progreso = inventario.obtener_material("bomba")->obtener_cantidad();
-    if( progreso >= CANTIDAD_BOMBAS_INVENTARIO_OBJETIVO)
+    if (progreso >= CANTIDAD_BOMBAS_INVENTARIO_OBJETIVO)
         objetivo_cumplido = true;
-    else 
+    else
         objetivo_cumplido = false;
 }
 
-void Armado::mostrar_objetivo(){
+void Armado::mostrar_objetivo()
+{
     msjeInstruccion("Armado: tener 10 bombas en el inventario.");
     cout << TXT_LIGHT_BLUE_6 << '\t' << "Posee " << progreso << " bombas." << END_COLOR << endl;
-    if(objetivo_cumplido)
-        msjeInstruccion("El objetivo esta cumplido.");
+    if (objetivo_cumplido)
+        msjeOK("\tEl objetivo esta cumplido.");
     else
-        msjeInstruccion("El objetivo no esta cumplido.");
+        msjeError("\tEl objetivo no esta cumplido.");
 }
 
-bool Armado::es_principal(){
+bool Armado::es_principal()
+{
     return false;
 }
-

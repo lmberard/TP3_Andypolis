@@ -1,80 +1,46 @@
 #include "menu.hpp"
 
 using namespace std;
-/*
-bool char_son_iguales(char &c1, char &c2)
-{
-    if (c1 == c2)
-        return true;
-    else if (toupper(c1 == toupper(c2)))
-        return true;
-    return false;
-}*/
-/*
-bool strings_son_iguales(string &str1, string &str2)
-{
-    return ((str1.size() == str2.size()) &&
-            equal(str1.begin(), str1.end(), str2.begin(), &char_son_iguales));
-}*/
+
 ////////////////////////////////////////////////////////////////
-Menu::Menu() {}
-
-Menu::~Menu() {}
-
-string Menu::devolver_rta_usuario()
-{
-    string rta;
-    cin >> rta;
-    return rta;
-}
-/*
-bool Menu::confirmacion_usuario()
-{
-    string rta, si = "si", no = "no";
-    rta = devolver_rta_usuario();
-    if (strings_son_iguales(rta, si))
-        return true;
-    else if (!strings_son_iguales(rta, no))
-    {
-        msjeError("Error. Opciones validas: 'si' o 'no'");
-        return false;
-    }
-    else
-        return false;
-}*/
 
 int Menu::obtener_opcion_usuario()
 {
-    int opcion_elegida;
-    cin >> opcion_elegida;
+    int opcion_elegida = -1;
+    string aux;
+    getline(cin, aux);
+    if(es_numero_y_positivo(aux))
+        opcion_elegida = stoi(aux);
     return opcion_elegida;
 }
+
 ////////////////////////////////////////////////////////////////
+
 void Menu::mostrar_menu_juego(int id_jugador)
 {
     cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis, Jugador " << id_jugador << "!! ¿Que desea hacer?" << END_COLOR << " " << endl;
     cout << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "╔══════════════════════════════════════════════╗" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 1. Construir edificios por nombre.           ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 2. Listar mis edificios construidos.         ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 3. Demoler un edificio por coordenada.       ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 4. Atacar un edificio por coordenada.        ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 5. Reparar un edificio por coordenada.       ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 6. Comprar bombas.                           ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 7. Consultar coordenada.                     ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 8. Mostrar inventario.                       ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 9. Mostrar objetivos.                        ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 10. Recolectar recursos producidos.          ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 11. Moverse a una coordenada.                ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 12. Finalizar turno.                         ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "║ 13. Guardar y salir.                         ║" << END_COLOR << " " << endl;
-    cout << "\t" << TXT_LIGHT_PURPLE_141 << "╚══════════════════════════════════════════════╝" << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "╔══════════════════════════════════════════════╗" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 1. Construir edificios por nombre.           ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 2. Listar mis edificios construidos.         ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 3. Demoler un edificio por coordenada.       ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 4. Atacar un edificio por coordenada.        ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 5. Reparar un edificio por coordenada.       ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 6. Comprar bombas.                           ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 7. Consultar coordenada.                     ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 8. Mostrar inventario.                       ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 9. Mostrar objetivos.                        ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 10. Recolectar recursos producidos.          ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 11. Moverse a una coordenada.                ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 12. Finalizar turno.                         ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "║ 13. Guardar y salir.                         ║" << END_COLOR << " " << endl;
+    cout << "     " << TXT_LIGHT_PURPLE_141 << "╚══════════════════════════════════════════════╝" << endl;
     cout << END_COLOR;
     cout << endl;
     msjeInstruccion("Ingrese la opcion con un NUMERO del 1 al 13:");
 }
 
-void Menu::mostrar_menu_partida_nueva()
+void Menu::partida_nueva_mostrar()
 {
     cout << " " << TXT_BOLD << TXT_UNDERLINE << TXT_LIGHT_BLUE_6 << "¡¡Bienvenido a Andypolis!! ¿Que desea hacer?" << END_COLOR << " " << endl;
     cout << endl;
@@ -90,68 +56,39 @@ void Menu::mostrar_menu_partida_nueva()
     msjeInstruccion("Ingrese la opcion con un NUMERO del 1 al 5: ");
 }
 
-void Menu::menu_juego(Juego &andypolis, int opcion_elegida)
+Jugada* Menu::menu_juego(int id_jugador_actual)
 {
+    int opcion_elegida = obtener_opcion_usuario();
     limpiar_pantalla();
-    do
-    {
-        int id = andypolis.obtener_id_jugador_actual();
-        mostrar_menu_juego(id);
-        opcion_elegida = obtener_opcion_usuario();
-        validar_opcion_juego(opcion_elegida, andypolis);
-        procesar_opcion_juego(opcion_elegida, andypolis);
-    } while (opcion_elegida != SALIR_JUEGO);
+    validar_opcion_juego(opcion_elegida, id_jugador_actual);
+    return procesar_opcion_juego(opcion_elegida);
 }
 
-void Menu::menu_partida_nueva(Juego &andypolis, int opcion_elegida)
+Jugada * Menu::inicial()
 {
+    int opcion_elegida = obtener_opcion_usuario();
     limpiar_pantalla();
-    do
-    {
-        mostrar_menu_partida_nueva();
-        opcion_elegida = obtener_opcion_usuario();
-        validar_opcion_partida_nueva(opcion_elegida);
-        procesar_opcion_partida_nueva(opcion_elegida, andypolis);
-    } while (opcion_elegida != SALIR_INICIAL);
+    validar_opcion_partida_nueva(opcion_elegida);
+    return procesar_opcion_partida_nueva(opcion_elegida);
 }
 
 ////////////////////////////////////////////////////////////////
-void Menu::validar_opcion_juego(int opcion_elegida, Juego &andypolis)
+void Menu::validar_opcion_juego(int & opcion_elegida, int id_jugador_actual)
 {
     while (!es_opcion_valida(opcion_elegida, OPCION_MINIMA, OPCION_MAXIMA_JUEGO))
     {
-        if (!cin.good())
-        {
-            cin.clear();
-            cin.ignore(100, '\n');
-            msjeError("Debe ingresar un numero entero del " + to_string(OPCION_MINIMA) + "al " + to_string(OPCION_MAXIMA_JUEGO) + "\nIntente nuevamente:");
-            mostrar_menu_juego(andypolis.obtener_id_jugador_actual());
-            cin >> opcion_elegida;
-        }
-        cin.clear();
-        cin.ignore(100, '\n');
-        msjeError("Ese numero de opcion no es valido, intente nuevamente:");
-        mostrar_menu_juego(andypolis.obtener_id_jugador_actual());
-        cin >> opcion_elegida;
+        msjeError("Ese numero de opcion no es valido, intente nuevamente: ");
+        mostrar_menu_juego(id_jugador_actual);
+        opcion_elegida = obtener_opcion_usuario();
     }
 }
 
-void Menu::validar_opcion_partida_nueva(int opcion_elegida)
+void Menu::validar_opcion_partida_nueva(int & opcion_elegida)
 {
     while (!es_opcion_valida(opcion_elegida, OPCION_MINIMA, OPCION_MAXIMA_NUEVA_PARTIDA))
     {
-        if (!cin.good())
-        {
-            cin.clear();
-            cin.ignore(100, '\n');
-            msjeError("Debe ingresar un numero entero del " + to_string(OPCION_MINIMA) + "al " + to_string(OPCION_MAXIMA_NUEVA_PARTIDA) + "\nIntente nuevamente:");
-            mostrar_menu_partida_nueva();
-            opcion_elegida = obtener_opcion_usuario();
-        }
-        cin.clear();
-        cin.ignore(100, '\n');
-        msjeError("Ese numero de opcion no es valido, intente nuevamente:");
-        mostrar_menu_partida_nueva();
+        msjeError("Ese numero de opcion no es valido, intente nuevamente: ");
+        partida_nueva_mostrar();
         opcion_elegida = obtener_opcion_usuario();
     }
 }
@@ -167,16 +104,7 @@ void Menu::volver()
     msjeInstruccion("\nPresione ENTER para volver al menu.");
     cin.get();
 
-    cin.get();
-    system(CLR_SCREEN);
-}
-
-void Menu::proxima_partida()
-{
-    msjeInstruccion("\nPresione ENTER para terminar la partida y que empiece el otro jugador.");
-    cin.get();
-
-    cin.get();
+    //cin.get();
     system(CLR_SCREEN);
 }
 
@@ -190,26 +118,22 @@ void Menu::despedir()
     msjeInstruccion("Hasta luego! :)");
 }
 ////////////////////////////////////////////////////////////////
-void Menu::procesar_opcion_partida_nueva(int opcion_elegida, Juego &andypolis)
+Jugada * Menu::procesar_opcion_partida_nueva(int opcion_elegida)
 {
-    string nombre_edificio, x, y;
+    Jugada * jugada = NULL;
     switch (opcion_elegida)
     {
     case MODIFICAR_EDIFICIO_POR_NOMBRE:
-        andypolis.modificar_edificio_por_nombre();
-        volver();
+        jugada = new ModificarEdificio();
         break;
     case LISTAR_TODOS_EDIFICIOS:
-        andypolis.mostrar_todos_edificios();
-        volver();
+        jugada = new ListarEdificios();
         break;
     case MOSTRAR_MAPA:
-        andypolis.mostrar_mapa();
-        volver();
+        jugada = new MostrarMapa();
         break;
     case COMENZAR_PARTIDA:
-        if (andypolis.comenzar_partida())
-            menu_juego(andypolis, opcion_elegida);
+        jugada = new ComenzarPartida();
         break;
     case SALIR_INICIAL:
         despedir();
@@ -217,85 +141,56 @@ void Menu::procesar_opcion_partida_nueva(int opcion_elegida, Juego &andypolis)
     default:
         msjeError("Opcion invalida");
     }
+    return jugada;
 }
 
-void Menu::procesar_opcion_juego(int opcion_elegida, Juego &andypolis)
-{
-    string nombre_edificio, x, y;
+Jugada* Menu::procesar_opcion_juego(int opcion_elegida)
+{   
+    Jugada * jugada = NULL;
     switch (opcion_elegida)
     {
     case CONSTRUIR_EDIFICIO:
-        andypolis.construir_por_nombre_coordenada();
-        volver();
+        jugada = new Construir();
         break;
     case LISTAR_CONSTRUIDOS:
-        andypolis.mostrar_edificios_construidos();
-        volver();
+        jugada = new ListarConstruidos();
         break;
     case DEMOLER_POR_COORDENADA:
-        andypolis.demoler_por_coordenada();
-        volver();
+        jugada = new Demoler();
         break;
     case ATACAR_POR_COORDENADA:
-        andypolis.atacar_por_coordenada();
-        volver();
+        jugada = new Atacar();
         break;
     case REPARAR_POR_COORDENADA:
-        andypolis.reparar_por_coordenada();
-        volver();
+        jugada = new Reparar();
         break;
     case COMPRAR_BOMBAS:
-        andypolis.comprar_bombas();
-        volver();
+        jugada = new Comprar();
         break;
     case CONSULTAR_COORDENADA:
-        andypolis.consultar_coordenada();
-        volver();
+        jugada = new ConsultarCoordenada();
         break;
     case MOSTRAR_INVENTARIO:
-        andypolis.mostrar_inventario();
-        volver();
+        jugada = new MostrarInventario();
         break;
     case MOSTRAR_OBJETIVOS:
-        andypolis.mostrar_objetivos();
-        volver();
+        jugada = new MostrarObjetivos();
         break;
     case RECOLECTAR_RECURSOS:
-        andypolis.recolectar();
-        volver();
+        jugada = new Recolectar();
         break;
     case MOVERSE_COORDENADA:
-        andypolis.moverse_a_coordenada();
-        volver();
+        jugada = new Moverse();
         break;
     case FINALIZAR_TURNO:
-        andypolis.finalizar_turno();
-        andypolis.cambiar_jugador();
-        proxima_partida();
-        menu_juego(andypolis, opcion_elegida);
+        jugada = new FinalizarTurno();
         break;
     case SALIR_JUEGO:
         despedir();
         break;
-
     default:
         msjeError("Opcion invalida");
     }
-}
 
-////////////////////////////////////////////////////////////////
-bool Menu::comenzo_nueva_partida(int opcion_elegida)
-{
-    return opcion_elegida == COMENZAR_PARTIDA;
+    return jugada;
 }
-
-bool Menu::cerro_menu_inicial(int opcion_elegida)
-{
-    return opcion_elegida == SALIR_INICIAL;
-}
-
-bool Menu::cerro_juego(int opcion_elegida)
-{
-    return opcion_elegida == SALIR_JUEGO;
-}
-

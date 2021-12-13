@@ -36,11 +36,8 @@ public:
     void quitar_elemento();
 
     bool agregar(Jugador *jugador);
-    bool mover_jugador(Jugador *jugador);
 
     int obtener_peso(int jugador_id);
-
-    Material * recolectar_material();
 };
 
 #endif // CASILLEROTRANSITABLE_HPP

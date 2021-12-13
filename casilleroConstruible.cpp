@@ -34,12 +34,12 @@ bool CasilleroConstruible ::agregar(Jugador *jugador)
 
 void CasilleroConstruible ::info()
 {
-    cout << TXT_LIGHT_BLUE_6 << "Es un " << casillero_nombre <<  ", es un casillero construible." << END_COLOR << endl;
+    cout << TXT_LIGHT_BLUE_6 << "Es un " << casillero_nombre << ", es un casillero construible." << END_COLOR << endl;
     if (edificio)
         cout << TXT_LIGHT_BLUE_6 << "Hay un edificio del tipo '" << edificio->obtener_nombre() << "' construido en esta coordenada." << END_COLOR << endl;
     if (jugador)
         cout << TXT_LIGHT_BLUE_6 << "En este casillero se encuentra el jugador " << jugador->obtener_codigo() << END_COLOR << endl;
-    if(!edificio && !jugador)
+    if (!edificio && !jugador)
         cout << TXT_LIGHT_BLUE_6 << "El casillero no contiene un edificio construido" << END_COLOR << endl;
 }
 
@@ -47,9 +47,9 @@ void CasilleroConstruible ::mostrar_por_pantalla()
 {
     if (!edificio && !jugador)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "   " << END_COLOR << " ";
-    if(edificio)
+    if (edificio)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << edificio->obtener_codigo() << " " << END_COLOR << " ";
-    if(jugador)
+    if (jugador)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << jugador->obtener_codigo() << " " << END_COLOR << " ";
 }
 
@@ -67,14 +67,14 @@ void CasilleroConstruible::quitar_elemento()
     }
 }
 
-int CasilleroConstruible::obtener_peso(int jugador_id){
-    int peso;
+int CasilleroConstruible::obtener_peso(int jugador_id)
+{
+    int peso = 0;
 
-    if(edificio)
-        peso = 101; //peso máximo (equivalente a peso infinito, o sea, no puedo pasar si un hay edificio construido)
-    else if(jugador_id == 1 || jugador_id == 2) //para ambos jugadores el peso de un casillero construible es el mismo
+    if (edificio)
+        peso = 100;                              // peso máximo (equivalente a peso infinito, o sea, no puedo pasar si un hay edificio construido)
+    else if (jugador_id == 1 || jugador_id == 2) // para ambos jugadores el peso de un casillero construible es el mismo
         peso = 25;
 
     return peso;
 }
-

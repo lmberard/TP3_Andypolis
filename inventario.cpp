@@ -1,6 +1,5 @@
 #include "inventario.hpp"
 
-
 Inventario::Inventario()
 {
     andycoins_gastadas = 0;
@@ -8,7 +7,7 @@ Inventario::Inventario()
     bombas_compradas = 0;
 }
 
-void Inventario::agregar_material(Material * material)
+void Inventario::agregar_material(Material *material)
 {
     materiales1.alta(material);
 }
@@ -41,7 +40,7 @@ bool Inventario::chequear_stock(Edificio *edificio, bool construir)
             if (cuenta < 0)
             {
                 msjeError("No se puede construir el edificio. No hay piedra suficiente.");
-                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta * (-1) << END_COLOR << endl;
                 flag = 0;
             }
             if (construir)
@@ -53,7 +52,7 @@ bool Inventario::chequear_stock(Edificio *edificio, bool construir)
             if (cuenta < 0)
             {
                 msjeError("No se puede construir el edificio. No hay madera suficiente.");
-                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta * (-1) << END_COLOR << endl;
                 flag = 0;
             }
             if (construir)
@@ -65,7 +64,7 @@ bool Inventario::chequear_stock(Edificio *edificio, bool construir)
             if (cuenta < 0)
             {
                 msjeError("No se puede construir el edificio. No hay metal suficiente.");
-                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta * (-1) << END_COLOR << endl;
                 flag = 0;
             }
             if (construir)
@@ -85,11 +84,11 @@ bool Inventario::chequear_stock_reparaciones(Edificio *edificio, bool reparar)
     {
         if (materiales1[j]->obtener_nombre() == "piedra")
         {
-            cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_piedra()/4;
+            cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_piedra() / 4;
             if (cuenta < 0)
             {
                 msjeError("No se puede reparar el edificio. No hay piedra suficiente.");
-                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta * (-1) << END_COLOR << endl;
                 flag = 0;
             }
             if (reparar)
@@ -97,11 +96,11 @@ bool Inventario::chequear_stock_reparaciones(Edificio *edificio, bool reparar)
         }
         if (materiales1[j]->obtener_nombre() == "madera")
         {
-            cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_madera()/4;
+            cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_madera() / 4;
             if (cuenta < 0)
             {
                 msjeError("No se puede reparar el edificio. No hay madera suficiente.");
-                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta * (-1) << END_COLOR << endl;
                 flag = 0;
             }
             if (reparar)
@@ -109,11 +108,11 @@ bool Inventario::chequear_stock_reparaciones(Edificio *edificio, bool reparar)
         }
         if (materiales1[j]->obtener_nombre() == "metal")
         {
-            cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_metal()/4;
+            cuenta = materiales1[j]->obtener_cantidad() - edificio->obtener_metal() / 4;
             if (cuenta < 0)
             {
                 msjeError("No se puede reparar el edificio. No hay metal suficiente.");
-                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta*(-1) << END_COLOR << endl;
+                cout << TXT_LIGHT_RED_9 << "Faltan la siguiente cantidad: " << cuenta * (-1) << END_COLOR << endl;
                 flag = 0;
             }
             if (reparar)
@@ -123,21 +122,6 @@ bool Inventario::chequear_stock_reparaciones(Edificio *edificio, bool reparar)
 
     return flag;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 void Inventario::llenar_stock(Edificio *edificio)
 {
@@ -184,9 +168,7 @@ void Inventario::recolectar(Edificio *edificio)
     }
 }
 
-
 //////////////////////////////GETTERS///////////////////////
-
 
 int Inventario::obtener_andycoins_gastadas()
 {
@@ -195,10 +177,10 @@ int Inventario::obtener_andycoins_gastadas()
 
 void Inventario::aniadir_andycoins_gastadas(int cantidad)
 {
-   andycoins_gastadas += cantidad;
+    andycoins_gastadas += cantidad;
 }
 
-//obtener bombas compradas:
+// obtener bombas compradas:
 int Inventario::obtener_bombas_compradas()
 {
     return bombas_compradas;
@@ -216,7 +198,7 @@ int Inventario::obtener_andycoins()
 
 void Inventario::decrementar_bombas_contador()
 {
-    Material * bomba = obtener_material("bomba");
+    Material *bomba = obtener_material("bomba");
     int cantidad = bomba->obtener_cantidad();
     cantidad--;
     bomba->modificar_cantidad(cantidad);
@@ -224,7 +206,7 @@ void Inventario::decrementar_bombas_contador()
 
 void Inventario::comprar_bombas(int cantidad)
 {
-    Material * bomba = obtener_material("bomba");
+    Material *bomba = obtener_material("bomba");
     int aux = bomba->obtener_cantidad();
     cantidad += aux;
     obtener_material("bomba")->modificar_cantidad(cantidad);
@@ -240,11 +222,13 @@ void Inventario::aumentar_bombas_usadas()
     bombas_usadas++;
 }
 
-//Función de uso interna. Un PRE tendría que ser que el material_recibido esté en la lista.
-Material * Inventario::obtener_material(string material_recibido){
-    Material * aux = nullptr;
+// Función de uso interna. Un PRE tendría que ser que el material_recibido esté en la lista.
+Material *Inventario::obtener_material(string material_recibido)
+{
+    Material *aux = nullptr;
 
-    for (int i = 1; i < materiales1.mostrar_cantidad() + 1; i++){
+    for (int i = 1; i < materiales1.mostrar_cantidad() + 1; i++)
+    {
         if (materiales1[i]->obtener_nombre() == material_recibido)
             aux = materiales1[i];
     }
@@ -252,7 +236,8 @@ Material * Inventario::obtener_material(string material_recibido){
     return aux;
 }
 
-Lista<Material *> & Inventario::obtener_lista_de_materiales(){
+Lista<Material *> &Inventario::obtener_lista_de_materiales()
+{
     return materiales1;
 }
 
@@ -284,7 +269,8 @@ void Inventario::aniadir_cant_material(string nombre, int cantidad)
 {
     for (int j = 1; j < materiales1.mostrar_cantidad() + 1; j++)
     {
-        if (materiales1[j]->obtener_nombre() == nombre){
+        if (materiales1[j]->obtener_nombre() == nombre)
+        {
             cantidad += materiales1[j]->obtener_cantidad();
             materiales1[j]->modificar_cantidad(cantidad);
         }

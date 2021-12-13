@@ -3,9 +3,10 @@
 
 #include "jugada.hpp"
 
-class MostrarObjetivos : public Jugada{
-    public: 
-        void jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * jugador, int & id_jugador_actual);
+class MostrarObjetivos : public Jugada
+{
+public:
+    void jugar(Constructor &bob, Mapa &mapa, int &turno, Jugador *jugador, int &id_jugador_actual);
 };
 
-#endif //MOSTRAROBJETIVOS_HPP
+#endif // MOSTRAROBJETIVOS_HPP

@@ -2,9 +2,24 @@
 #define MENU_H
 
 #include "colors.hpp"
-#include "juego.hpp"
 
-//#include "funciones.hpp"
+#include "comenzarpartida.hpp"
+#include "listaredificios.hpp"
+#include "mostrarmapa.hpp"
+#include "modificaredificio.hpp"
+
+#include "construir.hpp"
+#include "listarconstruidos.hpp"
+#include "demoler.hpp"
+#include "atacar.hpp"
+#include "reparar.hpp"
+#include "comprar.hpp"
+#include "consultarcoordenada.hpp"
+#include "mostrarinventario.hpp"
+#include "mostrarobjetivos.hpp"
+#include "recolectar.hpp"
+#include "moverse.hpp"
+#include "finalizarturno.hpp"
 
 const int OPCION_MINIMA = 1;
 const int OPCION_MAXIMA_NUEVA_PARTIDA = 5;
@@ -45,64 +60,52 @@ const int SALIR_JUEGO = 13;
 class Menu
 {
 public:
-    Menu();
+    /*---------------------------MENUS----------------------------------*/
 
-    ~Menu();
+    Jugada *inicial();
+
+    Jugada *menu_juego(int id_jugador_actual);
+
+    /*--------------------------MENSAJES ------------------------------*/
     // pre: -
     // post: Imprime por pantalla el menu
-    void mostrar_menu_partida_nueva();
+    void partida_nueva_mostrar();
 
     // pre: -
     // post: Imprime por pantalla el menu
     void mostrar_menu_juego(int id_jugador);
 
-    void menu_partida_nueva(Juego &andypolis, int opcion_elegida);
+    void despedir();
 
-    void menu_juego(Juego &andypolis, int opcion_elegida);
+    /*-------------------------OBTENER DATOS---------------------------*/
 
-    ////////////////////////////////
-    // pre: El texto ingresado por el usuario tiene que ser un NUMERO entero
-    // post: Realiza la opcion pedida
-    void procesar_opcion_juego(int opcion_elegida, Juego &andypolis); // material *materiales_array, edificio *edificios_array, casillero **mapa, ubicacion *ubicaciones_array
+    int obtener_opcion_usuario();
 
-    void procesar_opcion_partida_nueva(int opcion_elegida, Juego &andypolis);
+    /*-------------------------VALIDACIONES----------------------------*/
 
-    ////////////////////////////////
     // pre: El texto ingresado por el usuario tiene que ser un NUMERO entero
     // post: devuelve true si la opcion recibida esta en el rango valido y sino devuelve false.
     bool es_opcion_valida(int elegida, const int opcion_minima, const int opcion_maxima);
 
-    void validar_opcion_juego(int opcion_elegida, Juego &andypolis);
+    void validar_opcion_juego(int &opcion_elegida, int id_jugador_actual);
 
-    void validar_opcion_partida_nueva(int opcion_elegida4);
+    void validar_opcion_partida_nueva(int &opcion_elegida4);
 
-    int obtener_opcion_usuario();
-    ////////////////////////////////
-    // pre: -
-    // post: Obtiene una respuesta del usuario y la devuelve en minusculas.
-    string devolver_rta_usuario();
+    /*------------------------PROCESAR OPCIONES----------------------------*/
 
-    //bool confirmacion_usuario();
+    // pre: El texto ingresado por el usuario tiene que ser un NUMERO entero
+    // post: Realiza la opcion pedida
+    Jugada *procesar_opcion_juego(int opcion_elegida); // material *materiales_array, edificio *edificios_array, casillero **mapa, ubicacion *ubicaciones_array
 
-    ////////////////////////////////
+    Jugada *procesar_opcion_partida_nueva(int opcion_elegida);
+
+    /*------------------------OPCIONES DISPLAY-------------------------------*/
+
     void limpiar_pantalla();
 
     // pre: -
     // post: Pregunta para volver al menu
     void volver();
-
-    void proxima_partida();
-
-    void despedir();
-    /////////////////////////////////
-    bool comenzo_nueva_partida(int opcion_elegida);
-
-    bool cerro_menu_inicial(int opcion_elegida);
-
-    bool cerro_juego(int opcion_elegida);
 };
-
-//bool strings_son_iguales(string &str1, string &str2);
-//bool char_son_iguales(char &c1, char &c2);
 
 #endif // MENU_H

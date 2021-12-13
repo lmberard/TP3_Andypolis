@@ -14,22 +14,24 @@ Bombardero::~Bombardero()
 {
 }
 
-void Bombardero::chequear_estado(Inventario & inventario, int puntos_energia, Lista<Ubicaciones> & edificios, Constructor & bob, bool fin_turno)
+void Bombardero::chequear_estado(Inventario &inventario, int puntos_energia, Lista<Ubicaciones> &edificios, Constructor &bob, bool fin_turno)
 {
     progreso = inventario.obtener_bombas_usadas();
-    if(progreso >= CANTIDAD_BOMBAS_USADAS_OBJETIVO)
+    if (progreso >= CANTIDAD_BOMBAS_USADAS_OBJETIVO)
         objetivo_cumplido = true;
 }
 
-void Bombardero::mostrar_objetivo(){
+void Bombardero::mostrar_objetivo()
+{
     msjeInstruccion("Bombardero: haber usado 5 bombas.");
     cout << TXT_LIGHT_BLUE_6 << '\t' << "Usaste " << progreso << " bombas." << END_COLOR << endl;
-    if(objetivo_cumplido)
-        msjeInstruccion("El objetivo esta cumplido.");
+    if (objetivo_cumplido)
+        msjeOK("\tEl objetivo esta cumplido.");
     else
-        msjeInstruccion("El objetivo no esta cumplido.");
+        msjeError("\tEl objetivo no esta cumplido.");
 }
 
-bool Bombardero::es_principal(){
+bool Bombardero::es_principal()
+{
     return false;
 }

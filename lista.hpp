@@ -118,6 +118,33 @@ public:
     }*/
 
 
+int obtenerPosicion(Dato nombre)
+{
+    bool elementoEncontrado = false;
+    int i = 0;
+    int falopa;
+    Nodo<Dato> *auxiliar = primero;
+
+    while (!elementoEncontrado && i < cantidad)
+    {
+        if (auxiliar->obtener_dato() == nombre)
+        {
+            elementoEncontrado = true;
+        }
+        i++;
+        auxiliar = auxiliar->obtener_siguiente();
+        
+    }
+
+    if (!elementoEncontrado)
+    {
+        return -1;
+    }
+    falopa = cantidad - i;
+    if(falopa < 0)
+        falopa = falopa*-1;
+    return falopa;
+}
 
 
 private:

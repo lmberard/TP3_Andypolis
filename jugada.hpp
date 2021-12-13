@@ -9,23 +9,24 @@
 
 static const int OPCION_DE_CONFIRMACION = 1;
 
-class Jugada{
-    public:
-        Jugada(); 
+class Jugada
+{
+public:
+    Jugada();
 
-        virtual void jugar(Constructor &, Mapa &, int &, Jugador *, int &) = 0;
-        
-        Coordenada pedir_coordenadas();
-        string pedir_edificio();
-        int pedir_confirmacion();
+    virtual void jugar(Constructor &, Mapa &, int &, Jugador *, int &) = 0;
 
-        int pedir_id_jugador();
+    Coordenada pedir_coordenadas();
+    string pedir_edificio();
+    int pedir_confirmacion();
 
-        bool id_jugador_es_valido(int id_jugador);
+    int pedir_id_jugador();
 
-        void setear_coordenada_jugador(int id_jugador, Jugador * jugadores, Mapa & mapa);
+    bool id_jugador_es_valido(int id_jugador);
 
-        virtual ~Jugada();
+    void setear_coordenada_jugador(int id_jugador, Jugador *jugadores, Mapa &mapa);
+
+    virtual ~Jugada();
 };
 
 #endif // JUGADA_HPP

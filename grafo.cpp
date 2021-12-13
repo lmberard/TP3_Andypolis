@@ -1,30 +1,21 @@
 #include "grafo.hpp"
-#include "dijkstra.hpp"
 #include <iostream>
 
 Grafo::Grafo()
 {
     matrizDeAdyacencia = nullptr;
-    vertices = new ListaG<Vertice>();
-    algoritmoCaminoMinimo = nullptr;
 }
 
 void Grafo::agregarVertice(Coordenada nuevoVertice)
 {
     agrandarMatrizDeAdyacencia();
-    vertices->agregar(nuevoVertice);
-}
-
-void Grafo::mostrarGrafo()
-{
-    mostrarVertices();
-    mostrarMatrizAdyacencia();
+    vertices.alta(nuevoVertice);
 }
 
 void Grafo::agregarCamino(Coordenada origen, Coordenada destino, int & peso)
 {
-    int posicionOrigen = vertices->obtenerPosicion(origen);
-    int posicionDestino = vertices->obtenerPosicion(destino);
+    int posicionOrigen = vertices.obtenerPosicion(origen);
+    int posicionDestino = vertices.obtenerPosicion(destino);
 
     if (posicionOrigen == POSICION_NO_ENCONTRADA)
     {
@@ -43,8 +34,8 @@ void Grafo::agregarCamino(Coordenada origen, Coordenada destino, int & peso)
 
 void Grafo::caminoMinimo(Coordenada origen, Coordenada destino, int & energia, Lista<Coordenada> & lista )
 {
-    int posicionOrigen = vertices->obtenerPosicion(origen);
-    int posicionDestino = vertices->obtenerPosicion(destino);
+    int posicionOrigen = vertices.obtenerPosicion(origen);
+    int posicionDestino = vertices.obtenerPosicion(destino);
 
     if (posicionOrigen == POSICION_NO_ENCONTRADA)
     {
@@ -61,7 +52,8 @@ void Grafo::caminoMinimo(Coordenada origen, Coordenada destino, int & energia, L
 void Grafo::agrandarMatrizDeAdyacencia()
 {
     int **matrizAuxiliar;
-    int nuevaCantidadDeVertices = vertices->obtenerCantidadDeElementos() + 1;
+    int nuevaCantidadDeVertices = vertices.mostrar_cantidad() + 1;
+   
 
     matrizAuxiliar = new int *[nuevaCantidadDeVertices];
     for (int i = 0; i < nuevaCantidadDeVertices; i++)
@@ -77,9 +69,9 @@ void Grafo::agrandarMatrizDeAdyacencia()
 
 void Grafo::copiarMatrizAdyacente(int **nuevaAdyacente)
 {
-    for (int i = 0; i < vertices->obtenerCantidadDeElementos(); i++)
+    for (int i = 0; i < vertices.mostrar_cantidad(); i++)
     {
-        for (int j = 0; j < vertices->obtenerCantidadDeElementos(); j++)
+        for (int j = 0; j <  vertices.mostrar_cantidad(); j++)
         {
             nuevaAdyacente[i][j] = matrizDeAdyacencia[i][j];
         }
@@ -88,17 +80,17 @@ void Grafo::copiarMatrizAdyacente(int **nuevaAdyacente)
 
 void Grafo::inicializarNuevoVertice(int **nuevaAdyacente)
 {
-    for (int i = 0; i < vertices->obtenerCantidadDeElementos(); i++)
+    for (int i = 0; i <  vertices.mostrar_cantidad(); i++)
     {
-        nuevaAdyacente[vertices->obtenerCantidadDeElementos()][i] = INFINITO;
-        nuevaAdyacente[i][vertices->obtenerCantidadDeElementos()] = INFINITO;
+        nuevaAdyacente[ vertices.mostrar_cantidad()][i] = INFINITO;
+        nuevaAdyacente[i][ vertices.mostrar_cantidad()] = INFINITO;
     }
-    nuevaAdyacente[vertices->obtenerCantidadDeElementos()][vertices->obtenerCantidadDeElementos()] = 0;
+    nuevaAdyacente[ vertices.mostrar_cantidad()][ vertices.mostrar_cantidad()] = 0;
 }
 
 void Grafo::liberarMatrizAdyacencia()
 {
-    for (int i = 0; i < vertices->obtenerCantidadDeElementos(); i++)
+    for (int i = 0; i <  vertices.mostrar_cantidad(); i++)
     {
         delete[] matrizDeAdyacencia[i];
     }
@@ -109,69 +101,12 @@ Grafo::~Grafo()
 {
     liberarMatrizAdyacencia();
     matrizDeAdyacencia = nullptr;
-    delete vertices;
-    delete algoritmoCaminoMinimo;
-}
-
-void Grafo::mostrarVertices()
-{
-    cout << "Lista de vértices: [";
-    for (int i = 0; i < vertices->obtenerCantidadDeElementos(); i++)
-    {
-        //cout << vertices->obtenerNombre(i + 1);
-        cout << vertices->obtenerNombre(i + 1).coord_x << "," << vertices->obtenerNombre(i + 1).coord_y;
-        if (i + 1 != vertices->obtenerCantidadDeElementos())
-        {
-            cout << "; ";
-        }
-    }
-    cout << "]" << endl;
-}
-
-void Grafo::mostrarMatrizAdyacencia()
-{
-    cout << "Matriz de adyacencia:" << endl;
-    for (int i = 0; i < vertices->obtenerCantidadDeElementos(); i++)
-    {
-        for (int j = 0; j < vertices->obtenerCantidadDeElementos() * 2; j++)
-        {
-            if (j == vertices->obtenerCantidadDeElementos() * 2 - 1)
-            {
-                cout << endl;
-            }
-            else if (j % 2 == 0)
-            {
-                if (matrizDeAdyacencia[i][j / 2] == INFINITO)
-                {
-                    cout << "∞";
-                }
-                else
-                {
-                    cout << matrizDeAdyacencia[i][j / 2];
-                }
-            }
-            else
-            {
-                cout << "|";
-            }
-        }
-    }
-    cout << endl;
 }
 
 void Grafo::caminoMinimo(int origen, int destino, int &energia, Lista<Coordenada> & lista)
 {
-    algoritmoCaminoMinimo->caminoMinimo(origen, destino, energia, lista);
+    dijkstra.construir(vertices, matrizDeAdyacencia);
+    dijkstra.caminoMinimo(origen, destino, energia, lista);
 }
-/*
-void Grafo::usarFloyd()
-{
-    delete algoritmoCaminoMinimo;
-    algoritmoCaminoMinimo = new Floyd(vertices, matrizDeAdyacencia);
-}*/
 
-void Grafo::usarDijkstra()
-{
-    delete algoritmoCaminoMinimo;
-    algoritmoCaminoMinimo = new Dijkstra(vertices, matrizDeAdyacencia);
-}
+

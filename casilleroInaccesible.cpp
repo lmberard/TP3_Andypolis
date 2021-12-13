@@ -1,8 +1,8 @@
 #include "casilleroInaccesible.hpp"
 
-CasilleroInaccesible ::CasilleroInaccesible() : Casillero(){}
+CasilleroInaccesible ::CasilleroInaccesible() : Casillero() {}
 
-CasilleroInaccesible ::~CasilleroInaccesible(){}
+CasilleroInaccesible ::~CasilleroInaccesible() {}
 
 void CasilleroInaccesible ::info()
 {
@@ -13,7 +13,7 @@ void CasilleroInaccesible ::info()
 
 void CasilleroInaccesible ::mostrar_por_pantalla()
 {
-    if(!jugador)
+    if (!jugador)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "   " << END_COLOR << " ";
     else
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << jugador->obtener_codigo() << " " << END_COLOR << " ";
@@ -31,13 +31,14 @@ bool CasilleroInaccesible::agregar(Jugador *jugador)
     return true;
 }
 
-int CasilleroInaccesible::obtener_peso(int jugador_id){
-    int peso;
+int CasilleroInaccesible::obtener_peso(int jugador_id)
+{
+    int peso = 0;
 
-    if(jugador_id == 1)
+    if (jugador_id == 1)
         peso = 2;
-    else if(jugador_id == 2)
+    else if (jugador_id == 2)
         peso = 5;
-    
+
     return peso;
 }

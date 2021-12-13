@@ -15,7 +15,7 @@ private:
     Lista<Ubicaciones> materiales;
     Coordenada jugador1;
     Coordenada jugador2;
-    Lista<Coordenada> coordenadas_transitables; //ver si es necesario
+    Lista<Coordenada> coordenadas_transitables; // ver si es necesario
 
 public:
     //---------------CONSTRUCTORES DESTRUCTORES-----------------------
@@ -26,7 +26,7 @@ public:
 
     Coordenada obtener_posicion_jugador(int i);
 
-    Coordenada  obtener_coord_transitables(int i);
+    Coordenada obtener_coord_transitables(int i);
 
     void quitar_coord_transitable(Coordenada coord);
 
@@ -40,19 +40,19 @@ public:
     int obtener_cant_material(int i);
     string obtener_nombre_material(int i);
     Coordenada obtener_coordenada(int i, int j);
-    Lista<Ubicaciones> & lista_materiales();
+    Lista<Ubicaciones> &lista_materiales();
     int obtener_peso_del_mapa(int jugador_id, Coordenada coordenadas);
 
     //------------------------SETTERS---------------------------------
     void agregar_coordenada_transitable(Coordenada coord);
-    void agregar_material(Coordenada coord, Material* material);
-    void agregar_edificio(Coordenada coord, Edificio* edificio);
-    void agregar_casillero(Coordenada coord, Casillero* casillero);
-    void agregar_jugador(Coordenada coord, Jugador *jugador, int i);
-    bool mover_jugador(Coordenada coord, Jugador* jugador, int i);
+    void agregar_material(Coordenada coord, Material *material);
+    void agregar_edificio(Coordenada coord, Edificio *edificio);
+    void agregar_casillero(Coordenada coord, Casillero *casillero);
+    bool agregar_jugador(Coordenada coord, Jugador *jugador, int i);
+    bool mover_jugador(Coordenada coord, Jugador *jugador, int i);
     void borrar_jugador_de_coordenada(Coordenada coord);
-    //TODO: Revisar nombre y metodo
-    void agregar_ubicacion_material_lista(string nombre, Coordenada coord); //YO
+    // TODO: Revisar nombre y metodo
+    void agregar_ubicacion_material_lista(string nombre, Coordenada coord); // YO
     bool agregar_contenido(Coordenada coord, Edificio *edificio);
     bool agregar_contenido(Coordenada coord, Material *material);
     void actualizar_tam_mapa(int _filas, int _columnas);
@@ -66,15 +66,16 @@ public:
     void mostrar();
     void consultar_coordenada(Coordenada coord);
     void demoler_contenido(Coordenada coord);
-    Material * recolectar_material(Coordenada & coordenadas);
-    void quitar_material(Coordenada coord);
+    void recolectar_materiales_del_mapa(Coordenada &coordenadas);
 
     //--------------------FUNCIONES UTILES-----------------------------
     bool coordenadas_validas(Coordenada coord);
     bool coordenada_es_transitable(Coordenada coord);
     bool casillero_es_transitable(string tipo_casillero);
     void liberar_materiales();
-    void liberar_edificios(Lista<Ubicaciones> & lista);
+    void liberar_edificios(Lista<Ubicaciones> &lista);
+    void recorrer(Coordenada coord);
+    void desrecorrer(Coordenada coord);
 };
 
 #endif // MAPA_HPP

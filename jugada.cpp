@@ -85,7 +85,8 @@ void Jugada::setear_coordenada_jugador(int id_jugador, Jugador * jugadores, Mapa
     Coordenada coord_jugador = pedir_coordenadas();
     //esto deberia ser un loop para que te siga pidiendo
     if(mapa.coordenadas_validas(coord_jugador)){
-        mapa.agregar_jugador(coord_jugador,&jugadores[id_jugador - 1],id_jugador);
+        if(!mapa.agregar_jugador(coord_jugador,&jugadores[id_jugador - 1],id_jugador))
+            msjeError("Ya hay un jugador acá");
         //jugadores[id_jugador - 1].setear_posicion(coord_jugador);
     }
 }

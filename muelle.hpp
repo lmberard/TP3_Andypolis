@@ -3,11 +3,13 @@
 
 #include "casilleroTransitable.hpp"
 
-class Muelle : public CasilleroTransitable{
+class Muelle : public CasilleroTransitable
+{
 
-    public: 
-        Muelle();
-        void caracteristicas();
+public:
+    Muelle();
+    void caracteristicas();
+    void desrecorrer();
 };
 
-#endif //MUELLE_HPP
+#endif // MUELLE_HPP

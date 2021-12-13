@@ -3,11 +3,13 @@
 
 #include "casilleroConstruible.hpp"
 
-class Terreno : public CasilleroConstruible{
+class Terreno : public CasilleroConstruible
+{
 
-    public: 
-        Terreno();
-        void caracteristicas();
+public:
+    Terreno();
+    void caracteristicas();
+    void desrecorrer();
 };
 
-#endif //TERRENO_HPP
+#endif // TERRENO_HPP

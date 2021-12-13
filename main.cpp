@@ -2,12 +2,12 @@
 #include <string>
 #include <fstream>
 
-#include "juego2.hpp"
+#include "juego.hpp"
 
 using namespace std;
 int main()
 {
-    
+
     Juego andypolis;
     andypolis.jugar();
 

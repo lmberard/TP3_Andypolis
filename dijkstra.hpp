@@ -1,17 +1,22 @@
 #ifndef GRAFOS_DIJKSTRA_H
 #define GRAFOS_DIJKSTRA_H
 
-#include "caminoMinimo.hpp"
 #include "lista.hpp"
 #include "ubicaciones.hpp"
 
-class Dijkstra : public CaminoMinimo
+const int INFINITO = 99999999;
+
+class Dijkstra
 {
     // Atributos
 private:
     bool *verticesVisitados;
     int *distancia;
     int *recorrido;
+
+    int **matrizAdyacencia;
+    Lista<Coordenada> vertices;
+    int cantidadVertices;
 
     // Métodos
     // post: pone todos los valores del vector de verticesVisitados en "false" menos el origen
@@ -33,16 +38,17 @@ private:
     // post: muestra por pantalla el resultado del recorrido.
     void mostrarRecorrido(int origen, int destino, int & energia, Lista<Coordenada> & lista);
 
-    // post: muestra el estado instantaneo del vector de recorrido, distancia y visitados.
-    void mostrarIteracion(int iteracion);
 
-public:
-    Dijkstra(ListaG<Vertice> *vertices, int **matrizAdyacencia);
+public: //no iria con punteros
+
+    Dijkstra(){};
+
+    void construir(Lista<Coordenada> & vertices, int **matrizAdyacencia);
 
     // post: muestra por pantalla el camino mínimo entre el origen y el destino, detallando su recorrido y peso
-    void caminoMinimo(int origen, int destino, int & energia, Lista<Coordenada> & lista) override;
+    void caminoMinimo(int origen, int destino, int & energia, Lista<Coordenada> & lista);
 
-    ~Dijkstra() override;
+    ~Dijkstra();
 };
 
 #endif // GRAFOS_DIJKSTRA_H
