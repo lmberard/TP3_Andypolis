@@ -16,7 +16,7 @@ void CasilleroInaccesible ::mostrar_por_pantalla()
     if (!jugador)
         cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "    " << END_COLOR << " ";
     else
-        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << "  " << jugador->obtener_codigo() << " " << END_COLOR << " ";
+        cout << TXT_BLACK_16 << TXT_UNDERLINE << color << " " << jugador->obtener_codigo() << " " << END_COLOR << " ";
 }
 
 bool CasilleroInaccesible::agregar(Jugador *jugador)
