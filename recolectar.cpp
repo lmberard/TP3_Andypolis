@@ -12,7 +12,7 @@ void Recolectar::jugar(Constructor & bob, Mapa & mapa, int & turno, Jugador * ju
             for(int j = 1; j < obtener_cantidad(lista[i]) + 1; j++){
                 coordenada = lista[i].coordenadas[j];
                 edificio = mapa.obtener_edificio(coordenada); 
-                if(edificio->obtener_tipo_produccion() == "energia")
+                if(edificio->obtener_tipo_produccion() == "energia" && jugador[id_jugador_actual -1].obtener_energia() < 100 )
                     jugador[id_jugador_actual-1].modificar_puntos_energia(edificio->recolectar());
                 else
                     jugador[id_jugador_actual -1].inv().aniadir_cant_material(edificio->obtener_tipo_produccion(), edificio->recolectar());
