@@ -54,7 +54,7 @@ class ModificarEdificio : public Jugada{
             msjeInstruccion(DESEA_CAMBIAR_MADERA);
 
             int pedir_conf = pedir_confirmacion();
-
+            
             if(pedir_conf == OPCION_DE_CONFIRMACION){
                 confirmacion = true;
                 msjeInstruccion(INGRESE_VALOR_MADERA);
@@ -67,7 +67,7 @@ class ModificarEdificio : public Jugada{
                     }
             }   else if(pedir_conf == -1){
                     entrada_correcta = false;
-                }   else {confirmacion = false;}
+                } else {confirmacion = false;}
 
             return entrada_correcta;
         }
@@ -77,7 +77,9 @@ class ModificarEdificio : public Jugada{
             bool entrada_correcta = true;
 
             msjeInstruccion(DESEA_CAMBIAR_PIEDRA);
-            if(pedir_confirmacion() == OPCION_DE_CONFIRMACION){
+            int pedir_conf = pedir_confirmacion();
+
+            if(pedir_conf == OPCION_DE_CONFIRMACION){
                 confirmacion = true;
                 msjeInstruccion(INGRESE_VALOR_PIEDRA);
                 getline(cin, cantidad_piedra);
@@ -87,7 +89,9 @@ class ModificarEdificio : public Jugada{
                         entrada_correcta = false;
                         msjeError(ERR_NUMERO_INVALIDO);
                     }            
-            } else{confirmacion = false;}
+            }   else if(pedir_conf == -1){
+                    entrada_correcta = false;
+                } else {confirmacion = false;}
 
             return entrada_correcta;
         }
@@ -97,7 +101,8 @@ class ModificarEdificio : public Jugada{
             bool entrada_correcta = true;
 
             msjeInstruccion(DESEA_CAMBIAR_METAL);
-            if(pedir_confirmacion() == OPCION_DE_CONFIRMACION){
+            int pedir_conf = pedir_confirmacion();
+            if(pedir_conf == OPCION_DE_CONFIRMACION){
                 confirmacion = true;
                 msjeInstruccion(INGRESE_VALOR_METAL);
                 getline(cin, cantidad_metal);
@@ -107,7 +112,10 @@ class ModificarEdificio : public Jugada{
                         entrada_correcta = false;
                         msjeError(ERR_NUMERO_INVALIDO);
                     }           
-            } else{confirmacion = false;}
+            }   else if(pedir_conf == -1){
+                    entrada_correcta = false;
+                } else {confirmacion = false;}
+
 
             return entrada_correcta;
         }
