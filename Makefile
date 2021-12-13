@@ -95,6 +95,7 @@ andypolis: jugada.cpp
 andypolis: listaredificios.cpp
 andypolis: mostrarmapa.cpp
 andypolis: comenzarpartida.cpp
+andypolis: modificaredificio.cpp
 
 #jugadas del segundo menu:
 andypolis: construir.cpp
