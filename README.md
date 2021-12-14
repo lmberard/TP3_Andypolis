@@ -9,6 +9,9 @@ Integrantes:
 
 ![AndypolisPrueba](https://user-images.githubusercontent.com/50753891/145912734-98996d16-28bb-4a29-8c20-a560195c2097.gif)
 
+# UML
+![uml](https://user-images.githubusercontent.com/50753891/145912934-0fbb3d54-5ed4-4516-9f3c-1570b15d96a4.png)
+
 # Juego
 
 Es la clase principal que engloba el funcionamiento de todo el juego. Se encarga de instanciar las jugadas segun las opciones del menu.
