@@ -7,6 +7,8 @@ Integrantes:
 - Guglieri, Mariano
 - Fernández Mosquera, Guillermo
 
+![AndypolisPrueba](https://user-images.githubusercontent.com/50753891/145912734-98996d16-28bb-4a29-8c20-a560195c2097.gif)
+
 # Juego
 
 Es la clase principal que engloba el funcionamiento de todo el juego. Se encarga de instanciar las jugadas segun las opciones del menu.
